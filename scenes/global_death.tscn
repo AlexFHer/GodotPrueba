@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://i088rp1g8077"]
+
+[sub_resource type="GDScript" id="GDScript_6in72"]
+resource_name = "global-death"
+script/source = "extends Area3D
+
+func _on_body_entered(body: Node3D) -> void:
+	if body.is_in_group(\"MainPlayer\"):
+		get_tree().reload_current_scene()
+		pass # Replace with function body.
+"
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ma206"]
+
+[node name="global-death" type="Area3D"]
+script = SubResource("GDScript_6in72")
+
+[node name="global-collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.84288, 0)
+shape = SubResource("WorldBoundaryShape3D_ma206")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

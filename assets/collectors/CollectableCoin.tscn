@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://drsftosyg715t"]
+
+[ext_resource type="Script" path="res://assets/collectors/CollectableCoin.gd" id="1_1rsb2"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rb617"]
+radius = 2.78724
+
+[sub_resource type="PrismMesh" id="PrismMesh_t33ib"]
+size = Vector3(0.5, 0.5, 0.1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_l583r"]
+radius = 0.302082
+
+[node name="CollectableCoinArea" type="Area3D"]
+script = ExtResource("1_1rsb2")
+
+[node name="AutoCollectCollision" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_rb617")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("PrismMesh_t33ib")
+
+[node name="CoinArea" type="Area3D" parent="."]
+
+[node name="CoinCollisionArea" type="CollisionShape3D" parent="CoinArea"]
+shape = SubResource("SphereShape3D_l583r")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="CoinArea" to="." method="_on_object_area_body_entered"]
