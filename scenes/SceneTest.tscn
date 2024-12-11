@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://cf47i2djfslyw" path="res://player/player.tscn" id="1_j4pqo"]
 [ext_resource type="PackedScene" uid="uid://i088rp1g8077" path="res://scenes/global_death.tscn" id="3_bh741"]
 [ext_resource type="PackedScene" uid="uid://drsftosyg715t" path="res://assets/collectors/CollectableCoin.tscn" id="3_ucu6d"]
-[ext_resource type="Script" path="res://resources/potions/high-jump-potion.gd" id="5_k5ukg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2bbwn"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -23,6 +22,13 @@ glow_enabled = true
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_k4n8c"]
 data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
 
+[sub_resource type="GDScript" id="GDScript_glb3n"]
+script/source = "extends Node
+
+@export var potion_base_properties = Potion.new()
+
+"
+
 [node name="SceneTest" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -35,13 +41,13 @@ shadow_enabled = true
 [node name="Player" parent="." instance=ExtResource("1_j4pqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09692, 2)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(6.85813, 0, 0, 0, 1, 0, 0, 0, 12.3786, 0, 0, 0)
 mesh = SubResource("PlaneMesh_nduvq")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_k4n8c")
 
 [node name="global-death" parent="." instance=ExtResource("3_bh741")]
@@ -56,4 +62,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.37421, -4.76837e-07, -2.724
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.94294, 1.81957, -4.71815)
 
 [node name="Node3D" type="Node3D" parent="."]
-script = ExtResource("5_k5ukg")
+script = SubResource("GDScript_glb3n")

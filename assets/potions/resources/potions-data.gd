@@ -1,6 +1,6 @@
 class_name PotionsData extends Resource
 
-const PotionEnum = preload("res://resources/potions/potion-types.gd").PotionType
+const PotionEnum = preload("res://assets/potions/resources/potion-types.gd").PotionType
 
 @export var potions: Array[Potion] = [];
 
