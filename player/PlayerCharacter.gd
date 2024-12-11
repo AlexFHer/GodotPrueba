@@ -2,7 +2,7 @@
 
 extends CharacterBody3D
 
-const PotionType = preload("res://resources/potions/potion-types.gd").PotionType;
+const PotionType = preload("res://assets/potions/resources/potion-types.gd").PotionType;
 @export var cameraController: Node3D;
 
 const speed: float = 6.0;
@@ -14,11 +14,6 @@ const rotationSensivity = 0.5;
 var canJump: bool = true;
 
 var potionsData: PotionsData = PotionsData.new();
-
-func _ready() -> void:
-	var newPotion = Potion.new();
-	newPotion.name = "Blue potion";
-	newPotion.type = PotionType.Blue;
 
 func jump() -> void:
 	velocity.y = jump_velocity;
