@@ -5,7 +5,7 @@ extends CharacterBody3D
 const PotionType = preload("res://assets/potions/resources/potion-types.gd").PotionType;
 @export var cameraController: Node3D;
 
-const speed: float = 6.0;
+const speed: float = 15.0;
 const inAirSpeed: float = 3.0;
 
 const jump_velocity: float = 7.0
@@ -71,4 +71,4 @@ func process_gravity(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		pass
-		#cameraController.rotate_y(deg_to_rad(-event.relative.x*rotationSensivity)); 
+		#rotate_y(deg_to_rad(-event.relative.x*rotationSensivity)); 
