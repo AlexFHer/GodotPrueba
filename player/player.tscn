@@ -24,3 +24,5 @@ top_level = true
 [node name="Camera3D" type="Camera3D" parent="Camera controller/Camera target"]
 transform = Transform3D(1, 0, 0, 0, 0.828031, 0.560683, 0, -0.560683, 0.828031, 0, 2.89952, 3.44543)
 fov = 91.0422
+
+[node name="PotionsManager" type="Node3D" parent="."]

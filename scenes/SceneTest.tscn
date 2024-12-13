@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://b6slr7s7ogwg1"]
+[gd_scene load_steps=13 format=3 uid="uid://b6slr7s7ogwg1"]
 
 [ext_resource type="PackedScene" uid="uid://cf47i2djfslyw" path="res://player/player.tscn" id="1_j4pqo"]
 [ext_resource type="PackedScene" uid="uid://i088rp1g8077" path="res://scenes/global_death.tscn" id="3_bh741"]
 [ext_resource type="PackedScene" uid="uid://drsftosyg715t" path="res://assets/collectors/CollectableCoin.tscn" id="3_ucu6d"]
 [ext_resource type="ArrayMesh" uid="uid://4cgq3sxxkk8j" path="res://environment/Artisans Hub.obj" id="4_0bikr"]
+[ext_resource type="PackedScene" uid="uid://cyqqtvfimjbqb" path="res://assets/potions/jump-potion/jump-potion.tscn" id="5_jmv3w"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2bbwn"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -43,7 +44,7 @@ transform = Transform3D(0.998009, -0.0546163, 0.0315326, -1.49013e-08, 0.499998,
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_j4pqo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09692, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09692, 7)
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(6.85813, 0, 0, 0, 1, 0, 0, 0, 12.3786, 0, 0, 0)
@@ -76,3 +77,6 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_xwy50")
+
+[node name="Jump-potion" parent="." instance=ExtResource("5_jmv3w")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
