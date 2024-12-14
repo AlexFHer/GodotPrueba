@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ccind2d3exwnj"
-path.s3tc="res://.godot/imported/skharry_bottleTex0.png-6684461fb2c84bde64009d4f46687547.s3tc.ctex"
+path.s3tc="res://.godot/imported/skharry_bottleTex0.png-bdad142e296fbcc2d0f0e19dc8a7161a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://environment/skharry_bottleTex0.png"
-dest_files=["res://.godot/imported/skharry_bottleTex0.png-6684461fb2c84bde64009d4f46687547.s3tc.ctex"]
+source_file="res://shared/environment/skharry_bottleTex0.png"
+dest_files=["res://.godot/imported/skharry_bottleTex0.png-bdad142e296fbcc2d0f0e19dc8a7161a.s3tc.ctex"]
 
 [params]
 

@@ -1,6 +1,6 @@
 extends Node
 
-const PotionEnum = preload("res://assets/potions/resources/potion-types.gd").PotionType
+const PotionEnum = preload("res://assets/potions/models/potion-types.gd").PotionType
 
 var selectedPotionType: PotionEnum = PotionEnum.Jump;
 

@@ -2,11 +2,11 @@
 
 extends CharacterBody3D
 
-const PotionType = preload("res://assets/potions/resources/potion-types.gd").PotionType;
+const PotionType = preload("res://assets/potions/models/potion-types.gd").PotionType;
 @export var cameraController: Node3D;
 
 const speed: float = 15.0;
-const inAirSpeed: float = 3.0;
+const inAirSpeed: float = 5.0;
 
 const jump_velocity: float = 7.0
 const rotationSensivity = 0.5;
@@ -86,5 +86,4 @@ func _input(event: InputEvent) -> void:
 
 
 func _on_potions_manager_jump_potion_used() -> void:
-	print("Mega jump enabled")
 	activateMegaJump()

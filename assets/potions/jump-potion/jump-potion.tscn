@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://cyqqtvfimjbqb"]
 
 [ext_resource type="Script" path="res://assets/potions/jump-potion/jump-potion.gd" id="1_tjabp"]
-[ext_resource type="Script" path="res://assets/potions/resources/potion.gd" id="2_cvxdm"]
-[ext_resource type="ArrayMesh" uid="uid://c2khvl0rjx78b" path="res://environment/skharry_bottleMesh.obj" id="3_e6xve"]
-[ext_resource type="Texture2D" uid="uid://ccind2d3exwnj" path="res://environment/skharry_bottleTex0.png" id="4_mrsst"]
+[ext_resource type="Script" path="res://assets/potions/models/potion.gd" id="2_cvxdm"]
+[ext_resource type="ArrayMesh" uid="uid://c2khvl0rjx78b" path="res://shared/environment/skharry_bottleMesh.obj" id="3_e6xve"]
+[ext_resource type="Texture2D" uid="uid://ccind2d3exwnj" path="res://shared/environment/skharry_bottleTex0.png" id="4_v6rq3"]
 
 [sub_resource type="Resource" id="Resource_8yq6x"]
 script = ExtResource("2_cvxdm")
@@ -11,8 +11,8 @@ name = ""
 spriteUrl = ""
 type = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7bw6x"]
-albedo_texture = ExtResource("4_mrsst")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6udi0"]
+albedo_texture = ExtResource("4_v6rq3")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vjdkv"]
 size = Vector3(13.0112, 22.5394, 11.9834)
@@ -33,7 +33,7 @@ length = 3.0
 loop_mode = 1
 tracks/0/type = "position_3d"
 tracks/0/imported = false
-tracks/0/enabled = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
@@ -86,7 +86,7 @@ potion = SubResource("Resource_8yq6x")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 5.68947, 0)
 mesh = ExtResource("3_e6xve")
-surface_material_override/0 = SubResource("StandardMaterial3D_7bw6x")
+surface_material_override/0 = SubResource("StandardMaterial3D_6udi0")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.297072, 5.51283, 0.102815)

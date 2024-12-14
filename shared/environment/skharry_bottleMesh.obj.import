@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c2khvl0rjx78b"
+path="res://.godot/imported/skharry_bottleMesh.obj-00d714839c0cd790811489710569269a.mesh"
+
+[deps]
+
+files=["res://.godot/imported/skharry_bottleMesh.obj-00d714839c0cd790811489710569269a.mesh"]
+
+source_file="res://shared/environment/skharry_bottleMesh.obj"
+dest_files=["res://.godot/imported/skharry_bottleMesh.obj-00d714839c0cd790811489710569269a.mesh", "res://.godot/imported/skharry_bottleMesh.obj-00d714839c0cd790811489710569269a.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
