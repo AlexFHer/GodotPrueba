@@ -12,6 +12,7 @@ const jump_velocity: float = 7.0
 const rotationSensivity = 0.5;
 
 var canJump: bool = true;
+var canMegaJump = false;
 
 var potionsData: PotionsData = PotionsData.new();
 
@@ -23,11 +24,15 @@ func megaJump() -> void:
 	velocity.y = jump_velocity * 2;
 	disableJump();
 
+func activateMegaJump() -> void:
+	canMegaJump = true;
+
 func enableJump() -> void:
 	canJump = true;
 
 func disableJump() -> void:
 	canJump = false;
+	canMegaJump = false;
 
 func _physics_process(delta: float) -> void:
 	process_jump();
@@ -44,6 +49,12 @@ func process_jump() -> void:
 		# Handle jump.
 	if !Input.is_action_just_pressed("ui_accept"):
 		return;
+	
+	if canJump:
+		if canMegaJump:
+			megaJump();
+		else:
+			jump()
 	
 	if canJump:
 		jump()
@@ -72,3 +83,8 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		pass
 		#rotate_y(deg_to_rad(-event.relative.x*rotationSensivity)); 
+
+
+func _on_potions_manager_jump_potion_used() -> void:
+	print("Mega jump enabled")
+	activateMegaJump()

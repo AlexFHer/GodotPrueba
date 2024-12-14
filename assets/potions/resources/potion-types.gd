@@ -1,5 +1,5 @@
 enum PotionType {
-	Blue, # Jump
-	Green, # Speed 
-	Red # Fire
+	Jump, # Jump
+	Speed, # Speed 
+	Fire # Fire
 }

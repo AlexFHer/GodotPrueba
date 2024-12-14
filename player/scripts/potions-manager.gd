@@ -1,11 +1,41 @@
 extends Node
 
+const PotionEnum = preload("res://assets/potions/resources/potion-types.gd").PotionType
 
-# Called when the node enters the scene tree for the first time.
+var selectedPotionType: PotionEnum = PotionEnum.Jump;
+
+signal jumpPotionUsed;
+signal SpeedPotionUsed;
+signal firePotionUsed;
+
+signal selectedPotionTypeChanged(potionType: PotionEnum);
+
 func _ready() -> void:
-	pass # Replace with function body.
+	selectedPotionTypeChanged.emit(selectedPotionType);
 
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("usePotion"):
+		usePotion()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func usePotion() -> void:
+	if not PlayerPotions.isThereAnyPotionOfType(selectedPotionType):
+		return;
+		
+	match selectedPotionType:
+		PotionEnum.Jump:
+			useJumpPotion();
+		PotionEnum.Speed:
+			useSpeedPotion();
+		PotionEnum.Fire:
+			useFirePotion();
+	
+	PlayerPotions.removeOnePotionByType(selectedPotionType)
+
+func useJumpPotion() -> void:
+	jumpPotionUsed.emit()
+
+func useSpeedPotion() -> void:
+	SpeedPotionUsed.emit()
+
+func useFirePotion() -> void:
+	firePotionUsed.emit()

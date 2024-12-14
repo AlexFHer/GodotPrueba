@@ -79,4 +79,7 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_xwy50")
 
 [node name="Jump-potion" parent="." instance=ExtResource("5_jmv3w")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -20.9598, -2.61284, -77.7608)
+
+[node name="Jump-potion2" parent="." instance=ExtResource("5_jmv3w")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.0366431, 1, -5.96284)

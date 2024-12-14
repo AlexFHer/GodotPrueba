@@ -5,9 +5,9 @@
 [ext_resource type="ArrayMesh" uid="uid://c2khvl0rjx78b" path="res://environment/skharry_bottleMesh.obj" id="3_e6xve"]
 [ext_resource type="Texture2D" uid="uid://ccind2d3exwnj" path="res://environment/skharry_bottleTex0.png" id="4_mrsst"]
 
-[sub_resource type="Resource" id="Resource_sugfu"]
+[sub_resource type="Resource" id="Resource_8yq6x"]
 script = ExtResource("2_cvxdm")
-name = "Blue potion"
+name = ""
 spriteUrl = ""
 type = 0
 
@@ -21,7 +21,7 @@ size = Vector3(13.0112, 22.5394, 11.9834)
 length = 0.001
 tracks/0/type = "position_3d"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -33,11 +33,18 @@ length = 3.0
 loop_mode = 1
 tracks/0/type = "position_3d"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath(".")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 1, 0, 1.5, 1, 0, 1.5, 0, 3, 1, 0, 1, 0)
+tracks/1/type = "scale_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.1, 0.1, 0.1, 3, 1, 0.1, 0.1, 0.1)
 
 [sub_resource type="Animation" id="Animation_oor1a"]
 resource_name = "pickUp"
@@ -56,9 +63,12 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"values": []
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_pick_up"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_arah5"]
@@ -69,8 +79,9 @@ _data = {
 }
 
 [node name="Jump-potion" type="Area3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 script = ExtResource("1_tjabp")
-potion = SubResource("Resource_sugfu")
+potion = SubResource("Resource_8yq6x")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 5.68947, 0)
