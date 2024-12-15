@@ -1,3 +1,3 @@
 extends Node
 
-@export var collectableCoins: int = 0;
+@export var mithrilCoins: int = 0;

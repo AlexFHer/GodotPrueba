@@ -19,8 +19,8 @@ func checkTarget(delta: float) -> void:
 func _on_object_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("MainPlayer"):
 		queue_free();
-		GlobalManager.collectableCoins += 1;
-		print(GlobalManager.collectableCoins);
+		GlobalManager.mithrilCoins += 1;
+		print(GlobalManager.mithrilCoins);
 		pass # Replace with function body.
 
 
