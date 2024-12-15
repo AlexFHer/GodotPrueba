@@ -27,12 +27,14 @@ func megaJump() -> void:
 func activateMegaJump() -> void:
 	canMegaJump = true;
 
+func deactivateMegaJump() -> void:
+	canMegaJump = false;
+
 func enableJump() -> void:
 	canJump = true;
 
 func disableJump() -> void:
 	canJump = false;
-	canMegaJump = false;
 
 func _physics_process(delta: float) -> void:
 	process_jump();
@@ -87,3 +89,6 @@ func _input(event: InputEvent) -> void:
 
 func _on_potions_manager_jump_potion_used() -> void:
 	activateMegaJump()
+	await get_tree().create_timer(30).timeout
+	deactivateMegaJump()
+	
