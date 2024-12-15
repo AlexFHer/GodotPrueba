@@ -2,7 +2,7 @@
 
 extends CharacterBody3D
 
-const PotionType = preload("res://assets/potions/models/potion-types.gd").PotionType;
+const PotionType = preload("res://assets/potions/shared/models/potion-types.gd").PotionType;
 @export var cameraController: Node3D;
 
 const speed: float = 15.0;

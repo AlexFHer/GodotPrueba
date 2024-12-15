@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://ontkeeyy4mk7"]
+
+[ext_resource type="Script" path="res://assets/potions/fire-potion/fire-potion.gd" id="1_cy8qw"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_fqho5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ypi7c"]
+albedo_color = Color(0.992157, 0, 0, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u3mii"]
+
+[node name="Fire-potion" type="Area3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+script = ExtResource("1_cy8qw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_fqho5")
+surface_material_override/0 = SubResource("StandardMaterial3D_ypi7c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_u3mii")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

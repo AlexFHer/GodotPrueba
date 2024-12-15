@@ -1,10 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://b6slr7s7ogwg1"]
+[gd_scene load_steps=15 format=3 uid="uid://b6slr7s7ogwg1"]
 
 [ext_resource type="PackedScene" uid="uid://cf47i2djfslyw" path="res://player/player.tscn" id="1_j4pqo"]
 [ext_resource type="PackedScene" uid="uid://i088rp1g8077" path="res://scenes/global_death.tscn" id="3_bh741"]
 [ext_resource type="PackedScene" uid="uid://drsftosyg715t" path="res://assets/collectors/CollectableCoin.tscn" id="3_ucu6d"]
 [ext_resource type="ArrayMesh" uid="uid://4cgq3sxxkk8j" path="res://shared/environment/Artisans Hub.obj" id="4_0bikr"]
 [ext_resource type="PackedScene" uid="uid://cyqqtvfimjbqb" path="res://assets/potions/jump-potion/jump-potion.tscn" id="5_jmv3w"]
+[ext_resource type="PackedScene" uid="uid://ex02udmugvjt" path="res://assets/potions/speed-potion/speed-potion.tscn" id="6_06ppg"]
+[ext_resource type="PackedScene" uid="uid://ontkeeyy4mk7" path="res://assets/potions/fire-potion/fire-potion.tscn" id="7_2rk5f"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2bbwn"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -80,3 +82,9 @@ shape = SubResource("ConcavePolygonShape3D_xwy50")
 
 [node name="Jump-potion2" parent="." instance=ExtResource("5_jmv3w")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.0366431, 1, -5.96284)
+
+[node name="Speed-potion" parent="." instance=ExtResource("6_06ppg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.289637, 1.50733, 1.6011)
+
+[node name="Fire-potion" parent="." instance=ExtResource("7_2rk5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.54658, 0.969587, 1.93048)
