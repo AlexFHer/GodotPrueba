@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cf47i2djfslyw"]
+[gd_scene load_steps=6 format=3 uid="uid://cf47i2djfslyw"]
 
 [ext_resource type="Script" path="res://player/PlayerCharacter.gd" id="1_43pha"]
 [ext_resource type="Script" path="res://player/scripts/potions-manager.gd" id="2_86mlk"]
+[ext_resource type="Script" path="res://player/scripts/projectile-manager.gd" id="3_uekve"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_itxij"]
 
@@ -29,4 +30,11 @@ fov = 91.0422
 [node name="PotionsManager" type="Node3D" parent="."]
 script = ExtResource("2_86mlk")
 
+[node name="ProjectileManager" type="Node3D" parent="."]
+script = ExtResource("3_uekve")
+
+[node name="ShootPosition" type="Node3D" parent="ProjectileManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.497808, -1.41415)
+
+[connection signal="firePotionUsed" from="PotionsManager" to="ProjectileManager" method="_on_potions_manager_fire_potion_used"]
 [connection signal="jumpPotionUsed" from="PotionsManager" to="." method="_on_potions_manager_jump_potion_used"]
