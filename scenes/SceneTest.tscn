@@ -40,9 +40,8 @@ data = PackedVector3Array(-39.398, -14.6574, 183.985, -39.398, -14.6574, 177.585
 
 [sub_resource type="Resource" id="Resource_ctgth"]
 script = ExtResource("8_yrh6x")
-name = "\"Fire Potion\""
-spriteUrl = ""
 type = 2
+expireTime = 30
 
 [node name="SceneTest" type="Node3D"]
 
@@ -54,13 +53,14 @@ transform = Transform3D(0.998009, -0.0546163, 0.0315326, -1.49013e-08, 0.499998,
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_j4pqo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09692, 7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.33153, -14.0812)
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(6.85813, 0, 0, 0, 1, 0, 0, 0, 12.3786, 0, 0, 0)
 mesh = SubResource("PlaneMesh_nduvq")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00536122, 0.0451841, -0.000449541)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_k4n8c")

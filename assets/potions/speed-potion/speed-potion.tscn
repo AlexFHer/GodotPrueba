@@ -1,13 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://ex02udmugvjt"]
+[gd_scene load_steps=6 format=3 uid="uid://ex02udmugvjt"]
 
 [ext_resource type="Script" path="res://assets/potions/speed-potion/speed-potion.gd" id="1_kst2q"]
-[ext_resource type="Script" path="res://assets/potions/shared/models/potion.gd" id="2_2fk6q"]
-
-[sub_resource type="Resource" id="Resource_ly37l"]
-script = ExtResource("2_2fk6q")
-name = "\"Speed potion\""
-spriteUrl = ""
-type = 1
+[ext_resource type="Resource" uid="uid://crl16xg4d6e8j" path="res://assets/potions/speed-potion/speed-potion.tres" id="2_oncna"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rfo5y"]
 
@@ -19,7 +13,7 @@ albedo_color = Color(0, 1, 0, 1)
 [node name="Speed-potion" type="Area3D"]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 script = ExtResource("1_kst2q")
-potion = SubResource("Resource_ly37l")
+potion = ExtResource("2_oncna")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_rfo5y")

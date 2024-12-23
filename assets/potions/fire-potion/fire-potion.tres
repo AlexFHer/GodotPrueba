@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Potion" load_steps=2 format=3 uid="uid://cpjstx3kuhpp5"]
+
+[ext_resource type="Script" path="res://assets/potions/shared/models/potion.gd" id="1_16v6w"]
+
+[resource]
+script = ExtResource("1_16v6w")
+type = 2
+expireTime = 30
