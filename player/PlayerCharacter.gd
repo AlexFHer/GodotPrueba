@@ -4,7 +4,6 @@ extends CharacterBody3D
 
 const PotionType = preload("res://assets/potions/shared/models/potion-types.gd").PotionType;
 @export var cameraController: Node3D;
-
 const speed: float = 15.0;
 const inAirSpeed: float = 5.0;
 
@@ -15,6 +14,12 @@ var canJump: bool = true;
 var canMegaJump = false;
 
 var potionsData: PotionsData = PotionsData.new();
+
+## Pruebas
+
+var currentDirection: Vector3;
+var rotationSpeed = TAU * 2;
+var theta: float;
 
 func jump() -> void:
 	velocity.y = jump_velocity;
@@ -38,7 +43,7 @@ func disableJump() -> void:
 
 func _physics_process(delta: float) -> void:
 	process_jump();
-	process_movement();
+	process_movement(delta);
 	process_gravity(delta);
 	
 	move_and_slide();
@@ -61,7 +66,7 @@ func process_jump() -> void:
 	if canJump:
 		jump()
 
-func process_movement() -> void:
+func process_movement(delta) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var actualSpeed = speed
@@ -75,6 +80,8 @@ func process_movement() -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, actualSpeed)
 		velocity.z = move_toward(velocity.z, 0, actualSpeed)
+	
+	manageSelfRotation(direction, delta);
 
 func process_gravity(delta: float) -> void:
 	# Add the gravity.
@@ -91,4 +98,7 @@ func _on_potions_manager_jump_potion_used() -> void:
 	activateMegaJump()
 	await get_tree().create_timer(30).timeout
 	deactivateMegaJump()
-	
+
+func manageSelfRotation(direction: Vector3, delta: float) -> void:
+	var target_direction = direction.normalized()
+	$Mesh.look_at(global_transform.origin + target_direction, Vector3.UP)

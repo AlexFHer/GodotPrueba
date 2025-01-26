@@ -15,8 +15,16 @@ cameraController = NodePath("Camera controller")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_itxij")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Mesh" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh"]
 mesh = SubResource("CapsuleMesh_d0387")
+skeleton = NodePath("../..")
+
+[node name="Nose" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, 0.236477, 0, 0, 0, 1, 0, 0, -0.705238)
+mesh = SubResource("CapsuleMesh_d0387")
+skeleton = NodePath("../..")
 
 [node name="Camera controller" type="Node3D" parent="."]
 top_level = true
@@ -35,6 +43,22 @@ script = ExtResource("3_uekve")
 
 [node name="ShootPosition" type="Node3D" parent="ProjectileManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.497808, -1.41415)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 2
+offset_left = 40.0
+offset_top = -89.0
+offset_right = 137.0
+offset_bottom = 12.0
 
 [connection signal="firePotionUsed" from="PotionsManager" to="ProjectileManager" method="_on_potions_manager_fire_potion_used"]
 [connection signal="jumpPotionUsed" from="PotionsManager" to="." method="_on_potions_manager_jump_potion_used"]

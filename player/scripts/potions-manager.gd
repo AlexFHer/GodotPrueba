@@ -2,26 +2,24 @@ extends Node
 
 const PotionEnum = preload("res://assets/potions/shared/models/potion-types.gd").PotionType
 
-var selectedPotionType: PotionEnum = PotionEnum.Jump;
+var selectedPotion: Potion;
 
 signal jumpPotionUsed;
 signal SpeedPotionUsed;
 signal firePotionUsed;
 
 signal selectedPotionTypeChanged(potionType: PotionEnum);
-
-func _ready() -> void:
-	selectedPotionTypeChanged.emit(selectedPotionType);
+signal selectedPotionChanged(potion: Potion)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("usePotion"):
 		usePotion()
 
 func usePotion() -> void:
-	if not PlayerPotions.isThereAnyPotionOfType(selectedPotionType):
+	if not PlayerPotions.isThereAnyPotionOfType(selectedPotion.type):
 		return;
 		
-	match selectedPotionType:
+	match selectedPotion.type:
 		PotionEnum.Jump:
 			useJumpPotion();
 		PotionEnum.Speed:
@@ -29,7 +27,7 @@ func usePotion() -> void:
 		PotionEnum.Fire:
 			useFirePotion();
 	
-	PlayerPotions.removeOnePotionByType(selectedPotionType)
+	PlayerPotions.removeOnePotionByType(selectedPotion.type)
 
 func useJumpPotion() -> void:
 	jumpPotionUsed.emit()

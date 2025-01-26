@@ -21,11 +21,6 @@ GlobalManager="*res://shared/scripts/GlobalManager.gd"
 PlayerPotions="*res://assets/potions/shared/services/potions-data.gd"
 ProjectileType="*res://assets/projectiles/projectile-types.gd"
 
-[display]
-
-window/size/viewport_width=1920
-window/size/viewport_height=1080
-
 [editor]
 
 version_control/plugin_name="GitPlugin"
