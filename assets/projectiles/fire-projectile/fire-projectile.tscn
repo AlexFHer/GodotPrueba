@@ -5,9 +5,9 @@
 
 [sub_resource type="Resource" id="Resource_g7wyh"]
 script = ExtResource("2_qb6xo")
-speed = 10
+speed = 4
 damage = 1
-lifeTime = 5
+lifeTime = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gtgdv"]
 albedo_color = Color(0.827451, 0, 0, 0.929412)

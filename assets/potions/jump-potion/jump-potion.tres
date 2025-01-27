@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_r5o2t")
-type = 0
+type = 1
 expireTime = 30

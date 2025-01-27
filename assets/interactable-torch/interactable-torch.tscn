@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://gracss0vlf71"]
+
+[ext_resource type="Script" path="res://assets/interactable-torch/interactable-torch.gd" id="1_44hac"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_60f8s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_32d3l"]
+size = Vector3(0.465, 1.43, 0.435)
+
+[node name="Interactable-torch" type="Area3D"]
+script = ExtResource("1_44hac")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.322772, 0, 0, 0, 1.3364, 0, 0, 0, 0.3, 0, 0, 0)
+mesh = SubResource("BoxMesh_60f8s")
+
+[node name="FireCollision" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_32d3l")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,29 +1,30 @@
-[gd_scene load_steps=8 format=3 uid="uid://cf47i2djfslyw"]
+[gd_scene load_steps=6 format=3 uid="uid://cf47i2djfslyw"]
 
 [ext_resource type="Script" path="res://player/PlayerCharacter.gd" id="1_43pha"]
 [ext_resource type="Script" path="res://player/scripts/potions-manager.gd" id="2_86mlk"]
-[ext_resource type="PackedScene" uid="uid://bx2bdnlhll1nu" path="res://shared/props/player/Reference.fbx" id="2_u07ls"]
 [ext_resource type="Script" path="res://player/scripts/projectile-manager.gd" id="3_uekve"]
-[ext_resource type="Script" path="res://player/scripts/potions-ui-manager.gd" id="5_hdq68"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_itxij"]
-margin = 0.025
-height = 1.33974
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_62vdy"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_d0387"]
 
 [node name="MainCharacter" type="CharacterBody3D" node_paths=PackedStringArray("cameraController") groups=["MainPlayer"]]
 script = ExtResource("1_43pha")
 cameraController = NodePath("Camera controller")
 
-[node name="CharacterCollision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.600911, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_itxij")
 
 [node name="Rig" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="Reference" parent="Rig" instance=ExtResource("2_u07ls")]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Rig"]
+mesh = SubResource("CapsuleMesh_d0387")
+skeleton = NodePath("../..")
+
+[node name="Nose" type="MeshInstance3D" parent="Rig"]
+transform = Transform3D(1, 0, 0, 0, 0.236477, 0, 0, 0, 1, 0, 0, -0.705238)
+mesh = SubResource("CapsuleMesh_d0387")
+skeleton = NodePath("../..")
 
 [node name="Camera controller" type="Node3D" parent="."]
 top_level = true
@@ -43,7 +44,7 @@ script = ExtResource("3_uekve")
 [node name="ShootPosition" type="Node3D" parent="ProjectileManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.497808, -1.41415)
 
-[node name="PotionsUI" type="Control" parent="."]
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
@@ -51,32 +52,13 @@ anchor_bottom = 1.0
 offset_top = -40.0
 offset_right = 40.0
 grow_vertical = 0
-script = ExtResource("5_hdq68")
 
-[node name="Name" type="Label" parent="PotionsUI"]
-layout_mode = 0
-offset_left = 67.0
-offset_top = -56.0
-offset_right = 107.0
-offset_bottom = -33.0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="NumberOfPotions" type="Label" parent="PotionsUI"]
-layout_mode = 0
-offset_left = 62.0
-offset_top = -38.0
-offset_right = 102.0
-offset_bottom = -15.0
-
-[node name="CurrentPotion" type="TextureRect" parent="PotionsUI"]
-visible = false
+[node name="TextureRect" type="TextureRect" parent="Control"]
 layout_mode = 2
 offset_left = 40.0
 offset_top = -89.0
 offset_right = 137.0
 offset_bottom = 12.0
-texture = SubResource("CanvasTexture_62vdy")
 
-[connection signal="potionUsed" from="PotionsManager" to="." method="_on_potions_manager_potion_used"]
-[connection signal="selectedPotionTypeChanged" from="PotionsManager" to="PotionsUI" method="_on_potions_manager_selected_potion_type_changed"]
+[connection signal="firePotionUsed" from="PotionsManager" to="ProjectileManager" method="_on_potions_manager_fire_potion_used"]
+[connection signal="jumpPotionUsed" from="PotionsManager" to="." method="_on_potions_manager_jump_potion_used"]
