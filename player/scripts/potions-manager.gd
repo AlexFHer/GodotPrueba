@@ -47,7 +47,6 @@ func toggleLeftPotion() -> void:
 
 func toggleRightPotion() -> void:
 	var nextPotionType = PlayerPotions.getNextPotionType(selectedPotionType)
-	print(nextPotionType)
 	selectPotion(nextPotionType)
 
 func unselectPotion():
