@@ -5,25 +5,30 @@ extends CharacterBody3D
 
 const PotionType = preload("res://assets/potions/shared/models/potion-types.gd").PotionType;
 
-@export var cameraController: Node3D;
-@onready var rig = $Rig;
-
 const IN_AIR_SPEED = 5.0;
-const JUMP_VELOCITY = 7.0
-const ROTATION_SENSIVITY = 0.5;
+const JUMP_VELOCITY = 15.0;
+const ROTATION_SENSIVITY = 10;
 const NORMAL_SPEED = 15;
 const IMPROVED_SPEED = 30;
+const ACCELERATION = 15.0;
+const GRAVITY = -20;
 
-var speed = 15.0;
+var speed = 10.0;
 var canJump = true;
 var canMegaJump = false;
 
+var lastMovementDirection := Vector3.BACK
+
+@onready var _rig: Node3D = $Rig;
+@onready var _camera: Camera3D = %MainCharacterCamera;
+@onready var _camera_pivot: Node3D = $CameraPivot;
+
 func jump() -> void:
-	velocity.y = JUMP_VELOCITY;
+	velocity.y += JUMP_VELOCITY;
 	disableJump();
 
 func megaJump() -> void:
-	velocity.y = JUMP_VELOCITY * 2;
+	velocity.y += JUMP_VELOCITY * 2;
 	disableJump();
 
 func activateMegaJump() -> void:
@@ -41,11 +46,11 @@ func disableJump() -> void:
 func _physics_process(delta: float) -> void:
 	process_jump();
 	process_movement(delta);
-	process_gravity(delta);
+	# process_gravity(delta);
 	
 	move_and_slide();
 	
-	cameraController.position = lerp(cameraController.position, position, 0.1)
+	# cameraController.position = lerp(cameraController.position, position, 0.1)
 
 func process_jump() -> void:
 	if is_on_floor():
@@ -64,21 +69,24 @@ func process_jump() -> void:
 		jump()
 
 func process_movement(delta) -> void:
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var actualSpeed = speed
-	if not is_on_floor():
-		actualSpeed = IN_AIR_SPEED
-	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * actualSpeed
-		velocity.z = direction.z * actualSpeed
-	else:
-		velocity.x = move_toward(velocity.x, 0, actualSpeed)
-		velocity.z = move_toward(velocity.z, 0, actualSpeed)
+	var rawInput := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down");
+	var forward := _camera.global_basis.z
+	var right := _camera.global_basis.x
 	
-	# manageSelfRotation(direction, delta);
+	var moveDirection := forward * rawInput.y + right * rawInput.x
+	moveDirection.y = 0.0
+	moveDirection = moveDirection.normalized()
+	
+	var yVelocity := velocity.y;
+	velocity.y = 0;
+	velocity = velocity.move_toward(moveDirection * speed, ACCELERATION * delta)
+	velocity.y = yVelocity + GRAVITY * delta
+	# manages rig rotation based on input
+	if moveDirection.length() > 0.2:
+		lastMovementDirection = moveDirection
+	var targetAngle := Vector3.BACK.signed_angle_to(lastMovementDirection, Vector3.UP)
+	_rig.global_rotation.y = lerp_angle(_rig.rotation.y, targetAngle, ROTATION_SENSIVITY * delta)
+	
 
 func process_gravity(delta: float) -> void:
 	# Add the gravity.
@@ -98,7 +106,7 @@ func manageSelfRotation(direction: Vector3, delta: float) -> void:
 	var target_direction = direction.normalized()
 	if target_direction.length() < 0.01:
 		target_direction += Vector3(0.01, 0, 0)  # Añadir un pequeño desplazamiento si están demasiado cerca
-	rig.look_at(global_transform.origin + target_direction, Vector3.UP)
+	_rig.look_at(global_transform.origin + target_direction, Vector3.UP)
 
 func speedPotionUsed() -> void:
 	speed = IMPROVED_SPEED;
