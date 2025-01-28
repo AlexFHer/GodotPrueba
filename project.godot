@@ -17,6 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+SavesManager="*res://shared/scripts/savesManager.gd"
+LevelCollectablesData="*res://shared/scripts/levelCollectablesData.gd"
 GlobalManager="*res://shared/scripts/GlobalManager.gd"
 PlayerPotions="*res://assets/potions/shared/services/potions-data.gd"
 ProjectileType="res://assets/projectiles/projectile-types.gd"
