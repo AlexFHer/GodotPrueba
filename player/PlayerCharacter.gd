@@ -6,7 +6,7 @@ extends CharacterBody3D
 const PotionType = preload("res://assets/potions/shared/models/potion-types.gd").PotionType;
 
 const IN_AIR_SPEED = 5.0;
-const JUMP_VELOCITY = 15.0;
+const JUMP_VELOCITY = 10.0;
 const ROTATION_SENSIVITY = 10;
 const NORMAL_SPEED = 15;
 const IMPROVED_SPEED = 30;
