@@ -5,30 +5,34 @@ extends CharacterBody3D
 
 const PotionType = preload("res://assets/potions/shared/models/potion-types.gd").PotionType;
 
-const IN_AIR_SPEED = 5.0;
-const JUMP_VELOCITY = 10.0;
-const ROTATION_SENSIVITY = 10;
-const NORMAL_SPEED = 15;
-const IMPROVED_SPEED = 30;
-const ACCELERATION = 15.0;
-const GRAVITY = -20;
-
-var speed = 10.0;
-var canJump = true;
-var canMegaJump = false;
-
-var lastMovementDirection := Vector3.BACK
-
 @onready var _rig: Node3D = $Rig;
 @onready var _camera: Camera3D = %MainCharacterCamera;
 @onready var _camera_pivot: Node3D = $CameraPivot;
 
+const JUMP_FORCE := 10.0;
+const ROTATION_SENSIVITY := 10;
+const NORMAL_SPEED := 15;
+const IMPROVED_SPEED := 30;
+const ACCELERATION := 15.0;
+const GRAVITY := -20;
+
+# Movement
+
+var speed := 10.0;
+var lastMovementDirection := Vector3.BACK
+
+# Jump
+var jumpBuffer := false;
+var jumpBufferTimer := 0.2;
+var canJump := true;
+var canMegaJump := false;
+
 func jump() -> void:
-	velocity.y += JUMP_VELOCITY;
+	velocity.y += JUMP_FORCE;
 	disableJump();
 
 func megaJump() -> void:
-	velocity.y += JUMP_VELOCITY * 2;
+	velocity.y += JUMP_FORCE * 2;
 	disableJump();
 
 func activateMegaJump() -> void:
@@ -55,18 +59,16 @@ func _physics_process(delta: float) -> void:
 func process_jump() -> void:
 	if is_on_floor():
 		enableJump();
+		if jumpBuffer == true:
+			determineJump()
 		# Handle jump.
-	if !Input.is_action_just_pressed("jump"):
-		return;
-	
-	if canJump:
-		if canMegaJump:
-			megaJump();
+	if Input.is_action_just_pressed("jump"):
+		if canJump:
+			determineJump();
 		else:
-			jump()
-	
-	if canJump:
-		jump()
+			jumpBuffer = true;
+			get_tree().create_timer(jumpBufferTimer).timeout.connect(on_jump_buffer_timer_ends)
+			
 
 func process_movement(delta) -> void:
 	var rawInput := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down");
@@ -118,3 +120,12 @@ func _on_potions_manager_potion_used(potion: Potion) -> void:
 		jumpPotionUsed();
 	if potion.type == PotionType.Speed:
 		speedPotionUsed();
+
+func on_jump_buffer_timer_ends() -> void:
+	jumpBuffer = false;
+
+func determineJump() -> void:
+	if canMegaJump:
+		megaJump();
+	else:
+		jump()
