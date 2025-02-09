@@ -5,7 +5,10 @@ var elapsed = 0.0;
 
 var value = 1;
 
-var coinId := "id1";
+var coinId: String;
+
+func _init() -> void:
+	coinId = name;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -19,7 +19,7 @@ const GRAVITY := -20;
 # Movement
 
 var speed := 10.0;
-var lastMovementDirection := Vector3.BACK
+var lastMovementDirection := Vector3.FORWARD
 
 # Jump
 var jumpBuffer := false;
