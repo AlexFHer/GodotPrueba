@@ -1,39 +1,37 @@
 extends Control
 
-const PotionEnum = preload("res://assets/potions/shared/models/potion-types.gd").PotionType
-
 @onready var label = $Name
 @onready var numberOfPotions = $NumberOfPotions
 
-var selectedPotionType = PotionEnum.None;
+var selectedPotionType = PotionProperties.PotionType.None;
 
 func _enter_tree() -> void:
 	PlayerPotions.potionsChanged.connect(_on_potions_change);
 
-func _on_potions_manager_selected_potion_type_changed(potionType: PotionEnum) -> void:
+func _on_potions_manager_selected_potion_type_changed(potionType: PotionProperties.PotionType) -> void:
 	selectedPotionType = potionType;
 	evaluateNumber(potionType);
 	evaluateText(potionType);
 
-func getNumberOfPotionsByType(potionType: PotionEnum) -> String:
+func getNumberOfPotionsByType(potionType: PotionProperties.PotionType) -> String:
 	var potions = PlayerPotions.potionsDictionary.get(potionType);
 	if potions == null:
 		return ""
 	else:
 		return str(potions.size())
 
-func evaluateText(potionType: PotionEnum) -> void:
+func evaluateText(potionType: PotionProperties.PotionType) -> void:
 	match(potionType):
-		PotionEnum.Jump:
+		PotionProperties.PotionType.Jump:
 			label.text = "Jump"
-		PotionEnum.Speed:
+		PotionProperties.PotionType.Speed:
 			label.text = "Speed"
-		PotionEnum.Fire:
+		PotionProperties.PotionType.Fire:
 			label.text = "Fire"
 		_:
 			label.text = "No potions left"
 
-func evaluateNumber(potionType: PotionEnum) -> void:
+func evaluateNumber(potionType: PotionProperties.PotionType) -> void:
 	numberOfPotions.text = getNumberOfPotionsByType(potionType)
 
 

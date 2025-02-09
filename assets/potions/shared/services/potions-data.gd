@@ -1,13 +1,12 @@
 class_name PotionsData extends Node
 
-const PotionEnum = preload("res://assets/potions/shared/models/potion-types.gd").PotionType
 
 # diccionario Dictionary[PotionEnum, Array[Potion]]
 var potionsDictionary: Dictionary = {}
 
 signal potionsChanged(Dictionary);
 
-func isThereAnyPotionOfType(potionType: PotionEnum) -> bool:
+func isThereAnyPotionOfType(potionType: PotionProperties.PotionType) -> bool:
 	return potionsDictionary.get(potionType, []).size() > 0;
 
 func addPotion(potion: Potion):
@@ -15,7 +14,7 @@ func addPotion(potion: Potion):
 	potionData.append(potion)
 	emitPotions()
 
-func removeOnePotionByType(potionType: PotionEnum):
+func removeOnePotionByType(potionType: PotionProperties.PotionType):
 	var potionData = potionsDictionary.get(potionType);
 	if potionData == null:
 		return;
@@ -36,17 +35,17 @@ func areThereAnyPotions() -> bool:
 			return true
 	return false
 
-func getFirstPotion() -> PotionEnum:
+func getFirstPotion() -> PotionProperties.PotionType:
 	if not areThereAnyPotions():
-		return PotionEnum.None;
+		return PotionProperties.PotionType.None;
 	
 	return potionsDictionary.keys()[0]
 
-func getLastPotionType(currentType: PotionEnum) -> PotionEnum:
+func getLastPotionType(currentType: PotionProperties.PotionType) -> PotionProperties.PotionType:
 	if not areThereAnyPotions():
-		return PotionEnum.None;
+		return PotionProperties.PotionType.None;
 	
-	if currentType == PotionEnum.None:
+	if currentType == PotionProperties.PotionType.None:
 		return potionsDictionary.keys()[0]
 	
 	var keys = potionsDictionary.keys();
@@ -58,11 +57,11 @@ func getLastPotionType(currentType: PotionEnum) -> PotionEnum:
 			
 	return keys[keys.size() - 1]
 
-func getNextPotionType(currentType: PotionEnum) -> PotionEnum:
+func getNextPotionType(currentType: PotionProperties.PotionType) -> PotionProperties.PotionType:
 	if not areThereAnyPotions():
-		return PotionEnum.None;
+		return PotionProperties.PotionType.None;
 	
-	if currentType == PotionEnum.None:
+	if currentType == PotionProperties.PotionType.None:
 		return potionsDictionary.keys()[0]
 	
 	var keys = potionsDictionary.keys();

@@ -13,7 +13,7 @@ const JUMP_FORCE := 10.0;
 const ROTATION_SENSIVITY := 10;
 const NORMAL_SPEED := 15;
 const IMPROVED_SPEED := 30;
-const ACCELERATION := 15.0;
+const ACCELERATION := 30.0;
 const GRAVITY := -20;
 
 # Movement
@@ -86,7 +86,7 @@ func process_movement(delta) -> void:
 	# manages rig rotation based on input
 	if moveDirection.length() > 0.2:
 		lastMovementDirection = moveDirection
-	var targetAngle := Vector3.BACK.signed_angle_to(lastMovementDirection, Vector3.UP)
+	var targetAngle := Vector3.FORWARD.signed_angle_to(lastMovementDirection, Vector3.UP)
 	_rig.global_rotation.y = lerp_angle(_rig.rotation.y, targetAngle, ROTATION_SENSIVITY * delta)
 	
 

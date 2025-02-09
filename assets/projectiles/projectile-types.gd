@@ -1,4 +1,3 @@
 enum ProjectileType {
-	Fire,
-	Ice
+	Fire
 }

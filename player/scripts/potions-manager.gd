@@ -1,11 +1,9 @@
 extends Node
 
-const PotionEnum = preload("res://assets/potions/shared/models/potion-types.gd").PotionType
-
-var selectedPotionType: PotionEnum;
+var selectedPotionType: PotionProperties.PotionType;
 
 signal potionUsed;
-signal selectedPotionTypeChanged(potionType: PotionEnum);
+signal selectedPotionTypeChanged(potionType: PotionProperties.PotionType);
 
 func _init() -> void:
 	PlayerPotions.potionsChanged.connect(_on_potions_change)
@@ -21,7 +19,7 @@ func _process(_delta: float) -> void:
 		usePotion()
 
 func usePotion() -> void:
-	if selectedPotionType == PotionEnum.None:
+	if selectedPotionType == PotionProperties.PotionType.None:
 		return;
 	
 	if not PlayerPotions.isThereAnyPotionOfType(selectedPotionType):
@@ -37,7 +35,7 @@ func usePotion() -> void:
 		selectPotion(PlayerPotions.getFirstPotion())
 	
 
-func selectPotion(potionType: PotionEnum):	
+func selectPotion(potionType: PotionProperties.PotionType):
 	selectedPotionType = potionType
 	selectedPotionTypeChanged.emit(potionType)
 
@@ -50,7 +48,7 @@ func toggleRightPotion() -> void:
 	selectPotion(nextPotionType)
 
 func unselectPotion():
-	selectPotion(PotionEnum.None)
+	selectPotion(PotionProperties.PotionType.None)
 
 func _on_potions_change(potionDictionary: Dictionary) -> void:
 	if potionDictionary.keys().size() == 0:

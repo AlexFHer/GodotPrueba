@@ -3,7 +3,7 @@ extends Node3D
 @export_group("Camera")
 @export_range(0.0, 1.0) var mouse_sensivity := 0.25
 
-const MULTIPLIER = 5;
+const MULTIPLIER = 10;
 
 var cameraInputDirection := Vector2.ZERO
 
