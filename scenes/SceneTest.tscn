@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b6slr7s7ogwg1"]
+[gd_scene load_steps=14 format=3 uid="uid://b6slr7s7ogwg1"]
 
 [ext_resource type="PackedScene" uid="uid://cf47i2djfslyw" path="res://player/player.tscn" id="1_j4pqo"]
 [ext_resource type="PackedScene" uid="uid://i088rp1g8077" path="res://scenes/global_death.tscn" id="3_bh741"]
@@ -27,13 +27,6 @@ glow_enabled = true
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_k4n8c"]
 data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
 
-[sub_resource type="GDScript" id="GDScript_glb3n"]
-script/source = "extends Node
-
-@export var potion_base_properties = Potion.new()
-
-"
-
 [node name="SceneTest" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -59,17 +52,16 @@ shape = SubResource("ConcavePolygonShape3D_k4n8c")
 [node name="global-death" parent="." instance=ExtResource("3_bh741")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -25.3343, 0)
 
-[node name="CollectableCoin" parent="." instance=ExtResource("3_ucu6d")]
+[node name="Collectables" type="Node3D" parent="."]
+
+[node name="CollectableCoin" parent="Collectables" instance=ExtResource("3_ucu6d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0110178, 0.839736, -3.69431)
 
-[node name="CollectableCoin2" parent="." instance=ExtResource("3_ucu6d")]
+[node name="CollectableCoin2" parent="Collectables" instance=ExtResource("3_ucu6d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.37421, -4.76837e-07, -2.72459)
 
-[node name="CollectableCoin3" parent="." instance=ExtResource("3_ucu6d")]
+[node name="CollectableCoin3" parent="Collectables" instance=ExtResource("3_ucu6d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.94294, 1.81957, -4.71815)
-
-[node name="Node3D" type="Node3D" parent="."]
-script = SubResource("GDScript_glb3n")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
