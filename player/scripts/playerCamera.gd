@@ -14,17 +14,6 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-func _unhandled_input(event: InputEvent) -> void:
-	#if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
-		#return;
-	
-	#if event is InputEventJoypadMotion:
-		#manageInputJoypadMotion(event)
-	#
-	#if event is InputEventMouseMotion:
-		#manageInputMouseMotion(event)
-	pass
-
 func manageInputMouseMotion(event: InputEventMouseMotion) -> void:
 	cameraInputDirection = event.screen_relative * mouse_sensivity
 

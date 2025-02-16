@@ -3,23 +3,27 @@
 
 extends CharacterBody3D
 
-const PotionType = preload("res://assets/potions/shared/models/potion-types.gd").PotionType;
-
 @onready var _rig: Node3D = $Rig;
 @onready var _camera: Camera3D = %MainCharacterCamera;
-@onready var _camera_pivot: Node3D = $CameraPivot;
 
 const JUMP_FORCE := 10.0;
 const ROTATION_SENSIVITY := 10;
 const NORMAL_SPEED := 15;
 const IMPROVED_SPEED := 30;
 const ACCELERATION := 30.0;
-const GRAVITY := -20;
+const ORIGINAL_GRAVITY := -30;
+const PLANNING_GRAVITY := -10;
+
+# life system
+
+var life: int = 3;
+signal lifeChanged(newLife: int);
 
 # Movement
 
 var speed := 10.0;
 var lastMovementDirection := Vector3.FORWARD
+var gravity := -20;
 
 # Jump
 var jumpBuffer := false;
@@ -50,11 +54,9 @@ func disableJump() -> void:
 func _physics_process(delta: float) -> void:
 	process_jump();
 	process_movement(delta);
-	# process_gravity(delta);
+	process_planning();
 	
 	move_and_slide();
-	
-	# cameraController.position = lerp(cameraController.position, position, 0.1)
 
 func process_jump() -> void:
 	if is_on_floor():
@@ -70,6 +72,12 @@ func process_jump() -> void:
 			get_tree().create_timer(jumpBufferTimer).timeout.connect(on_jump_buffer_timer_ends)
 			
 
+func process_planning() -> void:
+	if Input.is_action_pressed("jump") and not is_on_floor():
+		gravity = PLANNING_GRAVITY
+	else:
+		gravity = ORIGINAL_GRAVITY
+
 func process_movement(delta) -> void:
 	var rawInput := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down");
 	var forward := _camera.global_basis.z
@@ -82,29 +90,20 @@ func process_movement(delta) -> void:
 	var yVelocity := velocity.y;
 	velocity.y = 0;
 	velocity = velocity.move_toward(moveDirection * speed, ACCELERATION * delta)
-	velocity.y = yVelocity + GRAVITY * delta
+	velocity.y = yVelocity + gravity * delta
 	# manages rig rotation based on input
 	if moveDirection.length() > 0.2:
 		lastMovementDirection = moveDirection
 	var targetAngle := Vector3.FORWARD.signed_angle_to(lastMovementDirection, Vector3.UP)
 	_rig.global_rotation.y = lerp_angle(_rig.rotation.y, targetAngle, ROTATION_SENSIVITY * delta)
-	
 
-func process_gravity(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		pass
 
 func jumpPotionUsed() -> void:
 	activateMegaJump()
 	await get_tree().create_timer(30).timeout
 	deactivateMegaJump()
 
-func manageSelfRotation(direction: Vector3, delta: float) -> void:
+func manageSelfRotation(direction: Vector3) -> void:
 	var target_direction = direction.normalized()
 	if target_direction.length() < 0.01:
 		target_direction += Vector3(0.01, 0, 0)  # Añadir un pequeño desplazamiento si están demasiado cerca
@@ -116,9 +115,9 @@ func speedPotionUsed() -> void:
 	speed = NORMAL_SPEED;
 
 func _on_potions_manager_potion_used(potion: Potion) -> void:
-	if potion.type == PotionType.Jump:
+	if potion.type == PotionProperties.PotionType.Jump:
 		jumpPotionUsed();
-	if potion.type == PotionType.Speed:
+	if potion.type == PotionProperties.PotionType.Speed:
 		speedPotionUsed();
 
 func on_jump_buffer_timer_ends() -> void:
@@ -129,3 +128,7 @@ func determineJump() -> void:
 		megaJump();
 	else:
 		jump()
+
+func dealDamage() -> void:
+	life -= 1;
+	lifeChanged.emit(life)

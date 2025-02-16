@@ -5,7 +5,9 @@ const COINSPATH = "coins"
 
 func addCoin(levelName: String, coinId: String) -> void:
 	var levelFileName = FILEPATH % levelName
-	var file = FileAccess.open(levelFileName, FileAccess.WRITE)
+	var file = FileAccess.open(levelFileName, FileAccess.WRITE_READ)
+	if not file or file.get_length() == 0:
+		return;
 	var data = JSON.parse_string(file.get_as_text())
 	print(data)
 	if data == null:

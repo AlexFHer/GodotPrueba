@@ -21,16 +21,11 @@ SavesManager="*res://shared/scripts/savesManager.gd"
 LevelCollectablesData="*res://shared/scripts/levelCollectablesData.gd"
 GlobalManager="*res://shared/scripts/GlobalManager.gd"
 PlayerPotions="*res://assets/potions/shared/services/potions-data.gd"
-ProjectileType="res://assets/projectiles/projectile-types.gd"
 
 [editor]
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/copilot/plugin.cfg")
 
 [global_group]
 
@@ -100,4 +95,5 @@ toggleRightPotion={
 
 [physics]
 
+3d/physics_engine="JoltPhysics3D"
 3d/default_gravity_vector=Vector3(0, -1.8, 0)

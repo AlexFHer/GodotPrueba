@@ -4,7 +4,7 @@ class_name PotionsData extends Node
 # diccionario Dictionary[PotionEnum, Array[Potion]]
 var potionsDictionary: Dictionary = {}
 
-signal potionsChanged(Dictionary);
+signal potionsChanged(dictionary: Dictionary);
 
 func isThereAnyPotionOfType(potionType: PotionProperties.PotionType) -> bool:
 	return potionsDictionary.get(potionType, []).size() > 0;

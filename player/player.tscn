@@ -29,6 +29,9 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 
 [node name="Reference" parent="Rig" instance=ExtResource("2_u07ls")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
+[node name="ShootPosition" type="Node3D" parent="Rig"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8.09216e-08, 0.497808, -0.925635)
+
 [node name="CameraPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.61594, 0)
 script = ExtResource("3_pe30o")
@@ -47,9 +50,6 @@ script = ExtResource("2_86mlk")
 
 [node name="ProjectileManager" type="Node3D" parent="."]
 script = ExtResource("3_uekve")
-
-[node name="ShootPosition" type="Node3D" parent="ProjectileManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.497808, -1.41415)
 
 [node name="PotionsUI" type="Control" parent="."]
 layout_mode = 3

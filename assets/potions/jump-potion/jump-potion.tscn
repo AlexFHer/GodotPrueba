@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cyqqtvfimjbqb"]
+[gd_scene load_steps=7 format=3 uid="uid://cyqqtvfimjbqb"]
 
 [ext_resource type="Script" path="res://assets/potions/jump-potion/jump-potion.gd" id="1_tjabp"]
 [ext_resource type="Resource" uid="uid://byxsfkud3ou2x" path="res://assets/potions/jump-potion/jump-potion.tres" id="2_banuj"]
@@ -10,67 +10,6 @@ albedo_texture = ExtResource("4_v6rq3")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vjdkv"]
 size = Vector3(13.0112, 22.5394, 11.9834)
-
-[sub_resource type="Animation" id="Animation_bc1rw"]
-length = 0.001
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
-
-[sub_resource type="Animation" id="Animation_8q6wp"]
-resource_name = "idle"
-length = 3.0
-loop_mode = 1
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 1, 0, 1.5, 1, 0, 1.5, 0, 3, 1, 0, 1, 0)
-tracks/1/type = "scale_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0.1, 0.1, 0.1, 3, 1, 0.1, 0.1, 0.1)
-
-[sub_resource type="Animation" id="Animation_oor1a"]
-resource_name = "pickUp"
-length = 0.2
-tracks/0/type = "scale_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0.2, 0.2, 0.2, 0.2, 1, 0, 0, 0)
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"_on_pick_up"
-}]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_arah5"]
-_data = {
-"RESET": SubResource("Animation_bc1rw"),
-"idle": SubResource("Animation_8q6wp"),
-"pickUp": SubResource("Animation_oor1a")
-}
 
 [node name="Jump-potion" type="Area3D"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
@@ -85,10 +24,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_6udi0")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.297072, 5.51283, 0.102815)
 shape = SubResource("BoxShape3D_vjdkv")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_arah5")
-}
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
