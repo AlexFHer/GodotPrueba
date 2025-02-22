@@ -101,9 +101,10 @@ func process_movement(delta) -> void:
 	_rig.global_rotation.y = lerp_angle(_rig.rotation.y, targetAngle, ROTATION_SENSIVITY * delta)
 
 
-func jumpPotionUsed() -> void:
+func jumpPotionUsed(potionType: PotionTypes.PotionType) -> void:
 	activateMegaJump()
-	await get_tree().create_timer(30).timeout
+	var lifeTime = PotionsConfig.get_potion_properties(potionType).lifeTime
+	await get_tree().create_timer(lifeTime).timeout
 	deactivateMegaJump()
 
 func manageSelfRotation(direction: Vector3) -> void:
@@ -112,16 +113,17 @@ func manageSelfRotation(direction: Vector3) -> void:
 		target_direction += Vector3(0.01, 0, 0)  # Añadir un pequeño desplazamiento si están demasiado cerca
 	_rig.look_at(global_transform.origin + target_direction, Vector3.UP)
 
-func speedPotionUsed() -> void:
+func speedPotionUsed(potionType: PotionTypes.PotionType) -> void:
 	speed = IMPROVED_SPEED;
-	await get_tree().create_timer(30).timeout
+	var lifeTime = PotionsConfig.get_potion_properties(potionType).lifeTime
+	await get_tree().create_timer(lifeTime).timeout
 	speed = NORMAL_SPEED;
 
-func _on_potion_used(potionType: PotionProperties.PotionType) -> void:
-	if potionType == PotionProperties.PotionType.Jump:
-		jumpPotionUsed();
-	if potionType == PotionProperties.PotionType.Speed:
-		speedPotionUsed();
+func _on_potion_used(potionType: PotionTypes.PotionType) -> void:
+	if potionType == PotionTypes.PotionType.Jump:
+		jumpPotionUsed(potionType);
+	if potionType == PotionTypes.PotionType.Speed:
+		speedPotionUsed(potionType);
 
 func on_jump_buffer_timer_ends() -> void:
 	jumpBuffer = false;

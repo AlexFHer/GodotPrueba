@@ -1,4 +1,4 @@
-class_name PotionProperties
+class_name PotionTypes
 
 enum PotionType {
 	None,

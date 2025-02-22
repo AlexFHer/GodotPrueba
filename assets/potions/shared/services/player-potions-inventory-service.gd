@@ -2,16 +2,16 @@ class_name PotionsData extends Node
 
 # Diccionario Dictionary[Tipo de pocion, numero de pociones]
 var potionsDictionary: Dictionary = {}
-var selectedPotionType: PotionProperties.PotionType = PotionProperties.PotionType.None;
+var selectedPotionType: PotionTypes.PotionType = PotionTypes.PotionType.None;
 
 signal potionsChanged(dictionary: Dictionary);
-signal selectedPotionChanged(potionType: PotionProperties.PotionType);
-signal potionUsed(potionType: PotionProperties.PotionType);
+signal selectedPotionChanged(potionType: PotionTypes.PotionType);
+signal potionUsed(potionType: PotionTypes.PotionType);
 
-func isThereAnyPotionOfType(potionType: PotionProperties.PotionType) -> bool:
+func isThereAnyPotionOfType(potionType: PotionTypes.PotionType) -> bool:
 	return potionsDictionary.get(potionType, 0) > 0;
 
-func addPotion(potionType: PotionProperties.PotionType):
+func addPotion(potionType: PotionTypes.PotionType):
 	if not potionsDictionary.has(potionType):
 		potionsDictionary[potionType] = 0;
 	potionsDictionary[potionType] += 1;
@@ -19,7 +19,7 @@ func addPotion(potionType: PotionProperties.PotionType):
 	_emitPotions()
 	_checkIfPotionShouldBeSelectedOnPickUp(potionType);
 
-func removeOnePotionByType(potionType: PotionProperties.PotionType):
+func removeOnePotionByType(potionType: PotionTypes.PotionType):
 	if not potionsDictionary.has(potionType):
 		return
 	
@@ -40,9 +40,9 @@ func areThereAnyPotions() -> bool:
 			return true;
 	return false
 
-func getFirstPotion() -> PotionProperties.PotionType:
+func getFirstPotion() -> PotionTypes.PotionType:
 	if not areThereAnyPotions():
-		return PotionProperties.PotionType.None;
+		return PotionTypes.PotionType.None;
 	
 	return potionsDictionary.keys()[0]
 
@@ -54,7 +54,7 @@ func toggleRightPotion() -> void:
 	var nextPotion = _getNextPotionType(selectedPotionType);
 	selectPotion(nextPotion);
 
-func selectPotion(potionType: PotionProperties.PotionType) -> void:
+func selectPotion(potionType: PotionTypes.PotionType) -> void:
 	selectedPotionType = potionType;
 	selectedPotionChanged.emit(potionType);
 
@@ -76,13 +76,13 @@ func _checkPotionsAvailability() -> void:
 		selectPotion(getFirstPotion())
 
 func _unselectPotion() -> void:
-	selectPotion(PotionProperties.PotionType.None)
+	selectPotion(PotionTypes.PotionType.None)
 
-func _getLastPotionType(currentType: PotionProperties.PotionType) -> PotionProperties.PotionType:
+func _getLastPotionType(currentType: PotionTypes.PotionType) -> PotionTypes.PotionType:
 	if not areThereAnyPotions():
-		return PotionProperties.PotionType.None;
+		return PotionTypes.PotionType.None;
 	
-	if currentType == PotionProperties.PotionType.None:
+	if currentType == PotionTypes.PotionType.None:
 		return potionsDictionary.keys()[0]
 	
 	var keys = potionsDictionary.keys();
@@ -94,11 +94,11 @@ func _getLastPotionType(currentType: PotionProperties.PotionType) -> PotionPrope
 			
 	return keys[keys.size() - 1]
 
-func _getNextPotionType(currentType: PotionProperties.PotionType) -> PotionProperties.PotionType:
+func _getNextPotionType(currentType: PotionTypes.PotionType) -> PotionTypes.PotionType:
 	if not areThereAnyPotions():
-		return PotionProperties.PotionType.None;
+		return PotionTypes.PotionType.None;
 	
-	if currentType == PotionProperties.PotionType.None:
+	if currentType == PotionTypes.PotionType.None:
 		return potionsDictionary.keys()[0]
 	
 	var keys = potionsDictionary.keys();
@@ -114,7 +114,7 @@ func _emitPotions() -> void:
 	potionsChanged.emit(potionsDictionary);
 
 
-func _checkIfPotionShouldBeSelectedOnPickUp(pickedUpPotion: PotionProperties.PotionType) -> void:
-	if selectedPotionType == PotionProperties.PotionType.None:
+func _checkIfPotionShouldBeSelectedOnPickUp(pickedUpPotion: PotionTypes.PotionType) -> void:
+	if selectedPotionType == PotionTypes.PotionType.None:
 		selectPotion(pickedUpPotion)
 	

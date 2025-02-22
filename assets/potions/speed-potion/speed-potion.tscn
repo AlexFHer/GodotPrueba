@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://ex02udmugvjt"]
+[gd_scene load_steps=5 format=3 uid="uid://ex02udmugvjt"]
 
 [ext_resource type="Script" path="res://assets/potions/speed-potion/speed-potion.gd" id="1_kst2q"]
-[ext_resource type="Resource" uid="uid://crl16xg4d6e8j" path="res://assets/potions/speed-potion/speed-potion.tres" id="2_nbuji"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rfo5y"]
 
@@ -13,7 +12,6 @@ albedo_color = Color(0, 1, 0, 1)
 [node name="Speed-potion" type="Area3D"]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 script = ExtResource("1_kst2q")
-potion = ExtResource("2_nbuji")
 potionType = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

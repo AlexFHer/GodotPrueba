@@ -51,10 +51,6 @@ script = ExtResource("2_86mlk")
 [node name="ProjectileManager" type="Node3D" parent="."]
 script = ExtResource("3_uekve")
 
-[node name="PotionsTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-one_shot = true
-
 [node name="PotionsUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 2
@@ -81,25 +77,26 @@ offset_top = -21.0
 offset_right = 60.0
 offset_bottom = 19.0
 
-[node name="Name" type="Label" parent="PotionsUI"]
+[node name="Name" type="Label" parent="PotionsUI/ItemList"]
 layout_mode = 0
-offset_left = 67.0
-offset_top = -56.0
-offset_right = 107.0
-offset_bottom = -33.0
+offset_left = 47.0
+offset_top = -35.0
+offset_right = 87.0
+offset_bottom = -12.0
 
-[node name="PotionTimerLabel" type="Label" parent="PotionsUI"]
-unique_name_in_owner = true
+[node name="Label" type="Label" parent="PotionsUI/ItemList"]
 layout_mode = 0
-offset_left = 68.0
-offset_top = 4.0
-offset_right = 108.0
-offset_bottom = 27.0
-text = "1"
+offset_left = -20.0
+offset_top = 21.0
+offset_right = 20.0
+offset_bottom = 44.0
 
-[node name="NumberOfPotions" type="Label" parent="PotionsUI"]
+[node name="NumberOfPotions" type="Label" parent="PotionsUI/ItemList"]
 layout_mode = 0
-offset_left = 21.0
-offset_top = -18.0
-offset_right = 61.0
-offset_bottom = 5.0
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 41.0
+offset_bottom = 26.0
+
+[node name="Timer" type="Timer" parent="PotionsUI"]
+one_shot = true

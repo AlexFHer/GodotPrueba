@@ -11,7 +11,7 @@ func _process(_delta: float) -> void:
 		usePotion()
 
 func usePotion() -> void:
-	if PlayerPotions.selectedPotionType == PotionProperties.PotionType.None:
+	if PlayerPotions.selectedPotionType == PotionTypes.PotionType.None:
 		return;
 	
 	PlayerPotions.usePotion()

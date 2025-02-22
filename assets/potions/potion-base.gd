@@ -2,8 +2,7 @@ extends Area3D
 
 class_name PotionBase
 
-@export var potion: Potion;
-@export var potionType: PotionProperties.PotionType;
+@export var potionType: PotionTypes.PotionType;
 
 const rotationSpeed = 1.5;
 

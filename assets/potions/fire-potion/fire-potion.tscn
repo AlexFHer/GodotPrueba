@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://ontkeeyy4mk7"]
+[gd_scene load_steps=5 format=3 uid="uid://ontkeeyy4mk7"]
 
 [ext_resource type="Script" path="res://assets/potions/fire-potion/fire-potion.gd" id="1_cy8qw"]
-[ext_resource type="Resource" uid="uid://cpjstx3kuhpp5" path="res://assets/potions/fire-potion/fire-potion.tres" id="2_c0ln4"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_fqho5"]
 
@@ -14,7 +13,6 @@ albedo_color = Color(0.992157, 0, 0, 1)
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 script = ExtResource("1_cy8qw")
 potionType = 3
-potion = ExtResource("2_c0ln4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_fqho5")

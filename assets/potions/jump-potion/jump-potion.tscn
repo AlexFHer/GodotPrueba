@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyqqtvfimjbqb"]
+[gd_scene load_steps=6 format=3 uid="uid://cyqqtvfimjbqb"]
 
 [ext_resource type="Script" path="res://assets/potions/jump-potion/jump-potion.gd" id="1_tjabp"]
-[ext_resource type="Resource" uid="uid://byxsfkud3ou2x" path="res://assets/potions/jump-potion/jump-potion.tres" id="2_banuj"]
 [ext_resource type="ArrayMesh" uid="uid://c2khvl0rjx78b" path="res://shared/environment/skharry_bottleMesh.obj" id="3_e6xve"]
 [ext_resource type="Texture2D" uid="uid://ccind2d3exwnj" path="res://shared/environment/skharry_bottleTex0.png" id="4_v6rq3"]
 
@@ -14,7 +13,7 @@ size = Vector3(13.0112, 22.5394, 11.9834)
 [node name="Jump-potion" type="Area3D"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 script = ExtResource("1_tjabp")
-potion = ExtResource("2_banuj")
+potionType = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 5.68947, 0)
