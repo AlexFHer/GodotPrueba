@@ -85,7 +85,3 @@ offset_top = -89.0
 offset_right = 137.0
 offset_bottom = 12.0
 texture = SubResource("CanvasTexture_62vdy")
-
-[connection signal="potionUsed" from="PotionsManager" to="." method="_on_potions_manager_potion_used"]
-[connection signal="potionUsed" from="PotionsManager" to="ProjectileManager" method="_on_potions_manager_potion_used"]
-[connection signal="selectedPotionTypeChanged" from="PotionsManager" to="PotionsUI" method="_on_potions_manager_selected_potion_type_changed"]

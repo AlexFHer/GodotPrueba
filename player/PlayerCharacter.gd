@@ -31,6 +31,9 @@ var jumpBufferTimer := 0.2;
 var canJump := true;
 var canMegaJump := false;
 
+func _init() -> void:
+	PlayerPotions.potionUsed.connect(_on_potion_used);
+
 func jump() -> void:
 	velocity.y += JUMP_FORCE;
 	disableJump();
@@ -114,10 +117,10 @@ func speedPotionUsed() -> void:
 	await get_tree().create_timer(30).timeout
 	speed = NORMAL_SPEED;
 
-func _on_potions_manager_potion_used(potion: Potion) -> void:
-	if potion.type == PotionProperties.PotionType.Jump:
+func _on_potion_used(potionType: PotionProperties.PotionType) -> void:
+	if potionType == PotionProperties.PotionType.Jump:
 		jumpPotionUsed();
-	if potion.type == PotionProperties.PotionType.Speed:
+	if potionType == PotionProperties.PotionType.Speed:
 		speedPotionUsed();
 
 func on_jump_buffer_timer_ends() -> void:
