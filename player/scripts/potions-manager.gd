@@ -14,4 +14,15 @@ func usePotion() -> void:
 	if PlayerPotions.selectedPotionType == PotionTypes.PotionType.None:
 		return;
 	
-	PlayerPotions.usePotion()
+	var selectedPotionToMerge = PotionMergerService.selectedPotionToMerge;
+	if selectedPotionToMerge != PotionTypes.PotionType.None:
+		mergePotion();
+	else:
+		PlayerPotions.usePotion()
+
+func mergePotion() -> void:
+	var selectedPotionToMerge = PotionMergerService.selectedPotionToMerge;
+	if selectedPotionToMerge == PlayerPotions.selectedPotionType:
+		PlayerPotions.usePotion()
+	else:
+		pass

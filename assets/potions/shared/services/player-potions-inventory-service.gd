@@ -15,7 +15,6 @@ func addPotion(potionType: PotionTypes.PotionType):
 	if not potionsDictionary.has(potionType):
 		potionsDictionary[potionType] = 0;
 	potionsDictionary[potionType] += 1;
-	print(potionsDictionary);
 	_emitPotions()
 	_checkIfPotionShouldBeSelectedOnPickUp(potionType);
 
@@ -59,9 +58,6 @@ func selectPotion(potionType: PotionTypes.PotionType) -> void:
 	selectedPotionChanged.emit(potionType);
 
 func usePotion() -> void:
-	print("use potion");
-	print(isThereAnyPotionOfType(selectedPotionType))
-	print(potionsDictionary)
 	if not isThereAnyPotionOfType(selectedPotionType):
 		return
 	potionUsed.emit(selectedPotionType);

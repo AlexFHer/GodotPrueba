@@ -34,6 +34,9 @@ var canMegaJump := false;
 func _init() -> void:
 	PlayerPotions.potionUsed.connect(_on_potion_used);
 
+func _ready() -> void:
+	_activate_jump_speed_potion(PotionTypes.PotionType.JumpAndSpeed);
+
 func jump() -> void:
 	velocity.y += JUMP_FORCE;
 	disableJump();
@@ -114,9 +117,15 @@ func manageSelfRotation(direction: Vector3) -> void:
 	_rig.look_at(global_transform.origin + target_direction, Vector3.UP)
 
 func speedPotionUsed(potionType: PotionTypes.PotionType) -> void:
-	speed = IMPROVED_SPEED;
+	_activate_improved_speed();
 	var lifeTime = PotionsConfig.get_potion_properties(potionType).lifeTime
 	await get_tree().create_timer(lifeTime).timeout
+	_deactivate_improved_speed();
+
+func _activate_improved_speed() -> void:
+	speed = IMPROVED_SPEED;
+
+func _deactivate_improved_speed() -> void:
 	speed = NORMAL_SPEED;
 
 func _on_potion_used(potionType: PotionTypes.PotionType) -> void:
@@ -124,6 +133,16 @@ func _on_potion_used(potionType: PotionTypes.PotionType) -> void:
 		jumpPotionUsed(potionType);
 	if potionType == PotionTypes.PotionType.Speed:
 		speedPotionUsed(potionType);
+	if potionType == PotionTypes.PotionType.JumpAndSpeed:
+		_activate_jump_speed_potion(potionType);
+
+func _activate_jump_speed_potion(potionType: PotionTypes.PotionType) -> void:
+	activateMegaJump()
+	_activate_improved_speed();
+	var lifeTime = PotionsConfig.get_potion_properties(potionType).lifeTime
+	await get_tree().create_timer(lifeTime).timeout
+	deactivateMegaJump();
+	_deactivate_improved_speed();
 
 func on_jump_buffer_timer_ends() -> void:
 	jumpBuffer = false;

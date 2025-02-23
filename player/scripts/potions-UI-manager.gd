@@ -5,7 +5,7 @@ extends Control
 @onready var potionsTimer: Timer = %PotionsTimer
 @onready var potionsTimerLabel: Label = %PotionTimerLabel
 
-var selectedPotionType = PotionTypes.PotionType.None;
+var selectedPotionType := PotionTypes.PotionType.None;
 
 var showPotionTimer = false;
 
@@ -19,6 +19,10 @@ func _enter_tree() -> void:
 	PlayerPotions.potionsChanged.connect(_on_potions_change);
 	PlayerPotions.selectedPotionChanged.connect(_on_selected_potion_changed);
 	PlayerPotions.potionUsed.connect(_on_potion_used);
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("combineSelection"):
+		_on_combine_selection_pressed()
 
 func getNumberOfPotionsByType(potionType: PotionTypes.PotionType) -> String:
 	var potionSize = PlayerPotions.potionsDictionary.get(potionType);
@@ -66,3 +70,9 @@ func _on_potion_used(potionType: PotionTypes.PotionType) -> void:
 		potionsTimer.wait_time = potionConfig.lifeTime;
 		potionsTimerLabel.visible = true;
 		potionsTimer.start()
+
+func _on_combine_selection_pressed() -> void:
+	if not PlayerPotions.areThereAnyPotions():
+		return
+	
+	PotionMergerService.selectedPotionToMerge = selectedPotionType;

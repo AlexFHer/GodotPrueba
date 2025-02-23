@@ -21,6 +21,8 @@ SavesManager="*res://shared/scripts/savesManager.gd"
 LevelCollectablesData="*res://shared/scripts/levelCollectablesData.gd"
 GlobalManager="*res://shared/scripts/GlobalManager.gd"
 PlayerPotions="*res://assets/potions/shared/services/player-potions-inventory-service.gd"
+PotionMerger="*res://assets/potions/shared/services/potion-merger-service.gd"
+SelectedMergePotion="*res://assets/potions/shared/services/selected-potion-to-merge.gd"
 
 [editor]
 
@@ -100,7 +102,7 @@ toggleRightPotion={
 "events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":10,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
-combine={
+combineSelection={
 "deadzone": 0.5,
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":4,"axis_value":1.0,"script":null)
 ]

@@ -5,6 +5,7 @@ enum PotionType {
 	Jump,
 	Speed,
 	Fire,
-	JumpFire,
-	SpeedFire
+	JumpAndFire,
+	JumpAndSpeed,
+	SpeedAndFire
 }
