@@ -1,4 +1,10 @@
-﻿keys;es;en;
-jump_potion_ui_text;Salto;Jump;
-speed_potion_ui_text;Velocidad;Speed;
-fire_potion_ui_text;Fuego;Fire;
+﻿keys;es;en
+jump_potion_ui_text;Salto;Jump
+speed_potion_ui_text;Velocidad;Speed
+fire_potion_ui_text;Fuego;Fire
+ui_resume_button;Continuar;Resume
+ui_settings_button;Configuración;Settings
+ui_quit_button;Salir;Quit
+ui_main_menu_button;Menu principal;Main menu
+es;Español;Spanish
+en;Ingles;English

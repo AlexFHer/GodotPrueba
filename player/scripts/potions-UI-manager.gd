@@ -12,7 +12,7 @@ var showPotionTimer = false;
 func _ready() -> void:
 	_configure_timer();
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	_process_potions_timer();
 
 func _enter_tree() -> void:
@@ -52,7 +52,7 @@ func _process_potions_timer() -> void:
 func _on_potions_timer_timeout() -> void:
 	potionsTimerLabel.visible = false;
 
-func _on_potions_change(potions: Dictionary):
+func _on_potions_change(_potions: Dictionary):
 	evaluateNumber(selectedPotionType)
 
 func _on_selected_potion_changed(potionType: PotionTypes.PotionType) -> void:
