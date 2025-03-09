@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://cf47i2djfslyw"]
+[gd_scene load_steps=13 format=3 uid="uid://cf47i2djfslyw"]
 
 [ext_resource type="Script" path="res://player/PlayerCharacter.gd" id="1_43pha"]
+[ext_resource type="Script" path="res://player/animation_controller.gd" id="2_2tpu8"]
 [ext_resource type="Script" path="res://player/scripts/potions-manager.gd" id="2_86mlk"]
+[ext_resource type="PackedScene" uid="uid://2fwaxyph4wha" path="res://player/rig/PotmaArmature.blend" id="2_n6ydj"]
 [ext_resource type="PackedScene" uid="uid://bx2bdnlhll1nu" path="res://shared/props/player/Reference.fbx" id="2_u07ls"]
 [ext_resource type="Script" path="res://player/scripts/playerCamera.gd" id="3_pe30o"]
 [ext_resource type="Script" path="res://player/scripts/projectile-manager.gd" id="3_uekve"]
+[ext_resource type="AnimationLibrary" uid="uid://b8ngljymyhfit" path="res://player/animations/PotmaIdle.glb" id="4_yj4in"]
 [ext_resource type="Script" path="res://player/scripts/potions-ui-manager.gd" id="5_hdq68"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_itxij"]
@@ -25,12 +28,23 @@ shape = SubResource("CapsuleShape3D_itxij")
 [node name="Rig" type="Node3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+script = ExtResource("2_2tpu8")
+
+[node name="PotmaArmature" parent="Rig" instance=ExtResource("2_n6ydj")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0204089, 0, -1.7842e-09)
 
 [node name="Reference" parent="Rig" instance=ExtResource("2_u07ls")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+visible = false
 
 [node name="ShootPosition" type="Node3D" parent="Rig"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8.09216e-08, 0.497808, -0.925635)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Rig"]
+root_node = NodePath("../PotmaArmature")
+libraries = {
+"PotmaIdle": ExtResource("4_yj4in")
+}
 
 [node name="CameraPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.61594, 0)
