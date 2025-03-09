@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bbf8p4krgp531"]
 
-[ext_resource type="Script" path="res://assets/levels/level.gd" id="1_h5bql"]
+[ext_resource type="Script" uid="uid://b44tybnu31y1k" path="res://assets/levels/level.gd" id="1_h5bql"]
 [ext_resource type="PackedScene" uid="uid://c7s1p2f2f6huh" path="res://scenes/main-menus/pause-menu/pause-menu.tscn" id="2_bge5n"]
 
 [node name="Level" type="Node3D"]

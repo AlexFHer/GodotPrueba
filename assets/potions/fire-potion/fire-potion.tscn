@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ontkeeyy4mk7"]
 
-[ext_resource type="Script" path="res://assets/potions/fire-potion/fire-potion.gd" id="1_cy8qw"]
+[ext_resource type="Script" uid="uid://bpfd0hipgc3gu" path="res://assets/potions/fire-potion/fire-potion.gd" id="1_cy8qw"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_fqho5"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ex02udmugvjt"]
 
-[ext_resource type="Script" path="res://assets/potions/speed-potion/speed-potion.gd" id="1_kst2q"]
+[ext_resource type="Script" uid="uid://ct5811vn57wbb" path="res://assets/potions/speed-potion/speed-potion.gd" id="1_kst2q"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rfo5y"]
 

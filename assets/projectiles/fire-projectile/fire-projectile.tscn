@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dq73nqh76thbg"]
 
-[ext_resource type="Script" path="res://assets/projectiles/fire-projectile/fire-projectile.gd" id="1_atwtp"]
-[ext_resource type="Script" path="res://assets/projectiles/resources/projectile-stats.gd" id="2_qb6xo"]
+[ext_resource type="Script" uid="uid://cniqyuj5o1d3x" path="res://assets/projectiles/fire-projectile/fire-projectile.gd" id="1_atwtp"]
+[ext_resource type="Script" uid="uid://bpv0dhrmqh112" path="res://assets/projectiles/resources/projectile-stats.gd" id="2_qb6xo"]
 
 [sub_resource type="Resource" id="Resource_g7wyh"]
 script = ExtResource("2_qb6xo")

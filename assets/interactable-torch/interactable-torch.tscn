@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://gracss0vlf71"]
 
-[ext_resource type="Script" path="res://assets/interactable-torch/interactable-torch.gd" id="1_44hac"]
+[ext_resource type="Script" uid="uid://cdfkamtlk32qj" path="res://assets/interactable-torch/interactable-torch.gd" id="1_44hac"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_60f8s"]
 

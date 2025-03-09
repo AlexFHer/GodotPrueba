@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c7s1p2f2f6huh"]
 
-[ext_resource type="Script" path="res://scenes/main-menus/pause-menu/pause-menu.gd" id="1_eo0tu"]
-[ext_resource type="Script" path="res://scenes/main-menus/pause-menu/pause-menu-controls.gd" id="2_8hi7t"]
+[ext_resource type="Script" uid="uid://dohl2mga78ool" path="res://scenes/main-menus/pause-menu/pause-menu.gd" id="1_eo0tu"]
+[ext_resource type="Script" uid="uid://bxfyw83gk5i1l" path="res://scenes/main-menus/pause-menu/pause-menu-controls.gd" id="2_8hi7t"]
 [ext_resource type="PackedScene" uid="uid://b17h23m3urfpf" path="res://scenes/main-menus/settings-menu/settings-menu.tscn" id="2_i7kre"]
 
 [node name="Pause menu" type="Control"]

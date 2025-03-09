@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://drsftosyg715t"]
 
-[ext_resource type="Script" path="res://assets/collectable/coin/CollectableCoin.gd" id="1_1rsb2"]
+[ext_resource type="Script" uid="uid://djxol7wsts3n7" path="res://assets/collectable/coin/CollectableCoin.gd" id="1_1rsb2"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_rb617"]
 radius = 2.78724

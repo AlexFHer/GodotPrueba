@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Potion" load_steps=2 format=3 uid="uid://byxsfkud3ou2x"]
 
-[ext_resource type="Script" path="res://assets/potions/shared/models/potion.gd" id="1_r5o2t"]
+[ext_resource type="Script" uid="uid://dmy6vyvq38wfs" path="res://assets/potions/shared/models/potion.gd" id="1_r5o2t"]
 
 [resource]
 script = ExtResource("1_r5o2t")

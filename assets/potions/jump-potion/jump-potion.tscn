@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cyqqtvfimjbqb"]
 
-[ext_resource type="Script" path="res://assets/potions/jump-potion/jump-potion.gd" id="1_tjabp"]
+[ext_resource type="Script" uid="uid://quj0n8at168r" path="res://assets/potions/jump-potion/jump-potion.gd" id="1_tjabp"]
 [ext_resource type="ArrayMesh" uid="uid://c2khvl0rjx78b" path="res://shared/environment/skharry_bottleMesh.obj" id="3_e6xve"]
 [ext_resource type="Texture2D" uid="uid://ccind2d3exwnj" path="res://shared/environment/skharry_bottleTex0.png" id="4_v6rq3"]
 
