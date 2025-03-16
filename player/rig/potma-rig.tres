@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bjsycrl0ehj0y"]
+
+[ext_resource type="Texture2D" uid="uid://3wui6agr5emk" path="res://player/rig/PotmaIdle_PotmaGradient_Base_color_256.png" id="1_8idjw"]
+
+[resource]
+albedo_texture = ExtResource("1_8idjw")

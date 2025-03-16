@@ -23,6 +23,7 @@ GlobalManager="*res://shared/scripts/GlobalManager.gd"
 PlayerPotions="*res://assets/potions/shared/services/player-potions-inventory-service.gd"
 PotionMerger="*res://assets/potions/shared/services/potion-merger-service.gd"
 SelectedMergePotion="*res://assets/potions/shared/services/selected-potion-to-merge.gd"
+CollectablesEmitterService="*res://shared/scripts/collectables-emitter.gd"
 
 [editor]
 
@@ -115,6 +116,11 @@ start={
 circle={
 "deadzone": 0.5,
 "events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":1,"pressure":0.0,"pressed":false,"script":null)
+]
+}
+square={
+"deadzone": 0.2,
+"events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":2,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
 

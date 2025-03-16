@@ -6,11 +6,13 @@ extends CharacterBody3D
 @onready var _rig: Node3D = $Rig;
 @onready var _camera: Camera3D = %MainCharacterCamera;
 
+@onready var animation_player: AnimationPlayer = $Rig/AnimationPlayer
+
 const JUMP_FORCE := 10.0;
 const ROTATION_SENSIVITY := 10;
 const NORMAL_SPEED := 15;
-const IMPROVED_SPEED := 30;
-const ACCELERATION := 30.0;
+const IMPROVED_SPEED := 20;
+const ACCELERATION := 20.0;
 const ORIGINAL_GRAVITY := -30;
 const PLANNING_GRAVITY := -10;
 
@@ -35,7 +37,7 @@ func _init() -> void:
 	PlayerPotions.potionUsed.connect(_on_potion_used);
 
 func _ready() -> void:
-	_activate_jump_speed_potion(PotionTypes.PotionType.JumpAndSpeed);
+	pass
 
 func jump() -> void:
 	velocity.y += JUMP_FORCE;
@@ -58,6 +60,8 @@ func disableJump() -> void:
 	canJump = false;
 
 func _physics_process(delta: float) -> void:
+	_check_animations()
+	
 	process_jump();
 	process_movement(delta);
 	process_planning();
@@ -156,3 +160,27 @@ func determineJump() -> void:
 func dealDamage() -> void:
 	life -= 1;
 	lifeChanged.emit(life)
+	# Animation hit
+
+func _check_animations() -> void:
+	#if Input.is_action_just_pressed("square"):
+		#animation_player.play("Potma/PotmaStaff_Hit");
+		#return
+	
+	if not is_on_floor():
+		animation_player.play("Potma/PotmaFall")
+		return;
+				
+	if _is_player_not_moving_on_ground():
+		animation_player.play("Potma/PotmaIdle")
+		return;
+	
+	if _is_player_moving_on_ground():
+		animation_player.play("Potma/PotmaWalk")
+		return;
+
+func _is_player_moving_on_ground() -> bool:
+	return is_on_floor() and (abs(velocity.x) > 0.1 or abs(velocity.z) > 0.1)
+
+func _is_player_not_moving_on_ground() -> bool:
+	return is_on_floor() and (abs(velocity.x) < 0.1 or abs(velocity.z) < 0.1)

@@ -1,14 +1,14 @@
 [gd_scene load_steps=13 format=3 uid="uid://cf47i2djfslyw"]
 
 [ext_resource type="Script" uid="uid://b3jy8x8um1xce" path="res://player/PlayerCharacter.gd" id="1_43pha"]
-[ext_resource type="Script" uid="uid://btvdkmg1q2oy5" path="res://player/animation_controller.gd" id="2_2tpu8"]
 [ext_resource type="Script" uid="uid://df8j4nq0qxet4" path="res://player/scripts/potions-manager.gd" id="2_86mlk"]
 [ext_resource type="PackedScene" uid="uid://2fwaxyph4wha" path="res://player/rig/PotmaArmature.blend" id="2_n6ydj"]
 [ext_resource type="PackedScene" uid="uid://bx2bdnlhll1nu" path="res://shared/props/player/Reference.fbx" id="2_u07ls"]
 [ext_resource type="Script" uid="uid://c42kqovjlaehm" path="res://player/scripts/playerCamera.gd" id="3_pe30o"]
 [ext_resource type="Script" uid="uid://bu77aov0mj6ao" path="res://player/scripts/projectile-manager.gd" id="3_uekve"]
-[ext_resource type="AnimationLibrary" uid="uid://b8ngljymyhfit" path="res://player/animations/PotmaIdle.glb" id="4_yj4in"]
+[ext_resource type="AnimationLibrary" uid="uid://cir0is5iae0sb" path="res://player/animations/Potma.glb" id="5_8t03j"]
 [ext_resource type="Script" uid="uid://csrohhn61kmsp" path="res://player/scripts/potions-ui-manager.gd" id="5_hdq68"]
+[ext_resource type="PackedScene" uid="uid://bcugk5tgimuv4" path="res://assets/in-game-collectables-ui/in-game-collectables-ui.tscn" id="10_8t03j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_itxij"]
 margin = 0.025
@@ -28,7 +28,6 @@ shape = SubResource("CapsuleShape3D_itxij")
 [node name="Rig" type="Node3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
-script = ExtResource("2_2tpu8")
 
 [node name="PotmaArmature" parent="Rig" instance=ExtResource("2_n6ydj")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0204089, 0, -1.7842e-09)
@@ -43,7 +42,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8.092
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Rig"]
 root_node = NodePath("../PotmaArmature")
 libraries = {
-&"PotmaIdle": ExtResource("4_yj4in")
+&"Potma": ExtResource("5_8t03j")
 }
 
 [node name="CameraPivot" type="Node3D" parent="."]
@@ -117,3 +116,6 @@ offset_left = 21.0
 offset_top = -18.0
 offset_right = 61.0
 offset_bottom = 5.0
+
+[node name="In game collectables UI" parent="." instance=ExtResource("10_8t03j")]
+visible = false

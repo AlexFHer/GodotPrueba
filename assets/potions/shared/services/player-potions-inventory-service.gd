@@ -1,7 +1,7 @@
 class_name PotionsData extends Node
 
 # Diccionario Dictionary[Tipo de pocion, numero de pociones]
-var potionsDictionary: Dictionary = {}
+var potionsDictionary: Dictionary[PotionTypes.PotionType, int] = {}
 var selectedPotionType: PotionTypes.PotionType = PotionTypes.PotionType.None;
 
 signal potionsChanged(dictionary: Dictionary);

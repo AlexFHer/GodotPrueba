@@ -25,8 +25,7 @@ func checkTarget(delta: float) -> void:
 func _on_object_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("MainPlayer"):
 		queue_free();
-		LevelCollectablesData.addCoin("Level1", coinId);
-		GlobalManager.addMithrilCoin(value);
+		CollectablesEmitterService.mithrilPickedUp.emit();
 
 
 func _on_body_entered(body: Node3D) -> void:

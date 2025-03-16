@@ -1,13 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7s1p2f2f6huh"]
+[gd_scene load_steps=5 format=3 uid="uid://c7s1p2f2f6huh"]
 
 [ext_resource type="Script" uid="uid://dohl2mga78ool" path="res://scenes/main-menus/pause-menu/pause-menu.gd" id="1_eo0tu"]
 [ext_resource type="Script" uid="uid://bxfyw83gk5i1l" path="res://scenes/main-menus/pause-menu/pause-menu-controls.gd" id="2_8hi7t"]
 [ext_resource type="PackedScene" uid="uid://b17h23m3urfpf" path="res://scenes/main-menus/settings-menu/settings-menu.tscn" id="2_i7kre"]
+[ext_resource type="PackedScene" uid="uid://bcugk5tgimuv4" path="res://assets/in-game-collectables-ui/in-game-collectables-ui.tscn" id="4_cau22"]
 
 [node name="Pause menu" type="Control"]
 process_mode = 3
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_eo0tu")
 
 [node name="Pause menu controls" type="Control" parent="."]
@@ -45,6 +50,9 @@ text = "ui_main_menu_button"
 [node name="Settings menu" parent="." instance=ExtResource("2_i7kre")]
 unique_name_in_owner = true
 process_mode = 3
+
+[node name="In game collectables UI" parent="." instance=ExtResource("4_cau22")]
+layout_mode = 1
 
 [connection signal="resumeButtonClicked" from="Pause menu controls" to="." method="_on_pause_menu_controls_resume_button_clicked"]
 [connection signal="visibility_changed" from="Pause menu controls" to="Pause menu controls" method="_on_visibility_changed"]
