@@ -1,15 +1,15 @@
 [remap]
 
-importer="animation_library"
+importer="scene"
 importer_version=1
-type="AnimationLibrary"
-uid="uid://cfxnapq8in4os"
-path="res://.godot/imported/PotmaDuplicate.glb-daa72677b57f00d78cb42a77977b31a7.res"
+type="PackedScene"
+uid="uid://dbms7a7m8nrm0"
+path="res://.godot/imported/SpeedPotion.glb-8957f71f4c9bd3ee1e015459c65371c3.scn"
 
 [deps]
 
-source_file="res://player/animations/PotmaDuplicate.glb"
-dest_files=["res://.godot/imported/PotmaDuplicate.glb-daa72677b57f00d78cb42a77977b31a7.res"]
+source_file="res://assets/potions/speed-potion/mesh/SpeedPotion.glb"
+dest_files=["res://.godot/imported/SpeedPotion.glb-8957f71f4c9bd3ee1e015459c65371c3.scn"]
 
 [params]
 

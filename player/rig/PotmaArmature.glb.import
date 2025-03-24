@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://gd1ar7o0xvg8"
-path="res://.godot/imported/SwiftPH.fbx-58b1d8ef1e00d3de12317e0f30857c23.scn"
+uid="uid://b5a6f3vufc7bd"
+path="res://.godot/imported/PotmaArmature.glb-3925a9aa772c3a634a83f9382ffbbba4.scn"
 
 [deps]
 
-source_file="res://assets/potions/speed-potion/mesh/SwiftPH.fbx"
-dest_files=["res://.godot/imported/SwiftPH.fbx-58b1d8ef1e00d3de12317e0f30857c23.scn"]
+source_file="res://player/rig/PotmaArmature.glb"
+dest_files=["res://.godot/imported/PotmaArmature.glb-3925a9aa772c3a634a83f9382ffbbba4.scn"]
 
 [params]
 
@@ -28,11 +28,10 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=true
+animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-fbx/importer=0
-fbx/allow_geometry_helper_nodes=false
-fbx/embedded_image_handling=1
+gltf/naming_version=1
+gltf/embedded_image_handling=1

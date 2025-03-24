@@ -1,15 +1,15 @@
 [remap]
 
-importer="animation_library"
+importer="scene"
 importer_version=1
-type="AnimationLibrary"
-uid="uid://cir0is5iae0sb"
-path="res://.godot/imported/Potma.glb-b7c89b205330ebf88c43a9a98ca907cd.res"
+type="PackedScene"
+uid="uid://dfh4xhqk4vte3"
+path="res://.godot/imported/Potma.glb-b7c89b205330ebf88c43a9a98ca907cd.scn"
 
 [deps]
 
 source_file="res://player/animations/Potma.glb"
-dest_files=["res://.godot/imported/Potma.glb-b7c89b205330ebf88c43a9a98ca907cd.res"]
+dest_files=["res://.godot/imported/Potma.glb-b7c89b205330ebf88c43a9a98ca907cd.scn"]
 
 [params]
 

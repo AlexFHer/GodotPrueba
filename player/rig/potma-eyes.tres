@@ -1,6 +1,0 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://j0rvlvflf6yv"]
-
-[ext_resource type="Texture2D" uid="uid://0h1ykvkd2il7" path="res://player/rig/PotmaIdle_EYESpixel.png" id="1_e6msj"]
-
-[resource]
-albedo_texture = ExtResource("1_e6msj")

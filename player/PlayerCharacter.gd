@@ -6,7 +6,7 @@ extends CharacterBody3D
 @onready var _rig: Node3D = $Rig;
 @onready var _camera: Camera3D = %MainCharacterCamera;
 
-@onready var animation_player: AnimationPlayer = $Rig/AnimationPlayer
+@onready var animation_player: AnimationPlayer = $Rig/Armature/Potma/AnimationPlayer
 
 const JUMP_FORCE := 10.0;
 const ROTATION_SENSIVITY := 10;

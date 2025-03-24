@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxn1aweffqk1b"
-path.s3tc="res://.godot/imported/SwiftPotion_Base_Color.png-10a1b72b0647421969dd4fd6a8549c00.s3tc.ctex"
+uid="uid://b3mxl4lliqvdo"
+path.s3tc="res://.godot/imported/PotmaArmature_PotmaGradient_Base_color_256.png-c78db32dd7f5da194cf454e8101c5e05.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "9f509cae2667a53a19079a48e4606ea8"
+}
 
 [deps]
 
-source_file="res://assets/potions/speed-potion/mesh/SwiftPotion_Base_Color.png"
-dest_files=["res://.godot/imported/SwiftPotion_Base_Color.png-10a1b72b0647421969dd4fd6a8549c00.s3tc.ctex"]
+source_file="res://player/rig/PotmaArmature_PotmaGradient_Base_color_256.png"
+dest_files=["res://.godot/imported/PotmaArmature_PotmaGradient_Base_color_256.png-c78db32dd7f5da194cf454e8101c5e05.s3tc.ctex"]
 
 [params]
 
