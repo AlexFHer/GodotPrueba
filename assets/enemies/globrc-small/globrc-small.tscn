@@ -1,0 +1,92 @@
+[gd_scene load_steps=13 format=3 uid="uid://cii1jxpiud2wy"]
+
+[ext_resource type="Script" uid="uid://d0y71oajl8iqn" path="res://assets/enemies/globrc-small/globrc-small.gd" id="1_3rf8u"]
+[ext_resource type="PackedScene" uid="uid://cpnbng5cyexv7" path="res://assets/enemies/globrc-small/rig/Globrc_Thin.glb" id="2_c4b4g"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3rf8u"]
+animation = &"GT_Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_80nkx"]
+animation = &"GT_Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c4b4g"]
+animation = &"GT_Run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2ky47"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3rf8u"]
+advance_mode = 2
+advance_expression = "velocity"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c4b4g"]
+advance_mode = 2
+advance_expression = "!velocity"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jto2g"]
+states/GT_Idle/node = SubResource("AnimationNodeAnimation_80nkx")
+states/GT_Idle/position = Vector2(342, 83)
+states/GT_Run/node = SubResource("AnimationNodeAnimation_c4b4g")
+states/GT_Run/position = Vector2(342, 263)
+states/Start/position = Vector2(154, 157)
+transitions = ["Start", "GT_Idle", SubResource("AnimationNodeStateMachineTransition_2ky47"), "GT_Idle", "GT_Run", SubResource("AnimationNodeStateMachineTransition_3rf8u"), "GT_Run", "GT_Idle", SubResource("AnimationNodeStateMachineTransition_c4b4g")]
+graph_offset = Vector2(-28, 45)
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_c4b4g"]
+filters = ["GT_Armature/Skeleton3D:GT.Arm.L", "GT_Armature/Skeleton3D:GT.Arm.R", "GT_Armature/Skeleton3D:GT.Hand.R", "GT_Armature/Skeleton3D:GT.Head", "GT_Armature/Skeleton3D:GT.Mouth", "GT_Armature/Skeleton3D:GT.Nose", "GT_Armature/Skeleton3D:GT.Ojos", "GT_Armature/Skeleton3D:GT.Upper_Body", "GT_Armature/Skeleton3D:GT.Weapon"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_1dxc2"]
+graph_offset = Vector2(-606.917, -139.876)
+"nodes/Attack Anim/node" = SubResource("AnimationNodeAnimation_3rf8u")
+"nodes/Attack Anim/position" = Vector2(-620, 160)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_jto2g")
+nodes/StateMachine/position = Vector2(-700, -60)
+nodes/mele_attack/node = SubResource("AnimationNodeOneShot_c4b4g")
+nodes/mele_attack/position = Vector2(-240, 100)
+node_connections = [&"mele_attack", 0, &"StateMachine", &"mele_attack", 1, &"Attack Anim", &"output", 0, &"mele_attack"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3rf8u"]
+radius = 0.27519
+height = 0.960382
+
+[node name="Globrc Small" type="CharacterBody3D" groups=["CanPatrol", "Enemy"]]
+script = ExtResource("1_3rf8u")
+
+[node name="Rig" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Globrc_Thin" parent="Rig" instance=ExtResource("2_c4b4g")]
+
+[node name="Skeleton3D" parent="Rig/Globrc_Thin/GT_Armature" index="0"]
+bones/0/position = Vector3(0, -0.0320101, 0)
+bones/0/rotation = Quaternion(-2.98023e-08, 1.19209e-07, -2.52435e-29, 1)
+bones/1/rotation = Quaternion(-3.55271e-15, 1.77636e-14, -4.03897e-28, 1)
+bones/2/rotation = Quaternion(-3.55271e-15, 0, -4.03897e-28, 1)
+bones/3/rotation = Quaternion(2.24055e-08, 5.40383e-09, -0.14318, 0.989697)
+bones/4/rotation = Quaternion(0.740221, -0.123063, -0.148305, 0.644154)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/position = Vector3(0.000320036, 0.0653921, 0.107199)
+bones/6/rotation = Quaternion(0.81653, 4.10904e-07, 7.79163e-07, 0.577303)
+bones/7/rotation = Quaternion(1.85133e-07, -3.01154e-07, 0.743094, 0.669187)
+bones/8/rotation = Quaternion(0.258386, 0.641229, -0.0409982, 0.721375)
+bones/9/position = Vector3(-0.0473607, 0.0269787, -0.170675)
+bones/9/rotation = Quaternion(-0.0467328, 0.744814, 0.659496, -0.0901839)
+bones/10/rotation = Quaternion(-4.21717e-07, -9.04094e-08, 0.924894, -0.380225)
+bones/12/rotation = Quaternion(0.996392, -0.025596, -0.00207687, -0.0808946)
+bones/13/rotation = Quaternion(0.536616, -0.483698, 0.539789, -0.432096)
+bones/14/rotation = Quaternion(0.996392, 0.025596, 0.00207721, -0.0808946)
+
+[node name="AnimationTree" type="AnimationTree" parent="Rig"]
+root_node = NodePath("../Globrc_Thin")
+tree_root = SubResource("AnimationNodeBlendTree_1dxc2")
+advance_expression_base_node = NodePath("../..")
+anim_player = NodePath("../Globrc_Thin/AnimationPlayer")
+parameters/mele_attack/active = false
+parameters/mele_attack/internal_active = false
+parameters/mele_attack/request = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.483273, 0)
+shape = SubResource("CapsuleShape3D_3rf8u")
+
+[editable path="Rig/Globrc_Thin"]

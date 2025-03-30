@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://degbqjvqfd4lu"]
+
+[ext_resource type="Script" uid="uid://cecc6rpus2y0t" path="res://assets/patrolPoint/patrol-point.gd" id="1_3tyxv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4t1s"]
+size = Vector3(0.193604, 0.185547, 0.246094)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3tyxv"]
+
+[node name="Patrol point marker" type="Area3D"]
+script = ExtResource("1_3tyxv")
+
+[node name="PatrolPoint" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.405779, 0)
+shape = SubResource("BoxShape3D_g4t1s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.182533, 0, 0, 0, 0.486376, 0, 0, 0, 0.184099, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_3tyxv")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

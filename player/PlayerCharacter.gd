@@ -168,15 +168,15 @@ func _check_animations() -> void:
 		#return
 	
 	if not is_on_floor():
-		animation_player.play("Potma/PotmaFall")
+		animation_player.play("PotmaFall")
 		return;
 				
 	if _is_player_not_moving_on_ground():
-		animation_player.play("Potma/PotmaIdle")
+		animation_player.play("PotmaIdle")
 		return;
 	
 	if _is_player_moving_on_ground():
-		animation_player.play("Potma/PotmaWalk")
+		animation_player.play("PotmaWalk")
 		return;
 
 func _is_player_moving_on_ground() -> bool:

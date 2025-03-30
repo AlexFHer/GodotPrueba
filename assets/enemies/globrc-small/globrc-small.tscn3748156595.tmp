@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://cii1jxpiud2wy"]
+
+[ext_resource type="Script" uid="uid://d0y71oajl8iqn" path="res://assets/enemies/globrc-small/globrc-small.gd" id="1_3rf8u"]
+[ext_resource type="PackedScene" uid="uid://cpnbng5cyexv7" path="res://assets/enemies/globrc-small/rig/Globrc_Thin.glb" id="2_c4b4g"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3rf8u"]
+animation = &"GT_Attack"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_c4b4g"]
+filters = ["GT_Armature/Skeleton3D:GT.Arm.L", "GT_Armature/Skeleton3D:GT.Arm.R", "GT_Armature/Skeleton3D:GT.Hand.R", "GT_Armature/Skeleton3D:GT.Head", "GT_Armature/Skeleton3D:GT.Mouth", "GT_Armature/Skeleton3D:GT.Nose", "GT_Armature/Skeleton3D:GT.Ojos", "GT_Armature/Skeleton3D:GT.Upper_Body", "GT_Armature/Skeleton3D:GT.Weapon"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_80nkx"]
+animation = &"GT_Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2ky47"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jto2g"]
+states/GT_Idle/node = SubResource("AnimationNodeAnimation_80nkx")
+states/GT_Idle/position = Vector2(342, 83)
+states/Start/position = Vector2(154, 157)
+transitions = ["Start", "GT_Idle", SubResource("AnimationNodeStateMachineTransition_2ky47")]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_1dxc2"]
+graph_offset = Vector2(-740.515, -98.6776)
+"nodes/Attack Anim/node" = SubResource("AnimationNodeAnimation_3rf8u")
+"nodes/Attack Anim/position" = Vector2(-620, 180)
+nodes/AttackGS/node = SubResource("AnimationNodeOneShot_c4b4g")
+nodes/AttackGS/position = Vector2(-240, 100)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_jto2g")
+nodes/StateMachine/position = Vector2(-700, -60)
+node_connections = [&"AttackGS", 0, &"StateMachine", &"AttackGS", 1, &"Attack Anim", &"output", 0, &"AttackGS"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3rf8u"]
+radius = 0.27519
+height = 0.960382
+
+[node name="Globrc Small" type="CharacterBody3D"]
+script = ExtResource("1_3rf8u")
+
+[node name="Rig" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Globrc_Thin" parent="Rig" instance=ExtResource("2_c4b4g")]
+
+[node name="Skeleton3D" parent="Rig/Globrc_Thin/GT_Armature" index="0"]
+bones/0/position = Vector3(0, -0.0320101, 0)
+bones/0/rotation = Quaternion(-2.98023e-08, 1.19209e-07, -2.52435e-29, 1)
+bones/1/rotation = Quaternion(-0.0758027, 2.13778e-14, -1.80728e-08, 0.997123)
+bones/2/rotation = Quaternion(-3.55271e-15, -1.11022e-15, -8.8818e-16, 1)
+bones/3/rotation = Quaternion(0.0611476, -1.20129e-14, 1.45787e-08, 0.998129)
+bones/4/rotation = Quaternion(0.740221, -0.123063, -0.148305, 0.644154)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/position = Vector3(0.000320008, 0.0565609, 0.158147)
+bones/6/rotation = Quaternion(0.696971, 2.64327e-07, 8.70795e-07, 0.717099)
+bones/7/rotation = Quaternion(2.08339e-07, -1.68607e-07, 0.924894, 0.380225)
+bones/8/rotation = Quaternion(0.0672257, -0.00560281, 0.288184, 0.955196)
+bones/9/position = Vector3(-0.0473607, 0.0269786, -0.170675)
+bones/9/rotation = Quaternion(-0.0467328, 0.744814, 0.659496, -0.0901839)
+bones/10/rotation = Quaternion(-0.156938, -0.381749, 0.842435, -0.346326)
+bones/12/rotation = Quaternion(0.980426, -0.0173777, -0.0189072, -0.195206)
+bones/13/rotation = Quaternion(0.536616, -0.483698, 0.539789, -0.432096)
+bones/14/rotation = Quaternion(0.987401, 0.0149651, -0.0208687, -0.156143)
+
+[node name="AnimationTree" type="AnimationTree" parent="Rig"]
+root_node = NodePath("../Globrc_Thin")
+tree_root = SubResource("AnimationNodeBlendTree_1dxc2")
+anim_player = NodePath("../Globrc_Thin/AnimationPlayer")
+parameters/AttackGS/active = false
+parameters/AttackGS/internal_active = false
+parameters/AttackGS/request = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.483273, 0)
+shape = SubResource("CapsuleShape3D_3rf8u")
+
+[editable path="Rig/Globrc_Thin"]

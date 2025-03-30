@@ -98,24 +98,24 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.6901
 [node name="Prueba1" parent="." instance=ExtResource("8_bx18p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.0196, -2.99129, 39.0085)
 
-[node name="Patrol point marker" parent="." instance=ExtResource("11_y7qyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.8391, -1.8863, -18.4538)
-
-[node name="Patrol point marker2" parent="." instance=ExtResource("11_y7qyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4579, -1.8863, -18.4538)
-
-[node name="Patrol point marker3" parent="." instance=ExtResource("11_y7qyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4579, -1.8863, -30.4694)
-
-[node name="Patrol point marker4" parent="." instance=ExtResource("11_y7qyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1343, -1.8863, -30.4694)
-
-[node name="Patrol point marker5" parent="." instance=ExtResource("11_y7qyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.83723, -1.8863, -30.4694)
-
-[node name="Patrol point marker6" parent="." instance=ExtResource("11_y7qyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.83723, -1.8863, -18.4874)
-
 [node name="Globrc Small" parent="." node_paths=PackedStringArray("patrolPoints") instance=ExtResource("10_gv8ya")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.8391, -1.8863, -23.1124)
-patrolPoints = [NodePath("../Patrol point marker"), NodePath("../Patrol point marker2"), NodePath("../Patrol point marker3"), NodePath("../Patrol point marker4"), NodePath("../Patrol point marker5"), NodePath("../Patrol point marker6")]
+patrolPoints = [null, null, null, null, null, null]
+
+[node name="Patrol point marker" parent="Globrc Small" instance=ExtResource("11_y7qyr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.65863)
+
+[node name="Patrol point marker2" parent="Globrc Small" instance=ExtResource("11_y7qyr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.61883, 0, 4.65863)
+
+[node name="Patrol point marker3" parent="Globrc Small" instance=ExtResource("11_y7qyr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.61883, 0, -7.35702)
+
+[node name="Patrol point marker4" parent="Globrc Small" instance=ExtResource("11_y7qyr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.70478, 0, -7.35702)
+
+[node name="Patrol point marker5" parent="Globrc Small" instance=ExtResource("11_y7qyr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.00187, 0, -7.35702)
+
+[node name="Patrol point marker6" parent="Globrc Small" instance=ExtResource("11_y7qyr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.00187, 0, 4.625)

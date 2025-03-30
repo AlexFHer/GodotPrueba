@@ -2,7 +2,7 @@ extends Node3D
 
 var speedPotionMesh: PackedScene = load("res://assets/potions/speed-potion/mesh/SpeedPotion.glb")
 
-@onready var potionPlaceHolder: MeshInstance3D = $Armature/PotmaArmature/Armature_Potma/Skeleton3D/Poti_placeHolder
+@onready var potionPlaceHolder: MeshInstance3D = $Armature/Potma/Armature_Potma/Skeleton3D/Poti_placeHolder
 
 func _ready() -> void:
 	PlayerPotions.selectedPotionChanged.connect(_on_player_selected_potion_changed);
