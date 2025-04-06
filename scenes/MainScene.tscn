@@ -1,0 +1,104 @@
+[gd_scene load_steps=3 format=3 uid="uid://ighrfiwlmwnq"]
+
+[ext_resource type="Script" uid="uid://bx6kt7g2kl4j0" path="res://scenes/main_scene.gd" id="1_echbf"]
+
+[sub_resource type="FontFile" id="FontFile_ibiss"]
+cache/0/171/0/ascent = 0.0
+cache/0/171/0/descent = 0.0
+cache/0/171/0/underline_position = 0.0
+cache/0/171/0/underline_thickness = 0.0
+cache/0/171/0/scale = 1.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[node name="MainScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_echbf")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 1922.0
+offset_bottom = 410.0
+theme_override_fonts/font = SubResource("FontFile_ibiss")
+theme_override_font_sizes/font_size = 171
+text = "POTMA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_top = 500.0
+offset_right = 1920.0
+offset_bottom = 1000.0
+
+[node name="MainButtons" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Play" type="Button" parent="CenterContainer/MainButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "Play"
+
+[node name="settings" type="Button" parent="CenterContainer/MainButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "Settings"
+
+[node name="Exit" type="Button" parent="CenterContainer/MainButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "Exit"
+
+[node name="SettingsMenu" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Back" type="Button" parent="CenterContainer/SettingsMenu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "Back"
+
+[node name="FullScreen" type="CheckBox" parent="CenterContainer/SettingsMenu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "FullScreen
+"
+
+[node name="MainVolSlider" type="HSlider" parent="CenterContainer/SettingsMenu"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="Label" type="Label" parent="CenterContainer/SettingsMenu/MainVolSlider"]
+custom_minimum_size = Vector2(484, 50)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 40
+text = "Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -4096
+layout_mode = 0
+offset_right = 1924.0
+offset_bottom = 1075.0
+mouse_filter = 2
+color = Color(0.712926, 0.463987, 0.700082, 1)
+
+[connection signal="pressed" from="CenterContainer/MainButtons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CenterContainer/MainButtons/settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="CenterContainer/MainButtons/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="CenterContainer/SettingsMenu/Back" to="." method="_on_back_pressed"]
+[connection signal="toggled" from="CenterContainer/SettingsMenu/FullScreen" to="." method="_on_full_screen_toggled"]
+[connection signal="value_changed" from="CenterContainer/SettingsMenu/MainVolSlider" to="." method="_on_main_vol_slider_value_changed"]
