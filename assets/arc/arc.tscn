@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgp44hgj2ny5j"]
+
+[ext_resource type="Script" uid="uid://d1ecirgocrr65" path="res://assets/arc/arc.gd" id="1_3stq6"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_gf76g"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_3stq6"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_r32ve"]
+
+[node name="Arc" type="Area3D"]
+script = ExtResource("1_3stq6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.1, 0, 0.633821, 0)
+mesh = SubResource("BoxMesh_gf76g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.1, 0, 0.633821, 0)
+shape = SubResource("ConcavePolygonShape3D_3stq6")
+
+[node name="Activated" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.285391, 0, 0, 0, 0.5, 0, 0, 0, 0.335138, 0, 1.90583, 0)
+mesh = SubResource("CapsuleMesh_r32ve")
+
+[node name="DeactivationTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

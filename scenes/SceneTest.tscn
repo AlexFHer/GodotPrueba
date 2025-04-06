@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b6slr7s7ogwg1"]
+[gd_scene load_steps=21 format=3 uid="uid://b6slr7s7ogwg1"]
 
 [ext_resource type="PackedScene" uid="uid://cf47i2djfslyw" path="res://player/player.tscn" id="1_j4pqo"]
 [ext_resource type="PackedScene" uid="uid://bbf8p4krgp531" path="res://assets/levels/levelManager.tscn" id="1_n6sci"]
@@ -11,13 +11,31 @@
 [ext_resource type="PackedScene" uid="uid://dq73nqh76thbg" path="res://assets/projectiles/fire-projectile/fire-projectile.tscn" id="9_d7npr"]
 [ext_resource type="PackedScene" uid="uid://cii1jxpiud2wy" path="res://assets/enemies/globrc-small/globrc-small.tscn" id="10_gv8ya"]
 [ext_resource type="PackedScene" uid="uid://degbqjvqfd4lu" path="res://assets/patrolPoint/patrol-point.tscn" id="11_y7qyr"]
+[ext_resource type="PackedScene" uid="uid://bgp44hgj2ny5j" path="res://assets/arc/arc.tscn" id="12_khvno"]
+[ext_resource type="Script" uid="uid://cketnnkhw8nqs" path="res://assets/arc/arc_puzzle.gd" id="12_ptet3"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2bbwn"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[sub_resource type="Shader" id="Shader_ptet3"]
+code = "shader_type sky;
+
+uniform samplerCube source_panorama : filter_linear, source_color, hint_default_black;
+uniform float exposure : hint_range(0, 128) = 1.0;
+
+void sky() {
+    // If importing a cubemap from another engine, you may need to flip one of the `EYEDIR` components below
+    // by replacing it with `-EYEDIR`.
+    vec3 eyedir = vec3(EYEDIR.x, EYEDIR.y, EYEDIR.z);
+    COLOR = texture(source_panorama, eyedir).rgb * exposure;
+}"
+
+[sub_resource type="Cubemap" id="Cubemap_ptet3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_47w2d"]
+shader = SubResource("Shader_ptet3")
+shader_parameter/source_panorama = SubResource("Cubemap_ptet3")
+shader_parameter/exposure = 1.0
 
 [sub_resource type="Sky" id="Sky_w0n07"]
-sky_material = SubResource("ProceduralSkyMaterial_2bbwn")
+sky_material = SubResource("ShaderMaterial_47w2d")
 
 [sub_resource type="Environment" id="Environment_u3tis"]
 background_mode = 2
@@ -119,3 +137,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.83723, -1.8863, -18.4874)
 [node name="Globrc Small" parent="." node_paths=PackedStringArray("patrolPoints") instance=ExtResource("10_gv8ya")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.8391, -1.8863, -23.1124)
 patrolPoints = [NodePath("../Patrol point marker"), NodePath("../Patrol point marker2"), NodePath("../Patrol point marker3"), NodePath("../Patrol point marker4"), NodePath("../Patrol point marker5"), NodePath("../Patrol point marker6")]
+
+[node name="ArcPuzzle" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.5391, 0, -29.9226)
+script = ExtResource("12_ptet3")
+
+[node name="Arc" parent="ArcPuzzle" instance=ExtResource("12_khvno")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.08873, -1.8863, -4.39236)
+
+[node name="Arc2" parent="ArcPuzzle" instance=ExtResource("12_khvno")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.55458, -1.8863, -4.39236)
+
+[node name="Arc3" parent="ArcPuzzle" instance=ExtResource("12_khvno")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.08873, -1.8863, 9.24085)

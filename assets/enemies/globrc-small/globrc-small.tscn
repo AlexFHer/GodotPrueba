@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cii1jxpiud2wy"]
+[gd_scene load_steps=16 format=3 uid="uid://cii1jxpiud2wy"]
 
 [ext_resource type="Script" uid="uid://d0y71oajl8iqn" path="res://assets/enemies/globrc-small/globrc-small.gd" id="1_3rf8u"]
 [ext_resource type="PackedScene" uid="uid://cpnbng5cyexv7" path="res://assets/enemies/globrc-small/rig/Globrc_Thin.glb" id="2_c4b4g"]
@@ -33,10 +33,9 @@ transitions = ["Start", "GT_Idle", SubResource("AnimationNodeStateMachineTransit
 graph_offset = Vector2(84, 11)
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_c4b4g"]
-filters = ["GT_Armature/Skeleton3D:GT.Arm.L", "GT_Armature/Skeleton3D:GT.Arm.R", "GT_Armature/Skeleton3D:GT.Hand.R", "GT_Armature/Skeleton3D:GT.Head", "GT_Armature/Skeleton3D:GT.Mouth", "GT_Armature/Skeleton3D:GT.Nose", "GT_Armature/Skeleton3D:GT.Ojos", "GT_Armature/Skeleton3D:GT.Upper_Body", "GT_Armature/Skeleton3D:GT.Weapon"]
+filters = ["GT_Armature/Skeleton3D:GT.Arm.R", "GT_Armature/Skeleton3D:GT.Hand.R", "GT_Armature/Skeleton3D:GT.Head", "GT_Armature/Skeleton3D:GT.Mouth", "GT_Armature/Skeleton3D:GT.Nose", "GT_Armature/Skeleton3D:GT.Ojos", "GT_Armature/Skeleton3D:GT.Upper_Body", "GT_Armature/Skeleton3D:GT.Weapon"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_1dxc2"]
-graph_offset = Vector2(-682.97, -75.6002)
 "nodes/Attack Anim/node" = SubResource("AnimationNodeAnimation_3rf8u")
 "nodes/Attack Anim/position" = Vector2(-620, 360)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_jto2g")
@@ -49,7 +48,10 @@ node_connections = [&"mele_attack", 0, &"StateMachine", &"mele_attack", 1, &"Att
 size = Vector3(3.83188, 0.271973, 6.82706)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c4b4g"]
-size = Vector3(1.9552, 0.0917969, 2.00732)
+size = Vector3(0.998428, 0.0917969, 1.34175)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_80nkx"]
+size = Vector3(0.924194, 0.358643, 0.669678)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3rf8u"]
 radius = 0.27519
@@ -66,21 +68,21 @@ unique_name_in_owner = true
 [node name="Skeleton3D" parent="Rig/Globrc_Thin/GT_Armature" index="0"]
 bones/0/position = Vector3(0, -0.0320101, 0)
 bones/0/rotation = Quaternion(-2.98023e-08, 1.19209e-07, -2.52435e-29, 1)
-bones/1/rotation = Quaternion(-3.55271e-15, 1.77636e-14, -4.03897e-28, 1)
-bones/2/rotation = Quaternion(-0.0208579, -0.297518, 0.0230592, 0.95421)
-bones/3/rotation = Quaternion(-0.0143985, -0.131534, 0.0405612, 0.990377)
+bones/1/rotation = Quaternion(-0.0758027, 2.13778e-14, -1.80728e-08, 0.997123)
+bones/2/rotation = Quaternion(-3.55271e-15, -1.11022e-15, -8.8818e-16, 1)
+bones/3/rotation = Quaternion(0.0611476, -1.20129e-14, 1.45787e-08, 0.998129)
 bones/4/rotation = Quaternion(0.740221, -0.123063, -0.148305, 0.644154)
 bones/5/scale = Vector3(1, 1, 1)
-bones/6/position = Vector3(0.000320036, 0.0653921, 0.107199)
-bones/6/rotation = Quaternion(0.961215, 6.42847e-07, 6.12829e-07, 0.275801)
-bones/7/rotation = Quaternion(2.06616e-07, -1.67899e-07, 0.924894, 0.380225)
+bones/6/position = Vector3(0.000320008, 0.0565609, 0.158147)
+bones/6/rotation = Quaternion(0.696971, 2.64327e-07, 8.70795e-07, 0.717099)
+bones/7/rotation = Quaternion(2.08339e-07, -1.68607e-07, 0.924894, 0.380225)
 bones/8/rotation = Quaternion(0.0672257, -0.00560281, 0.288184, 0.955196)
-bones/9/position = Vector3(-0.0473607, 0.0269787, -0.170675)
+bones/9/position = Vector3(-0.0473607, 0.0269786, -0.170675)
 bones/9/rotation = Quaternion(-0.0467328, 0.744814, 0.659496, -0.0901839)
-bones/10/rotation = Quaternion(-4.21717e-07, -9.04094e-08, 0.924894, -0.380225)
-bones/12/rotation = Quaternion(0.996392, -0.025596, -0.00207687, -0.0808946)
+bones/10/rotation = Quaternion(-0.156938, -0.381749, 0.842435, -0.346326)
+bones/12/rotation = Quaternion(0.980426, -0.0173777, -0.0189072, -0.195206)
 bones/13/rotation = Quaternion(0.536616, -0.483698, 0.539789, -0.432096)
-bones/14/rotation = Quaternion(0.996392, 0.025596, 0.00207721, -0.0808946)
+bones/14/rotation = Quaternion(0.987401, 0.0149651, -0.0208687, -0.156143)
 
 [node name="AnimationTree" type="AnimationTree" parent="Rig"]
 root_node = NodePath("../Globrc_Thin")
@@ -104,16 +106,30 @@ one_shot = true
 [node name="HitableArea" type="Area3D" parent="Rig"]
 
 [node name="HitableAreaCollider" type="CollisionShape3D" parent="Rig/HitableArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0658569, 0.454102, 0.03711)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.104027, 0.454102, 0.522422)
 shape = SubResource("BoxShape3D_c4b4g")
+
+[node name="WeaponHitArea" type="Area3D" parent="Rig"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.525857, 0.349461, 0.212775)
+
+[node name="WeaponHitCollision" type="CollisionShape3D" parent="Rig/WeaponHitArea"]
+transform = Transform3D(0.99998, 0, 0, 0, 0.99998, 0, 0, 0, 1, 0.622082, 0.0387264, 0.604217)
+shape = SubResource("BoxShape3D_80nkx")
+debug_color = Color(0.988153, 0, 0.305179, 0.42)
+debug_fill = false
 
 [node name="Globrc collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.483273, 0)
 shape = SubResource("CapsuleShape3D_3rf8u")
 
+[node name="canAttackTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="body_entered" from="Rig/PlayerSearchArea" to="." method="_on_player_search_area_body_entered"]
 [connection signal="body_exited" from="Rig/PlayerSearchArea" to="." method="_on_player_search_area_body_exited"]
 [connection signal="body_entered" from="Rig/HitableArea" to="." method="_on_hitable_area_body_entered"]
 [connection signal="body_exited" from="Rig/HitableArea" to="." method="_on_hitable_area_body_exited"]
+[connection signal="body_entered" from="Rig/WeaponHitArea" to="." method="_on_weapon_hit_area_body_entered"]
 
 [editable path="Rig/Globrc_Thin"]

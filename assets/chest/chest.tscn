@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4khq8j6mf6b1"]
+
+[ext_resource type="Script" uid="uid://dd64461gllthc" path="res://assets/chest/chest.gd" id="1_xqjga"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vvcts"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vvcts"]
+height = 0.0828552
+radius = 1.7876
+
+[node name="Chest" type="Area3D"]
+script = ExtResource("1_xqjga")
+
+[node name="Mesh" type="Node3D" parent="."]
+
+[node name="MeshPlaceholder" type="MeshInstance3D" parent="Mesh"]
+mesh = SubResource("BoxMesh_vvcts")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0250092, 0)
+shape = SubResource("CylinderShape3D_vvcts")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

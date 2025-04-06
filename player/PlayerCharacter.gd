@@ -156,6 +156,7 @@ func determineJump() -> void:
 func dealDamage() -> void:
 	life -= 1;
 	lifeChanged.emit(life)
+	animation_tree.set("parameters/getHit/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE);
 	# Animation hit
 
 func _is_player_moving_on_ground() -> bool:

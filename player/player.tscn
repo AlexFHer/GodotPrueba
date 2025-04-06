@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cf47i2djfslyw"]
+[gd_scene load_steps=27 format=3 uid="uid://cf47i2djfslyw"]
 
 [ext_resource type="Script" uid="uid://b3jy8x8um1xce" path="res://player/PlayerCharacter.gd" id="1_43pha"]
 [ext_resource type="Script" uid="uid://df8j4nq0qxet4" path="res://player/scripts/potions-manager.gd" id="2_86mlk"]
@@ -60,15 +60,25 @@ states/PotmaWalk/position = Vector2(407, 123)
 transitions = ["Start", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_2ieo8"), "PotmaIdle", "PotmaWalk", SubResource("AnimationNodeStateMachineTransition_ebec5"), "PotmaWalk", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_yllr7"), "PotmaIdle", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_kb6p2"), "PotmaWalk", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_wodsf"), "PotmaFall", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_32hag")]
 graph_offset = Vector2(41, -195)
 
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_rgyib"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ebec5"]
+animation = &"Potma_Hit"
+
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_2ieo8"]
-graph_offset = Vector2(-537.881, -112.664)
+graph_offset = Vector2(-188.78, 10.7415)
 nodes/Hit/node = SubResource("AnimationNodeAnimation_rgyib")
-nodes/Hit/position = Vector2(-320, 280)
+nodes/Hit/position = Vector2(-320, 220)
 nodes/JumpOneShot/node = SubResource("AnimationNodeOneShot_8t03j")
 nodes/JumpOneShot/position = Vector2(-40, 100)
 nodes/Locomotion/node = SubResource("AnimationNodeStateMachine_hg6s5")
 nodes/Locomotion/position = Vector2(-400, 20)
-node_connections = [&"JumpOneShot", 0, &"Locomotion", &"JumpOneShot", 1, &"Hit", &"output", 0, &"JumpOneShot"]
+nodes/getHit/node = SubResource("AnimationNodeOneShot_rgyib")
+nodes/getHit/position = Vector2(220, 240)
+nodes/hit_animation/node = SubResource("AnimationNodeAnimation_ebec5")
+nodes/hit_animation/position = Vector2(-60, 440)
+nodes/output/position = Vector2(420, 20)
+node_connections = [&"JumpOneShot", 0, &"Locomotion", &"JumpOneShot", 1, &"Hit", &"getHit", 0, &"JumpOneShot", &"getHit", 1, &"hit_animation", &"output", 0, &"getHit"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wff3b"]
 
@@ -146,6 +156,9 @@ anim_player = NodePath("../Armature/Potma/AnimationPlayer")
 parameters/JumpOneShot/active = false
 parameters/JumpOneShot/internal_active = false
 parameters/JumpOneShot/request = 0
+parameters/getHit/active = false
+parameters/getHit/internal_active = false
+parameters/getHit/request = 0
 
 [node name="CameraPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.61594, 0)
