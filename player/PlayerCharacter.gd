@@ -7,6 +7,7 @@ extends CharacterBody3D
 @onready var _camera: Camera3D = %MainCharacterCamera;
 
 @onready var animation_player: AnimationPlayer = $Rig/Armature/Potma/AnimationPlayer
+@onready var animation_tree: AnimationTree = $Rig/PlayerAnimationTree
 
 const JUMP_FORCE := 10.0;
 const ROTATION_SENSIVITY := 10;
@@ -60,8 +61,6 @@ func disableJump() -> void:
 	canJump = false;
 
 func _physics_process(delta: float) -> void:
-	_check_animations()
-	
 	process_jump();
 	process_movement(delta);
 	process_planning();
@@ -114,12 +113,6 @@ func jumpPotionUsed(potionType: PotionTypes.PotionType) -> void:
 	await get_tree().create_timer(lifeTime).timeout
 	deactivateMegaJump()
 
-func manageSelfRotation(direction: Vector3) -> void:
-	var target_direction = direction.normalized()
-	if target_direction.length() < 0.01:
-		target_direction += Vector3(0.01, 0, 0)  # Añadir un pequeño desplazamiento si están demasiado cerca
-	_rig.look_at(global_transform.origin + target_direction, Vector3.UP)
-
 func speedPotionUsed(potionType: PotionTypes.PotionType) -> void:
 	_activate_improved_speed();
 	var lifeTime = PotionsConfig.get_potion_properties(potionType).lifeTime
@@ -156,28 +149,14 @@ func determineJump() -> void:
 		megaJump();
 	else:
 		jump()
+	
+	animation_tree.set("parameters/JumpOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE);
+
 
 func dealDamage() -> void:
 	life -= 1;
 	lifeChanged.emit(life)
 	# Animation hit
-
-func _check_animations() -> void:
-	#if Input.is_action_just_pressed("square"):
-		#animation_player.play("Potma/PotmaStaff_Hit");
-		#return
-	
-	if not is_on_floor():
-		animation_player.play("PotmaFall")
-		return;
-				
-	if _is_player_not_moving_on_ground():
-		animation_player.play("PotmaIdle")
-		return;
-	
-	if _is_player_moving_on_ground():
-		animation_player.play("PotmaWalk")
-		return;
 
 func _is_player_moving_on_ground() -> bool:
 	return is_on_floor() and (abs(velocity.x) > 0.1 or abs(velocity.z) > 0.1)

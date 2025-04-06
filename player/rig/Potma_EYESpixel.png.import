@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3atg8sobfi6u"
-path.s3tc="res://.godot/imported/Potma_PotmaGradient_Base_color_256.png-57e9571de546e18cbbfae847700977fd.s3tc.ctex"
+uid="uid://1w2n2p1y4ip4"
+path.s3tc="res://.godot/imported/Potma_EYESpixel.png-0e0869aba288411a3329f4be55934988.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "9f509cae2667a53a19079a48e4606ea8"
+"md5": "e8e16210a55946122e30e0aac526dec8"
 }
 
 [deps]
 
-source_file="res://player/animations/Potma_PotmaGradient_Base_color_256.png"
-dest_files=["res://.godot/imported/Potma_PotmaGradient_Base_color_256.png-57e9571de546e18cbbfae847700977fd.s3tc.ctex"]
+source_file="res://player/rig/Potma_EYESpixel.png"
+dest_files=["res://.godot/imported/Potma_EYESpixel.png-0e0869aba288411a3329f4be55934988.s3tc.ctex"]
 
 [params]
 

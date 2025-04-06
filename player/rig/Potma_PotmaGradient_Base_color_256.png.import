@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3mxl4lliqvdo"
-path.s3tc="res://.godot/imported/PotmaArmature_PotmaGradient_Base_color_256.png-c78db32dd7f5da194cf454e8101c5e05.s3tc.ctex"
+uid="uid://dfp2rgg08deoe"
+path.s3tc="res://.godot/imported/Potma_PotmaGradient_Base_color_256.png-d46eeeca6f25d5638d7a34d5e096253e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://player/rig/PotmaArmature_PotmaGradient_Base_color_256.png"
-dest_files=["res://.godot/imported/PotmaArmature_PotmaGradient_Base_color_256.png-c78db32dd7f5da194cf454e8101c5e05.s3tc.ctex"]
+source_file="res://player/rig/Potma_PotmaGradient_Base_color_256.png"
+dest_files=["res://.godot/imported/Potma_PotmaGradient_Base_color_256.png-d46eeeca6f25d5638d7a34d5e096253e.s3tc.ctex"]
 
 [params]
 
