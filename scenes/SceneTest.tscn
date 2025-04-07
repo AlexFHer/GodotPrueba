@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://b6slr7s7ogwg1"]
+[gd_scene load_steps=22 format=3 uid="uid://b6slr7s7ogwg1"]
 
 [ext_resource type="PackedScene" uid="uid://cf47i2djfslyw" path="res://player/player.tscn" id="1_j4pqo"]
 [ext_resource type="PackedScene" uid="uid://bbf8p4krgp531" path="res://assets/levels/levelManager.tscn" id="1_n6sci"]
+[ext_resource type="Texture2D" uid="uid://c3mvi2isp5rr2" path="res://test/Skybox1.png" id="2_47w2d"]
 [ext_resource type="PackedScene" uid="uid://i088rp1g8077" path="res://scenes/global_death.tscn" id="3_bh741"]
 [ext_resource type="PackedScene" uid="uid://drsftosyg715t" path="res://assets/collectable/coin/CollectableCoin.tscn" id="3_ucu6d"]
 [ext_resource type="PackedScene" uid="uid://cyqqtvfimjbqb" path="res://assets/potions/jump-potion/jump-potion.tscn" id="5_jmv3w"]
@@ -13,29 +14,15 @@
 [ext_resource type="PackedScene" uid="uid://degbqjvqfd4lu" path="res://assets/patrolPoint/patrol-point.tscn" id="11_y7qyr"]
 [ext_resource type="PackedScene" uid="uid://bgp44hgj2ny5j" path="res://assets/arc/arc.tscn" id="12_khvno"]
 [ext_resource type="Script" uid="uid://cketnnkhw8nqs" path="res://assets/arc/arc_puzzle.gd" id="12_ptet3"]
+[ext_resource type="PackedScene" uid="uid://mykeuox7c8sn" path="res://assets/key/key.tscn" id="15_dxe5k"]
+[ext_resource type="PackedScene" uid="uid://b4khq8j6mf6b1" path="res://assets/chest/chest.tscn" id="16_2fkf1"]
 
-[sub_resource type="Shader" id="Shader_ptet3"]
-code = "shader_type sky;
-
-uniform samplerCube source_panorama : filter_linear, source_color, hint_default_black;
-uniform float exposure : hint_range(0, 128) = 1.0;
-
-void sky() {
-    // If importing a cubemap from another engine, you may need to flip one of the `EYEDIR` components below
-    // by replacing it with `-EYEDIR`.
-    vec3 eyedir = vec3(EYEDIR.x, EYEDIR.y, EYEDIR.z);
-    COLOR = texture(source_panorama, eyedir).rgb * exposure;
-}"
-
-[sub_resource type="Cubemap" id="Cubemap_ptet3"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_47w2d"]
-shader = SubResource("Shader_ptet3")
-shader_parameter/source_panorama = SubResource("Cubemap_ptet3")
-shader_parameter/exposure = 1.0
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_dxe5k"]
+panorama = ExtResource("2_47w2d")
+filter = false
 
 [sub_resource type="Sky" id="Sky_w0n07"]
-sky_material = SubResource("ShaderMaterial_47w2d")
+sky_material = SubResource("PanoramaSkyMaterial_dxe5k")
 
 [sub_resource type="Environment" id="Environment_u3tis"]
 background_mode = 2
@@ -150,3 +137,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.55458, -1.8863, -4.39236)
 
 [node name="Arc3" parent="ArcPuzzle" instance=ExtResource("12_khvno")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.08873, -1.8863, 9.24085)
+
+[node name="Key" parent="." instance=ExtResource("15_dxe5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.7732, -1.8863, -27.8964)
+
+[node name="Chest" parent="." instance=ExtResource("16_2fkf1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.9478, -1.87187, -35.6031)
