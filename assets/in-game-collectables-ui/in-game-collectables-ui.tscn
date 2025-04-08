@@ -16,21 +16,34 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -149.0
+offset_left = -220.0
 offset_top = 11.0
 offset_right = -11.0
-offset_bottom = 141.0
+offset_bottom = 65.0
 grow_horizontal = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CollectablesContainer"]
+[node name="Mithril container" type="HBoxContainer" parent="CollectablesContainer"]
 layout_mode = 2
 alignment = 2
 
-[node name="MithrilCountLabel" type="Label" parent="CollectablesContainer/HBoxContainer"]
+[node name="MithrilCountLabel" type="Label" parent="CollectablesContainer/Mithril container"]
 layout_mode = 2
-text = "Mithril count"
+text = "Mithril"
 
-[node name="MithrilCount" type="Label" parent="CollectablesContainer/HBoxContainer"]
+[node name="MithrilCount" type="Label" parent="CollectablesContainer/Mithril container"]
 unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
+[node name="BooksContainer" type="HBoxContainer" parent="CollectablesContainer"]
+custom_minimum_size = Vector2(43.25, 22.47)
+layout_mode = 2
+alignment = 2
+
+[node name="BooksCountLabel" type="Label" parent="CollectablesContainer/BooksContainer"]
+layout_mode = 2
+text = "Books"
+
+[node name="BooksCount" type="Label" parent="CollectablesContainer/BooksContainer"]
 layout_mode = 2
 text = "0"

@@ -2,4 +2,7 @@ extends Resource
 
 class_name LevelCollectables
 
-var mithrils := 0; 
+@export var requiredMithrils := 0;
+var currentMithrils := 0;
+@export var requiredBooks := 0;
+var currentBooks := 0;

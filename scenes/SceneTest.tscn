@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://b6slr7s7ogwg1"]
+[gd_scene load_steps=24 format=3 uid="uid://b6slr7s7ogwg1"]
 
 [ext_resource type="PackedScene" uid="uid://cf47i2djfslyw" path="res://player/player.tscn" id="1_j4pqo"]
 [ext_resource type="PackedScene" uid="uid://bbf8p4krgp531" path="res://assets/levels/levelManager.tscn" id="1_n6sci"]
 [ext_resource type="Texture2D" uid="uid://c3mvi2isp5rr2" path="res://test/Skybox1.png" id="2_47w2d"]
+[ext_resource type="Script" uid="uid://c4t2n0gbu5cvl" path="res://assets/collectable/level-collectables.gd" id="2_l7cy2"]
 [ext_resource type="PackedScene" uid="uid://i088rp1g8077" path="res://scenes/global_death.tscn" id="3_bh741"]
 [ext_resource type="PackedScene" uid="uid://drsftosyg715t" path="res://assets/collectable/coin/CollectableCoin.tscn" id="3_ucu6d"]
 [ext_resource type="PackedScene" uid="uid://cyqqtvfimjbqb" path="res://assets/potions/jump-potion/jump-potion.tscn" id="5_jmv3w"]
@@ -16,6 +17,12 @@
 [ext_resource type="Script" uid="uid://cketnnkhw8nqs" path="res://assets/arc/arc_puzzle.gd" id="12_ptet3"]
 [ext_resource type="PackedScene" uid="uid://mykeuox7c8sn" path="res://assets/key/key.tscn" id="15_dxe5k"]
 [ext_resource type="PackedScene" uid="uid://b4khq8j6mf6b1" path="res://assets/chest/chest.tscn" id="16_2fkf1"]
+
+[sub_resource type="Resource" id="Resource_l7cy2"]
+script = ExtResource("2_l7cy2")
+requiredMithrils = 150
+requiredBooks = 1
+metadata/_custom_type_script = "uid://c4t2n0gbu5cvl"
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_dxe5k"]
 panorama = ExtResource("2_47w2d")
@@ -38,6 +45,7 @@ data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0
 [node name="SceneTest" type="Node3D"]
 
 [node name="Level manager" parent="." instance=ExtResource("1_n6sci")]
+levelCollectables = SubResource("Resource_l7cy2")
 levelName = "TestLevel"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

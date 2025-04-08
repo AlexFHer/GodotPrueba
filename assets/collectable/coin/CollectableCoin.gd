@@ -24,8 +24,8 @@ func checkTarget(delta: float) -> void:
 
 func _on_object_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("MainPlayer"):
+		CollectablesEmitterService.mithrilPickedUp.emit(1);
 		queue_free();
-		CollectablesEmitterService.mithrilPickedUp.emit();
 
 
 func _on_body_entered(body: Node3D) -> void:
