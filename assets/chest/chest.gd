@@ -9,7 +9,7 @@ func _on_body_entered(body:Node3D) -> void:
       open_chest()
 
 func open_chest():
-    animation_tree.set("parameters/open_chest/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+    opened = true
 
 func _on_player_enter_area(player: ) -> void:
   pass

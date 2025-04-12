@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4khq8j6mf6b1"]
+[gd_scene load_steps=11 format=3 uid="uid://b4khq8j6mf6b1"]
 
 [ext_resource type="Script" uid="uid://dd64461gllthc" path="res://assets/chest/chest.gd" id="1_xqjga"]
 [ext_resource type="PackedScene" uid="uid://xgpjcp3yu7o3" path="res://assets/chest/model/Chest.glb" id="2_atpml"]
@@ -12,17 +12,26 @@ animation = &"Idle_Chest"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oky7w"]
 animation = &"Open_Chest"
 
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_7xn1i"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7xn1i"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_txp7c"]
+advance_mode = 2
+advance_expression = "opened == true"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_xxa24"]
+states/Idle_Chest/node = SubResource("AnimationNodeAnimation_atpml")
+states/Idle_Chest/position = Vector2(379, 81)
+states/Open_Chest/node = SubResource("AnimationNodeAnimation_oky7w")
+states/Open_Chest/position = Vector2(650, 81)
+transitions = ["Start", "Idle_Chest", SubResource("AnimationNodeStateMachineTransition_7xn1i"), "Idle_Chest", "Open_Chest", SubResource("AnimationNodeStateMachineTransition_txp7c")]
+graph_offset = Vector2(200, 10)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_txp7c"]
-graph_offset = Vector2(-459.98, -112.946)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_oky7w")
-nodes/Animation/position = Vector2(-360, 240)
-"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_atpml")
-"nodes/Animation 2/position" = Vector2(-400, 0)
-nodes/open_chest/node = SubResource("AnimationNodeOneShot_7xn1i")
-nodes/open_chest/position = Vector2(-20, 60)
-node_connections = [&"open_chest", 0, &"Animation 2", &"open_chest", 1, &"Animation", &"output", 0, &"open_chest"]
+graph_offset = Vector2(-444.748, 8.8806)
+nodes/ChestLocomotion/node = SubResource("AnimationNodeStateMachine_xxa24")
+nodes/ChestLocomotion/position = Vector2(-220, 120)
+node_connections = [&"output", 0, &"ChestLocomotion"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oky7w"]
 size = Vector3(2.18652, 0.293945, 2.33008)
@@ -41,19 +50,11 @@ shape = SubResource("BoxShape3D_atpml")
 [node name="AnimationTree" type="AnimationTree" parent="Mesh"]
 root_node = NodePath("../Chest2")
 tree_root = SubResource("AnimationNodeBlendTree_txp7c")
+advance_expression_base_node = NodePath("../..")
 anim_player = NodePath("../Chest2/AnimationPlayer")
-parameters/open_chest/active = false
-parameters/open_chest/internal_active = false
-parameters/open_chest/request = 0
 
 [node name="Chest2" parent="Mesh" instance=ExtResource("2_atpml")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.158428, 0, 0.234207)
-
-[node name="Skeleton3D" parent="Mesh/Chest2/Armature" index="1"]
-bones/0/position = Vector3(-2.62013e-14, 0.285885, -0.163326)
-bones/0/rotation = Quaternion(0.696033, 3.42374e-07, 3.31894e-07, 0.71801)
-bones/1/rotation = Quaternion(-0.736013, 3.22803e-07, -3.50958e-07, 0.676968)
-bones/1/scale = Vector3(0, 0, 0)
 
 [node name="GrabCollider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.103027, 0.29044, 0.131836)
