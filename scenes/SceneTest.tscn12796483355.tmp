@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b6slr7s7ogwg1"]
+[gd_scene load_steps=26 format=3 uid="uid://b6slr7s7ogwg1"]
 
 [ext_resource type="PackedScene" uid="uid://cf47i2djfslyw" path="res://player/player.tscn" id="1_j4pqo"]
 [ext_resource type="PackedScene" uid="uid://bbf8p4krgp531" path="res://assets/levels/levelManager.tscn" id="1_n6sci"]
@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://b4khq8j6mf6b1" path="res://assets/chest/chest.tscn" id="16_2fkf1"]
 [ext_resource type="PackedScene" uid="uid://b854210s7kevt" path="res://assets/collectable/mythril/mythril5/mythril5.tscn" id="18_o2ktb"]
 [ext_resource type="PackedScene" uid="uid://dxt8axkp8hlwt" path="res://assets/collectable/mythril/mythril1/mythril1.tscn" id="19_ow8r8"]
-[ext_resource type="PackedScene" uid="uid://bpc2mh50b30o6" path="res://assets/collectable/mythril/mythril10/mythril10.tscn" id="20_ow8r8"]
 
 [sub_resource type="Resource" id="Resource_l7cy2"]
 script = ExtResource("2_l7cy2")
@@ -160,6 +159,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.6419, -1.85021, -27.5284)
 
 [node name="Mythril1" parent="." instance=ExtResource("19_ow8r8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.1206, -1.83867, -27.0249)
-
-[node name="Mythril10" parent="." instance=ExtResource("20_ow8r8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.4972, -1.79314, -27.2464)

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxt8axkp8hlwt"]
+
+[ext_resource type="Script" uid="uid://crdiafxoaxufc" path="res://assets/collectable/mythril/mythril.gd" id="1_1m2s7"]
+[ext_resource type="PackedScene" uid="uid://dxab3wp53sllu" path="res://assets/collectable/mythril/mythril1/mesh/Mythill_1.glb" id="1_u86b4"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u86b4"]
+animation = &"Mythrill 1Action"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_u86b4"]
+radius = 0.272552
+
+[node name="Mythril1" type="Area3D"]
+script = ExtResource("1_1m2s7")
+
+[node name="Mythill_1" parent="." instance=ExtResource("1_u86b4")]
+
+[node name="Mythrill 1" parent="Mythill_1" index="0"]
+transform = Transform3D(1, 7.18323e-08, 1.59409e-07, -3.55271e-15, 0.911711, -0.410833, -1.74846e-07, 0.410833, 0.911711, 0, 0, 0)
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../Mythill_1")
+tree_root = SubResource("AnimationNodeAnimation_u86b4")
+anim_player = NodePath("../Mythill_1/AnimationPlayer")
+
+[node name="GrabCollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0190887, 0.167877, 0)
+shape = SubResource("SphereShape3D_u86b4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+
+[editable path="Mythill_1"]

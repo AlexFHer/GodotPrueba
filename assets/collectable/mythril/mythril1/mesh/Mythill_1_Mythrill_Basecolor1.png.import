@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cm8os474ik8ei"
-path.s3tc="res://.godot/imported/Mythill_1_Mythrill_Basecolor1.png-24a4085520368e3782d8d948840546d2.s3tc.ctex"
+path.s3tc="res://.godot/imported/Mythill_1_Mythrill_Basecolor1.png-046ec42f2f06a34f79f6a9cea8091e05.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://assets/collectable/mythril1/mesh/Mythill_1_Mythrill_Basecolor1.png"
-dest_files=["res://.godot/imported/Mythill_1_Mythrill_Basecolor1.png-24a4085520368e3782d8d948840546d2.s3tc.ctex"]
+source_file="res://assets/collectable/mythril/mythril1/mesh/Mythill_1_Mythrill_Basecolor1.png"
+dest_files=["res://.godot/imported/Mythill_1_Mythrill_Basecolor1.png-046ec42f2f06a34f79f6a9cea8091e05.s3tc.ctex"]
 
 [params]
 

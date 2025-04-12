@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dxab3wp53sllu"
-path="res://.godot/imported/Mythill_1.glb-5771891b613382119b2612446eb5b71a.scn"
+uid="uid://d0nbodfskuygt"
+path="res://.godot/imported/Mythill_10.glb-38e5979fba7d94aac5cf932e8fe12b22.scn"
 
 [deps]
 
-source_file="res://assets/collectable/mythril1/mesh/Mythill_1.glb"
-dest_files=["res://.godot/imported/Mythill_1.glb-5771891b613382119b2612446eb5b71a.scn"]
+source_file="res://assets/collectable/mythril/mythril10/mesh/Mythill_10.glb"
+dest_files=["res://.godot/imported/Mythill_10.glb-38e5979fba7d94aac5cf932e8fe12b22.scn"]
 
 [params]
 
