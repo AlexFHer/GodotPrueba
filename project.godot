@@ -24,6 +24,7 @@ PlayerPotions="*res://assets/potions/shared/services/player-potions-inventory-se
 PotionMerger="*res://assets/potions/shared/services/potion-merger-service.gd"
 SelectedMergePotion="*res://assets/potions/shared/services/selected-potion-to-merge.gd"
 CollectablesEmitterService="*res://shared/scripts/collectables-emitter.gd"
+PlayerInventory="*res://player/inventory/player-inventory.gd"
 
 [display]
 

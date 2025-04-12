@@ -34,7 +34,7 @@ nodes/ChestLocomotion/position = Vector2(-220, 120)
 node_connections = [&"output", 0, &"ChestLocomotion"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oky7w"]
-size = Vector3(2.18652, 0.293945, 2.33008)
+size = Vector3(1.15594, 0.293945, 1.40953)
 
 [node name="Chest" type="Area3D"]
 script = ExtResource("1_xqjga")
@@ -48,19 +48,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.113892, 0.457855, 0.114746)
 shape = SubResource("BoxShape3D_atpml")
 
 [node name="AnimationTree" type="AnimationTree" parent="Mesh"]
-root_node = NodePath("../Chest2")
+root_node = NodePath("../Chest")
 tree_root = SubResource("AnimationNodeBlendTree_txp7c")
 advance_expression_base_node = NodePath("../..")
-anim_player = NodePath("../Chest2/AnimationPlayer")
+anim_player = NodePath("../Chest/AnimationPlayer")
 
-[node name="Chest2" parent="Mesh" instance=ExtResource("2_atpml")]
+[node name="Chest" parent="Mesh" instance=ExtResource("2_atpml")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.158428, 0, 0.234207)
 
 [node name="GrabCollider" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.103027, 0.29044, 0.131836)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.153733, 0.29044, 1.01473)
 shape = SubResource("BoxShape3D_oky7w")
 debug_color = Color(0.98546, 0, 0.333541, 0.42)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 
-[editable path="Mesh/Chest2"]
+[editable path="Mesh/Chest"]
