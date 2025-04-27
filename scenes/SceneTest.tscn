@@ -1,24 +1,17 @@
-[gd_scene load_steps=26 format=3 uid="uid://b6slr7s7ogwg1"]
+[gd_scene load_steps=17 format=3 uid="uid://b6slr7s7ogwg1"]
 
 [ext_resource type="PackedScene" uid="uid://cf47i2djfslyw" path="res://player/player.tscn" id="1_j4pqo"]
 [ext_resource type="PackedScene" uid="uid://bbf8p4krgp531" path="res://assets/levels/levelManager.tscn" id="1_n6sci"]
 [ext_resource type="Texture2D" uid="uid://c3mvi2isp5rr2" path="res://test/Skybox1.png" id="2_47w2d"]
 [ext_resource type="Script" uid="uid://c4t2n0gbu5cvl" path="res://assets/collectable/level-collectables.gd" id="2_l7cy2"]
 [ext_resource type="PackedScene" uid="uid://i088rp1g8077" path="res://scenes/global_death.tscn" id="3_bh741"]
-[ext_resource type="PackedScene" uid="uid://drsftosyg715t" path="res://assets/collectable/coin/CollectableCoin.tscn" id="3_ucu6d"]
-[ext_resource type="PackedScene" uid="uid://cyqqtvfimjbqb" path="res://assets/potions/jump-potion/jump-potion.tscn" id="5_jmv3w"]
-[ext_resource type="PackedScene" uid="uid://ex02udmugvjt" path="res://assets/potions/speed-potion/speed-potion.tscn" id="6_06ppg"]
-[ext_resource type="PackedScene" uid="uid://ontkeeyy4mk7" path="res://assets/potions/fire-potion/fire-potion.tscn" id="7_2rk5f"]
-[ext_resource type="PackedScene" uid="uid://nl7ues3w2qpe" path="res://shared/environment/Prueba1.fbx" id="8_bx18p"]
-[ext_resource type="PackedScene" uid="uid://dq73nqh76thbg" path="res://assets/projectiles/fire-projectile/fire-projectile.tscn" id="9_d7npr"]
 [ext_resource type="PackedScene" uid="uid://cii1jxpiud2wy" path="res://assets/enemies/globrc-small/globrc-small.tscn" id="10_gv8ya"]
 [ext_resource type="PackedScene" uid="uid://degbqjvqfd4lu" path="res://assets/patrolPoint/patrol-point.tscn" id="11_y7qyr"]
 [ext_resource type="PackedScene" uid="uid://bgp44hgj2ny5j" path="res://assets/arc/arc.tscn" id="12_khvno"]
 [ext_resource type="Script" uid="uid://cketnnkhw8nqs" path="res://assets/arc/arc_puzzle.gd" id="12_ptet3"]
 [ext_resource type="PackedScene" uid="uid://mykeuox7c8sn" path="res://assets/key/key.tscn" id="15_dxe5k"]
 [ext_resource type="PackedScene" uid="uid://b4khq8j6mf6b1" path="res://assets/chest/chest.tscn" id="16_2fkf1"]
-[ext_resource type="PackedScene" uid="uid://b854210s7kevt" path="res://assets/collectable/mythril/mythril5/mythril5.tscn" id="18_o2ktb"]
-[ext_resource type="PackedScene" uid="uid://dxt8axkp8hlwt" path="res://assets/collectable/mythril/mythril1/mythril1.tscn" id="19_ow8r8"]
+[ext_resource type="PackedScene" uid="uid://bd31y7odxeu3" path="res://scenes/LvL 1.tscn" id="20_ow8r8"]
 
 [sub_resource type="Resource" id="Resource_l7cy2"]
 script = ExtResource("2_l7cy2")
@@ -39,11 +32,6 @@ sky = SubResource("Sky_w0n07")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_nduvq"]
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_k4n8c"]
-data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
-
 [node name="SceneTest" type="Node3D"]
 
 [node name="Level manager" parent="." instance=ExtResource("1_n6sci")]
@@ -58,125 +46,48 @@ transform = Transform3D(0.998009, -0.0546163, 0.0315326, -1.49013e-08, 0.499998,
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_j4pqo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.0881, 0.621056, -39.8133)
-
-[node name="Floor" type="MeshInstance3D" parent="."]
-transform = Transform3D(6.85813, 0, 0, 0, 1, 0, 0, 0, 12.3786, 0, 0, 0)
-mesh = SubResource("PlaneMesh_nduvq")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00536122, 0.0451841, -0.000449541)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_k4n8c")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.1441, 2.0051, -11.7021)
 
 [node name="global-death" parent="." instance=ExtResource("3_bh741")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -25.3343, 0)
 
-[node name="Collectables" type="Node3D" parent="."]
-
-[node name="CollectableCoin" parent="Collectables" instance=ExtResource("3_ucu6d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0110178, 0.839736, -3.69431)
-
-[node name="CollectableCoin2" parent="Collectables" instance=ExtResource("3_ucu6d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.37421, -4.76837e-07, -2.72459)
-
-[node name="CollectableCoin3" parent="Collectables" instance=ExtResource("3_ucu6d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.94294, 1.81957, -4.71815)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-
-[node name="Jump-potion2" parent="." instance=ExtResource("5_jmv3w")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 4.06558, 0.919817, 2.52185)
-
-[node name="Speed-potion" parent="." instance=ExtResource("6_06ppg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.289637, 1.50733, 2.67715)
-
-[node name="Speed-potion2" parent="." instance=ExtResource("6_06ppg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.358053, 1.50733, 5.60146)
-
-[node name="Fire-potion" parent="." instance=ExtResource("7_2rk5f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.54658, 0.969587, 1.93048)
-
-[node name="Fire-potion2" parent="." instance=ExtResource("7_2rk5f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.54658, 0.969587, -0.739961)
-
-[node name="Fire-potion3" parent="." instance=ExtResource("7_2rk5f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.54658, 0.969587, 4.71379)
-
-[node name="Fire-potion4" parent="." instance=ExtResource("7_2rk5f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.54658, 0.969587, -3.70993)
-
-[node name="Fire-projectile" parent="." instance=ExtResource("9_d7npr")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.69016, 2.7814, -6.03165)
-
-[node name="Prueba1" parent="." instance=ExtResource("8_bx18p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.0196, -2.99129, 39.0085)
-
 [node name="Patrol point marker" parent="." instance=ExtResource("11_y7qyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.8391, -1.8863, -18.4538)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.0121, 1.52635, -5.46845)
 
 [node name="Patrol point marker2" parent="." instance=ExtResource("11_y7qyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4579, -1.8863, -18.4538)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.6309, 1.52635, -5.46845)
 
 [node name="Patrol point marker3" parent="." instance=ExtResource("11_y7qyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4579, -1.8863, -30.4694)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.6309, 1.52635, -17.484)
 
 [node name="Patrol point marker4" parent="." instance=ExtResource("11_y7qyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1343, -1.8863, -30.4694)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.3073, 1.52635, -17.484)
 
 [node name="Patrol point marker5" parent="." instance=ExtResource("11_y7qyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.83723, -1.8863, -30.4694)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.0102, 1.52635, -17.484)
 
 [node name="Patrol point marker6" parent="." instance=ExtResource("11_y7qyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.83723, -1.8863, -18.4874)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.0102, 1.52635, -5.50205)
 
 [node name="Globrc" parent="." node_paths=PackedStringArray("patrolPoints") instance=ExtResource("10_gv8ya")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.8391, -1.8863, -23.1124)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.6738, 0.985344, -11.6839)
 patrolPoints = [NodePath("../Patrol point marker"), NodePath("../Patrol point marker2"), NodePath("../Patrol point marker3"), NodePath("../Patrol point marker4"), NodePath("../Patrol point marker5"), NodePath("../Patrol point marker6")]
 
 [node name="ArcPuzzle" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.5391, 0, -29.9226)
 script = ExtResource("12_ptet3")
 
-[node name="Arc" parent="ArcPuzzle" instance=ExtResource("12_khvno")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.08873, -1.8863, -4.39236)
-
-[node name="Arc2" parent="ArcPuzzle" instance=ExtResource("12_khvno")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.55458, -1.8863, -4.39236)
-
 [node name="Arc3" parent="ArcPuzzle" instance=ExtResource("12_khvno")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.08873, -1.8863, 9.24085)
 
+[node name="Key2" parent="." instance=ExtResource("15_dxe5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4454, 5.18719, -8.59138)
+
 [node name="Key" parent="." instance=ExtResource("15_dxe5k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.7732, -1.8863, -27.8964)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.9928, 1.50311, -12.3837)
 
 [node name="Chest" parent="." instance=ExtResource("16_2fkf1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.9478, -1.87187, -35.6031)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.1674, 1.51754, -20.0904)
 
-[node name="Mythril5" parent="." instance=ExtResource("18_o2ktb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.4447, -1.85021, -27.4794)
-
-[node name="Mythril6" parent="." instance=ExtResource("18_o2ktb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.0899, -1.85019, -29.6421)
-
-[node name="Mythril7" parent="." instance=ExtResource("18_o2ktb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.7264, -1.85019, -28.4396)
-
-[node name="Mythril1" parent="." instance=ExtResource("19_ow8r8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.5143, -1.83808, -26.1331)
-
-[node name="Mythril2" parent="." instance=ExtResource("19_ow8r8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.9762, -1.8381, -27.8471)
-
-[node name="Mythril3" parent="." instance=ExtResource("19_ow8r8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.3406, -1.83787, -30.0894)
-
-[node name="Mythril8" parent="." instance=ExtResource("18_o2ktb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.7282, -1.85019, -28.3781)
-
-[node name="Mythril9" parent="." instance=ExtResource("18_o2ktb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.0958, -1.85019, -29.4811)
-
-[node name="Mythril10" parent="." instance=ExtResource("18_o2ktb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.3431, -1.85019, -30.5045)
+[node name="LvL1" parent="." instance=ExtResource("20_ow8r8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.7291, 1.08237, -2.59654)
