@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://b854210s7kevt"]
+
+[ext_resource type="Script" uid="uid://crdiafxoaxufc" path="res://assets/collectable/mythril/mythril.gd" id="1_6jq5k"]
+[ext_resource type="PackedScene" uid="uid://dseyhmj85scns" path="res://assets/collectable/mythril/mythril5/mesh/Mythill_5.glb" id="2_6ou1a"]
+[ext_resource type="AudioStream" uid="uid://c75yopcl2n0r1" path="res://assets/collectable/mythril/sfx/retro-coin.mp3" id="3_6ou1a"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6jq5k"]
+animation = &"Mythrill5Action"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6jq5k"]
+radius = 0.28423
+
+[node name="Mythril5" type="Area3D" node_paths=PackedStringArray("coinPickupAudio", "mesh")]
+script = ExtResource("1_6jq5k")
+value = 5
+coinPickupAudio = NodePath("CoinPickupAudio")
+mesh = NodePath("Mesh")
+
+[node name="Mesh" type="Node3D" parent="."]
+
+[node name="Mythill_5" parent="Mesh" instance=ExtResource("2_6ou1a")]
+
+[node name="Mythrill5" parent="Mesh/Mythill_5" index="0"]
+transform = Transform3D(1, -3.56624e-08, 1.7117e-07, -3.55271e-15, 0.978978, 0.203965, -1.74846e-07, -0.203965, 0.978978, 0, 0, 0)
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../Mesh/Mythill_5")
+tree_root = SubResource("AnimationNodeAnimation_6jq5k")
+anim_player = NodePath("../Mesh/Mythill_5/AnimationPlayer")
+
+[node name="GrabCollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.116376, 0)
+shape = SubResource("SphereShape3D_6jq5k")
+
+[node name="CoinPickupAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_6ou1a")
+volume_db = -15.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+
+[editable path="Mesh/Mythill_5"]

@@ -1,7 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://b6slr7s7ogwg1"]
+[gd_scene load_steps=26 format=3 uid="uid://b6slr7s7ogwg1"]
 
 [ext_resource type="PackedScene" uid="uid://cf47i2djfslyw" path="res://player/player.tscn" id="1_j4pqo"]
 [ext_resource type="PackedScene" uid="uid://bbf8p4krgp531" path="res://assets/levels/levelManager.tscn" id="1_n6sci"]
+[ext_resource type="Texture2D" uid="uid://c3mvi2isp5rr2" path="res://test/Skybox1.png" id="2_47w2d"]
+[ext_resource type="Script" uid="uid://c4t2n0gbu5cvl" path="res://assets/collectable/level-collectables.gd" id="2_l7cy2"]
 [ext_resource type="PackedScene" uid="uid://i088rp1g8077" path="res://scenes/global_death.tscn" id="3_bh741"]
 [ext_resource type="PackedScene" uid="uid://drsftosyg715t" path="res://assets/collectable/coin/CollectableCoin.tscn" id="3_ucu6d"]
 [ext_resource type="PackedScene" uid="uid://cyqqtvfimjbqb" path="res://assets/potions/jump-potion/jump-potion.tscn" id="5_jmv3w"]
@@ -13,29 +15,23 @@
 [ext_resource type="PackedScene" uid="uid://degbqjvqfd4lu" path="res://assets/patrolPoint/patrol-point.tscn" id="11_y7qyr"]
 [ext_resource type="PackedScene" uid="uid://bgp44hgj2ny5j" path="res://assets/arc/arc.tscn" id="12_khvno"]
 [ext_resource type="Script" uid="uid://cketnnkhw8nqs" path="res://assets/arc/arc_puzzle.gd" id="12_ptet3"]
+[ext_resource type="PackedScene" uid="uid://mykeuox7c8sn" path="res://assets/key/key.tscn" id="15_dxe5k"]
+[ext_resource type="PackedScene" uid="uid://b4khq8j6mf6b1" path="res://assets/chest/chest.tscn" id="16_2fkf1"]
+[ext_resource type="PackedScene" uid="uid://b854210s7kevt" path="res://assets/collectable/mythril/mythril5/mythril5.tscn" id="18_o2ktb"]
+[ext_resource type="PackedScene" uid="uid://dxt8axkp8hlwt" path="res://assets/collectable/mythril/mythril1/mythril1.tscn" id="19_ow8r8"]
 
-[sub_resource type="Shader" id="Shader_ptet3"]
-code = "shader_type sky;
+[sub_resource type="Resource" id="Resource_l7cy2"]
+script = ExtResource("2_l7cy2")
+requiredMithrils = 150
+requiredBooks = 1
+metadata/_custom_type_script = "uid://c4t2n0gbu5cvl"
 
-uniform samplerCube source_panorama : filter_linear, source_color, hint_default_black;
-uniform float exposure : hint_range(0, 128) = 1.0;
-
-void sky() {
-    // If importing a cubemap from another engine, you may need to flip one of the `EYEDIR` components below
-    // by replacing it with `-EYEDIR`.
-    vec3 eyedir = vec3(EYEDIR.x, EYEDIR.y, EYEDIR.z);
-    COLOR = texture(source_panorama, eyedir).rgb * exposure;
-}"
-
-[sub_resource type="Cubemap" id="Cubemap_ptet3"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_47w2d"]
-shader = SubResource("Shader_ptet3")
-shader_parameter/source_panorama = SubResource("Cubemap_ptet3")
-shader_parameter/exposure = 1.0
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_dxe5k"]
+panorama = ExtResource("2_47w2d")
+filter = false
 
 [sub_resource type="Sky" id="Sky_w0n07"]
-sky_material = SubResource("ShaderMaterial_47w2d")
+sky_material = SubResource("PanoramaSkyMaterial_dxe5k")
 
 [sub_resource type="Environment" id="Environment_u3tis"]
 background_mode = 2
@@ -51,6 +47,7 @@ data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0
 [node name="SceneTest" type="Node3D"]
 
 [node name="Level manager" parent="." instance=ExtResource("1_n6sci")]
+levelCollectables = SubResource("Resource_l7cy2")
 levelName = "TestLevel"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -61,7 +58,7 @@ transform = Transform3D(0.998009, -0.0546163, 0.0315326, -1.49013e-08, 0.499998,
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_j4pqo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.2015, 0.657405, -39.6928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.0881, 0.621056, -39.8133)
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(6.85813, 0, 0, 0, 1, 0, 0, 0, 12.3786, 0, 0, 0)
@@ -134,7 +131,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.83723, -1.8863, -30.4694)
 [node name="Patrol point marker6" parent="." instance=ExtResource("11_y7qyr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.83723, -1.8863, -18.4874)
 
-[node name="Globrc Small" parent="." node_paths=PackedStringArray("patrolPoints") instance=ExtResource("10_gv8ya")]
+[node name="Globrc" parent="." node_paths=PackedStringArray("patrolPoints") instance=ExtResource("10_gv8ya")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.8391, -1.8863, -23.1124)
 patrolPoints = [NodePath("../Patrol point marker"), NodePath("../Patrol point marker2"), NodePath("../Patrol point marker3"), NodePath("../Patrol point marker4"), NodePath("../Patrol point marker5"), NodePath("../Patrol point marker6")]
 
@@ -150,3 +147,36 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.55458, -1.8863, -4.39236)
 
 [node name="Arc3" parent="ArcPuzzle" instance=ExtResource("12_khvno")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.08873, -1.8863, 9.24085)
+
+[node name="Key" parent="." instance=ExtResource("15_dxe5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.7732, -1.8863, -27.8964)
+
+[node name="Chest" parent="." instance=ExtResource("16_2fkf1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.9478, -1.87187, -35.6031)
+
+[node name="Mythril5" parent="." instance=ExtResource("18_o2ktb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.4447, -1.85021, -27.4794)
+
+[node name="Mythril6" parent="." instance=ExtResource("18_o2ktb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.0899, -1.85019, -29.6421)
+
+[node name="Mythril7" parent="." instance=ExtResource("18_o2ktb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.7264, -1.85019, -28.4396)
+
+[node name="Mythril1" parent="." instance=ExtResource("19_ow8r8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.5143, -1.83808, -26.1331)
+
+[node name="Mythril2" parent="." instance=ExtResource("19_ow8r8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.9762, -1.8381, -27.8471)
+
+[node name="Mythril3" parent="." instance=ExtResource("19_ow8r8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.3406, -1.83787, -30.0894)
+
+[node name="Mythril8" parent="." instance=ExtResource("18_o2ktb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.7282, -1.85019, -28.3781)
+
+[node name="Mythril9" parent="." instance=ExtResource("18_o2ktb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.0958, -1.85019, -29.4811)
+
+[node name="Mythril10" parent="." instance=ExtResource("18_o2ktb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.3431, -1.85019, -30.5045)

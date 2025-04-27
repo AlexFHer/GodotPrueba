@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://mykeuox7c8sn"]
+
+[ext_resource type="Script" uid="uid://kxv4kyx1hf4c" path="res://assets/key/key.gd" id="1_hvvbr"]
+[ext_resource type="PackedScene" uid="uid://bxs6pilknhd4m" path="res://assets/key/model/Key_Collectable.glb" id="1_nlauf"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nlauf"]
+animation = &"KeyAction_001"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hvvbr"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_sy52k"]
+states/KeyAction_001/node = SubResource("AnimationNodeAnimation_nlauf")
+states/KeyAction_001/position = Vector2(417, 86)
+transitions = ["Start", "KeyAction_001", SubResource("AnimationNodeStateMachineTransition_hvvbr")]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hvvbr"]
+size = Vector3(1, 0.97522, 0.841309)
+
+[node name="Key" type="Area3D"]
+script = ExtResource("1_hvvbr")
+
+[node name="model" type="Node3D" parent="."]
+
+[node name="Key_Collectable" parent="model" instance=ExtResource("1_nlauf")]
+
+[node name="Key" parent="model/Key_Collectable" index="0"]
+transform = Transform3D(-0.708051, 0, -0.706161, 0, 1, 0, 0.706161, 0, -0.708051, 0, -0.0344476, 0)
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../model/Key_Collectable")
+tree_root = SubResource("AnimationNodeStateMachine_sy52k")
+anim_player = NodePath("../model/Key_Collectable/AnimationPlayer")
+
+[node name="GrabCollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.476868, 0.0793457)
+shape = SubResource("BoxShape3D_hvvbr")
+debug_color = Color(0.948938, 0.17862, 0.36123, 0.42)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+
+[editable path="model/Key_Collectable"]
