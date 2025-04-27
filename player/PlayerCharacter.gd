@@ -1,6 +1,3 @@
-
-
-
 extends CharacterBody3D
 
 @onready var _rig: Node3D = $Rig;

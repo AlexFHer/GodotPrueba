@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b6slr7s7ogwg1"]
+[gd_scene load_steps=26 format=3 uid="uid://b6slr7s7ogwg1"]
 
 [ext_resource type="PackedScene" uid="uid://cf47i2djfslyw" path="res://player/player.tscn" id="1_j4pqo"]
 [ext_resource type="PackedScene" uid="uid://bbf8p4krgp531" path="res://assets/levels/levelManager.tscn" id="1_n6sci"]
@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://b4khq8j6mf6b1" path="res://assets/chest/chest.tscn" id="16_2fkf1"]
 [ext_resource type="PackedScene" uid="uid://b854210s7kevt" path="res://assets/collectable/mythril/mythril5/mythril5.tscn" id="18_o2ktb"]
 [ext_resource type="PackedScene" uid="uid://dxt8axkp8hlwt" path="res://assets/collectable/mythril/mythril1/mythril1.tscn" id="19_ow8r8"]
-[ext_resource type="PackedScene" uid="uid://bpc2mh50b30o6" path="res://assets/collectable/mythril/mythril10/mythril10.tscn" id="20_ow8r8"]
 
 [sub_resource type="Resource" id="Resource_l7cy2"]
 script = ExtResource("2_l7cy2")
@@ -132,7 +131,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.83723, -1.8863, -30.4694)
 [node name="Patrol point marker6" parent="." instance=ExtResource("11_y7qyr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.83723, -1.8863, -18.4874)
 
-[node name="Globrc Small" parent="." node_paths=PackedStringArray("patrolPoints") instance=ExtResource("10_gv8ya")]
+[node name="Globrc" parent="." node_paths=PackedStringArray("patrolPoints") instance=ExtResource("10_gv8ya")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.8391, -1.8863, -23.1124)
 patrolPoints = [NodePath("../Patrol point marker"), NodePath("../Patrol point marker2"), NodePath("../Patrol point marker3"), NodePath("../Patrol point marker4"), NodePath("../Patrol point marker5"), NodePath("../Patrol point marker6")]
 
@@ -156,10 +155,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.7732, -1.8863, -27.8964)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.9478, -1.87187, -35.6031)
 
 [node name="Mythril5" parent="." instance=ExtResource("18_o2ktb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.6419, -1.85021, -27.5284)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.4447, -1.85021, -27.4794)
+
+[node name="Mythril6" parent="." instance=ExtResource("18_o2ktb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.0899, -1.85019, -29.6421)
+
+[node name="Mythril7" parent="." instance=ExtResource("18_o2ktb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.7264, -1.85019, -28.4396)
 
 [node name="Mythril1" parent="." instance=ExtResource("19_ow8r8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.1206, -1.83867, -27.0249)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.5143, -1.83808, -26.1331)
 
-[node name="Mythril10" parent="." instance=ExtResource("20_ow8r8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.4972, -1.79314, -27.2464)
+[node name="Mythril2" parent="." instance=ExtResource("19_ow8r8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.9762, -1.8381, -27.8471)
+
+[node name="Mythril3" parent="." instance=ExtResource("19_ow8r8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.3406, -1.83787, -30.0894)
+
+[node name="Mythril8" parent="." instance=ExtResource("18_o2ktb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.7282, -1.85019, -28.3781)
+
+[node name="Mythril9" parent="." instance=ExtResource("18_o2ktb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.0958, -1.85019, -29.4811)
+
+[node name="Mythril10" parent="." instance=ExtResource("18_o2ktb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.3431, -1.85019, -30.5045)
