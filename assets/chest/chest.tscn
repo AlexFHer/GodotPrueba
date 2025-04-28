@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://xgpjcp3yu7o3" path="res://assets/chest/model/Chest.glb" id="2_atpml"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_atpml"]
-size = Vector3(1.06274, 0.914612, 0.770508)
+size = Vector3(1.06274, 0.914612, 0.636719)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_atpml"]
 animation = &"Idle_Chest"
@@ -44,7 +44,7 @@ script = ExtResource("1_xqjga")
 [node name="StaticBody3D" type="StaticBody3D" parent="Mesh"]
 
 [node name="MeshCollision" type="CollisionShape3D" parent="Mesh/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.113892, 0.457855, 0.114746)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.113892, 0.457855, 0.181641)
 shape = SubResource("BoxShape3D_atpml")
 
 [node name="AnimationTree" type="AnimationTree" parent="Mesh"]
@@ -55,6 +55,12 @@ anim_player = NodePath("../Chest/AnimationPlayer")
 
 [node name="Chest" parent="Mesh" instance=ExtResource("2_atpml")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.158428, 0, 0.234207)
+
+[node name="Skeleton3D" parent="Mesh/Chest/Armature" index="1"]
+bones/0/position = Vector3(-2.62013e-14, 0.285885, -0.163326)
+bones/0/rotation = Quaternion(0.696033, 3.42374e-07, 3.31894e-07, 0.71801)
+bones/1/rotation = Quaternion(-0.736013, 3.22803e-07, -3.50958e-07, 0.676968)
+bones/1/scale = Vector3(0, 0, 0)
 
 [node name="GrabCollider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.153733, 0.29044, 1.01473)

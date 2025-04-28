@@ -85,7 +85,7 @@ func process_planning() -> void:
 		gravity = ORIGINAL_GRAVITY
 
 func process_movement(delta) -> void:
-	var rawInput := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down");
+	var rawInput := Input.get_vector("move-left", "move-right", "move-forward", "move-backwards");
 	var forward := _camera.global_basis.z
 	var right := _camera.global_basis.x
 	
@@ -161,3 +161,6 @@ func _is_player_moving_on_ground() -> bool:
 
 func _is_player_not_moving_on_ground() -> bool:
 	return is_on_floor() and (abs(velocity.x) < 0.1 or abs(velocity.z) < 0.1)
+
+func is_moving() -> bool:
+	return abs(velocity.x) > 0.1 or abs(velocity.z) > 0.1
