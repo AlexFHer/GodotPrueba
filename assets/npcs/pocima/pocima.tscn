@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://8o6mtcl0idi8"]
+
+[ext_resource type="PackedScene" uid="uid://drk3t1ixoax3c" path="res://assets/npcs/pocima/rig/Pocima.glb" id="1_shwg8"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0pp4a"]
+animation = &"Pocima_Idle"
+
+[node name="Pocima" type="Node3D"]
+
+[node name="rig" type="Node3D" parent="."]
+
+[node name="Pocima" parent="rig" instance=ExtResource("1_shwg8")]
+
+[node name="Skeleton3D" parent="rig/Pocima/Pocima_Armature" index="0"]
+bones/8/rotation = Quaternion(-0.0640543, -1.25507e-08, -0.255581, 0.964664)
+
+[node name="Fire" parent="rig/Pocima/Pocima_Armature/Skeleton3D" index="4"]
+blend_shapes/Fire2 = 1.0
+blend_shapes/Fire3 = 1.0
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../rig/Pocima")
+tree_root = SubResource("AnimationNodeAnimation_0pp4a")
+anim_player = NodePath("../rig/Pocima/AnimationPlayer")
+
+[editable path="rig/Pocima"]
