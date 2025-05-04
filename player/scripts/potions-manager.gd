@@ -2,9 +2,11 @@ extends Node
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("toggleLeftPotion"):
+		print("toggleLeftPotion")
 		PlayerPotions.toggleLeftPotion();
 	
 	if Input.is_action_just_pressed("toggleRightPotion"):
+		print("toggleRightPotion")
 		PlayerPotions.toggleRightPotion();
 	
 	if Input.is_action_just_pressed("usePotion"):

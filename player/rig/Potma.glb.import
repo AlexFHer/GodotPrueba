@@ -1833,6 +1833,12 @@ _subresources={
 "slice_99/start_frame": 0,
 "slices/amount": 0
 }
+},
+"materials": {
+"PotmaGradient.001": {
+"use_external/enabled": true,
+"use_external/path": "uid://dycp7ybksc3ix"
+}
 }
 }
 gltf/naming_version=1

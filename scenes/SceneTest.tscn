@@ -1,6 +1,5 @@
-[gd_scene load_steps=17 format=3 uid="uid://b6slr7s7ogwg1"]
+[gd_scene load_steps=19 format=3 uid="uid://b6slr7s7ogwg1"]
 
-[ext_resource type="PackedScene" uid="uid://cf47i2djfslyw" path="res://player/player.tscn" id="1_j4pqo"]
 [ext_resource type="PackedScene" uid="uid://bbf8p4krgp531" path="res://assets/levels/levelManager.tscn" id="1_n6sci"]
 [ext_resource type="Texture2D" uid="uid://c3mvi2isp5rr2" path="res://test/Skybox1.png" id="2_47w2d"]
 [ext_resource type="Script" uid="uid://c4t2n0gbu5cvl" path="res://assets/collectable/level-collectables.gd" id="2_l7cy2"]
@@ -9,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://degbqjvqfd4lu" path="res://assets/patrolPoint/patrol-point.tscn" id="11_y7qyr"]
 [ext_resource type="PackedScene" uid="uid://bgp44hgj2ny5j" path="res://assets/arc/arc.tscn" id="12_khvno"]
 [ext_resource type="Script" uid="uid://cketnnkhw8nqs" path="res://assets/arc/arc_puzzle.gd" id="12_ptet3"]
+[ext_resource type="PackedScene" uid="uid://ontkeeyy4mk7" path="res://assets/potions/fire-potion/fire-potion.tscn" id="13_ptet3"]
+[ext_resource type="PackedScene" uid="uid://cyqqtvfimjbqb" path="res://assets/potions/jump-potion/jump-potion.tscn" id="14_dxe5k"]
+[ext_resource type="PackedScene" uid="uid://ex02udmugvjt" path="res://assets/potions/speed-potion/speed-potion.tscn" id="15_2fkf1"]
 [ext_resource type="PackedScene" uid="uid://mykeuox7c8sn" path="res://assets/key/key.tscn" id="15_dxe5k"]
 [ext_resource type="PackedScene" uid="uid://b4khq8j6mf6b1" path="res://assets/chest/chest.tscn" id="16_2fkf1"]
 [ext_resource type="PackedScene" uid="uid://bd31y7odxeu3" path="res://scenes/LvL 1.tscn" id="20_ow8r8"]
@@ -35,6 +37,7 @@ glow_enabled = true
 [node name="SceneTest" type="Node3D"]
 
 [node name="Level manager" parent="." instance=ExtResource("1_n6sci")]
+visible = false
 levelCollectables = SubResource("Resource_l7cy2")
 levelName = "TestLevel"
 
@@ -44,9 +47,6 @@ environment = SubResource("Environment_u3tis")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.998009, -0.0546163, 0.0315326, -1.49013e-08, 0.499998, 0.866027, -0.0630654, -0.864303, 0.499003, -2.19103, 12.9262, 10.8119)
 shadow_enabled = true
-
-[node name="Player" parent="." instance=ExtResource("1_j4pqo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.1441, 2.0051, -11.7021)
 
 [node name="global-death" parent="." instance=ExtResource("3_bh741")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -25.3343, 0)
@@ -91,3 +91,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.1674, 1.51754, -20.0904)
 
 [node name="LvL1" parent="." instance=ExtResource("20_ow8r8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.7291, 1.08237, -2.59654)
+
+[node name="Fire-potion" parent="." instance=ExtResource("13_ptet3")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -36.1897, 2.11338, -22.6454)
+
+[node name="Jump-potion" parent="." instance=ExtResource("14_dxe5k")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -33.16, 1.50003, -22.9048)
+
+[node name="Speed-potion" parent="." instance=ExtResource("15_2fkf1")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -38.2126, 2.08089, -22.2296)

@@ -45,5 +45,6 @@ layout_mode = 2
 text = "Books"
 
 [node name="BooksCount" type="Label" parent="CollectablesContainer/BooksContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "0"

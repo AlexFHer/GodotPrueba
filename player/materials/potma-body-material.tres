@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dycp7ybksc3ix"]
+
+[ext_resource type="Texture2D" uid="uid://cwpanmmheug6p" path="res://player/materials/PotmaGradient_Base_color.png" id="1_rftil"]
+
+[resource]
+albedo_texture = ExtResource("1_rftil")

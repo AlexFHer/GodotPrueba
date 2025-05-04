@@ -13,10 +13,9 @@ func _ready() -> void:
 
 
 func _on_mithril_picked_up(amount: int) -> void:
-  print("Picked up mithril: " + str(amount))
   levelCollectables.currentMithrils += amount
   inGameCollectablesUiControl.update_current_collectables(levelCollectables)
 
-func _on_book_picked_up() -> void:
-  levelCollectables.currentBooks += 1
+func _on_book_picked_up(amount: int) -> void:
+  levelCollectables.currentBooks += amount
   inGameCollectablesUiControl.update_current_collectables(levelCollectables)

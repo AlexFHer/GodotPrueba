@@ -1,7 +1,7 @@
 class_name CollectablesEmitter extends Node
 
 signal mithrilPickedUp(amount: int);
-signal bookPickedUp();
+signal bookPickedUp(amount: int);
 
 func emitMithrilPickedUp(amount: int) -> void:
   mithrilPickedUp.emit(amount)

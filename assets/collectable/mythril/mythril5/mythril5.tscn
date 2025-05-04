@@ -21,7 +21,7 @@ mesh = NodePath("Mesh")
 [node name="Mythill_5" parent="Mesh" instance=ExtResource("2_6ou1a")]
 
 [node name="Mythrill5" parent="Mesh/Mythill_5" index="0"]
-transform = Transform3D(1, -3.56624e-08, 1.7117e-07, -3.55271e-15, 0.978978, 0.203965, -1.74846e-07, -0.203965, 0.978978, 0, 0, 0)
+transform = Transform3D(-0.99945, -0.00676247, 0.032458, 2.32831e-10, 0.978978, 0.203965, -0.033155, 0.203853, -0.97844, 0, 0, 0)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../Mesh/Mythill_5")

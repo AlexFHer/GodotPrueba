@@ -1,9 +1,16 @@
 class_name inGameCollectablesUI extends Control
 
 @onready var mithril_count_label: Label = %MithrilCount
+@onready var book_count_label: Label = %BooksCount
 
 func update_current_collectables(levelCollectables: LevelCollectables) -> void:
-	updateMithrilCount(levelCollectables)
+	update_mithril_count(levelCollectables)
+	update_book_count(levelCollectables)
 
-func updateMithrilCount(levelCollectables: LevelCollectables) -> void:
+func update_mithril_count(levelCollectables: LevelCollectables) -> void:
+	print("Mithril count: " + str(levelCollectables.currentMithrils) + "/" + str(levelCollectables.requiredMithrils))
 	mithril_count_label.text = str(levelCollectables.currentMithrils) + "/" + str(levelCollectables.requiredMithrils)
+
+func update_book_count(levelCollectables: LevelCollectables) -> void:
+	print("Book count: " + str(levelCollectables.currentBooks) + "/" + str(levelCollectables.requiredBooks))
+	book_count_label.text = str(levelCollectables.currentBooks) + "/" + str(levelCollectables.requiredBooks)
