@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cniqyuj5o1d3x" path="res://assets/projectiles/fire-projectile/fire-projectile.gd" id="1_atwtp"]
 [ext_resource type="Script" uid="uid://bpv0dhrmqh112" path="res://assets/projectiles/resources/projectile-stats.gd" id="2_qb6xo"]
+[ext_resource type="PackedScene" uid="uid://f6d2xs85twu2" path="res://assets/projectiles/fire-projectile/Fireball.glb" id="3_wpr3v"]
 
 [sub_resource type="Resource" id="Resource_g7wyh"]
 script = ExtResource("2_qb6xo")
@@ -9,20 +10,24 @@ speed = 4
 damage = 1
 lifeTime = 2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gtgdv"]
-albedo_color = Color(0.827451, 0, 0, 0.929412)
-
-[sub_resource type="SphereMesh" id="SphereMesh_lcvl1"]
-material = SubResource("StandardMaterial3D_gtgdv")
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_xi511"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wpr3v"]
 
 [node name="Fire-projectile" type="Area3D"]
 script = ExtResource("1_atwtp")
 projectileStats = SubResource("Resource_g7wyh")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_lcvl1")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_xi511")
+
+[node name="Fireball" parent="." instance=ExtResource("3_wpr3v")]
+transform = Transform3D(0.415, 0, 0, 0, 0.415, 0, 0, 0, 0.415, 0.357163, 0, -0.122292)
+
+[node name="Icosphere" parent="Fireball" index="0"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.0409, 0, 0)
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeAnimation_wpr3v")
+
+[editable path="Fireball"]
