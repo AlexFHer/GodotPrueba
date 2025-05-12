@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cogehk5vg28eg"]
+
+[ext_resource type="PackedScene" uid="uid://frq00p7ashc5" path="res://assets/puzzles/Fire_Tower.glb" id="1_cafkh"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_spoif"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Fire_Tower" parent="." instance=ExtResource("1_cafkh")]
+transform = Transform3D(0.46, 0, 0, 0, 0.46, 0, 0, 0, 0.46, 0, 0, 0.284)
+
+[node name="AnimationTree" type="AnimationTree" parent="Fire_Tower"]
+tree_root = SubResource("AnimationNodeAnimation_spoif")
+
+[editable path="Fire_Tower"]

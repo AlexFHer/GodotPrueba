@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://fox24sa5qc0d"]
+
+[ext_resource type="Texture2D" uid="uid://cu5f86nv0lscu" path="res://dialoges/paper-dialog.png" id="1_2mhg7"]
+
+[node name="dialoge" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -573.0
+offset_top = -723.0
+offset_right = -573.0
+offset_bottom = -723.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 659.0
+texture = ExtResource("1_2mhg7")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="text" type="RichTextLabel" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 59.0
+offset_right = 328.52
+offset_bottom = 189.0
+scale = Vector2(3.69, 3.69)
+text = "Me cago hasta en tu puta madre hijo de la grandisima puta"
+
+[node name="name" type="RichTextLabel" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 9.99999
+offset_top = -81.0
+offset_right = 80.0
+offset_bottom = -61.0
+scale = Vector2(4.045, 4.045)
+text = "Name"
