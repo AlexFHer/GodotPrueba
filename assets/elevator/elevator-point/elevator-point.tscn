@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdv7t4pgxo2rl"]
+
+[ext_resource type="Script" uid="uid://khpwy7mwgoqc" path="res://assets/elevator/elevator-point/elevator-point.gd" id="1_gb0g1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gb0g1"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="Elevator point" type="Area3D"]
+script = ExtResource("1_gb0g1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_gb0g1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -44,6 +44,7 @@ enabled=PackedStringArray("res://addons/blender_godot_pipeline/plugin.cfg", "res
 MainPlayer="Only main player"
 Enemy="Enemies"
 CanPatrol="Entities which can patrol"
+Elevator=""
 
 [gui]
 

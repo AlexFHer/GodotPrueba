@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b6slr7s7ogwg1"]
+[gd_scene load_steps=21 format=3 uid="uid://b6slr7s7ogwg1"]
 
 [ext_resource type="PackedScene" uid="uid://bbf8p4krgp531" path="res://assets/levels/levelManager.tscn" id="1_n6sci"]
 [ext_resource type="Texture2D" uid="uid://c3mvi2isp5rr2" path="res://test/Skybox1.png" id="2_47w2d"]
@@ -12,7 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://cyqqtvfimjbqb" path="res://assets/potions/jump-potion/jump-potion.tscn" id="14_dxe5k"]
 [ext_resource type="PackedScene" uid="uid://ex02udmugvjt" path="res://assets/potions/speed-potion/speed-potion.tscn" id="15_2fkf1"]
 [ext_resource type="PackedScene" uid="uid://mykeuox7c8sn" path="res://assets/key/key.tscn" id="15_dxe5k"]
+[ext_resource type="PackedScene" uid="uid://cdv7t4pgxo2rl" path="res://assets/elevator/elevator-point/elevator-point.tscn" id="15_l7cy2"]
 [ext_resource type="PackedScene" uid="uid://b4khq8j6mf6b1" path="res://assets/chest/chest.tscn" id="16_2fkf1"]
+[ext_resource type="PackedScene" uid="uid://db13eu4sc8rt5" path="res://assets/elevator/elevator.tscn" id="16_7iq1i"]
 [ext_resource type="PackedScene" uid="uid://bd31y7odxeu3" path="res://scenes/LvL 1.tscn" id="20_ow8r8"]
 
 [sub_resource type="Resource" id="Resource_l7cy2"]
@@ -100,3 +102,15 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -33.16, 1.50003, -22.90
 
 [node name="Speed-potion" parent="." instance=ExtResource("15_2fkf1")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -38.2126, 2.08089, -22.2296)
+
+[node name="Elevator1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -98.5248, 6.16755, -8.62841)
+
+[node name="Elevator point 1" parent="Elevator1" instance=ExtResource("15_l7cy2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.01877, 0)
+
+[node name="Elevator point 2" parent="Elevator1" instance=ExtResource("15_l7cy2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.30497, 0)
+
+[node name="Elevator" parent="Elevator1" node_paths=PackedStringArray("elevatorPoints") instance=ExtResource("16_7iq1i")]
+elevatorPoints = [NodePath("../Elevator point 1"), NodePath("../Elevator point 2")]
