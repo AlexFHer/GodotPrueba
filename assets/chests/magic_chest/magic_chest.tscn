@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://byu0b6177d1t6"]
+
+[ext_resource type="PackedScene" uid="uid://b1egfp55hwfw4" path="res://assets/chests/magic_chest/model/Magic_Chest.glb" id="1_y5w2v"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5yrk7"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Magic_Chest2" parent="." instance=ExtResource("1_y5w2v")]
+
+[node name="ForceField" parent="Magic_Chest2/Magic_Chest" index="2"]
+"blend_shapes/Key 1" = 0.85301
+"blend_shapes/Key 2" = 0.801499
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../Magic_Chest2")
+tree_root = SubResource("AnimationNodeAnimation_5yrk7")
+anim_player = NodePath("../Magic_Chest2/AnimationPlayer")
+
+[editable path="Magic_Chest2"]

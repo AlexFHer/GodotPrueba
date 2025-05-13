@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://ex02udmugvjt" path="res://assets/potions/speed-potion/speed-potion.tscn" id="15_2fkf1"]
 [ext_resource type="PackedScene" uid="uid://mykeuox7c8sn" path="res://assets/key/key.tscn" id="15_dxe5k"]
 [ext_resource type="PackedScene" uid="uid://cdv7t4pgxo2rl" path="res://assets/elevator/elevator-point/elevator-point.tscn" id="15_l7cy2"]
-[ext_resource type="PackedScene" uid="uid://b4khq8j6mf6b1" path="res://assets/chest/chest.tscn" id="16_2fkf1"]
+[ext_resource type="PackedScene" uid="uid://b4khq8j6mf6b1" path="res://assets/chests/normal_chest/chest.tscn" id="16_2fkf1"]
 [ext_resource type="PackedScene" uid="uid://db13eu4sc8rt5" path="res://assets/elevator/elevator.tscn" id="16_7iq1i"]
 [ext_resource type="PackedScene" uid="uid://bd31y7odxeu3" path="res://scenes/LvL 1.tscn" id="20_ow8r8"]
 

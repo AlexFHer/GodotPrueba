@@ -15,7 +15,7 @@
 					"col_types":4,
 					"body_types":0,
 					"save_path":"//..\\..\\..\\..\\Godot\\GodotPrueba\\scenes\\level1\\LVL1_Blender.gltf",
-					"counter":37,
+					"counter":43,
 					"discard_mesh":0
 				}
 			},
@@ -1942,7 +1942,7 @@
 			],
 			"min":[
 				-66.1930923461914,
-				-0.03203248977661133,
+				-0.7043905854225159,
 				4.536149978637695
 			],
 			"type":"VEC3"
