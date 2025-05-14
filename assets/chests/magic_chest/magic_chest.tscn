@@ -1,20 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://byu0b6177d1t6"]
+[gd_scene load_steps=5 format=3 uid="uid://byu0b6177d1t6"]
 
-[ext_resource type="PackedScene" uid="uid://b1egfp55hwfw4" path="res://assets/chests/magic_chest/model/Magic_Chest.glb" id="1_y5w2v"]
+[ext_resource type="PackedScene" uid="uid://dum74hskrrr8r" path="res://assets/chests/magic_chest/model/Force_Field.glb" id="1_y5w2v"]
+[ext_resource type="PackedScene" uid="uid://csfa612aq70i3" path="res://assets/chests/magic_chest/model/Magic_Chest.glb" id="2_5yrk7"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5yrk7"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gdjlj"]
+
 [node name="Node3D" type="Node3D"]
 
-[node name="Magic_Chest2" parent="." instance=ExtResource("1_y5w2v")]
-
-[node name="ForceField" parent="Magic_Chest2/Magic_Chest" index="2"]
-"blend_shapes/Key 1" = 0.85301
-"blend_shapes/Key 2" = 0.801499
+[node name="Force_Field" parent="." instance=ExtResource("1_y5w2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.911452, 0)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-root_node = NodePath("../Magic_Chest2")
+root_node = NodePath("../Force_Field")
 tree_root = SubResource("AnimationNodeAnimation_5yrk7")
-anim_player = NodePath("../Magic_Chest2/AnimationPlayer")
+anim_player = NodePath("../Force_Field/AnimationPlayer")
 
-[editable path="Magic_Chest2"]
+[node name="Magic_Chest" parent="." instance=ExtResource("2_5yrk7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.965674, 0)
+
+[node name="AnimationTree2" type="AnimationTree" parent="."]
+root_node = NodePath("../Magic_Chest")
+tree_root = SubResource("AnimationNodeAnimation_gdjlj")
+anim_player = NodePath("../Magic_Chest/AnimationPlayer")
+
+[editable path="Force_Field"]
+[editable path="Magic_Chest"]

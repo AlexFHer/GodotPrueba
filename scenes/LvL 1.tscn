@@ -1770,7 +1770,7 @@ transform = Transform3D(-0.311323, 0, -0.950304, 0, 1, 0, 0.950304, 0, -0.311323
 [node name="Collectables" type="Node3D" parent="."]
 
 [node name="magic_chest" parent="Collectables" instance=ExtResource("16_uhwg3")]
-transform = Transform3D(0.825, 0, 0, 0, 0.825, 0, 0, 0, 0.825, -53.4332, 5.42256, 12.1053)
+transform = Transform3D(0.825, 0, 0, 0, 0.825, 0, 0, 0, 0.825, -53.4332, 4.64057, 12.1053)
 
 [node name="Chest" parent="Collectables" instance=ExtResource("8_dbnbf")]
 transform = Transform3D(0.331354, 0, -0.943506, 0, 1, 0, 0.943506, 0, 0.331354, 38.0009, 3.99104, -4.83747)
@@ -1791,7 +1791,7 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 7.11209, -0.157018, 5.85981)
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -19.5741, -3.2129, 0)
 
 [node name="Mythril4" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16.8179, 2.31003, 7.13681)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16.8179, 2.64333, 7.13681)
 
 [node name="Mythril5" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20.8964, 4.62868, -4.32665)
