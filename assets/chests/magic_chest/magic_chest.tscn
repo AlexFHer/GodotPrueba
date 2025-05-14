@@ -1,29 +1,78 @@
-[gd_scene load_steps=5 format=3 uid="uid://byu0b6177d1t6"]
+[gd_scene load_steps=11 format=3 uid="uid://byu0b6177d1t6"]
 
+[ext_resource type="Script" uid="uid://cxyexulxavcbm" path="res://assets/chests/magic_chest/magic_chest.gd" id="1_gdjlj"]
 [ext_resource type="PackedScene" uid="uid://dum74hskrrr8r" path="res://assets/chests/magic_chest/model/Force_Field.glb" id="1_y5w2v"]
 [ext_resource type="PackedScene" uid="uid://csfa612aq70i3" path="res://assets/chests/magic_chest/model/Magic_Chest.glb" id="2_5yrk7"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5yrk7"]
+animation = &"ForceField"
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_gdjlj"]
+height = 2.85974
+radius = 3.52051
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gdjlj"]
+animation = &"Opening_Chest"
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gdjlj"]
+advance_mode = 2
 
-[node name="Force_Field" parent="." instance=ExtResource("1_y5w2v")]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_j8qs2"]
+states/Opening_Chest/node = SubResource("AnimationNodeAnimation_gdjlj")
+states/Opening_Chest/position = Vector2(486, 100)
+transitions = ["Start", "Opening_Chest", SubResource("AnimationNodeStateMachineTransition_gdjlj")]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qvrp6"]
+size = Vector3(4.56635, 2.13831, 2.42096)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j8qs2"]
+size = Vector3(7.67911, 4.38116, 6.76508)
+
+[node name="MagicChest" type="StaticBody3D"]
+script = ExtResource("1_gdjlj")
+
+[node name="ForceFieldModel" type="StaticBody3D" parent="."]
+
+[node name="ForceField" parent="ForceFieldModel" instance=ExtResource("1_y5w2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.911452, 0)
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
-root_node = NodePath("../Force_Field")
-tree_root = SubResource("AnimationNodeAnimation_5yrk7")
-anim_player = NodePath("../Force_Field/AnimationPlayer")
+[node name="ForceField" parent="ForceFieldModel/ForceField" index="0"]
+"blend_shapes/Key 1" = 0.321004
+"blend_shapes/Key 2" = 0.904907
 
-[node name="Magic_Chest" parent="." instance=ExtResource("2_5yrk7")]
+[node name="ForceFieldAnimationTree" type="AnimationTree" parent="ForceFieldModel"]
+root_node = NodePath("../ForceField")
+tree_root = SubResource("AnimationNodeAnimation_5yrk7")
+anim_player = NodePath("../ForceField/AnimationPlayer")
+
+[node name="ForceFieldCollisionShape" type="CollisionShape3D" parent="ForceFieldModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35052, 0)
+shape = SubResource("CylinderShape3D_gdjlj")
+
+[node name="MagicChestModel" type="Node3D" parent="."]
+
+[node name="Magic_Chest" parent="MagicChestModel" instance=ExtResource("2_5yrk7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.965674, 0)
 
-[node name="AnimationTree2" type="AnimationTree" parent="."]
+[node name="Chest_Cover" parent="MagicChestModel/Magic_Chest" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="MagicChestAnimationTree" type="AnimationTree" parent="MagicChestModel"]
 root_node = NodePath("../Magic_Chest")
-tree_root = SubResource("AnimationNodeAnimation_gdjlj")
+tree_root = SubResource("AnimationNodeStateMachine_j8qs2")
+advance_expression_base_node = NodePath("../..")
 anim_player = NodePath("../Magic_Chest/AnimationPlayer")
 
-[editable path="Force_Field"]
-[editable path="Magic_Chest"]
+[node name="MagicChestCollider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.140717, 1.03693, -0.035553)
+shape = SubResource("BoxShape3D_qvrp6")
+
+[node name="PickupArea" type="Area3D" parent="."]
+
+[node name="PickupCollisionShape" type="CollisionShape3D" parent="PickupArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.268082, 2.24966, -0.0384216)
+shape = SubResource("BoxShape3D_j8qs2")
+debug_color = Color(0.982068, 0, 0.365495, 0.42)
+
+[editable path="ForceFieldModel/ForceField"]
+[editable path="MagicChestModel/Magic_Chest"]
