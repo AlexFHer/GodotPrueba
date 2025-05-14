@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://diges4tluauiv"
-path.s3tc="res://.godot/imported/5_Mythrill_Basecolor1.png-f614e49ef9b951ff76aa0cae2a2fc234.s3tc.ctex"
+uid="uid://d1rt4lbvgr67v"
+path.s3tc="res://.godot/imported/Force_Field_Magic_Chest_Base_Color.png-Magic_Chest_Opacity.png-ea0ec968eb342172c26c48baeda764eb.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "297e840a5fc416ae6b22acc266b2588b"
+"md5": "eca3b2005a02b697d0d30e562b73be8d"
 }
 
 [deps]
 
-source_file="res://assets/numbers/5_Mythrill_Basecolor1.png"
-dest_files=["res://.godot/imported/5_Mythrill_Basecolor1.png-f614e49ef9b951ff76aa0cae2a2fc234.s3tc.ctex"]
+source_file="res://assets/chests/magic_chest/model/Force_Field_Magic_Chest_Base_Color.png-Magic_Chest_Opacity.png"
+dest_files=["res://.godot/imported/Force_Field_Magic_Chest_Base_Color.png-Magic_Chest_Opacity.png-ea0ec968eb342172c26c48baeda764eb.s3tc.ctex"]
 
 [params]
 
