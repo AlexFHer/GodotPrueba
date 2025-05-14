@@ -1,6 +1,9 @@
 class_name Arc extends Area3D
 
-@onready var activatedMesh: MeshInstance3D = $Activated
+@onready var arcOn: Node3D = %ArcOn
+@onready var arcOff: Node3D = %ArcOff
+
+
 @onready var deactiovationTimer: Timer = $DeactivationTimer
 
 var active = false;
@@ -13,13 +16,15 @@ func _ready() -> void:
 
 func activate() -> void:
   active = true
-  activatedMesh.visible = true
+  arcOn.visible = true
+  arcOff.visible = false
   active_changed.emit(true)
   deactiovationTimer.start()
 
 func deactivate() -> void:
   active = false
-  activatedMesh.visible = false
+  arcOn.visible = false
+  arcOff.visible = true
   active_changed.emit(false)
 
 func _on_body_entered(body:Node3D) -> void:

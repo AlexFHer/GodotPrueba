@@ -114,3 +114,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.30497, 0)
 
 [node name="Elevator" parent="Elevator1" node_paths=PackedStringArray("elevatorPoints") instance=ExtResource("16_7iq1i")]
 elevatorPoints = [NodePath("../Elevator point 1"), NodePath("../Elevator point 2")]
+
+[node name="Arc" parent="." instance=ExtResource("12_khvno")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -115.767, -2.19818, 12.8141)
