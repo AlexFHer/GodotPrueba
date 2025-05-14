@@ -8,6 +8,8 @@ class_name Arc extends Area3D
 
 var active = false;
 
+var maintainActive := false;
+
 signal active_changed(active: bool)
 
 func _ready() -> void:
@@ -22,6 +24,10 @@ func activate() -> void:
   deactiovationTimer.start()
 
 func deactivate() -> void:
+  
+  if maintainActive:
+    return;
+
   active = false
   arcOn.visible = false
   arcOff.visible = true
