@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ighrfiwlmwnq"]
+[gd_scene load_steps=5 format=3 uid="uid://ighrfiwlmwnq"]
 
 [ext_resource type="Script" uid="uid://bx6kt7g2kl4j0" path="res://scenes/main_scene.gd" id="1_echbf"]
-[ext_resource type="VideoStream" uid="uid://cuiy74q5hy2m8" path="res://media/videos/Room.ogv" id="2_c6dvc"]
-[ext_resource type="Texture2D" uid="uid://da8j1ocbhem1v" path="res://media/images/Title.png" id="2_ibiss"]
-[ext_resource type="VideoStream" path="res://media/videos/Transition.ogv" id="3_611at"]
-[ext_resource type="VideoStream" path="res://media/videos/Book.ogv" id="4_k24pf"]
+[ext_resource type="VideoStream" path="res://media/videos/Room_With_Fade_And_Title.ogv" id="2_611at"]
+[ext_resource type="VideoStream" uid="uid://n35ik0wjb0um" path="res://media/videos/Transition.ogv" id="3_611at"]
+[ext_resource type="VideoStream" uid="uid://dp5jgvfhfcr3w" path="res://media/videos/Book.ogv" id="4_k24pf"]
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -20,7 +19,7 @@ clip_contents = true
 layout_mode = 0
 offset_right = 1148.0
 offset_bottom = 635.0
-stream = ExtResource("2_c6dvc")
+stream = ExtResource("2_611at")
 autoplay = true
 expand = true
 loop = true
@@ -40,17 +39,12 @@ stream = ExtResource("4_k24pf")
 expand = true
 loop = true
 
-[node name="Title" type="Sprite2D" parent="."]
-position = Vector2(990.01, 311.545)
-scale = Vector2(0.263, 0.266)
-texture = ExtResource("2_ibiss")
-
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
-offset_left = 38.0
-offset_top = 210.0
-offset_right = 1958.0
-offset_bottom = 710.0
+offset_left = -713.0
+offset_top = 161.0
+offset_right = 1207.0
+offset_bottom = 661.0
 
 [node name="MainButtons" type="VBoxContainer" parent="CenterContainer"]
 visible = false
@@ -102,10 +96,14 @@ text = "Volume"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Start" type="VBoxContainer" parent="CenterContainer"]
+[node name="Start" type="VBoxContainer" parent="."]
 layout_mode = 2
+offset_left = 945.0
+offset_top = 466.0
+offset_right = 1034.0
+offset_bottom = 493.0
 
-[node name="Start" type="Button" parent="CenterContainer/Start"]
+[node name="Start_Button" type="Button" parent="Start"]
 layout_mode = 2
 text = "PRESS START"
 
@@ -124,4 +122,4 @@ color = Color(0.712926, 0.463987, 0.700082, 1)
 [connection signal="pressed" from="CenterContainer/SettingsMenu/Back" to="." method="_on_back_pressed"]
 [connection signal="toggled" from="CenterContainer/SettingsMenu/FullScreen" to="." method="_on_full_screen_toggled"]
 [connection signal="value_changed" from="CenterContainer/SettingsMenu/MainVolSlider" to="." method="_on_main_vol_slider_value_changed"]
-[connection signal="button_down" from="CenterContainer/Start/Start" to="." method="_on_start_button_down"]
+[connection signal="button_down" from="Start/Start_Button" to="." method="_on_start_button_down"]

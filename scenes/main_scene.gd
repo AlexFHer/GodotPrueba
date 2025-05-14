@@ -4,8 +4,7 @@ var level: int = 1
 @onready var video_player_1 = $Room
 @onready var video_player_2 = $Transition
 @onready var video_player_3 = $Book
-@onready var start_button = $Start
-@onready var title_image = $Title
+@onready var start_button = $Start/Start_Button
 
 func _on_play_pressed() -> void:
 	get_tree().change_scene_to_file(str("res://scenes/LvL 1.tscn"))
@@ -32,11 +31,10 @@ func _on_main_vol_slider_value_changed(value: float) -> void:
 
 func _on_start_button_down() -> void:
 	start_button.disabled = true
-	title_image.visible = false
+	start_button.visible = false
 	video_player_1.stop()
 	video_player_1.visible = false
 	video_player_2.visible = true
-	video_player_2.stream = load("res://videos/Transition.ogv")
 	video_player_2.play()
 	video_player_2.connect("finished", Callable(self, "_on_video_2_finished"))
 
@@ -44,6 +42,6 @@ func _on_video_2_finished():
 	video_player_2.stop()
 	video_player_2.visible = false
 	video_player_3.visible = true
-	video_player_3.stream = load("res://videos/Book.ogv")
 	video_player_3.loop = true
 	video_player_3.play()
+	$CenterContainer/MainButtons.visible = true
