@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ighrfiwlmwnq"]
 
 [ext_resource type="Script" uid="uid://bx6kt7g2kl4j0" path="res://scenes/main_scene.gd" id="1_echbf"]
-[ext_resource type="VideoStream" path="res://media/videos/Room_With_Fade_And_Title.ogv" id="2_611at"]
+[ext_resource type="VideoStream" uid="uid://cqkqqeimgx010" path="res://media/videos/Room_With_Fade_And_Title.ogv" id="2_611at"]
 [ext_resource type="VideoStream" uid="uid://n35ik0wjb0um" path="res://media/videos/Transition.ogv" id="3_611at"]
 [ext_resource type="VideoStream" uid="uid://dp5jgvfhfcr3w" path="res://media/videos/Book.ogv" id="4_k24pf"]
 
@@ -51,17 +51,17 @@ visible = false
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Play" type="Button" parent="CenterContainer/MainButtons"]
+[node name="PlayButton" type="Button" parent="CenterContainer/MainButtons"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 75
 text = "Play"
 
-[node name="settings" type="Button" parent="CenterContainer/MainButtons"]
+[node name="SettingsButton" type="Button" parent="CenterContainer/MainButtons"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 75
 text = "Settings"
 
-[node name="Exit" type="Button" parent="CenterContainer/MainButtons"]
+[node name="ExitButton" type="Button" parent="CenterContainer/MainButtons"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 75
 text = "Exit"
@@ -70,12 +70,12 @@ text = "Exit"
 visible = false
 layout_mode = 2
 
-[node name="Back" type="Button" parent="CenterContainer/SettingsMenu"]
+[node name="BackButton" type="Button" parent="CenterContainer/SettingsMenu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 75
 text = "Back"
 
-[node name="FullScreen" type="CheckBox" parent="CenterContainer/SettingsMenu"]
+[node name="FullScreenCheck" type="CheckBox" parent="CenterContainer/SettingsMenu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 75
 text = "FullScreen
@@ -116,10 +116,10 @@ offset_bottom = 1075.0
 mouse_filter = 2
 color = Color(0.712926, 0.463987, 0.700082, 1)
 
-[connection signal="pressed" from="CenterContainer/MainButtons/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="CenterContainer/MainButtons/settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="CenterContainer/MainButtons/Exit" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="CenterContainer/SettingsMenu/Back" to="." method="_on_back_pressed"]
-[connection signal="toggled" from="CenterContainer/SettingsMenu/FullScreen" to="." method="_on_full_screen_toggled"]
+[connection signal="pressed" from="CenterContainer/MainButtons/PlayButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CenterContainer/MainButtons/SettingsButton" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="CenterContainer/MainButtons/ExitButton" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="CenterContainer/SettingsMenu/BackButton" to="." method="_on_back_pressed"]
+[connection signal="toggled" from="CenterContainer/SettingsMenu/FullScreenCheck" to="." method="_on_full_screen_toggled"]
 [connection signal="value_changed" from="CenterContainer/SettingsMenu/MainVolSlider" to="." method="_on_main_vol_slider_value_changed"]
 [connection signal="button_down" from="Start/Start_Button" to="." method="_on_start_button_down"]
