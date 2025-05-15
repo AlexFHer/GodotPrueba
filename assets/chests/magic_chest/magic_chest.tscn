@@ -16,6 +16,7 @@ animation = &"Opening_Chest"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gdjlj"]
 advance_mode = 2
+advance_expression = "opened == true"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_j8qs2"]
 states/Opening_Chest/node = SubResource("AnimationNodeAnimation_gdjlj")
@@ -23,7 +24,7 @@ states/Opening_Chest/position = Vector2(486, 100)
 transitions = ["Start", "Opening_Chest", SubResource("AnimationNodeStateMachineTransition_gdjlj")]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qvrp6"]
-size = Vector3(4.56635, 2.13831, 2.42096)
+size = Vector3(4.22875, 3.49091, 2.42096)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j8qs2"]
 size = Vector3(7.67911, 4.38116, 6.76508)
@@ -37,8 +38,8 @@ script = ExtResource("1_gdjlj")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.911452, 0)
 
 [node name="ForceField" parent="ForceFieldModel/ForceField" index="0"]
-"blend_shapes/Key 1" = 0.321004
-"blend_shapes/Key 2" = 0.904907
+"blend_shapes/Key 1" = 0.941112
+"blend_shapes/Key 2" = 0.296727
 
 [node name="ForceFieldAnimationTree" type="AnimationTree" parent="ForceFieldModel"]
 root_node = NodePath("../ForceField")
@@ -55,7 +56,7 @@ shape = SubResource("CylinderShape3D_gdjlj")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.965674, 0)
 
 [node name="Chest_Cover" parent="MagicChestModel/Magic_Chest" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1.10607, 0, 1.74846e-07, 0, 1, 0, -1.93391e-07, 0, 1, 0, 1.49148, 0)
 
 [node name="MagicChestAnimationTree" type="AnimationTree" parent="MagicChestModel"]
 root_node = NodePath("../Magic_Chest")
@@ -64,7 +65,7 @@ advance_expression_base_node = NodePath("../..")
 anim_player = NodePath("../Magic_Chest/AnimationPlayer")
 
 [node name="MagicChestCollider" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.140717, 1.03693, -0.035553)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0495412, 1.71323, -0.035553)
 shape = SubResource("BoxShape3D_qvrp6")
 
 [node name="PickupArea" type="Area3D" parent="."]
@@ -73,6 +74,8 @@ shape = SubResource("BoxShape3D_qvrp6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.268082, 2.24966, -0.0384216)
 shape = SubResource("BoxShape3D_j8qs2")
 debug_color = Color(0.982068, 0, 0.365495, 0.42)
+
+[connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]
 
 [editable path="ForceFieldModel/ForceField"]
 [editable path="MagicChestModel/Magic_Chest"]

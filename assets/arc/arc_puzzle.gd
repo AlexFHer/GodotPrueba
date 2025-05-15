@@ -1,4 +1,4 @@
-extends Node
+class_name AllArcsActivePuzzle extends Node3D
 
 @export var arcs: Array[Arc] = []
 
@@ -6,7 +6,10 @@ signal all_arcs_active()
 
 func _ready() -> void:
 	for arc in arcs:
-		arc.active_changed.connect(_on_arc_active_changed)
+		if arc != null:
+			arc.active_changed.connect(_on_arc_active_changed)
+		else:
+			print_debug(name + "has null arcs");
 
 func areAllArcsActive() -> bool:
 	for arc in arcs:
