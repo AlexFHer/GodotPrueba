@@ -15,7 +15,7 @@ height = 2.41215
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wpr3v"]
 
-[node name="Fire-projectile" type="Area3D" groups=["Enemy"]]
+[node name="Fire-projectile" type="Area3D" groups=["FireBall"]]
 script = ExtResource("1_atwtp")
 projectileStats = SubResource("Resource_g7wyh")
 

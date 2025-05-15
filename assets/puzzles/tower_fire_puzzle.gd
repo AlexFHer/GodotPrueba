@@ -4,10 +4,10 @@ extends Node3D
 
 func _ready():
     pass
-    $Fire_Tower_Model.visible = false
+    fire_tower.visible = false
 
-func _on_area_3d_body_entered(body:Node3D) -> void:
-    print("hit"+body.name)
-    if body.is_in_group("FireBall"):
-      $Fire_Tower_Model.visible = true
-      print("encendido")
+func _on_area_entered(area: Area3D) -> void:
+    print("HIT");
+    if area.is_in_group("FireBall"):
+        fire_tower.visible = true
+        print("encendido")
