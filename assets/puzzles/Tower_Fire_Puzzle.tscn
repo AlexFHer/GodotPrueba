@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://cu673ns5f7wxu"]
+
+[ext_resource type="Script" uid="uid://dbqyexmvtbw0l" path="res://assets/puzzles/tower_fire_puzzle.gd" id="1_gje8v"]
+[ext_resource type="PackedScene" uid="uid://bqtvadcvrnqj7" path="res://assets/puzzles/TowerFirePlace.glb" id="1_xt7tj"]
+[ext_resource type="PackedScene" uid="uid://frq00p7ashc5" path="res://assets/puzzles/Fire_Tower.glb" id="2_gje8v"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_flmx6"]
+animation = &"IcosphereAction"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ueix5"]
+size = Vector3(5.95844, 4.29053, 6.1781)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_flmx6"]
+height = 8.52026
+radius = 2.56445
+
+[node name="Fire_Tower_Puzzle" type="Area3D"]
+script = ExtResource("1_gje8v")
+
+[node name="TowerFirePlace2" parent="." instance=ExtResource("1_xt7tj")]
+
+[node name="Fire_Tower_Model" type="Node3D" parent="."]
+
+[node name="Fire_Tower" parent="Fire_Tower_Model" instance=ExtResource("2_gje8v")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -1.935, 0)
+
+[node name="Icosphere" parent="Fire_Tower_Model/Fire_Tower" index="0"]
+"blend_shapes/Key 1" = 0.834203
+"blend_shapes/Key 2" = 0.84809
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../Fire_Tower_Model/Fire_Tower")
+tree_root = SubResource("AnimationNodeAnimation_flmx6")
+anim_player = NodePath("../Fire_Tower_Model/Fire_Tower/AnimationPlayer")
+
+[node name="Area3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0589294, 0.548096, 0.225769)
+shape = SubResource("BoxShape3D_ueix5")
+debug_color = Color(0.981259, 0, 0.37262, 0.42)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.40247, 0)
+shape = SubResource("CylinderShape3D_flmx6")
+
+[editable path="Fire_Tower_Model/Fire_Tower"]
