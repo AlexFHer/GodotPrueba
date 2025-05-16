@@ -10,4 +10,4 @@ func _on_area_entered(area: Area3D) -> void:
     print("HIT");
     if area.is_in_group("FireBall"):
         fire_tower.visible = true
-        print("encendido")
+        

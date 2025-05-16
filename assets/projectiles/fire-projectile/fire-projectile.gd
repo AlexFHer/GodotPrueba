@@ -15,3 +15,6 @@ func _process(delta: float) -> void:
 static func new_fire_projectile() -> FireProjectile:
 	var instance = fireProjectile.instantiate();
 	return instance;
+
+# func _on_body_entered(_body:Node3D) -> void:
+# 	queue_free()

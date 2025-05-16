@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ylf0jycjlsqn"
-path.s3tc="res://.godot/imported/Fire_Tower_Tower_Fire_Base_color.png-c1a89908f76e07f715bd159054c99d72.s3tc.ctex"
+uid="uid://b56cndrk3cjf8"
+path.s3tc="res://.godot/imported/5_Mythrill_Basecolor1.png-0b46f6a411aa84153d44e68fd4af1dd3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "03db5f37632f92951308c41a30420fb7"
+"md5": "297e840a5fc416ae6b22acc266b2588b"
 }
 
 [deps]
 
-source_file="res://assets/puzzles/Fire_Tower_Tower_Fire_Base_color.png"
-dest_files=["res://.godot/imported/Fire_Tower_Tower_Fire_Base_color.png-c1a89908f76e07f715bd159054c99d72.s3tc.ctex"]
+source_file="res://assets/numbers/5/5_Mythrill_Basecolor1.png"
+dest_files=["res://.godot/imported/5_Mythrill_Basecolor1.png-0b46f6a411aa84153d44e68fd4af1dd3.s3tc.ctex"]
 
 [params]
 
