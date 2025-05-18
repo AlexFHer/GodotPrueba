@@ -1,18 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://bp8ulxplapvk2"]
+[gd_scene load_steps=5 format=3 uid="uid://bp8ulxplapvk2"]
 
-[ext_resource type="Script" uid="uid://cq66xgwwncc07" path="res://assets/collectable/book/book.gd" id="1_i2f2c"]
+[ext_resource type="Script" path="res://assets/collectable/book/book.gd" id="1_i2f2c"]
 [ext_resource type="PackedScene" uid="uid://jnj08bhj7p82" path="res://assets/collectable/book/mesh/Book.glb" id="1_mfkvd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i2f2c"]
 size = Vector3(0.729065, 0.774841, 0.781342)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i2f2c"]
+animation = &"ibroAction"
 
 [node name="Book" type="Area3D"]
 script = ExtResource("1_i2f2c")
 
 [node name="Book" parent="." instance=ExtResource("1_mfkvd")]
 
+[node name="ibro" parent="Book" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.638021, -0.770019, 0, 0.770019, 0.638021, -0.00922549, 0.70125, 0)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0401917, 0.45816, -0.0418549)
 shape = SubResource("BoxShape3D_i2f2c")
 
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../Book")
+tree_root = SubResource("AnimationNodeAnimation_i2f2c")
+anim_player = NodePath("../Book/AnimationPlayer")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+
+[editable path="Book"]

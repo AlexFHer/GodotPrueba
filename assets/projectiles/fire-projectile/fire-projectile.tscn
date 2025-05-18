@@ -32,4 +32,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.040
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeAnimation_wpr3v")
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+
 [editable path="Fireball"]

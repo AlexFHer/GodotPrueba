@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://236eq0nbguwn"]
+
+[ext_resource type="PackedScene" uid="uid://bcy81yhndy4ph" path="res://assets/numbers/1/1.glb" id="1_1esc3"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hy58i"]
+animation = &"NumbersAction"
+
+[node name="number_1" type="Node3D"]
+
+[node name="1" parent="." instance=ExtResource("1_1esc3")]
+
+[node name="Skeleton3D" parent="1/Numbers" index="0"]
+bones/0/position = Vector3(0, 0.826952, 0)
+bones/0/scale = Vector3(0, 0, 0)
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../1")
+tree_root = SubResource("AnimationNodeAnimation_hy58i")
+anim_player = NodePath("../1/AnimationPlayer")
+
+[editable path="1"]
