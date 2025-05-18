@@ -20,14 +20,14 @@ animation = &"Pocima_Idle"
 [node name="Pocima" parent="rig" instance=ExtResource("1_shwg8")]
 
 [node name="Skeleton3D" parent="rig/Pocima/Pocima_Armature" index="0"]
-bones/0/scale = Vector3(1, 0.998746, 1)
-bones/1/rotation = Quaternion(-3.47432e-15, 1.77634e-14, 0.00367906, 0.999993)
-bones/5/rotation = Quaternion(-0.0640531, 0.000408668, 0.249432, 0.966272)
+bones/0/scale = Vector3(1, 0.993581, 1)
+bones/1/rotation = Quaternion(-2.50415e-15, 1.7755e-14, 0.0262075, 0.999657)
+bones/5/rotation = Quaternion(-0.0639893, 0.00291636, 0.211472, 0.975283)
 bones/6/rotation = Quaternion(-4.23739e-07, -1.11078e-07, 0.88462, -0.466313)
-bones/7/rotation = Quaternion(1.52269e-07, -6.2902e-08, -0.238283, 0.971196)
-bones/8/rotation = Quaternion(-0.0640551, 0.000411096, -0.261801, 0.962994)
+bones/7/rotation = Quaternion(1.53883e-07, -5.88435e-08, -0.263944, 0.964538)
+bones/8/rotation = Quaternion(-0.0640017, 0.00293407, -0.299742, 0.951867)
 bones/9/rotation = Quaternion(0.0950239, -0.0488436, 0.959123, 0.262044)
-bones/11/rotation = Quaternion(-0.0937962, -0.051162, 0.9524, -0.285514)
+bones/11/rotation = Quaternion(-0.0937944, -0.0511655, 0.95239, -0.285549)
 bones/12/rotation = Quaternion(-0.0547872, 0.00463237, 0.335775, 0.940336)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rig"]
