@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cuqhn8lk683w5"
-path.s3tc="res://.godot/imported/TowerFirePlace_Texture1.png-79488f5c496d548c4868faeca8714ae6.s3tc.ctex"
+uid="uid://ylf0jycjlsqn"
+path.s3tc="res://.godot/imported/Fire_Tower_Tower_Fire_Base_color.png-93630ce5d38a5980cb7911c8a931e341.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "adf0f4a3f287e559f4f6847110f8907d"
+"md5": "03db5f37632f92951308c41a30420fb7"
 }
 
 [deps]
 
-source_file="res://assets/towers/TowerFirePlace_Texture1.png"
-dest_files=["res://.godot/imported/TowerFirePlace_Texture1.png-79488f5c496d548c4868faeca8714ae6.s3tc.ctex"]
+source_file="res://assets/fire_towers/model/Fire_Tower_Tower_Fire_Base_color.png"
+dest_files=["res://.godot/imported/Fire_Tower_Tower_Fire_Base_color.png-93630ce5d38a5980cb7911c8a931e341.s3tc.ctex"]
 
 [params]
 

@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dxt8axkp8hlwt" path="res://assets/collectable/mythril/mythril1/mythril1.tscn" id="12_qlgyj"]
 [ext_resource type="PackedScene" uid="uid://cdv7t4pgxo2rl" path="res://assets/elevator/elevator-point/elevator-point.tscn" id="13_3wafn"]
 [ext_resource type="Texture2D" uid="uid://budmvxn7m3q32" path="res://scenes/level1/Town_Square_Tex.png" id="13_dbnbf"]
-[ext_resource type="Script" uid="uid://cnnkkcs31asx7" path="res://assets/statue_tower/secret_tower.gd" id="13_ltspd"]
+[ext_resource type="Script" path="res://assets/statue_tower/secret_tower.gd" id="13_ltspd"]
 [ext_resource type="PackedScene" uid="uid://cani1cyqesgro" path="res://assets/castle_door/castle_door.tscn" id="14_87xxg"]
 [ext_resource type="Texture2D" uid="uid://cridxte7xg516" path="res://scenes/level1/terrain.png" id="14_gfmul"]
 [ext_resource type="PackedScene" uid="uid://bts618lxd2a61" path="res://assets/npcs/don pots potion seller/don_pots.tscn" id="14_nqwgu"]
@@ -25,7 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://deo23lkuu8rao" path="res://assets/castle_lever/castle_lever.tscn" id="15_6wdta"]
 [ext_resource type="PackedScene" uid="uid://bp8ulxplapvk2" path="res://assets/collectable/book/book.tscn" id="16_m4385"]
 [ext_resource type="PackedScene" uid="uid://byu0b6177d1t6" path="res://assets/chests/magic_chest/magic_chest.tscn" id="16_uhwg3"]
-[ext_resource type="PackedScene" uid="uid://cu673ns5f7wxu" path="res://assets/towers/Tower_Fire_Puzzle.tscn" id="23_m4385"]
+[ext_resource type="PackedScene" uid="uid://cu673ns5f7wxu" path="res://assets/fire_towers/Tower_Fire_Puzzle.tscn" id="23_m4385"]
 [ext_resource type="PackedScene" uid="uid://b0yy54800oirl" path="res://assets/statue_tower/secret_tower.tscn" id="24_ebask"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qn70i"]

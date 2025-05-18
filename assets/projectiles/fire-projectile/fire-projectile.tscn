@@ -14,6 +14,7 @@ lifeTime = 2
 height = 2.41215
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wpr3v"]
+animation = &"IcosphereAction"
 
 [node name="Fire-projectile" type="Area3D" groups=["FireBall"]]
 script = ExtResource("1_atwtp")
@@ -30,8 +31,8 @@ transform = Transform3D(0.415, 0, 0, 0, 0.415, 0, 0, 0, 0.415, 0.357163, 0, -0.1
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.0409, 0, 0)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../Fireball")
 tree_root = SubResource("AnimationNodeAnimation_wpr3v")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+anim_player = NodePath("../Fireball/AnimationPlayer")
 
 [editable path="Fireball"]

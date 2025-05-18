@@ -1,8 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://p7m7neh87lyg"]
+[gd_scene load_steps=27 format=3 uid="uid://p7m7neh87lyg"]
 
 [ext_resource type="PackedScene" uid="uid://bbf8p4krgp531" path="res://assets/levels/levelManager.tscn" id="1_ad0rq"]
 [ext_resource type="PackedScene" uid="uid://bgp44hgj2ny5j" path="res://assets/arc/arc.tscn" id="1_ffoev"]
-[ext_resource type="Script" uid="uid://giigqq4cm0ab" path="res://assets/puzzles/arcs-magic-chest-puzzle.gd" id="2_6fbhj"]
+[ext_resource type="Script" uid="uid://giigqq4cm0ab" path="res://scripts/puzzles/arcs-magic-chest-puzzle.gd" id="2_6fbhj"]
 [ext_resource type="Script" uid="uid://c4t2n0gbu5cvl" path="res://assets/collectable/level-collectables.gd" id="2_ecqs2"]
 [ext_resource type="Script" uid="uid://cketnnkhw8nqs" path="res://assets/arc/arc_puzzle.gd" id="3_k0883"]
 [ext_resource type="PackedScene" uid="uid://byu0b6177d1t6" path="res://assets/chests/magic_chest/magic_chest.tscn" id="4_1y740"]
@@ -13,7 +13,13 @@
 [ext_resource type="PackedScene" uid="uid://ex02udmugvjt" path="res://assets/potions/speed-potion/speed-potion.tscn" id="7_ifow6"]
 [ext_resource type="PackedScene" uid="uid://db13eu4sc8rt5" path="res://assets/elevator/elevator.tscn" id="9_je5t0"]
 [ext_resource type="PackedScene" uid="uid://cdv7t4pgxo2rl" path="res://assets/elevator/elevator-point/elevator-point.tscn" id="10_3onbp"]
+[ext_resource type="PackedScene" uid="uid://bp8ulxplapvk2" path="res://assets/collectable/book/book.tscn" id="10_58f3n"]
 [ext_resource type="PackedScene" uid="uid://cf47i2djfslyw" path="res://player/player.tscn" id="11_3onbp"]
+[ext_resource type="PackedScene" uid="uid://dxt8axkp8hlwt" path="res://assets/collectable/mythril/mythril1/mythril1.tscn" id="11_b8nyo"]
+[ext_resource type="PackedScene" uid="uid://b854210s7kevt" path="res://assets/collectable/mythril/mythril5/mythril5.tscn" id="12_e1my4"]
+[ext_resource type="PackedScene" uid="uid://bpc2mh50b30o6" path="res://assets/collectable/mythril/mythril10/mythril10.tscn" id="13_prhcd"]
+[ext_resource type="PackedScene" uid="uid://cu673ns5f7wxu" path="res://assets/fire_towers/Tower_Fire_Puzzle.tscn" id="14_u30na"]
+[ext_resource type="PackedScene" uid="uid://b0yy54800oirl" path="res://assets/statue_tower/secret_tower.tscn" id="15_3gt13"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3onbp"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -129,6 +135,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.8729, 0.37795, 8.85732)
 [node name="Chest" parent="Assets/Key and chest" instance=ExtResource("6_w36ty")]
 transform = Transform3D(0.000392866, 0.000124588, 1, -0.000450863, 1, -0.000124418, -1, -0.000450816, 0.00039292, -23.279, 0, 9.34915)
 
+[node name="Book" parent="Assets/Key and chest" instance=ExtResource("10_58f3n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.89, 0, 9.85055)
+
+[node name="Mythril1" parent="Assets/Key and chest" instance=ExtResource("11_b8nyo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1323, 0.0484309, 7.2313)
+
+[node name="Mythril5" parent="Assets/Key and chest" instance=ExtResource("12_e1my4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3392, 0.0361109, 3.38261)
+
+[node name="Mythril10" parent="Assets/Key and chest" instance=ExtResource("13_prhcd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.8664, 0.0936669, -2.14838)
+
 [node name="ArcsPuzzles" type="Node" parent="Assets"]
 
 [node name="Arcs" type="Node3D" parent="Assets/ArcsPuzzles"]
@@ -159,5 +177,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.222775, 0, -6.64554)
 [node name="MagicChest" parent="Assets/ArcsPuzzles/ArcMagicChestPuzzle" instance=ExtResource("4_1y740")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.73497, -1.90735e-06, -12.3088)
 
+[node name="FireTowers" type="Node" parent="Assets"]
+
+[node name="Fire_Tower_Puzzle" parent="Assets/FireTowers" instance=ExtResource("14_u30na")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.445, 2.93941, -17.8097)
+
+[node name="Fire_Tower_Puzzle2" parent="Assets/FireTowers" instance=ExtResource("14_u30na")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.1021, 2.93941, -16.8595)
+
+[node name="secret_tower" parent="Assets/FireTowers" instance=ExtResource("15_3gt13")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5638, -0.091713, -37.0064)
+
+[node name="Fire-potion5" parent="Assets/FireTowers" instance=ExtResource("5_la3k2")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 7.8394, 1.5, -11.2776)
+
+[node name="Fire-potion6" parent="Assets/FireTowers" instance=ExtResource("5_la3k2")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 17.8878, 1.5, -11.2776)
+
 [node name="MainCharacter" parent="." instance=ExtResource("11_3onbp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.29471, 0.202615, 4.33206)
+
+[connection signal="fire_activated" from="Assets/FireTowers/Fire_Tower_Puzzle" to="Assets/FireTowers/secret_tower" method="activate_secret_tower"]

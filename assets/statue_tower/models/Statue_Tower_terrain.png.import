@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brcpbb5mp1k6x"
-path.s3tc="res://.godot/imported/Statue_Tower_Texture1.png-101b460c5cc037700bb6b95ff54501be.s3tc.ctex"
+uid="uid://dwekrgfawhnpc"
+path.s3tc="res://.godot/imported/Statue_Tower_terrain.png-777fdbff543d98a2fdfd743b6a1878d2.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "adf0f4a3f287e559f4f6847110f8907d"
+"md5": "8ef56d68037cda97b75e5ef66ab6b6e3"
 }
 
 [deps]
 
-source_file="res://assets/statue_tower/Statue_Tower_Texture1.png"
-dest_files=["res://.godot/imported/Statue_Tower_Texture1.png-101b460c5cc037700bb6b95ff54501be.s3tc.ctex"]
+source_file="res://assets/statue_tower/models/Statue_Tower_terrain.png"
+dest_files=["res://.godot/imported/Statue_Tower_terrain.png-777fdbff543d98a2fdfd743b6a1878d2.s3tc.ctex"]
 
 [params]
 

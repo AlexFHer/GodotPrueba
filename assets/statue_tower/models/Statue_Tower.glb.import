@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dv2bl4bqqeigt"
-path="res://.godot/imported/Statue_Tower.glb-d9e5e8198b2cd81a66e4518c30838d28.scn"
+path="res://.godot/imported/Statue_Tower.glb-222caed9303ca090c0070e5f147068e8.scn"
 
 [deps]
 
-source_file="res://assets/statue_tower/Statue_Tower.glb"
-dest_files=["res://.godot/imported/Statue_Tower.glb-d9e5e8198b2cd81a66e4518c30838d28.scn"]
+source_file="res://assets/statue_tower/models/Statue_Tower.glb"
+dest_files=["res://.godot/imported/Statue_Tower.glb-222caed9303ca090c0070e5f147068e8.scn"]
 
 [params]
 

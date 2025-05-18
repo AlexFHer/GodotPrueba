@@ -13,6 +13,7 @@ func _on_body_entered(body: Node3D) -> void:
 
 func open_chest():
 	opened = true
+	CollectablesEmitterService.emitMithrilPickedUp(10)
 
 func does_player_has_key() -> bool:
 	return PlayerInventory.keys > 0

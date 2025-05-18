@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bqtvadcvrnqj7"
-path="res://.godot/imported/TowerFirePlace.glb-40ffb92338d466a470a1eba1a1c9c40c.scn"
+path="res://.godot/imported/TowerFirePlace.glb-699b1b0a1cad341a3a8b55604f557a96.scn"
 
 [deps]
 
-source_file="res://assets/towers/TowerFirePlace.glb"
-dest_files=["res://.godot/imported/TowerFirePlace.glb-40ffb92338d466a470a1eba1a1c9c40c.scn"]
+source_file="res://assets/fire_towers/model/TowerFirePlace.glb"
+dest_files=["res://.godot/imported/TowerFirePlace.glb-699b1b0a1cad341a3a8b55604f557a96.scn"]
 
 [params]
 

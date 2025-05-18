@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3mvi2isp5rr2"
-path.s3tc="res://.godot/imported/Skybox1.png-2977c383f50d20c572265b2f740a12a9.s3tc.ctex"
+uid="uid://djgqb8j33xu7q"
+path.s3tc="res://.godot/imported/JumpPotion_DefaultMaterial_Roughness.png-0e9947e3f2db7a88bdd3e3f582f091ee.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "ba531686373fad56b6ebafa4354b8cbc"
+}
 
 [deps]
 
-source_file="res://test/Skybox1.png"
-dest_files=["res://.godot/imported/Skybox1.png-2977c383f50d20c572265b2f740a12a9.s3tc.ctex"]
+source_file="res://assets/potions/jump-potion/JumpPotion_DefaultMaterial_Roughness.png"
+dest_files=["res://.godot/imported/JumpPotion_DefaultMaterial_Roughness.png-0e9947e3f2db7a88bdd3e3f582f091ee.s3tc.ctex"]
 
 [params]
 
