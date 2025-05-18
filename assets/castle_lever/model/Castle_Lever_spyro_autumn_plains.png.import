@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctcbkmbo241ur"
-path.s3tc="res://.godot/imported/Castle_Door_spyro_autumn_plains.png-739dc824b8d736e1d23c1ac4a755de1c.s3tc.ctex"
+uid="uid://c0re7fqmh14eh"
+path.s3tc="res://.godot/imported/Castle_Lever_spyro_autumn_plains.png-d5ed95b369072683dcf0912dc0ef6e97.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://assets/castle_door/Castle_Door_spyro_autumn_plains.png"
-dest_files=["res://.godot/imported/Castle_Door_spyro_autumn_plains.png-739dc824b8d736e1d23c1ac4a755de1c.s3tc.ctex"]
+source_file="res://assets/castle_lever/model/Castle_Lever_spyro_autumn_plains.png"
+dest_files=["res://.godot/imported/Castle_Lever_spyro_autumn_plains.png-d5ed95b369072683dcf0912dc0ef6e97.s3tc.ctex"]
 
 [params]
 

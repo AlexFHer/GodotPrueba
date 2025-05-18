@@ -6,6 +6,8 @@ signal fire_activated
 
 var activated := false
 
+signal active_changed(newActive: bool)
+
 func _ready():
     deactivate_fire_tower()
 

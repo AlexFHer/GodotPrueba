@@ -6,8 +6,7 @@ signal all_fire_towers_active()
 
 func _ready() -> void:
   for fireTower in fire_towers:
-    fireTower.
-
+    fireTower.active_changed.connect(on_fire_tower_activated)
 
 func on_fire_tower_activated() -> void:
   for fireTower in fire_towers:

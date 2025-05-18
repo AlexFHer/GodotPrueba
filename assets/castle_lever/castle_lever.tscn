@@ -1,19 +1,42 @@
-[gd_scene load_steps=3 format=3 uid="uid://deo23lkuu8rao"]
+[gd_scene load_steps=7 format=3 uid="uid://deo23lkuu8rao"]
 
-[ext_resource type="PackedScene" uid="uid://ioticol13j7f" path="res://assets/castle_lever/Castle_Lever.glb" id="1_dlxsy"]
+[ext_resource type="PackedScene" uid="uid://ioticol13j7f" path="res://assets/castle_lever/model/Castle_Lever.glb" id="1_dlxsy"]
+[ext_resource type="Script" uid="uid://b3qy1s7dm55n8" path="res://assets/castle_lever/castle-lever.gd" id="1_dqx04"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w6ghc"]
+size = Vector3(1.56006, 1.73389, 1)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dqx04"]
+animation = &"LeverAction"
 
-[node name="Castle_Lever" type="Node3D"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w6ghc"]
+advance_mode = 2
+advance_condition = &"active"
 
-[node name="Castle_Lever" parent="." instance=ExtResource("1_dlxsy")]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_a03qc"]
+states/LeverAction/node = SubResource("AnimationNodeAnimation_dqx04")
+states/LeverAction/position = Vector2(372, 71)
+transitions = ["Start", "LeverAction", SubResource("AnimationNodeStateMachineTransition_w6ghc")]
 
-[node name="Lever" parent="Castle_Lever" index="1"]
-transform = Transform3D(0.800152, 0.163464, 0, -0.599797, 0.218067, 0, 0, 0, 1, 0, 0, 0)
+[node name="Castle_Lever" type="StaticBody3D"]
+script = ExtResource("1_dqx04")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.280029, 0.81665, 0)
+shape = SubResource("BoxShape3D_w6ghc")
+
+[node name="Model" type="Node3D" parent="."]
+
+[node name="Castle_Lever" parent="Model" instance=ExtResource("1_dlxsy")]
+
+[node name="Lever" parent="Model/Castle_Lever" index="1"]
+transform = Transform3D(0.781785, -0.169937, 0, 0.623548, 0.213061, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-root_node = NodePath("../Castle_Lever")
-tree_root = SubResource("AnimationNodeAnimation_dqx04")
-anim_player = NodePath("../Castle_Lever/AnimationPlayer")
+root_node = NodePath("../Model/Castle_Lever")
+tree_root = SubResource("AnimationNodeStateMachine_a03qc")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../Model/Castle_Lever/AnimationPlayer")
+parameters/conditions/active = false
 
-[editable path="Castle_Lever"]
+[editable path="Model/Castle_Lever"]

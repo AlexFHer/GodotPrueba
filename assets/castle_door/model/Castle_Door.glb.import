@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ioticol13j7f"
-path="res://.godot/imported/Castle_Lever.glb-ca65a780d232267df2ca9adbf55b3859.scn"
+uid="uid://dcgvyuwrrt0je"
+path="res://.godot/imported/Castle_Door.glb-84ae62f34a2698ec7f58b0a75c9f56d6.scn"
 
 [deps]
 
-source_file="res://assets/castle_lever/Castle_Lever.glb"
-dest_files=["res://.godot/imported/Castle_Lever.glb-ca65a780d232267df2ca9adbf55b3859.scn"]
+source_file="res://assets/castle_door/model/Castle_Door.glb"
+dest_files=["res://.godot/imported/Castle_Door.glb-84ae62f34a2698ec7f58b0a75c9f56d6.scn"]
 
 [params]
 

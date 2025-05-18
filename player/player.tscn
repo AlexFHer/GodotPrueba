@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cf47i2djfslyw"]
+[gd_scene load_steps=32 format=3 uid="uid://cf47i2djfslyw"]
 
 [ext_resource type="Script" uid="uid://b3jy8x8um1xce" path="res://player/PlayerCharacter.gd" id="1_43pha"]
 [ext_resource type="Script" uid="uid://df8j4nq0qxet4" path="res://player/scripts/potions-manager.gd" id="2_86mlk"]
@@ -103,7 +103,11 @@ node_connections = [&"output", 0, &"UpperBodyLocomotion"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wff3b"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_62vdy"]
+[sub_resource type="LabelSettings" id="LabelSettings_rgyib"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_hg6s5"]
+font_size = 24
 
 [node name="MainCharacter" type="CharacterBody3D" groups=["MainPlayer"]]
 script = ExtResource("1_43pha")
@@ -207,49 +211,56 @@ layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
+offset_left = 19.0
+offset_top = -102.0
+offset_right = 111.0
+offset_bottom = -19.0
 grow_vertical = 0
 script = ExtResource("5_hdq68")
 
-[node name="CurrentPotion" type="TextureRect" parent="PotionsUI"]
-visible = false
-layout_mode = 2
-offset_left = 40.0
-offset_top = -89.0
-offset_right = 137.0
-offset_bottom = 12.0
-texture = SubResource("CanvasTexture_62vdy")
+[node name="Panel" type="Panel" parent="PotionsUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="ItemList" type="ItemList" parent="PotionsUI"]
-layout_mode = 0
-offset_left = 20.0
-offset_top = -21.0
-offset_right = 60.0
-offset_bottom = 19.0
-
-[node name="Name" type="Label" parent="PotionsUI"]
-layout_mode = 0
-offset_left = 67.0
-offset_top = -56.0
-offset_right = 107.0
-offset_bottom = -33.0
+[node name="CurrentPotionTexture" type="TextureRect" parent="PotionsUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 2
 
 [node name="PotionTimerLabel" type="Label" parent="PotionsUI"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 68.0
-offset_top = 4.0
-offset_right = 108.0
-offset_bottom = 27.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -27.0
+offset_right = -5.0
+offset_bottom = -3.0
+grow_horizontal = 0
+grow_vertical = 0
 text = "1"
+label_settings = SubResource("LabelSettings_rgyib")
+horizontal_alignment = 2
 
 [node name="NumberOfPotions" type="Label" parent="PotionsUI"]
-layout_mode = 0
-offset_left = 21.0
-offset_top = -18.0
-offset_right = 61.0
-offset_bottom = 5.0
+layout_mode = 1
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 41.0
+offset_bottom = 31.0
+text = "1"
+label_settings = SubResource("LabelSettings_hg6s5")
 
 [node name="In game collectables UI" parent="." instance=ExtResource("10_8t03j")]
 visible = false

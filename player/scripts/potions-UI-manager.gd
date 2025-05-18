@@ -1,9 +1,13 @@
 extends Control
 
-@onready var label: Label = $Name
 @onready var numberOfPotions: Label = $NumberOfPotions
 @onready var potionsTimer: Timer = %PotionsTimer
 @onready var potionsTimerLabel: Label = %PotionTimerLabel
+@onready var potionIconTexture: TextureRect = $CurrentPotionTexture
+
+var firePotionIcon: Texture = preload("res://assets/potions/fire-potion/Fire_Poti_icon.png")
+var jumpPotionIcon: Texture = preload("res://assets/potions/jump-potion/Jump_Poti_icon.png")
+var speedPotionIcon: Texture = preload("res://assets/potions/speed-potion/Speed_Poti_icon.png")
 
 var selectedPotionType := PotionTypes.PotionType.None;
 
@@ -26,7 +30,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func getNumberOfPotionsByType(potionType: PotionTypes.PotionType) -> String:
 	var potionSize = PlayerPotions.potionsDictionary.get(potionType);
-	if potionSize == 0:
+	if potionSize == 0 or potionSize == null:
 		return ""
 	else:
 		return str(potionSize)
@@ -34,13 +38,13 @@ func getNumberOfPotionsByType(potionType: PotionTypes.PotionType) -> String:
 func evaluateText(potionType: PotionTypes.PotionType) -> void:
 	match(potionType):
 		PotionTypes.PotionType.Jump:
-			label.text = "jump_potion_ui_text"
+			potionIconTexture.texture = jumpPotionIcon
 		PotionTypes.PotionType.Speed:
-			label.text = "speed_potion_ui_text"
+			potionIconTexture.texture = speedPotionIcon
 		PotionTypes.PotionType.Fire:
-			label.text = "fire_potion_ui_text"
+			potionIconTexture.texture = firePotionIcon
 		_:
-			label.text = "No potions left"
+			potionIconTexture.texture = null
 
 func evaluateNumber(potionType: PotionTypes.PotionType) -> void:
 	numberOfPotions.text = getNumberOfPotionsByType(potionType)

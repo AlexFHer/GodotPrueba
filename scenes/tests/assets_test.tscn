@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://p7m7neh87lyg"]
+[gd_scene load_steps=30 format=3 uid="uid://p7m7neh87lyg"]
 
 [ext_resource type="PackedScene" uid="uid://bbf8p4krgp531" path="res://assets/levels/levelManager.tscn" id="1_ad0rq"]
 [ext_resource type="PackedScene" uid="uid://bgp44hgj2ny5j" path="res://assets/arc/arc.tscn" id="1_ffoev"]
@@ -20,6 +20,9 @@
 [ext_resource type="PackedScene" uid="uid://bpc2mh50b30o6" path="res://assets/collectable/mythril/mythril10/mythril10.tscn" id="13_prhcd"]
 [ext_resource type="PackedScene" uid="uid://cu673ns5f7wxu" path="res://assets/fire_towers/Tower_Fire_Puzzle.tscn" id="14_u30na"]
 [ext_resource type="PackedScene" uid="uid://b0yy54800oirl" path="res://assets/statue_tower/secret_tower.tscn" id="15_3gt13"]
+[ext_resource type="Script" uid="uid://cul11equ6lnw5" path="res://scripts/puzzles/fire-tower-all-active-puzzle.gd" id="18_b8nyo"]
+[ext_resource type="PackedScene" uid="uid://deo23lkuu8rao" path="res://assets/castle_lever/castle_lever.tscn" id="22_e1my4"]
+[ext_resource type="PackedScene" uid="uid://cani1cyqesgro" path="res://assets/castle_door/castle_door.tscn" id="23_prhcd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3onbp"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -64,9 +67,11 @@ levelCollectables = SubResource("Resource_je5t0")
 [node name="Floor" type="StaticBody3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(2.14047, 0, 0, 0, 1, 0, 0, 0, 1, 27.0803, 0, 0)
 mesh = SubResource("PlaneMesh_tv8gj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(5.45855, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_3onbp")
 
 [node name="Assets" type="Node" parent="."]
@@ -179,6 +184,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.73497, -1.90735e-06, -12.30
 
 [node name="FireTowers" type="Node" parent="Assets"]
 
+[node name="Puzzle" type="Node" parent="Assets/FireTowers" node_paths=PackedStringArray("fire_towers")]
+script = ExtResource("18_b8nyo")
+fire_towers = [NodePath("../Fire_Tower_Puzzle"), NodePath("../Fire_Tower_Puzzle2")]
+
 [node name="Fire_Tower_Puzzle" parent="Assets/FireTowers" instance=ExtResource("14_u30na")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.445, 2.93941, -17.8097)
 
@@ -194,7 +203,15 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 7.8394, 1.5, -11.2776)
 [node name="Fire-potion6" parent="Assets/FireTowers" instance=ExtResource("5_la3k2")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 17.8878, 1.5, -11.2776)
 
+[node name="Castle door" type="Node" parent="Assets"]
+
+[node name="CastleDoor" parent="Assets/Castle door" instance=ExtResource("23_prhcd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.026, 0.0736191, -17.4725)
+
 [node name="MainCharacter" parent="." instance=ExtResource("11_3onbp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.29471, 0.202615, 4.33206)
+
+[node name="Castle_Lever" parent="." instance=ExtResource("22_e1my4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.6926, 0.0592519, -12.6781)
 
 [connection signal="fire_activated" from="Assets/FireTowers/Fire_Tower_Puzzle" to="Assets/FireTowers/secret_tower" method="activate_secret_tower"]
