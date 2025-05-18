@@ -1,0 +1,163 @@
+[gd_scene load_steps=21 format=3 uid="uid://p7m7neh87lyg"]
+
+[ext_resource type="PackedScene" uid="uid://bbf8p4krgp531" path="res://assets/levels/levelManager.tscn" id="1_ad0rq"]
+[ext_resource type="PackedScene" uid="uid://bgp44hgj2ny5j" path="res://assets/arc/arc.tscn" id="1_ffoev"]
+[ext_resource type="Script" uid="uid://giigqq4cm0ab" path="res://assets/puzzles/arcs-magic-chest-puzzle.gd" id="2_6fbhj"]
+[ext_resource type="Script" uid="uid://c4t2n0gbu5cvl" path="res://assets/collectable/level-collectables.gd" id="2_ecqs2"]
+[ext_resource type="Script" uid="uid://cketnnkhw8nqs" path="res://assets/arc/arc_puzzle.gd" id="3_k0883"]
+[ext_resource type="PackedScene" uid="uid://byu0b6177d1t6" path="res://assets/chests/magic_chest/magic_chest.tscn" id="4_1y740"]
+[ext_resource type="PackedScene" uid="uid://mykeuox7c8sn" path="res://assets/key/key.tscn" id="5_1y740"]
+[ext_resource type="PackedScene" uid="uid://ontkeeyy4mk7" path="res://assets/potions/fire-potion/fire-potion.tscn" id="5_la3k2"]
+[ext_resource type="PackedScene" uid="uid://cyqqtvfimjbqb" path="res://assets/potions/jump-potion/jump-potion.tscn" id="6_ifow6"]
+[ext_resource type="PackedScene" uid="uid://b4khq8j6mf6b1" path="res://assets/chests/normal_chest/chest.tscn" id="6_w36ty"]
+[ext_resource type="PackedScene" uid="uid://ex02udmugvjt" path="res://assets/potions/speed-potion/speed-potion.tscn" id="7_ifow6"]
+[ext_resource type="PackedScene" uid="uid://db13eu4sc8rt5" path="res://assets/elevator/elevator.tscn" id="9_je5t0"]
+[ext_resource type="PackedScene" uid="uid://cdv7t4pgxo2rl" path="res://assets/elevator/elevator-point/elevator-point.tscn" id="10_3onbp"]
+[ext_resource type="PackedScene" uid="uid://cf47i2djfslyw" path="res://player/player.tscn" id="11_3onbp"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3onbp"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_8eqp3"]
+sky_material = SubResource("ProceduralSkyMaterial_3onbp")
+
+[sub_resource type="Environment" id="Environment_la3k2"]
+background_mode = 2
+sky = SubResource("Sky_8eqp3")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="Resource" id="Resource_je5t0"]
+script = ExtResource("2_ecqs2")
+requiredMithrils = 10
+requiredBooks = 0
+metadata/_custom_type_script = "uid://c4t2n0gbu5cvl"
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tv8gj"]
+size = Vector2(50, 50)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_3onbp"]
+data = PackedVector3Array(25, 0, 25, -25, 0, 25, 25, 0, -25, -25, 0, 25, -25, 0, -25, 25, 0, -25)
+
+[node name="AssetsTest" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Environment" type="Node" parent="DirectionalLight3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="DirectionalLight3D"]
+environment = SubResource("Environment_la3k2")
+
+[node name="LevelManager" parent="." instance=ExtResource("1_ad0rq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.8305, 0, 9.11253)
+levelCollectables = SubResource("Resource_je5t0")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("PlaneMesh_tv8gj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("ConcavePolygonShape3D_3onbp")
+
+[node name="Assets" type="Node" parent="."]
+
+[node name="Elevator" type="Node" parent="Assets"]
+
+[node name="Elevator" parent="Assets/Elevator" node_paths=PackedStringArray("elevatorPoints") instance=ExtResource("9_je5t0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.12166, 6.9348, -19.4918)
+elevatorPoints = [NodePath("../Elevator point"), NodePath("../Elevator point2"), NodePath("../Elevator point3")]
+
+[node name="Elevator point" parent="Assets/Elevator" instance=ExtResource("10_3onbp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3959, -1.4119, -18.8546)
+
+[node name="Elevator point2" parent="Assets/Elevator" instance=ExtResource("10_3onbp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30768, 12.9489, -18.553)
+
+[node name="Elevator point3" parent="Assets/Elevator" instance=ExtResource("10_3onbp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.56546, 13.999, -18.5008)
+
+[node name="Potions" type="Node" parent="Assets"]
+
+[node name="Fire-potion" parent="Assets/Potions" instance=ExtResource("5_la3k2")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -14.4787, 1.5, 20.5438)
+
+[node name="Fire-potion2" parent="Assets/Potions" instance=ExtResource("5_la3k2")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -12.479, 1.5, 20.544)
+
+[node name="Fire-potion3" parent="Assets/Potions" instance=ExtResource("5_la3k2")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -10.4787, 1.5, 20.5438)
+
+[node name="Fire-potion4" parent="Assets/Potions" instance=ExtResource("5_la3k2")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -8.47874, 1.5, 20.5438)
+
+[node name="Jump-potion" parent="Assets/Potions" instance=ExtResource("6_ifow6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.8868, -2.24074, 17.6414)
+
+[node name="Jump-potion2" parent="Assets/Potions" instance=ExtResource("6_ifow6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.8868, -2.24074, 17.6414)
+
+[node name="Jump-potion3" parent="Assets/Potions" instance=ExtResource("6_ifow6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.88683, -2.24074, 17.6414)
+
+[node name="Jump-potion4" parent="Assets/Potions" instance=ExtResource("6_ifow6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.88683, -2.24074, 17.6414)
+
+[node name="Speed-potion" parent="Assets/Potions" instance=ExtResource("7_ifow6")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -15.2301, 1.5, 15.1078)
+
+[node name="Speed-potion2" parent="Assets/Potions" instance=ExtResource("7_ifow6")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -13.2301, 1.5, 15.1078)
+
+[node name="Speed-potion3" parent="Assets/Potions" instance=ExtResource("7_ifow6")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -11.2301, 1.5, 15.1078)
+
+[node name="Speed-potion4" parent="Assets/Potions" instance=ExtResource("7_ifow6")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -9.23009, 1.5, 15.1078)
+
+[node name="Speed-potion5" parent="Assets/Potions" instance=ExtResource("7_ifow6")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -7.23009, 1.5, 15.1078)
+
+[node name="Key and chest" type="Node" parent="Assets"]
+
+[node name="Key" parent="Assets/Key and chest" instance=ExtResource("5_1y740")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.8729, 0.37795, 8.85732)
+
+[node name="Chest" parent="Assets/Key and chest" instance=ExtResource("6_w36ty")]
+transform = Transform3D(0.000392866, 0.000124588, 1, -0.000450863, 1, -0.000124418, -1, -0.000450816, 0.00039292, -23.279, 0, 9.34915)
+
+[node name="ArcsPuzzles" type="Node" parent="Assets"]
+
+[node name="Arcs" type="Node3D" parent="Assets/ArcsPuzzles"]
+
+[node name="Arc" parent="Assets/ArcsPuzzles/Arcs" instance=ExtResource("1_ffoev")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4639, 0, 20.499)
+
+[node name="ArcMagicChestPuzzle" type="Node3D" parent="Assets/ArcsPuzzles" node_paths=PackedStringArray("magic_chest", "arc_puzzle")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4359, 0, 0)
+script = ExtResource("2_6fbhj")
+magic_chest = NodePath("MagicChest")
+arc_puzzle = NodePath("ArcPuzzle")
+
+[node name="ArcPuzzle" type="Node3D" parent="Assets/ArcsPuzzles/ArcMagicChestPuzzle" node_paths=PackedStringArray("arcs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.250839, 0, -12.3714)
+script = ExtResource("3_k0883")
+arcs = [NodePath("Arc2"), NodePath("Arc3"), NodePath("Arc4")]
+
+[node name="Arc2" parent="Assets/ArcsPuzzles/ArcMagicChestPuzzle/ArcPuzzle" instance=ExtResource("1_ffoev")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.222775, 0, 7.63486)
+
+[node name="Arc3" parent="Assets/ArcsPuzzles/ArcMagicChestPuzzle/ArcPuzzle" instance=ExtResource("1_ffoev")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.222775, 0, 0.54456)
+
+[node name="Arc4" parent="Assets/ArcsPuzzles/ArcMagicChestPuzzle/ArcPuzzle" instance=ExtResource("1_ffoev")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.222775, 0, -6.64554)
+
+[node name="MagicChest" parent="Assets/ArcsPuzzles/ArcMagicChestPuzzle" instance=ExtResource("4_1y740")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.73497, -1.90735e-06, -12.3088)
+
+[node name="MainCharacter" parent="." instance=ExtResource("11_3onbp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.29471, 0.202615, 4.33206)
