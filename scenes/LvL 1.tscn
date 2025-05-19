@@ -1,10 +1,11 @@
-[gd_scene load_steps=153 format=4 uid="uid://bd31y7odxeu3"]
+[gd_scene load_steps=154 format=4 uid="uid://bd31y7odxeu3"]
 
 [ext_resource type="PackedScene" uid="uid://c7s1p2f2f6huh" path="res://scenes/main-menus/pause-menu/pause-menu.tscn" id="1_6g2lw"]
 [ext_resource type="Texture2D" uid="uid://bxascs40x5oel" path="res://Materials/Skybox/PjBUIr3.png" id="2_n1ihf"]
 [ext_resource type="PackedScene" uid="uid://cf47i2djfslyw" path="res://player/player.tscn" id="4_n1ihf"]
 [ext_resource type="PackedScene" uid="uid://xhkrf7v8lsoy" path="res://scenes/level1/LVL1_Blender.gltf" id="5_7idjg"]
 [ext_resource type="Script" uid="uid://4ep5210jrhnh" path="res://assets/npcs/npc_dialoge.gd" id="6_qlgyj"]
+[ext_resource type="PackedScene" uid="uid://b8ruujys6hpsv" path="res://assets/enemies/mimic/mimic.tscn" id="8_6wdta"]
 [ext_resource type="PackedScene" uid="uid://b4khq8j6mf6b1" path="res://assets/chests/normal_chest/chest.tscn" id="8_dbnbf"]
 [ext_resource type="Script" uid="uid://cketnnkhw8nqs" path="res://assets/arc/arc_puzzle.gd" id="9_8lmy1"]
 [ext_resource type="PackedScene" uid="uid://mykeuox7c8sn" path="res://assets/key/key.tscn" id="9_gfmul"]
@@ -1529,11 +1530,11 @@ shadow_enabled = true
 environment = SubResource("Environment_eq8v2")
 
 [node name="MainCharacter" parent="." instance=ExtResource("4_n1ihf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.6855, 1.25777, 12.5823)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.86488, -12.3679, 79.0462)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="MainCharacter"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78.6855, -1.25777, -12.5823)
 stream = ExtResource("27_87xxg")
+volume_db = 3.117
 autoplay = true
 
 [node name="NPCs" type="Node3D" parent="."]
@@ -1544,6 +1545,11 @@ script = ExtResource("6_qlgyj")
 
 [node name="Don Pots Potion Seller" parent="NPCs" instance=ExtResource("14_nqwgu")]
 transform = Transform3D(-0.311323, 0, -0.950304, 0, 1, 0, 0.950304, 0, -0.311323, 20.2032, 2.8677, 28.1188)
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="Mimic" parent="Enemies" instance=ExtResource("8_6wdta")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.4739, -14.825, 73.751)
 
 [node name="Props" type="Node3D" parent="."]
 
@@ -1645,7 +1651,10 @@ transform = Transform3D(0.825, 0, 0, 0, 0.825, 0, 0, 0, 0.825, -53.4332, 4.64057
 transform = Transform3D(0.331354, 0, -0.943506, 0, 1, 0, 0.943506, 0, 0.331354, 38.0009, 3.99104, -4.83747)
 
 [node name="Key" parent="Collectables" instance=ExtResource("9_gfmul")]
-transform = Transform3D(1.95, 0, 0, 0, 1.95, 0, 0, 0, 1.95, -13.4521, -14.2432, 78.3104)
+transform = Transform3D(1.95, 0, 0, 0, 1.95, 0, 0, 0, 1.95, -14.6151, -14.2432, 78.7651)
+
+[node name="Fire-potion" parent="Collectables" instance=ExtResource("15_6iqwe")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -111.732, 14.9174, 10.0546)
 
 [node name="Mthrill" type="Node3D" parent="Collectables"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.798, 0.137118, 16.0822)
@@ -1892,9 +1901,6 @@ transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 
 
 [node name="Book2" parent="Collectables/Mthrill" instance=ExtResource("16_m4385")]
 transform = Transform3D(-2.44929, 0, 0.0590894, 0, 2.45, 0, -0.0590894, 0, -2.44929, 32.1855, 13.8885, 170.626)
-
-[node name="Fire-potion" parent="Collectables" instance=ExtResource("15_6iqwe")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -111.732, 14.9174, 10.0546)
 
 [node name="LVL1_Blender_Imported" type="Node3D" parent="."]
 metadata/run = true

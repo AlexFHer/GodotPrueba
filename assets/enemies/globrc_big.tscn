@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3 uid="uid://dmay5jmx0u0v1"]
+
+[ext_resource type="Script" uid="uid://crwji0op0yayj" path="res://assets/enemies/enemy.gd" id="1_x3nwr"]
+[ext_resource type="PackedScene" uid="uid://drcdilr67ioqi" path="res://assets/enemies/globrc-big/rig/Globrc_Fat.glb" id="2_f02vi"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_8xb7j"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xjgy5"]
+size = Vector3(3.83188, 0.271973, 6.82706)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cpw5q"]
+size = Vector3(0.998428, 0.0917969, 1.34175)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x12t3"]
+size = Vector3(0.924194, 0.358643, 0.669678)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_10r5d"]
+radius = 0.675529
+height = 1.75287
+
+[node name="Globrc Big" type="CharacterBody3D"]
+script = ExtResource("1_x3nwr")
+metadata/_custom_type_script = "uid://crwji0op0yayj"
+
+[node name="Rig" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Globrc_Fat" parent="Rig" instance=ExtResource("2_f02vi")]
+
+[node name="Skeleton3D" parent="Rig/Globrc_Fat/GF_Armature" index="1"]
+bones/1/scale = Vector3(1, 1.05677, 1)
+bones/2/rotation = Quaternion(0.156949, 0.0303591, 0.18747, 0.969175)
+bones/5/rotation = Quaternion(0.539926, 2.01385e-07, 2.56359e-07, 0.841713)
+bones/6/position = Vector3(-0.204919, 0.542502, -0.097704)
+bones/7/rotation = Quaternion(0.127827, 0.0428656, -0.0798533, 0.987647)
+bones/8/position = Vector3(-0.0785205, 0.270979, -0.0975532)
+bones/8/rotation = Quaternion(-0.144619, 0.711646, 0.607433, -0.32198)
+bones/9/position = Vector3(0.0475852, 1.05645, -0.0573306)
+bones/9/rotation = Quaternion(-0.0229885, -0.40132, -0.0187743, 0.915457)
+bones/10/rotation = Quaternion(-0.0214756, 1.03903e-08, 0.257758, 0.965971)
+bones/11/rotation = Quaternion(0.998764, -0.0475658, -0.00587446, 0.0131374)
+bones/13/position = Vector3(0.204919, 0.542502, -0.0977039)
+bones/13/rotation = Quaternion(0.022567, -0.0521483, 0.916264, -0.396525)
+bones/14/rotation = Quaternion(0.113434, 0.0247531, -0.129155, 0.984804)
+bones/15/rotation = Quaternion(-0.0287704, -0.00335187, -0.19455, 0.980465)
+bones/16/rotation = Quaternion(0.998764, 0.0475658, 0.0058747, 0.0131374)
+bones/17/rotation = Quaternion(0.477796, 0.538916, -0.507103, -0.47342)
+
+[node name="AnimationTree" type="AnimationTree" parent="Rig"]
+root_node = NodePath("../Globrc_Fat")
+tree_root = SubResource("AnimationNodeBlendTree_8xb7j")
+anim_player = NodePath("../Globrc_Fat/AnimationPlayer")
+
+[node name="PlayerSearchArea" type="Area3D" parent="Rig"]
+
+[node name="PlayerSearchCollider" type="CollisionShape3D" parent="Rig/PlayerSearchArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0805511, 0.364014, 3.46834)
+shape = SubResource("BoxShape3D_xjgy5")
+
+[node name="PlayerOutOfBoundsTimer" type="Timer" parent="Rig/PlayerSearchArea"]
+wait_time = 5.0
+one_shot = true
+
+[node name="HitableArea" type="Area3D" parent="Rig"]
+
+[node name="HitableAreaCollider" type="CollisionShape3D" parent="Rig/HitableArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.104027, 0.454102, 0.522422)
+shape = SubResource("BoxShape3D_cpw5q")
+
+[node name="WeaponHitArea" type="Area3D" parent="Rig"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.525857, 0.349461, 0.212775)
+
+[node name="WeaponHitCollision" type="CollisionShape3D" parent="Rig/WeaponHitArea"]
+transform = Transform3D(0.99998, 0, 0, 0, 0.99998, 0, 0, 0, 1, 0.622082, 0.0387264, 0.604217)
+shape = SubResource("BoxShape3D_x12t3")
+debug_color = Color(0.988153, 0, 0.305179, 0.42)
+debug_fill = false
+
+[node name="Globrc collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.801128, 0)
+shape = SubResource("CapsuleShape3D_10r5d")
+
+[node name="canAttackTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[editable path="Rig/Globrc_Fat"]

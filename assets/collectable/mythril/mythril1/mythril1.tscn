@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://crdiafxoaxufc" path="res://assets/collectable/mythril/mythril.gd" id="1_1m2s7"]
 [ext_resource type="PackedScene" uid="uid://dxab3wp53sllu" path="res://assets/collectable/mythril/mythril1/mesh/Mythill_1.glb" id="1_u86b4"]
-[ext_resource type="AudioStream" uid="uid://c75yopcl2n0r1" path="res://assets/collectable/mythril/sfx/retro-coin.mp3" id="3_dsks7"]
+[ext_resource type="AudioStream" uid="uid://drf15e030ekbo" path="res://assets/collectable/mythril/sfx/Mythrill.ogg" id="3_dsks7"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u86b4"]
 animation = &"Mythrill 1Action"
@@ -18,7 +18,7 @@ mesh = NodePath("Mythill_1")
 [node name="Mythill_1" parent="." instance=ExtResource("1_u86b4")]
 
 [node name="Mythrill 1" parent="Mythill_1" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.911711, -0.410833, 0, 0.410833, 0.911711, 0, 0, 0)
+transform = Transform3D(0.758989, 0.267494, 0.593617, -1.49011e-08, 0.911711, -0.410833, -0.651102, 0.311818, 0.691979, 0, 0, 0)
 
 [node name="AnimationPlayer" parent="Mythill_1" index="1"]
 autoplay = "Mythrill 1Action"

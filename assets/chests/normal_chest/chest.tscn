@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://b4khq8j6mf6b1"]
+[gd_scene load_steps=12 format=3 uid="uid://b4khq8j6mf6b1"]
 
 [ext_resource type="Script" uid="uid://dd64461gllthc" path="res://assets/chests/normal_chest/chest.gd" id="1_xqjga"]
 [ext_resource type="PackedScene" uid="uid://xgpjcp3yu7o3" path="res://assets/chests/normal_chest/model/Chest.glb" id="2_atpml"]
+[ext_resource type="AudioStream" uid="uid://csvs88gj7gqq3" path="res://assets/chests/sfx/ChestOpening.ogg" id="3_f8vft"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_atpml"]
 size = Vector3(1.06274, 0.914612, 0.636719)
@@ -36,8 +37,9 @@ node_connections = [&"output", 0, &"ChestLocomotion"]
 [sub_resource type="BoxShape3D" id="BoxShape3D_oky7w"]
 size = Vector3(1.15594, 0.293945, 1.40953)
 
-[node name="Chest" type="Area3D"]
+[node name="Chest" type="Area3D" node_paths=PackedStringArray("openChestAudio")]
 script = ExtResource("1_xqjga")
+openChestAudio = NodePath("AudioStreamPlayer3D")
 
 [node name="Mesh" type="Node3D" parent="."]
 
@@ -66,6 +68,9 @@ bones/1/scale = Vector3(0, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.153733, 0.29044, 1.01473)
 shape = SubResource("BoxShape3D_oky7w")
 debug_color = Color(0.98546, 0, 0.333541, 0.42)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_f8vft")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 

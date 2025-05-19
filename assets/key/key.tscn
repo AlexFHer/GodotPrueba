@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://mykeuox7c8sn"]
+[gd_scene load_steps=8 format=3 uid="uid://mykeuox7c8sn"]
 
 [ext_resource type="Script" uid="uid://kxv4kyx1hf4c" path="res://assets/key/key.gd" id="1_hvvbr"]
 [ext_resource type="PackedScene" uid="uid://bxs6pilknhd4m" path="res://assets/key/model/Key_Collectable.glb" id="1_nlauf"]
+[ext_resource type="AudioStream" uid="uid://b3enun6dxxojm" path="res://assets/key/sfx/Key.ogg" id="3_0f75p"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nlauf"]
 animation = &"KeyAction_001"
@@ -17,15 +18,16 @@ transitions = ["Start", "KeyAction_001", SubResource("AnimationNodeStateMachineT
 [sub_resource type="BoxShape3D" id="BoxShape3D_hvvbr"]
 size = Vector3(1, 0.97522, 0.841309)
 
-[node name="Key" type="Area3D"]
+[node name="Key" type="Area3D" node_paths=PackedStringArray("KeyPickupAudio")]
 script = ExtResource("1_hvvbr")
+KeyPickupAudio = NodePath("AudioStreamPlayer3D")
 
 [node name="model" type="Node3D" parent="."]
 
 [node name="Key_Collectable" parent="model" instance=ExtResource("1_nlauf")]
 
 [node name="Key" parent="model/Key_Collectable" index="0"]
-transform = Transform3D(-0.708051, 0, -0.706161, 0, 1, 0, 0.706161, 0, -0.708051, 0, -0.0344476, 0)
+transform = Transform3D(0.534858, 0, 0.844941, 0, 1, 0, -0.844941, 0, 0.534858, 0, -0.0389896, 0)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../model/Key_Collectable")
@@ -36,6 +38,10 @@ anim_player = NodePath("../model/Key_Collectable/AnimationPlayer")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.476868, 0.0793457)
 shape = SubResource("BoxShape3D_hvvbr")
 debug_color = Color(0.948938, 0.17862, 0.36123, 0.42)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_0f75p")
+volume_db = 9.195
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 
