@@ -5,6 +5,7 @@ extends CharacterBody3D
 
 @onready var animation_player: AnimationPlayer = $Rig/Armature/Potma/AnimationPlayer
 @onready var animation_tree: AnimationTree = $Rig/PlayerAnimationTree
+@onready var potmaSounds: PotmaSounds = $PotmaSounds
 
 const JUMP_FORCE := 10.0;
 const ROTATION_SENSIVITY := 10;

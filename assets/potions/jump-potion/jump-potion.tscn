@@ -4,17 +4,22 @@
 [ext_resource type="PackedScene" uid="uid://djb6pfl78boy8" path="res://assets/potions/jump-potion/model/JumpPotion.glb" id="2_5sr0i"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vjdkv"]
-size = Vector3(13.0112, 22.5394, 11.9834)
+size = Vector3(2.02118, 1.96102, 1.74645)
 
 [node name="Jump-potion" type="Area3D"]
 script = ExtResource("1_tjabp")
 potionType = 1
 
+[node name="Model" type="Node3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="JumpPotion" parent="Model" instance=ExtResource("2_5sr0i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.853623, 0)
+
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.297072, 5.51283, 0.102815)
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -0.0170524, 0.456726, 0.0479246)
 shape = SubResource("BoxShape3D_vjdkv")
 
-[node name="JumpPotion" parent="." instance=ExtResource("2_5sr0i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0484183, 4.41837, 0.037939)
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

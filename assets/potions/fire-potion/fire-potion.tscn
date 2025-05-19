@@ -5,18 +5,22 @@
 [ext_resource type="AudioStream" uid="uid://dlkhvub4ig8yr" path="res://assets/potions/sfx/PotionPickUp.ogg" id="3_l2t7a"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u3mii"]
+radius = 0.237634
+height = 1.10485
 
 [node name="Fire-potion" type="Area3D" node_paths=PackedStringArray("potionPickupAudio")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 script = ExtResource("1_cy8qw")
 potionPickupAudio = NodePath("AudioStreamPlayer3D")
 potionType = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_u3mii")
+[node name="Model" type="Node3D" parent="."]
 
-[node name="FirePotion" parent="." instance=ExtResource("2_odxmc")]
+[node name="FirePotion" parent="Model" instance=ExtResource("2_odxmc")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.187327, 0)
+shape = SubResource("CapsuleShape3D_u3mii")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_l2t7a")

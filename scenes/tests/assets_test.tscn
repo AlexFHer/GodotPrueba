@@ -105,18 +105,6 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -10.4787, 1.5, 20.5438)
 [node name="Fire-potion4" parent="Assets/Potions" instance=ExtResource("5_la3k2")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -8.47874, 1.5, 20.5438)
 
-[node name="Jump-potion" parent="Assets/Potions" instance=ExtResource("6_ifow6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.8868, -2.24074, 17.6414)
-
-[node name="Jump-potion2" parent="Assets/Potions" instance=ExtResource("6_ifow6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.8868, -2.24074, 17.6414)
-
-[node name="Jump-potion3" parent="Assets/Potions" instance=ExtResource("6_ifow6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.88683, -2.24074, 17.6414)
-
-[node name="Jump-potion4" parent="Assets/Potions" instance=ExtResource("6_ifow6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.88683, -2.24074, 17.6414)
-
 [node name="Speed-potion" parent="Assets/Potions" instance=ExtResource("7_ifow6")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -15.2301, 1.5, 15.1078)
 
@@ -131,6 +119,21 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -9.23009, 1.5, 15.1078)
 
 [node name="Speed-potion5" parent="Assets/Potions" instance=ExtResource("7_ifow6")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -7.23009, 1.5, 15.1078)
+
+[node name="Jump-potion5" parent="Assets/Potions" instance=ExtResource("6_ifow6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.18393, 1.11222, 17.6895)
+
+[node name="Jump-potion6" parent="Assets/Potions" instance=ExtResource("6_ifow6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.18393, 1.11222, 17.6895)
+
+[node name="Jump-potion8" parent="Assets/Potions" instance=ExtResource("6_ifow6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5901, 1.11222, 17.6895)
+
+[node name="Jump-potion9" parent="Assets/Potions" instance=ExtResource("6_ifow6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5901, 1.11222, 17.6895)
+
+[node name="Jump-potion10" parent="Assets/Potions" instance=ExtResource("6_ifow6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5901, 1.11222, 17.6895)
 
 [node name="Key and chest" type="Node" parent="Assets"]
 
