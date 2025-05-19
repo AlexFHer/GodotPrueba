@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhndrp8i76s8n"
-path.s3tc="res://.godot/imported/FirePotion_DefaultMaterial_Emissive.png-ce2c2e5628c1c9df37af79743e6a3070.s3tc.ctex"
+uid="uid://c3m76m4jrdmpu"
+path.s3tc="res://.godot/imported/JumpPotion_DefaultMaterial_Emissive.png-fa9e428f2dedaf3ce705f8c195bfc0ea.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "28a222b05270aa1a1fdf51c1e45fae0d"
+"md5": "d373d02e4a9e6212b5b40973811df60b"
 }
 
 [deps]
 
-source_file="res://assets/potions/fire-potion/FirePotion_DefaultMaterial_Emissive.png"
-dest_files=["res://.godot/imported/FirePotion_DefaultMaterial_Emissive.png-ce2c2e5628c1c9df37af79743e6a3070.s3tc.ctex"]
+source_file="res://assets/potions/jump-potion/model/JumpPotion_DefaultMaterial_Emissive.png"
+dest_files=["res://.godot/imported/JumpPotion_DefaultMaterial_Emissive.png-fa9e428f2dedaf3ce705f8c195bfc0ea.s3tc.ctex"]
 
 [params]
 

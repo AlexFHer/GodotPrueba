@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://xh8iypkup47o"]
+
+[ext_resource type="Script" uid="uid://bw1vychsa7bvp" path="res://assets/numbers/mythril-number.gd" id="1_5xyia"]
+[ext_resource type="PackedScene" uid="uid://cap8fu8wklg7r" path="res://assets/numbers/10/model/10.glb" id="1_nfklf"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lp6u8"]
+animation = &"NumbersAction"
+
+[node name="number_10" type="Node3D" node_paths=PackedStringArray("model")]
+script = ExtResource("1_5xyia")
+model = NodePath("Model")
+
+[node name="Model" type="Node3D" parent="."]
+
+[node name="10" parent="Model" instance=ExtResource("1_nfklf")]
+
+[node name="Skeleton3D" parent="Model/10/Numbers" index="0"]
+bones/0/position = Vector3(0, 0.826952, 0)
+bones/0/scale = Vector3(0, 0, 0)
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../Model/10")
+tree_root = SubResource("AnimationNodeAnimation_lp6u8")
+anim_player = NodePath("../Model/10/AnimationPlayer")
+
+[editable path="Model/10"]

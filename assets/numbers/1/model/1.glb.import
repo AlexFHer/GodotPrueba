@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://djb6pfl78boy8"
-path="res://.godot/imported/JumpPotion.glb-5f6ed5c8c846bd7436cb5ac9d767f3d5.scn"
+uid="uid://bcy81yhndy4ph"
+path="res://.godot/imported/1.glb-55b5fa93eeee3943946c253d28712237.scn"
 
 [deps]
 
-source_file="res://assets/potions/jump-potion/JumpPotion.glb"
-dest_files=["res://.godot/imported/JumpPotion.glb-5f6ed5c8c846bd7436cb5ac9d767f3d5.scn"]
+source_file="res://assets/numbers/1/model/1.glb"
+dest_files=["res://.godot/imported/1.glb-55b5fa93eeee3943946c253d28712237.scn"]
 
 [params]
 

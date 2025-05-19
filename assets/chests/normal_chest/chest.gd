@@ -15,8 +15,12 @@ func _on_body_entered(body: Node3D) -> void:
 			print("Player does not have a key to open the chest")
 
 func open_chest():
+	if opened:
+		return
+
 	opened = true
 	CollectablesEmitterService.emitMithrilPickedUp(10)
+	PlayerInventory.remove_key()
 
 func does_player_has_key() -> bool:
 	return PlayerInventory.keys > 0

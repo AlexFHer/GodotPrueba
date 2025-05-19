@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cngohvce288s7"
-path="res://.godot/imported/FirePotion.glb-7d18d01d2a108575ea8728afa09fe54b.scn"
+uid="uid://m8exfj8q7dc8"
+path="res://.godot/imported/SpeedPotion.glb-94395998812472c8897f445f9f92d485.scn"
 
 [deps]
 
-source_file="res://assets/potions/fire-potion/FirePotion.glb"
-dest_files=["res://.godot/imported/FirePotion.glb-7d18d01d2a108575ea8728afa09fe54b.scn"]
+source_file="res://assets/potions/speed-potion/model/SpeedPotion.glb"
+dest_files=["res://.godot/imported/SpeedPotion.glb-94395998812472c8897f445f9f92d485.scn"]
 
 [params]
 

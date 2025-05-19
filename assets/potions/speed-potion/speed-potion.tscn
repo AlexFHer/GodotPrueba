@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ex02udmugvjt"]
 
 [ext_resource type="Script" uid="uid://ct5811vn57wbb" path="res://assets/potions/speed-potion/speed-potion.gd" id="1_kst2q"]
-[ext_resource type="PackedScene" uid="uid://m8exfj8q7dc8" path="res://assets/potions/speed-potion/SpeedPotion.glb" id="2_12w7m"]
+[ext_resource type="PackedScene" uid="uid://m8exfj8q7dc8" path="res://assets/potions/speed-potion/model/SpeedPotion.glb" id="2_12w7m"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rfo5y"]
 

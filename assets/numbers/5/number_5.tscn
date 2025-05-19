@@ -1,21 +1,23 @@
 [gd_scene load_steps=3 format=3 uid="uid://d0dsbl6ka3onh"]
 
-[ext_resource type="PackedScene" uid="uid://cttdbrq63qwqm" path="res://assets/numbers/5/5.glb" id="1_5aiql"]
+[ext_resource type="PackedScene" uid="uid://cttdbrq63qwqm" path="res://assets/numbers/5/model/5.glb" id="1_5aiql"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_71ni2"]
 animation = &"NumbersAction"
 
 [node name="number_5" type="Node3D"]
 
-[node name="5" parent="." instance=ExtResource("1_5aiql")]
+[node name="Model" type="Node3D" parent="."]
 
-[node name="Skeleton3D" parent="5/Numbers" index="0"]
+[node name="5" parent="Model" instance=ExtResource("1_5aiql")]
+
+[node name="Skeleton3D" parent="Model/5/Numbers" index="0"]
 bones/0/position = Vector3(0, 0.826952, 0)
 bones/0/scale = Vector3(0, 0, 0)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-root_node = NodePath("../5")
+root_node = NodePath("../Model/5")
 tree_root = SubResource("AnimationNodeAnimation_71ni2")
-anim_player = NodePath("../5/AnimationPlayer")
+anim_player = NodePath("../Model/5/AnimationPlayer")
 
-[editable path="5"]
+[editable path="Model/5"]

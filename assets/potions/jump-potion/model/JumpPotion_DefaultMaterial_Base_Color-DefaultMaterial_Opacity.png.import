@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dtjt06uhqmpcb"
-path.s3tc="res://.godot/imported/JumpPotion_DefaultMaterial_Base_Color-DefaultMaterial_Opacity.png-6851bb57ba2a6cfd96fef4de2be9cebb.s3tc.ctex"
+path.s3tc="res://.godot/imported/JumpPotion_DefaultMaterial_Base_Color-DefaultMaterial_Opacity.png-cca73bd735dd5e23f00cb4af8cb47eb7.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://assets/potions/jump-potion/JumpPotion_DefaultMaterial_Base_Color-DefaultMaterial_Opacity.png"
-dest_files=["res://.godot/imported/JumpPotion_DefaultMaterial_Base_Color-DefaultMaterial_Opacity.png-6851bb57ba2a6cfd96fef4de2be9cebb.s3tc.ctex"]
+source_file="res://assets/potions/jump-potion/model/JumpPotion_DefaultMaterial_Base_Color-DefaultMaterial_Opacity.png"
+dest_files=["res://.godot/imported/JumpPotion_DefaultMaterial_Base_Color-DefaultMaterial_Opacity.png-cca73bd735dd5e23f00cb4af8cb47eb7.s3tc.ctex"]
 
 [params]
 

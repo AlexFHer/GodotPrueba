@@ -14,23 +14,25 @@ animation = &"ibroAction"
 script = ExtResource("1_i2f2c")
 bookPickupAudio = NodePath("AudioStreamPlayer3D")
 
-[node name="Book" parent="." instance=ExtResource("1_mfkvd")]
+[node name="Model" type="Node3D" parent="."]
 
-[node name="ibro" parent="Book" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.638021, -0.770019, 0, 0.770019, 0.638021, -0.00922549, 0.586127, 0)
+[node name="Book" parent="Model" instance=ExtResource("1_mfkvd")]
+
+[node name="ibro" parent="Model/Book" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.638021, -0.770019, 0, 0.770019, 0.638021, -0.00922549, 0.656607, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0401917, 0.45816, -0.0418549)
 shape = SubResource("BoxShape3D_i2f2c")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-root_node = NodePath("../Book")
+root_node = NodePath("../Model/Book")
 tree_root = SubResource("AnimationNodeAnimation_i2f2c")
-anim_player = NodePath("../Book/AnimationPlayer")
+anim_player = NodePath("../Model/Book/AnimationPlayer")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_7ypio")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 
-[editable path="Book"]
+[editable path="Model/Book"]

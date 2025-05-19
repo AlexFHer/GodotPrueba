@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxt8axkp8hlwt"]
+[gd_scene load_steps=7 format=3 uid="uid://dxt8axkp8hlwt"]
 
 [ext_resource type="Script" uid="uid://crdiafxoaxufc" path="res://assets/collectable/mythril/mythril.gd" id="1_1m2s7"]
 [ext_resource type="PackedScene" uid="uid://dxab3wp53sllu" path="res://assets/collectable/mythril/mythril1/mesh/Mythill_1.glb" id="1_u86b4"]
+[ext_resource type="PackedScene" uid="uid://236eq0nbguwn" path="res://assets/numbers/1/number_1.tscn" id="2_soaja"]
 [ext_resource type="AudioStream" uid="uid://drf15e030ekbo" path="res://assets/collectable/mythril/sfx/Mythrill.ogg" id="3_dsks7"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u86b4"]
@@ -10,15 +11,17 @@ animation = &"Mythrill 1Action"
 [sub_resource type="SphereShape3D" id="SphereShape3D_u86b4"]
 radius = 0.272552
 
-[node name="Mythril1" type="Area3D" node_paths=PackedStringArray("coinPickupAudio", "mesh")]
+[node name="Mythril1" type="Area3D" node_paths=PackedStringArray("coinPickupAudio", "mesh", "collision")]
 script = ExtResource("1_1m2s7")
 coinPickupAudio = NodePath("CoinPickupAudio")
 mesh = NodePath("Mythill_1")
+collision = NodePath("GrabCollisionShape")
+numberPackedScene = ExtResource("2_soaja")
 
 [node name="Mythill_1" parent="." instance=ExtResource("1_u86b4")]
 
 [node name="Mythrill 1" parent="Mythill_1" index="0"]
-transform = Transform3D(0.758989, 0.267494, 0.593617, -1.49011e-08, 0.911711, -0.410833, -0.651102, 0.311818, 0.691979, 0, 0, 0)
+transform = Transform3D(-0.997702, 0.0278303, 0.0617603, 5.58793e-09, 0.911711, -0.410833, -0.0677411, -0.409889, -0.909617, 0, 0, 0)
 
 [node name="AnimationPlayer" parent="Mythill_1" index="1"]
 autoplay = "Mythrill 1Action"

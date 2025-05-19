@@ -15,6 +15,9 @@ func open_chest() -> void:
 	pass;
 
 func deactivate_force_field() -> void:
+	if _forceField == null:
+		return
+	
 	_forceField.queue_free()
 	isForceFieldActive = false
 

@@ -52,64 +52,82 @@ environment = SubResource("Environment_u3tis")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.998009, -0.0546163, 0.0315326, -1.49013e-08, 0.499998, 0.866027, -0.0630654, -0.864303, 0.499003, -2.19103, 12.9262, 10.8119)
+visible = false
 shadow_enabled = true
 
 [node name="global-death" parent="." instance=ExtResource("3_bh741")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -25.3343, 0)
+visible = false
 
 [node name="Patrol point marker" parent="." instance=ExtResource("11_y7qyr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.0121, 1.52635, -5.46845)
+visible = false
 
 [node name="Patrol point marker2" parent="." instance=ExtResource("11_y7qyr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.6309, 1.52635, -5.46845)
+visible = false
 
 [node name="Patrol point marker3" parent="." instance=ExtResource("11_y7qyr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.6309, 1.52635, -17.484)
+visible = false
 
 [node name="Patrol point marker4" parent="." instance=ExtResource("11_y7qyr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.3073, 1.52635, -17.484)
+visible = false
 
 [node name="Patrol point marker5" parent="." instance=ExtResource("11_y7qyr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.0102, 1.52635, -17.484)
+visible = false
 
 [node name="Patrol point marker6" parent="." instance=ExtResource("11_y7qyr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.0102, 1.52635, -5.50205)
+visible = false
 
 [node name="Globrc" parent="." node_paths=PackedStringArray("patrolPoints") instance=ExtResource("10_gv8ya")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.6738, 0.985344, -11.6839)
+visible = false
 patrolPoints = [NodePath("../Patrol point marker"), NodePath("../Patrol point marker2"), NodePath("../Patrol point marker3"), NodePath("../Patrol point marker4"), NodePath("../Patrol point marker5"), NodePath("../Patrol point marker6")]
 
 [node name="Key2" parent="." instance=ExtResource("15_dxe5k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4454, 5.18719, -8.59138)
+visible = false
 
 [node name="Key" parent="." instance=ExtResource("15_dxe5k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.9928, 1.50311, -12.3837)
+visible = false
 
 [node name="Chest" parent="." instance=ExtResource("16_2fkf1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.1674, 1.51754, -20.0904)
+visible = false
 
 [node name="LvL1" parent="." instance=ExtResource("20_ow8r8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.7291, 1.08237, -2.59654)
 
 [node name="Fire-potion" parent="." instance=ExtResource("13_ptet3")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -36.1897, 2.11338, -22.6454)
+visible = false
 
 [node name="Jump-potion" parent="." instance=ExtResource("14_dxe5k")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -33.16, 1.50003, -22.9048)
+visible = false
 
 [node name="Speed-potion" parent="." instance=ExtResource("15_2fkf1")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -38.2126, 2.08089, -22.2296)
+visible = false
 
 [node name="Elevator1" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -98.5248, 6.16755, -8.62841)
 
 [node name="Elevator point 1" parent="Elevator1" instance=ExtResource("15_l7cy2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.01877, 0)
+visible = false
 
 [node name="Elevator point 2" parent="Elevator1" instance=ExtResource("15_l7cy2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.30497, 0)
+visible = false
 
 [node name="Elevator" parent="Elevator1" node_paths=PackedStringArray("elevatorPoints") instance=ExtResource("16_7iq1i")]
+visible = false
 elevatorPoints = [NodePath("../Elevator point 1"), NodePath("../Elevator point 2")]
 
 [node name="Node3D" type="Node3D" parent="." node_paths=PackedStringArray("arcs")]
@@ -123,6 +141,7 @@ arc_puzzle = NodePath("ArcPuzzle")
 
 [node name="MagicChest" parent="ArcMagicChestPuzzle1" instance=ExtResource("17_l7cy2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -125.236, -2.08446, 15.3535)
+visible = false
 
 [node name="ArcPuzzle" type="Node3D" parent="ArcMagicChestPuzzle1" node_paths=PackedStringArray("arcs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -122.911, -3.75727, -5.15296)
@@ -131,9 +150,12 @@ arcs = [NodePath("Arc1"), NodePath("Arc2"), NodePath("Arc3")]
 
 [node name="Arc1" parent="ArcMagicChestPuzzle1/ArcPuzzle" instance=ExtResource("12_khvno")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.08873, 1.1137, 9.24085)
+visible = false
 
 [node name="Arc2" parent="ArcMagicChestPuzzle1/ArcPuzzle" instance=ExtResource("12_khvno")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.08873, 1.1137, 20.8125)
+visible = false
 
 [node name="Arc3" parent="ArcMagicChestPuzzle1/ArcPuzzle" instance=ExtResource("12_khvno")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.08873, 1.1137, 29.6097)
+visible = false

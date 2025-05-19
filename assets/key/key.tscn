@@ -22,19 +22,19 @@ size = Vector3(1, 0.97522, 0.841309)
 script = ExtResource("1_hvvbr")
 KeyPickupAudio = NodePath("AudioStreamPlayer3D")
 
-[node name="model" type="Node3D" parent="."]
+[node name="Model" type="Node3D" parent="."]
 
-[node name="Key_Collectable" parent="model" instance=ExtResource("1_nlauf")]
+[node name="Key_Collectable" parent="Model" instance=ExtResource("1_nlauf")]
 
-[node name="Key" parent="model/Key_Collectable" index="0"]
-transform = Transform3D(0.534858, 0, 0.844941, 0, 1, 0, -0.844941, 0, 0.534858, 0, -0.0389896, 0)
+[node name="Key" parent="Model/Key_Collectable" index="0"]
+transform = Transform3D(-0.977657, 0, -0.210201, 0, 1, 0, 0.210201, 0, -0.977657, 0, -0.155933, 0)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-root_node = NodePath("../model/Key_Collectable")
+root_node = NodePath("../Model/Key_Collectable")
 tree_root = SubResource("AnimationNodeStateMachine_sy52k")
-anim_player = NodePath("../model/Key_Collectable/AnimationPlayer")
+anim_player = NodePath("../Model/Key_Collectable/AnimationPlayer")
 
-[node name="GrabCollisionShape" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.476868, 0.0793457)
 shape = SubResource("BoxShape3D_hvvbr")
 debug_color = Color(0.948938, 0.17862, 0.36123, 0.42)
@@ -45,4 +45,4 @@ volume_db = 9.195
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 
-[editable path="model/Key_Collectable"]
+[editable path="Model/Key_Collectable"]

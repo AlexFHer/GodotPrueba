@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3m76m4jrdmpu"
-path.s3tc="res://.godot/imported/JumpPotion_DefaultMaterial_Emissive.png-ec5f7b5506ff6bc170b91364f756fc47.s3tc.ctex"
+uid="uid://ckcmf0yjgarsw"
+path.s3tc="res://.godot/imported/10_Mythrill_Basecolor1.png-330fc462088764a29592e3bf38379bfd.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "d373d02e4a9e6212b5b40973811df60b"
+"md5": "297e840a5fc416ae6b22acc266b2588b"
 }
 
 [deps]
 
-source_file="res://assets/potions/jump-potion/JumpPotion_DefaultMaterial_Emissive.png"
-dest_files=["res://.godot/imported/JumpPotion_DefaultMaterial_Emissive.png-ec5f7b5506ff6bc170b91364f756fc47.s3tc.ctex"]
+source_file="res://assets/numbers/10/model/10_Mythrill_Basecolor1.png"
+dest_files=["res://.godot/imported/10_Mythrill_Basecolor1.png-330fc462088764a29592e3bf38379bfd.s3tc.ctex"]
 
 [params]
 

@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b56cndrk3cjf8"
-path.s3tc="res://.godot/imported/5_Mythrill_Basecolor1.png-0b46f6a411aa84153d44e68fd4af1dd3.s3tc.ctex"
+uid="uid://bx05ucrk5jtn8"
+path.s3tc="res://.godot/imported/SpeedPotion_DefaultMaterial_Emissive.png-d2fb2d71c39dc3fb4e807cc12f8e52ff.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "297e840a5fc416ae6b22acc266b2588b"
+"md5": "ee13760be8454bfe30776d1c5320cba8"
 }
 
 [deps]
 
-source_file="res://assets/numbers/5/5_Mythrill_Basecolor1.png"
-dest_files=["res://.godot/imported/5_Mythrill_Basecolor1.png-0b46f6a411aa84153d44e68fd4af1dd3.s3tc.ctex"]
+source_file="res://assets/potions/speed-potion/model/SpeedPotion_DefaultMaterial_Emissive.png"
+dest_files=["res://.godot/imported/SpeedPotion_DefaultMaterial_Emissive.png-d2fb2d71c39dc3fb4e807cc12f8e52ff.s3tc.ctex"]
 
 [params]
 

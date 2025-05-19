@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ontkeeyy4mk7"]
 
 [ext_resource type="Script" uid="uid://bpfd0hipgc3gu" path="res://assets/potions/fire-potion/fire-potion.gd" id="1_cy8qw"]
-[ext_resource type="PackedScene" uid="uid://cngohvce288s7" path="res://assets/potions/fire-potion/FirePotion.glb" id="2_odxmc"]
+[ext_resource type="PackedScene" uid="uid://cngohvce288s7" path="res://assets/potions/fire-potion/model/FirePotion.glb" id="2_odxmc"]
 [ext_resource type="AudioStream" uid="uid://dlkhvub4ig8yr" path="res://assets/potions/sfx/PotionPickUp.ogg" id="3_l2t7a"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u3mii"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cyqqtvfimjbqb"]
 
 [ext_resource type="Script" uid="uid://quj0n8at168r" path="res://assets/potions/jump-potion/jump-potion.gd" id="1_tjabp"]
-[ext_resource type="PackedScene" uid="uid://djb6pfl78boy8" path="res://assets/potions/jump-potion/JumpPotion.glb" id="2_5sr0i"]
+[ext_resource type="PackedScene" uid="uid://djb6pfl78boy8" path="res://assets/potions/jump-potion/model/JumpPotion.glb" id="2_5sr0i"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vjdkv"]
 size = Vector3(13.0112, 22.5394, 11.9834)

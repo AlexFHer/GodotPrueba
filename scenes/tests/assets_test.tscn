@@ -140,17 +140,38 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.8729, 0.37795, 8.85732)
 [node name="Chest" parent="Assets/Key and chest" instance=ExtResource("6_w36ty")]
 transform = Transform3D(0.000392866, 0.000124588, 1, -0.000450863, 1, -0.000124418, -1, -0.000450816, 0.00039292, -23.279, 0, 9.34915)
 
+[node name="Chest2" parent="Assets/Key and chest" instance=ExtResource("6_w36ty")]
+transform = Transform3D(0.000392866, 0.000124588, 1, -0.000450863, 1, -0.000124418, -1, -0.000450816, 0.00039292, -23.279, 0, 6.34915)
+
 [node name="Book" parent="Assets/Key and chest" instance=ExtResource("10_58f3n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.89, 0, 9.85055)
 
 [node name="Mythril1" parent="Assets/Key and chest" instance=ExtResource("11_b8nyo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1323, 0.0484309, 7.2313)
 
+[node name="Mythril2" parent="Assets/Key and chest" instance=ExtResource("11_b8nyo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1323, 0.0484309, 7.2313)
+
+[node name="Mythril3" parent="Assets/Key and chest" instance=ExtResource("11_b8nyo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1323, 0.0484309, 7.2313)
+
 [node name="Mythril5" parent="Assets/Key and chest" instance=ExtResource("12_e1my4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3392, 0.0361109, 3.38261)
 
+[node name="Mythril6" parent="Assets/Key and chest" instance=ExtResource("12_e1my4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3392, 0.0361109, 3.38261)
+
+[node name="Mythril7" parent="Assets/Key and chest" instance=ExtResource("12_e1my4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6608, 0.0361109, 3.38261)
+
 [node name="Mythril10" parent="Assets/Key and chest" instance=ExtResource("13_prhcd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.8664, 0.0936669, -2.14838)
+
+[node name="Mythril11" parent="Assets/Key and chest" instance=ExtResource("13_prhcd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8664, 0.0936669, -2.14838)
+
+[node name="Mythril12" parent="Assets/Key and chest" instance=ExtResource("13_prhcd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1336, 0.0936669, -2.14838)
 
 [node name="ArcsPuzzles" type="Node" parent="Assets"]
 
@@ -209,9 +230,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 17.8878, 1.5, -11.2776)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.026, 0.0736191, -17.4725)
 
 [node name="MainCharacter" parent="." instance=ExtResource("11_3onbp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.29471, 0.202615, 4.33206)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.70081, 0.202615, 13.3133)
 
 [node name="Castle_Lever" parent="." instance=ExtResource("22_e1my4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.6926, 0.0592519, -12.6781)
-
-[connection signal="fire_activated" from="Assets/FireTowers/Fire_Tower_Puzzle" to="Assets/FireTowers/secret_tower" method="activate_secret_tower"]

@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckcmf0yjgarsw"
-path.s3tc="res://.godot/imported/10_Mythrill_Basecolor1.png-c62219d29d2cb70ba283db412bc01e17.s3tc.ctex"
+uid="uid://bhndrp8i76s8n"
+path.s3tc="res://.godot/imported/FirePotion_DefaultMaterial_Emissive.png-8e63c9aeeced912ecfd310d8df3173af.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "297e840a5fc416ae6b22acc266b2588b"
+"md5": "28a222b05270aa1a1fdf51c1e45fae0d"
 }
 
 [deps]
 
-source_file="res://assets/numbers/10/10_Mythrill_Basecolor1.png"
-dest_files=["res://.godot/imported/10_Mythrill_Basecolor1.png-c62219d29d2cb70ba283db412bc01e17.s3tc.ctex"]
+source_file="res://assets/potions/fire-potion/model/FirePotion_DefaultMaterial_Emissive.png"
+dest_files=["res://.godot/imported/FirePotion_DefaultMaterial_Emissive.png-8e63c9aeeced912ecfd310d8df3173af.s3tc.ctex"]
 
 [params]
 

@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bx05ucrk5jtn8"
-path.s3tc="res://.godot/imported/SpeedPotion_DefaultMaterial_Emissive.png-1d8839d5f38fbb1901dc41a80938d5be.s3tc.ctex"
+uid="uid://gwn3haajnxgo"
+path.s3tc="res://.godot/imported/SpeedPotion_DefaultMaterial_Base_Color-DefaultMaterial_Opacity.png-7d88755d300fbfe02f0c033e2674dbf2.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "ee13760be8454bfe30776d1c5320cba8"
+"md5": "1bc67838300d2ffa6517c44eb857e40e"
 }
 
 [deps]
 
-source_file="res://assets/potions/speed-potion/SpeedPotion_DefaultMaterial_Emissive.png"
-dest_files=["res://.godot/imported/SpeedPotion_DefaultMaterial_Emissive.png-1d8839d5f38fbb1901dc41a80938d5be.s3tc.ctex"]
+source_file="res://assets/potions/speed-potion/model/SpeedPotion_DefaultMaterial_Base_Color-DefaultMaterial_Opacity.png"
+dest_files=["res://.godot/imported/SpeedPotion_DefaultMaterial_Base_Color-DefaultMaterial_Opacity.png-7d88755d300fbfe02f0c033e2674dbf2.s3tc.ctex"]
 
 [params]
 
