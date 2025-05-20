@@ -4,9 +4,12 @@ class_name PotionsData extends Node
 var potionsDictionary: Dictionary[PotionTypes.PotionType, int] = {}
 var selectedPotionType: PotionTypes.PotionType = PotionTypes.PotionType.None;
 
+var canDrinkPotion := true;
+
 signal potionsChanged(dictionary: Dictionary[PotionTypes.PotionType, int]);
 signal selectedPotionChanged(potionType: PotionTypes.PotionType);
 signal potionUsed(potionType: PotionTypes.PotionType);
+signal potionEffectFinished(potionType: PotionTypes.PotionType);
 
 func isThereAnyPotionOfType(potionType: PotionTypes.PotionType) -> bool:
 	return potionsDictionary.get(potionType, 0) > 0;
@@ -61,6 +64,7 @@ func usePotion() -> void:
 	if not isThereAnyPotionOfType(selectedPotionType):
 		return
 	potionUsed.emit(selectedPotionType);
+	emitWhenPotionFinish(selectedPotionType);
 	removeOnePotionByType(selectedPotionType);
 	_checkPotionsAvailability();
 
@@ -114,3 +118,9 @@ func _checkIfPotionShouldBeSelectedOnPickUp(pickedUpPotion: PotionTypes.PotionTy
 	if selectedPotionType == PotionTypes.PotionType.None:
 		selectPotion(pickedUpPotion)
 	
+func emitWhenPotionFinish(potionType: PotionTypes.PotionType) -> void:
+	canDrinkPotion = false;
+	var lifeTime = PotionsConfig.get_potion_properties(potionType).lifeTime;
+	await get_tree().create_timer(lifeTime).timeout
+	potionEffectFinished.emit(potionType);
+	canDrinkPotion = true;

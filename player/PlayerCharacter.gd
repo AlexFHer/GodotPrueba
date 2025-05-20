@@ -23,6 +23,7 @@ signal lifeChanged(newLife: int);
 # Movement
 
 var speed := 10.0;
+var isSprinting := false;
 var lastMovementDirection := Vector3.FORWARD
 var gravity := -20;
 
@@ -119,9 +120,11 @@ func speedPotionUsed(potionType: PotionTypes.PotionType) -> void:
 
 func _activate_improved_speed() -> void:
 	speed = IMPROVED_SPEED;
+	isSprinting = true;
 
 func _deactivate_improved_speed() -> void:
 	speed = NORMAL_SPEED;
+	isSprinting = false;
 
 func _on_potion_used(potionType: PotionTypes.PotionType) -> void:
 	if potionType == PotionTypes.PotionType.Jump:
