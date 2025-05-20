@@ -1,104 +1,99 @@
-[gd_scene load_steps=32 format=3 uid="uid://cf47i2djfslyw"]
+[gd_scene load_steps=33 format=3 uid="uid://cf47i2djfslyw"]
 
 [ext_resource type="Script" uid="uid://b3jy8x8um1xce" path="res://player/PlayerCharacter.gd" id="1_43pha"]
 [ext_resource type="Script" uid="uid://df8j4nq0qxet4" path="res://player/scripts/potions-manager.gd" id="2_86mlk"]
 [ext_resource type="Script" uid="uid://db5dbo3xs7fuj" path="res://player/scripts/player-model-manager.gd" id="2_hg6s5"]
 [ext_resource type="Script" uid="uid://c42kqovjlaehm" path="res://player/scripts/playerCamera.gd" id="3_pe30o"]
-[ext_resource type="PackedScene" uid="uid://d2xlhskb0i10f" path="res://player/rig/Potma.glb" id="3_rgyib"]
+[ext_resource type="PackedScene" uid="uid://dknaa78iwawii" path="res://player/rig/Potma.glb" id="3_rgyib"]
 [ext_resource type="Script" uid="uid://bu77aov0mj6ao" path="res://player/scripts/projectile-manager.gd" id="3_uekve"]
 [ext_resource type="Script" uid="uid://csrohhn61kmsp" path="res://player/scripts/potions-ui-manager.gd" id="5_hdq68"]
+[ext_resource type="Script" uid="uid://c7lupi603g5fs" path="res://player/scripts/potma-sounds.gd" id="9_hg6s5"]
+[ext_resource type="Script" uid="uid://cradpudh6rasp" path="res://player/scripts/main-player-combat-system.gd" id="10_2ieo8"]
 [ext_resource type="PackedScene" uid="uid://bcugk5tgimuv4" path="res://assets/in-game-collectables-ui/in-game-collectables-ui.tscn" id="10_8t03j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_itxij"]
 margin = 0.025
 height = 1.33974
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rgyib"]
-animation = &"PotmaJump"
-
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_8t03j"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ebec5"]
-animation = &"PotmaIdle"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yllr7"]
+animation = &"Potma_Hit"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kb6p2"]
-animation = &"PotmaWalk"
-
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_wodsf"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_ebec5")
-blend_point_0/pos = -1.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_kb6p2")
-blend_point_1/pos = 1.0
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2ieo8"]
-animation = &"PotmaFall"
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_kb6p2"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hg6s5"]
-animation = &"PotmaIdle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_32hag"]
-animation = &"PotmaStaff_Hit"
+animation = &"PotmaFall"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8t03j"]
-animation = &"PotmaWalk"
+animation = &"PotmaIdle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yllr7"]
-animation = &"Potma_Drink"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2ieo8"]
+animation = &"PotmaWalk"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ebec5"]
 advance_mode = 2
-advance_expression = "is_moving() and is_on_floor()"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yllr7"]
 advance_mode = 2
-advance_expression = "!is_moving() and is_on_floor()"
+advance_expression = "!is_on_floor()"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kb6p2"]
 advance_mode = 2
-advance_expression = "!is_on_floor()"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_32hag"]
-advance_mode = 2
-advance_expression = "is_on_floor()"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rgyib"]
-advance_mode = 2
+advance_expression = "is_on_floor() and is_moving()"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hg6s5"]
 advance_mode = 2
-advance_expression = "is_on_floor() and is_moving()"
+advance_expression = "!is_on_floor()"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8t03j"]
 advance_mode = 2
-advance_expression = "!is_on_floor()"
+advance_expression = "is_on_floor() and is_moving()"
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_hg6s5"]
-states/End/position = Vector2(1160, 100)
-states/Movement/node = SubResource("AnimationNodeBlendSpace1D_wodsf")
-states/Movement/position = Vector2(911, 126)
-states/PotmaFall/node = SubResource("AnimationNodeAnimation_2ieo8")
-states/PotmaFall/position = Vector2(706, -22)
-states/PotmaIdle/node = SubResource("AnimationNodeAnimation_hg6s5")
-states/PotmaIdle/position = Vector2(369, -22)
-states/PotmaStaff_Hit/node = SubResource("AnimationNodeAnimation_32hag")
-states/PotmaStaff_Hit/position = Vector2(683, -146)
-states/PotmaWalk/node = SubResource("AnimationNodeAnimation_8t03j")
-states/PotmaWalk/position = Vector2(369, 244)
-states/Potma_Drink/node = SubResource("AnimationNodeAnimation_yllr7")
-states/Potma_Drink/position = Vector2(726, 234)
-states/Start/position = Vector2(105, 145)
-transitions = ["PotmaIdle", "PotmaWalk", SubResource("AnimationNodeStateMachineTransition_ebec5"), "PotmaWalk", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_yllr7"), "PotmaIdle", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_kb6p2"), "PotmaFall", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_32hag"), "Start", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_rgyib"), "PotmaFall", "PotmaWalk", SubResource("AnimationNodeStateMachineTransition_hg6s5"), "PotmaWalk", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_8t03j")]
-graph_offset = Vector2(61, -112)
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2ieo8"]
+advance_mode = 2
+advance_expression = "is_on_floor() and !is_moving()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wodsf"]
+advance_mode = 2
+advance_expression = "!is_moving()"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wodsf"]
+states/PotmaFall/node = SubResource("AnimationNodeAnimation_hg6s5")
+states/PotmaFall/position = Vector2(583, -15)
+states/PotmaIdle/node = SubResource("AnimationNodeAnimation_8t03j")
+states/PotmaIdle/position = Vector2(334, -15)
+states/PotmaWalk/node = SubResource("AnimationNodeAnimation_2ieo8")
+states/PotmaWalk/position = Vector2(334, 166)
+transitions = ["Start", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_ebec5"), "PotmaIdle", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_yllr7"), "PotmaIdle", "PotmaWalk", SubResource("AnimationNodeStateMachineTransition_kb6p2"), "PotmaWalk", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_hg6s5"), "PotmaFall", "PotmaWalk", SubResource("AnimationNodeStateMachineTransition_8t03j"), "PotmaFall", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_2ieo8"), "PotmaWalk", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_wodsf")]
+graph_offset = Vector2(-41, -164)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tqiix"]
+animation = &"PotmaStaff_Hit"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_hg6s5"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wodsf"]
+animation = &"Potma_Drink"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_2ieo8"]
-nodes/Hit/node = SubResource("AnimationNodeAnimation_rgyib")
-nodes/Hit/position = Vector2(-320, 220)
-nodes/JumpOneShot/node = SubResource("AnimationNodeOneShot_8t03j")
-nodes/JumpOneShot/position = Vector2(0, 200)
-nodes/UpperBodyLocomotion/node = SubResource("AnimationNodeStateMachine_hg6s5")
-nodes/UpperBodyLocomotion/position = Vector2(-300, -80)
-nodes/output/position = Vector2(300, -80)
-node_connections = [&"output", 0, &"UpperBodyLocomotion"]
+graph_offset = Vector2(-231.866, -211.88)
+nodes/DrinkOneShot/node = SubResource("AnimationNodeOneShot_8t03j")
+nodes/DrinkOneShot/position = Vector2(60, 0)
+nodes/GetHit/node = SubResource("AnimationNodeAnimation_yllr7")
+nodes/GetHit/position = Vector2(60, 300)
+nodes/HitOneShot/node = SubResource("AnimationNodeOneShot_kb6p2")
+nodes/HitOneShot/position = Vector2(380, -40)
+nodes/Locomotion/node = SubResource("AnimationNodeStateMachine_wodsf")
+nodes/Locomotion/position = Vector2(-360, 0)
+nodes/StaffHit/node = SubResource("AnimationNodeAnimation_tqiix")
+nodes/StaffHit/position = Vector2(360, 300)
+nodes/StaffHitOneShot/node = SubResource("AnimationNodeOneShot_hg6s5")
+nodes/StaffHitOneShot/position = Vector2(700, -80)
+nodes/drink/node = SubResource("AnimationNodeAnimation_wodsf")
+nodes/drink/position = Vector2(-240, 300)
+nodes/output/position = Vector2(980, -60)
+node_connections = [&"DrinkOneShot", 0, &"Locomotion", &"DrinkOneShot", 1, &"drink", &"HitOneShot", 0, &"DrinkOneShot", &"HitOneShot", 1, &"GetHit", &"StaffHitOneShot", 0, &"HitOneShot", &"StaffHitOneShot", 1, &"StaffHit", &"output", 0, &"StaffHitOneShot"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wff3b"]
 
@@ -125,23 +120,24 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 
 
 [node name="Potma" parent="Rig/Armature" instance=ExtResource("3_rgyib")]
 
-[node name="Skeleton3D" parent="Rig/Armature/Potma/Armature_Potma" index="0"]
-bones/0/scale = Vector3(1, 1.32458, 1)
+[node name="Skeleton3D" parent="Rig/Armature/Potma/Armature_Potma" index="1"]
+bones/0/scale = Vector3(1.0001, 1.5874, 1)
 bones/1/rotation = Quaternion(-1.00248e-09, 5.5555e-08, -0.0107977, 0.999942)
 bones/2/rotation = Quaternion(-1.04018e-15, 2.25622e-15, 1.16415e-10, 1)
-bones/3/position = Vector3(2.79865e-08, 0.358536, 3.81086e-08)
+bones/3/position = Vector3(0.00114547, 0.513367, 4.67408e-08)
 bones/3/rotation = Quaternion(-0.140121, -0.0307609, 0.110543, 0.983463)
-bones/4/rotation = Quaternion(0.0345456, -0.0386177, 0.134765, 0.989522)
-bones/5/rotation = Quaternion(-0.0148717, -0.0172288, 0.113554, 0.993271)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(0.0372376, -0.0643187, 0.236653, 0.968747)
+bones/5/rotation = Quaternion(-0.0148716, -0.0172288, 0.113554, 0.993271)
 bones/6/rotation = Quaternion(-0.071867, 0.0684472, -0.184214, 0.977863)
-bones/7/rotation = Quaternion(0.188993, 0.0152421, 0.0254227, 0.981531)
-bones/8/rotation = Quaternion(-0.00448511, -0.00319855, 0.800076, 0.599874)
-bones/9/rotation = Quaternion(0.00141113, 0.00375397, -0.428599, 0.903486)
+bones/7/rotation = Quaternion(0.189588, 0.0477719, -0.12417, 0.972808)
+bones/8/rotation = Quaternion(-0.00537612, 0.00131138, 0.0568373, 0.998368)
+bones/9/rotation = Quaternion(0.00142786, 0.00188759, -0.238067, 0.971246)
 bones/10/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(0.00447301, -0.00344315, 0.829751, -0.558105)
-bones/12/rotation = Quaternion(0.00105981, -0.00233975, 0.283483, 0.958974)
-bones/13/position = Vector3(-0.382793, 0.450885, 0.200673)
-bones/13/rotation = Quaternion(0.105433, -0.0284434, 0.116423, 0.987178)
+bones/11/rotation = Quaternion(0.00521291, 0.00148207, 0.0316859, -0.999483)
+bones/12/rotation = Quaternion(0.00104751, -0.000676199, 0.137867, 0.99045)
+bones/13/position = Vector3(-0.381927, 0.538961, 0.200674)
+bones/13/rotation = Quaternion(0.0887316, -0.0233445, 0.237803, 0.96697)
 bones/13/scale = Vector3(1, 1, 1)
 bones/14/position = Vector3(-0.0208587, 0.304109, 0.0642175)
 bones/14/rotation = Quaternion(0.266624, 0.39159, -0.244032, 0.846178)
@@ -150,21 +146,23 @@ bones/15/rotation = Quaternion(0.240114, 0.409043, -0.222159, 0.851865)
 bones/16/position = Vector3(0.0236655, 0.298314, -0.0304072)
 bones/16/rotation = Quaternion(0.20616, 0.418618, -0.201377, 0.861223)
 bones/17/rotation = Quaternion(0.00304194, 0.537803, -0.277137, 0.796212)
-bones/18/position = Vector3(0.628214, 0.228988, 0.247396)
+bones/18/position = Vector3(0.628974, 0.328799, 0.247396)
 bones/18/rotation = Quaternion(0.110839, -0.266297, 0.394952, 0.872246)
 bones/18/scale = Vector3(1, 1, 1)
-bones/19/position = Vector3(0.0208585, 0.304108, 0.0642176)
-bones/19/rotation = Quaternion(0.235988, -0.479229, 0.236807, 0.811524)
-bones/20/position = Vector3(-0.00649532, 0.304355, 0.0190343)
-bones/20/rotation = Quaternion(0.199051, -0.495153, 0.214235, 0.818111)
-bones/21/position = Vector3(-0.0236655, 0.298314, -0.0304071)
-bones/21/rotation = Quaternion(0.153815, -0.50203, 0.192495, 0.829007)
-bones/22/position = Vector3(-0.0340618, 0.237541, -0.0759834)
-bones/22/rotation = Quaternion(-0.00322859, -0.473188, 0.33023, 0.81672)
-bones/23/rotation = Quaternion(0.930533, 5.00142e-08, 4.95051e-07, 0.366209)
+bones/19/position = Vector3(0.0370811, 0.301376, 0.0534174)
+bones/19/rotation = Quaternion(-0.199673, -0.45444, 0.0112712, 0.868037)
+bones/20/position = Vector3(0.00883448, 0.300155, 0.00879566)
+bones/20/rotation = Quaternion(-0.24621, -0.459326, -0.0053726, 0.853447)
+bones/21/position = Vector3(-0.0158549, 0.287331, -0.0358041)
+bones/21/rotation = Quaternion(-0.297263, -0.451824, -0.0270239, 0.84069)
+bones/22/position = Vector3(-0.0734249, 0.255457, -0.0495475)
+bones/22/rotation = Quaternion(-0.404903, -0.330695, 0.093094, 0.847365)
+bones/23/rotation = Quaternion(0.449654, 0.00117715, 0.00187848, 0.8932)
 bones/24/position = Vector3(0.161945, 0.0100626, -0.305785)
-bones/24/rotation = Quaternion(0.0124092, 0.00957079, 0.369871, 0.928951)
-bones/25/rotation = Quaternion(0.986952, -0.0106574, -0.00173485, 0.160652)
+bones/24/rotation = Quaternion(0.0119517, 0.0103245, 0.426831, 0.904193)
+bones/25/position = Vector3(-0.00373613, 0.0986277, -0.0603431)
+bones/25/rotation = Quaternion(0.961951, -0.0103875, -0.00294811, 0.273008)
+bones/25/scale = Vector3(1, 1, 1)
 bones/26/position = Vector3(-0.273048, 0.0199177, -0.231511)
 bones/26/rotation = Quaternion(0.216417, 0.0155211, 0.0104256, 0.976122)
 
@@ -177,10 +175,15 @@ root_node = NodePath("%PlayerAnimationTree/../Armature/Potma")
 tree_root = SubResource("AnimationNodeBlendTree_2ieo8")
 advance_expression_base_node = NodePath("../..")
 anim_player = NodePath("../Armature/Potma/AnimationPlayer")
-parameters/JumpOneShot/active = false
-parameters/JumpOneShot/internal_active = false
-parameters/JumpOneShot/request = 0
-parameters/UpperBodyLocomotion/Movement/blend_position = 0.109106
+parameters/DrinkOneShot/active = 0.0
+parameters/DrinkOneShot/internal_active = -0.0705986
+parameters/DrinkOneShot/request = 0
+parameters/HitOneShot/active = false
+parameters/HitOneShot/internal_active = false
+parameters/HitOneShot/request = 0
+parameters/StaffHitOneShot/active = false
+parameters/StaffHitOneShot/internal_active = false
+parameters/StaffHitOneShot/request = 0
 
 [node name="CameraPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.61594, 0)
@@ -265,5 +268,9 @@ label_settings = SubResource("LabelSettings_hg6s5")
 visible = false
 
 [node name="PotmaSounds" type="Node" parent="."]
+script = ExtResource("9_hg6s5")
+
+[node name="CombatSystem" type="Node" parent="."]
+script = ExtResource("10_2ieo8")
 
 [editable path="Rig/Armature/Potma"]

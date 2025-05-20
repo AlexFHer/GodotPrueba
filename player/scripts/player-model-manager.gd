@@ -11,7 +11,7 @@ var potionTypeToTextureLookUp: Dictionary[PotionTypes.PotionType, CompressedText
 	PotionTypes.PotionType.Jump: bodyBaseColorBlue
 }
 
-@onready var bodyMeshNode: MeshInstance3D = $Armature/Potma/Armature_Potma/Skeleton3D/MainBody_001;
+@onready var bodyMeshNode: MeshInstance3D = $Armature/Potma/Armature_Potma/Skeleton3D/MainBody;
 
 @onready var potionPlaceHolder: MeshInstance3D = $Armature/Potma/Armature_Potma/Skeleton3D/Poti_placeHolder
 
