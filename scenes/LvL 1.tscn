@@ -1530,7 +1530,7 @@ shadow_enabled = true
 environment = SubResource("Environment_eq8v2")
 
 [node name="MainCharacter" parent="." instance=ExtResource("4_n1ihf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.86488, -12.3679, 79.0462)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95.2583, 21.8758, 25.2134)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="MainCharacter"]
 stream = ExtResource("27_87xxg")
