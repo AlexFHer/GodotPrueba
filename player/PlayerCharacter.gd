@@ -153,7 +153,13 @@ func dealDamage() -> void:
 	life -= 1;
 	lifeChanged.emit(life)
 	animation_tree.set("parameters/HitOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE);
-	# Animation hit
+	checkIfPlayerIsDead();
+
+func checkIfPlayerIsDead() -> void:
+	if life <= 0:
+		animation_tree.set("parameters/DieOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE);
+		await get_tree().create_timer(3).timeout
+		# TODO: implement game over
 
 func _is_player_moving_on_ground() -> bool:
 	return is_on_floor() and (abs(velocity.x) > 0.1 or abs(velocity.z) > 0.1)

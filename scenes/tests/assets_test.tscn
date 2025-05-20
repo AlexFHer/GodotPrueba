@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://p7m7neh87lyg"]
+[gd_scene load_steps=32 format=3 uid="uid://p7m7neh87lyg"]
 
 [ext_resource type="PackedScene" uid="uid://bbf8p4krgp531" path="res://assets/levels/levelManager.tscn" id="1_ad0rq"]
 [ext_resource type="PackedScene" uid="uid://bgp44hgj2ny5j" path="res://assets/arc/arc.tscn" id="1_ffoev"]
@@ -22,6 +22,8 @@
 [ext_resource type="PackedScene" uid="uid://b0yy54800oirl" path="res://assets/statue_tower/secret_tower.tscn" id="15_3gt13"]
 [ext_resource type="Script" uid="uid://cul11equ6lnw5" path="res://scripts/puzzles/fire-tower-all-active-puzzle.gd" id="18_b8nyo"]
 [ext_resource type="PackedScene" uid="uid://deo23lkuu8rao" path="res://assets/castle_lever/castle_lever.tscn" id="22_e1my4"]
+[ext_resource type="PackedScene" uid="uid://degbqjvqfd4lu" path="res://assets/patrolPoint/patrol-point.tscn" id="22_qhl0a"]
+[ext_resource type="PackedScene" uid="uid://cii1jxpiud2wy" path="res://assets/enemies/globrc-small/globrc-small.tscn" id="23_ouso1"]
 [ext_resource type="PackedScene" uid="uid://cani1cyqesgro" path="res://assets/castle_door/castle_door.tscn" id="23_prhcd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3onbp"]
@@ -67,11 +69,11 @@ levelCollectables = SubResource("Resource_je5t0")
 [node name="Floor" type="StaticBody3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(2.14047, 0, 0, 0, 1, 0, 0, 0, 1, 27.0803, 0, 0)
+transform = Transform3D(4.27385, 0, 0, 0, 1, 0, 0, 0, 1, 80.1142, 0, 0)
 mesh = SubResource("PlaneMesh_tv8gj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
-transform = Transform3D(5.45855, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(5.45855, 0, 0, 0, 1, 0, 0, 0, 1, 109.553, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_3onbp")
 
 [node name="Assets" type="Node" parent="."]
@@ -231,6 +233,33 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 17.8878, 1.5, -11.2776)
 
 [node name="CastleDoor" parent="Assets/Castle door" instance=ExtResource("23_prhcd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.026, 0.0736191, -17.4725)
+
+[node name="Enemies" type="Node" parent="Assets"]
+
+[node name="Globrc Small2" type="Node3D" parent="Assets/Enemies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.4019, -6.06641, -15.2375)
+
+[node name="Patrol point marker" parent="Assets/Enemies/Globrc Small2" instance=ExtResource("22_qhl0a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7728, 6.49066, -4.16511)
+
+[node name="Patrol point marker2" parent="Assets/Enemies/Globrc Small2" instance=ExtResource("22_qhl0a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.772804, 6.49066, -4.16511)
+
+[node name="Patrol point marker3" parent="Assets/Enemies/Globrc Small2" instance=ExtResource("22_qhl0a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3507, 6.49066, -4.16511)
+
+[node name="Patrol point marker4" parent="Assets/Enemies/Globrc Small2" instance=ExtResource("22_qhl0a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3507, 6.49066, 15.8349)
+
+[node name="Patrol point marker5" parent="Assets/Enemies/Globrc Small2" instance=ExtResource("22_qhl0a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6493, 6.49066, 15.8349)
+
+[node name="Patrol point marker6" parent="Assets/Enemies/Globrc Small2" instance=ExtResource("22_qhl0a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6493, 6.49066, 15.8349)
+
+[node name="Globrc Small" parent="Assets/Enemies/Globrc Small2" node_paths=PackedStringArray("patrolPoints") instance=ExtResource("23_ouso1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.704, 6.06641, -4.1293)
+patrolPoints = [NodePath("../Patrol point marker"), NodePath("../Patrol point marker2"), NodePath("../Patrol point marker3"), NodePath("../Patrol point marker4"), NodePath("../Patrol point marker5"), NodePath("../Patrol point marker6")]
 
 [node name="MainCharacter" parent="." instance=ExtResource("11_3onbp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.70081, 0.202615, 13.3133)

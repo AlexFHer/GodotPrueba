@@ -1,5 +1,7 @@
 extends Node
 
+@onready var _animation_tree: AnimationTree = %PlayerAnimationTree
+
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("toggleLeftPotion"):
 		print("toggleLeftPotion")
@@ -20,7 +22,7 @@ func usePotion() -> void:
 	if selectedPotionToMerge != PotionTypes.PotionType.None:
 		mergePotion();
 	else:
-		PlayerPotions.usePotion()
+		drinkPotion();
 
 func mergePotion() -> void:
 	var selectedPotionToMerge = PotionMergerService.selectedPotionToMerge;
@@ -28,3 +30,12 @@ func mergePotion() -> void:
 		PlayerPotions.usePotion()
 	else:
 		pass
+
+
+func drinkPotion() -> void: 
+	PlayerPotions.usePotion();
+	_animation_tree.set("parameters/DrinkOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+ 
+
+func play_drink_animation() -> void:
+	_animation_tree.set("parameters/DrinkOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)

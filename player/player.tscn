@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cf47i2djfslyw"]
+[gd_scene load_steps=35 format=3 uid="uid://cf47i2djfslyw"]
 
 [ext_resource type="Script" uid="uid://b3jy8x8um1xce" path="res://player/PlayerCharacter.gd" id="1_43pha"]
 [ext_resource type="Script" uid="uid://df8j4nq0qxet4" path="res://player/scripts/potions-manager.gd" id="2_86mlk"]
@@ -14,6 +14,11 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_itxij"]
 margin = 0.025
 height = 1.33974
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ebec5"]
+animation = &"Potma_Die"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_yllr7"]
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_8t03j"]
 
@@ -77,7 +82,10 @@ animation = &"PotmaStaff_Hit"
 animation = &"Potma_Drink"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_2ieo8"]
-graph_offset = Vector2(-231.866, -211.88)
+nodes/Die/node = SubResource("AnimationNodeAnimation_ebec5")
+nodes/Die/position = Vector2(780, 300)
+nodes/DieOneShot/node = SubResource("AnimationNodeOneShot_yllr7")
+nodes/DieOneShot/position = Vector2(1100, -60)
 nodes/DrinkOneShot/node = SubResource("AnimationNodeOneShot_8t03j")
 nodes/DrinkOneShot/position = Vector2(60, 0)
 nodes/GetHit/node = SubResource("AnimationNodeAnimation_yllr7")
@@ -89,11 +97,11 @@ nodes/Locomotion/position = Vector2(-360, 0)
 nodes/StaffHit/node = SubResource("AnimationNodeAnimation_tqiix")
 nodes/StaffHit/position = Vector2(360, 300)
 nodes/StaffHitOneShot/node = SubResource("AnimationNodeOneShot_hg6s5")
-nodes/StaffHitOneShot/position = Vector2(700, -80)
+nodes/StaffHitOneShot/position = Vector2(740, -60)
 nodes/drink/node = SubResource("AnimationNodeAnimation_wodsf")
 nodes/drink/position = Vector2(-240, 300)
-nodes/output/position = Vector2(980, -60)
-node_connections = [&"DrinkOneShot", 0, &"Locomotion", &"DrinkOneShot", 1, &"drink", &"HitOneShot", 0, &"DrinkOneShot", &"HitOneShot", 1, &"GetHit", &"StaffHitOneShot", 0, &"HitOneShot", &"StaffHitOneShot", 1, &"StaffHit", &"output", 0, &"StaffHitOneShot"]
+nodes/output/position = Vector2(1360, -60)
+node_connections = [&"DieOneShot", 0, &"StaffHitOneShot", &"DieOneShot", 1, &"Die", &"DrinkOneShot", 0, &"Locomotion", &"DrinkOneShot", 1, &"drink", &"HitOneShot", 0, &"DrinkOneShot", &"HitOneShot", 1, &"GetHit", &"StaffHitOneShot", 0, &"HitOneShot", &"StaffHitOneShot", 1, &"StaffHit", &"output", 0, &"DieOneShot"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wff3b"]
 
@@ -124,20 +132,20 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 
 bones/0/scale = Vector3(1.0001, 1.5874, 1)
 bones/1/rotation = Quaternion(-1.00248e-09, 5.5555e-08, -0.0107977, 0.999942)
 bones/2/rotation = Quaternion(-1.04018e-15, 2.25622e-15, 1.16415e-10, 1)
-bones/3/position = Vector3(0.00114547, 0.513367, 4.67408e-08)
+bones/3/position = Vector3(0.00143874, 0.536504, 9.41239e-08)
 bones/3/rotation = Quaternion(-0.140121, -0.0307609, 0.110543, 0.983463)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/rotation = Quaternion(0.0372376, -0.0643187, 0.236653, 0.968747)
 bones/5/rotation = Quaternion(-0.0148716, -0.0172288, 0.113554, 0.993271)
 bones/6/rotation = Quaternion(-0.071867, 0.0684472, -0.184214, 0.977863)
 bones/7/rotation = Quaternion(0.189588, 0.0477719, -0.12417, 0.972808)
-bones/8/rotation = Quaternion(-0.00537612, 0.00131138, 0.0568373, 0.998368)
+bones/8/rotation = Quaternion(-0.00547344, 0.000651747, 0.181197, 0.983431)
 bones/9/rotation = Quaternion(0.00142786, 0.00188759, -0.238067, 0.971246)
 bones/10/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(0.00521291, 0.00148207, 0.0316859, -0.999483)
+bones/11/rotation = Quaternion(0.00533135, 0.000844091, 0.156469, -0.987668)
 bones/12/rotation = Quaternion(0.00104751, -0.000676199, 0.137867, 0.99045)
-bones/13/position = Vector3(-0.381927, 0.538961, 0.200674)
-bones/13/rotation = Quaternion(0.0887316, -0.0233445, 0.237803, 0.96697)
+bones/13/position = Vector3(-0.381471, 0.574947, 0.200674)
+bones/13/rotation = Quaternion(-0.00942019, 0.00240713, 0.238052, 0.971204)
 bones/13/scale = Vector3(1, 1, 1)
 bones/14/position = Vector3(-0.0208587, 0.304109, 0.0642175)
 bones/14/rotation = Quaternion(0.266624, 0.39159, -0.244032, 0.846178)
@@ -146,20 +154,20 @@ bones/15/rotation = Quaternion(0.240114, 0.409043, -0.222159, 0.851865)
 bones/16/position = Vector3(0.0236655, 0.298314, -0.0304072)
 bones/16/rotation = Quaternion(0.20616, 0.418618, -0.201377, 0.861223)
 bones/17/rotation = Quaternion(0.00304194, 0.537803, -0.277137, 0.796212)
-bones/18/position = Vector3(0.628974, 0.328799, 0.247396)
+bones/18/position = Vector3(0.629292, 0.353883, 0.247396)
 bones/18/rotation = Quaternion(0.110839, -0.266297, 0.394952, 0.872246)
 bones/18/scale = Vector3(1, 1, 1)
-bones/19/position = Vector3(0.0370811, 0.301376, 0.0534174)
+bones/19/position = Vector3(0.0369323, 0.301401, 0.0535165)
 bones/19/rotation = Quaternion(-0.199673, -0.45444, 0.0112712, 0.868037)
-bones/20/position = Vector3(0.00883448, 0.300155, 0.00879566)
-bones/20/rotation = Quaternion(-0.24621, -0.459326, -0.0053726, 0.853447)
-bones/21/position = Vector3(-0.0158549, 0.287331, -0.0358041)
-bones/21/rotation = Quaternion(-0.297263, -0.451824, -0.0270239, 0.84069)
-bones/22/position = Vector3(-0.0734249, 0.255457, -0.0495475)
-bones/22/rotation = Quaternion(-0.404903, -0.330695, 0.093094, 0.847365)
-bones/23/rotation = Quaternion(0.449654, 0.00117715, 0.00187848, 0.8932)
+bones/20/position = Vector3(0.00869393, 0.300193, 0.00888955)
+bones/20/rotation = Quaternion(-0.24621, -0.459326, -0.00537261, 0.853447)
+bones/21/position = Vector3(-0.0161048, 0.287682, -0.0356314)
+bones/21/rotation = Quaternion(-0.297263, -0.451823, -0.0270239, 0.84069)
+bones/22/position = Vector3(-0.0730639, 0.255292, -0.0497899)
+bones/22/rotation = Quaternion(-0.404903, -0.330695, 0.0930941, 0.847365)
+bones/23/rotation = Quaternion(0.361885, 0.00111229, 0.00177261, 0.932221)
 bones/24/position = Vector3(0.161945, 0.0100626, -0.305785)
-bones/24/rotation = Quaternion(0.0119517, 0.0103245, 0.426831, 0.904193)
+bones/24/rotation = Quaternion(0.0119992, 0.0102722, 0.422931, 0.906025)
 bones/25/position = Vector3(-0.00373613, 0.0986277, -0.0603431)
 bones/25/rotation = Quaternion(0.961951, -0.0103875, -0.00294811, 0.273008)
 bones/25/scale = Vector3(1, 1, 1)
@@ -175,6 +183,9 @@ root_node = NodePath("%PlayerAnimationTree/../Armature/Potma")
 tree_root = SubResource("AnimationNodeBlendTree_2ieo8")
 advance_expression_base_node = NodePath("../..")
 anim_player = NodePath("../Armature/Potma/AnimationPlayer")
+parameters/DieOneShot/active = false
+parameters/DieOneShot/internal_active = false
+parameters/DieOneShot/request = 0
 parameters/DrinkOneShot/active = 0.0
 parameters/DrinkOneShot/internal_active = -0.0705986
 parameters/DrinkOneShot/request = 0
