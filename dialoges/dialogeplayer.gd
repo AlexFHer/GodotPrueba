@@ -25,7 +25,7 @@ func _input(event):
 func next_script():
     current_dialogue_id += 1
     if current_dialogue_id >= len(dialogue):
-        queue_free() # o hide() si quieres ocultar el diálogo
+        queue_free()
         return
 
     var entry = dialogue[current_dialogue_id]

@@ -4,6 +4,9 @@ var player: Node = null
 var player_in_chat_zone: bool = false
 var is_chatting: bool = false
 
+@export var dialogue_scene: PackedScene
+@export_file("*.json") var dialogue_file
+
 @export var dialogue_text: String = "Hola, soy un NPC."
 
 func _process(delta):
@@ -25,4 +28,6 @@ func _on_body_exited(body: Node3D) -> void:
 func start_dialogue():
     is_chatting = true
     print(dialogue_text)
-    # Aquí podrías enviar un mensaje al DialogueManager si tienes uno
+    var dialogue_instance = dialogue_scene.instantiate()
+    get_tree().get_root().add_child(dialogue_instance)
+    dialogue_instance.d_file = dialogue_file 

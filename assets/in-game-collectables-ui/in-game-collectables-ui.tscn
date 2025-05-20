@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcugk5tgimuv4"]
+[gd_scene load_steps=6 format=3 uid="uid://bcugk5tgimuv4"]
 
 [ext_resource type="Script" uid="uid://bavsraayp58xn" path="res://assets/in-game-collectables-ui/in-game-collectables-ui.gd" id="1_vc5c6"]
+[ext_resource type="Texture2D" uid="uid://drg0t7rgohfyt" path="res://assets/collectable/mythril/Mythrill_Icon.png" id="2_a1273"]
+[ext_resource type="Texture2D" uid="uid://d08xd48xv2kjh" path="res://assets/collectable/book/Book_icon.png" id="3_vl5cs"]
+[ext_resource type="Texture2D" uid="uid://heeexc5jx5pr" path="res://player/Potma_Icon.png" id="4_yh3sy"]
+[ext_resource type="Texture2D" uid="uid://dq5xlv3upf628" path="res://assets/key/Key_Icon.png" id="5_7q2y6"]
 
 [node name="In game collectables UI" type="Control"]
 layout_mode = 3
@@ -11,7 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vc5c6")
 
-[node name="CollectablesContainer" type="VBoxContainer" parent="."]
+[node name="Mithril" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -22,29 +26,64 @@ offset_right = -11.0
 offset_bottom = 65.0
 grow_horizontal = 0
 
-[node name="Mithril container" type="HBoxContainer" parent="CollectablesContainer"]
+[node name="Mithril container" type="HBoxContainer" parent="Mithril"]
 layout_mode = 2
 alignment = 2
 
-[node name="MithrilCountLabel" type="Label" parent="CollectablesContainer/Mithril container"]
+[node name="MithrilCountLabel" type="Label" parent="Mithril/Mithril container"]
+visible = false
 layout_mode = 2
 text = "Mithril"
 
-[node name="MithrilCount" type="Label" parent="CollectablesContainer/Mithril container"]
+[node name="MithrilCount" type="Label" parent="Mithril/Mithril container"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "0"
 
-[node name="BooksContainer" type="HBoxContainer" parent="CollectablesContainer"]
+[node name="MythrillIcon" type="Sprite2D" parent="Mithril"]
+position = Vector2(158, 21)
+texture = ExtResource("2_a1273")
+
+[node name="Book" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_right = 55.0
+offset_bottom = 40.0
+
+[node name="BooksContainer" type="HBoxContainer" parent="Book"]
 custom_minimum_size = Vector2(43.25, 22.47)
 layout_mode = 2
 alignment = 2
 
-[node name="BooksCountLabel" type="Label" parent="CollectablesContainer/BooksContainer"]
+[node name="BookIcon" type="Sprite2D" parent="Book/BooksContainer"]
+position = Vector2(30, 31)
+texture = ExtResource("3_vl5cs")
+
+[node name="BooksCountLabel" type="Label" parent="Book/BooksContainer"]
+visible = false
 layout_mode = 2
 text = "Books"
 
-[node name="BooksCount" type="Label" parent="CollectablesContainer/BooksContainer"]
+[node name="BooksCount" type="Label" parent="Book/BooksContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "0"
+
+[node name="Lifes" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 543.0
+offset_right = 583.0
+offset_bottom = 40.0
+
+[node name="PotmaIcon" type="Sprite2D" parent="Lifes"]
+position = Vector2(30, 34)
+texture = ExtResource("4_yh3sy")
+
+[node name="Key" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="KeyIcon" type="Sprite2D" parent="Key"]
+position = Vector2(1102, 603)
+texture = ExtResource("5_7q2y6")

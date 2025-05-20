@@ -1,6 +1,5 @@
-[gd_scene load_steps=154 format=4 uid="uid://bd31y7odxeu3"]
+[gd_scene load_steps=158 format=4 uid="uid://bd31y7odxeu3"]
 
-[ext_resource type="PackedScene" uid="uid://c7s1p2f2f6huh" path="res://scenes/main-menus/pause-menu/pause-menu.tscn" id="1_6g2lw"]
 [ext_resource type="Texture2D" uid="uid://bxascs40x5oel" path="res://Materials/Skybox/PjBUIr3.png" id="2_n1ihf"]
 [ext_resource type="PackedScene" uid="uid://cf47i2djfslyw" path="res://player/player.tscn" id="4_n1ihf"]
 [ext_resource type="PackedScene" uid="uid://xhkrf7v8lsoy" path="res://scenes/level1/LVL1_Blender.gltf" id="5_7idjg"]
@@ -25,9 +24,13 @@
 [ext_resource type="PackedScene" uid="uid://deo23lkuu8rao" path="res://assets/castle_lever/castle_lever.tscn" id="15_6wdta"]
 [ext_resource type="PackedScene" uid="uid://bp8ulxplapvk2" path="res://assets/collectable/book/book.tscn" id="16_m4385"]
 [ext_resource type="PackedScene" uid="uid://byu0b6177d1t6" path="res://assets/chests/magic_chest/magic_chest.tscn" id="16_uhwg3"]
+[ext_resource type="PackedScene" uid="uid://ex02udmugvjt" path="res://assets/potions/speed-potion/speed-potion.tscn" id="22_6grd1"]
+[ext_resource type="PackedScene" uid="uid://cyqqtvfimjbqb" path="res://assets/potions/jump-potion/jump-potion.tscn" id="23_glw7l"]
 [ext_resource type="PackedScene" uid="uid://cu673ns5f7wxu" path="res://assets/fire_towers/Tower_Fire_Puzzle.tscn" id="23_m4385"]
 [ext_resource type="PackedScene" uid="uid://b0yy54800oirl" path="res://assets/statue_tower/secret_tower.tscn" id="24_ebask"]
 [ext_resource type="AudioStream" uid="uid://euih35j1weh0" path="res://media/Music/01-Blooming-Spring.ogg" id="27_87xxg"]
+[ext_resource type="PackedScene" uid="uid://bbf8p4krgp531" path="res://assets/levels/levelManager.tscn" id="29_afy8w"]
+[ext_resource type="Script" uid="uid://c4t2n0gbu5cvl" path="res://assets/collectable/level-collectables.gd" id="30_6grd1"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qn70i"]
 panorama = ExtResource("2_n1ihf")
@@ -40,6 +43,12 @@ background_mode = 2
 sky = SubResource("Sky_hlhkn")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="Resource" id="Resource_glw7l"]
+script = ExtResource("30_6grd1")
+requiredMithrils = 65
+requiredBooks = 1
+metadata/_custom_type_script = "uid://c4t2n0gbu5cvl"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kixaa"]
 resource_name = "StoneHill"
@@ -1520,8 +1529,6 @@ data = PackedVector3Array(1.6239, 1.3531, 0.0705, -0.4425, -0.3022, -2.9344, 2.2
 
 [node name="LvL1" type="Node3D"]
 
-[node name="Pause menu" parent="." instance=ExtResource("1_6g2lw")]
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
@@ -1530,7 +1537,7 @@ shadow_enabled = true
 environment = SubResource("Environment_eq8v2")
 
 [node name="MainCharacter" parent="." instance=ExtResource("4_n1ihf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95.2583, 21.8758, 25.2134)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116.707, 16.6527, 25.2134)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="MainCharacter"]
 stream = ExtResource("27_87xxg")
@@ -1614,7 +1621,7 @@ transform = Transform3D(-0.651172, -0.0215788, -0.758623, -0.168892, 0.97865, 0.
 transform = Transform3D(-0.999342, -0.0331167, 0.0148349, -0.0331203, 0.999451, -1.12597e-09, -0.0148267, -0.000491336, -0.99989, 4.2907, 0.817137, 31.7184)
 
 [node name="Arc5" parent="Props/Arcs" instance=ExtResource("10_m4385")]
-transform = Transform3D(-0.730762, -0.0242163, 0.682203, -0.0331203, 0.999451, -1.20138e-09, -0.681829, -0.0225948, -0.731163, -14.9947, 0.817137, 57.6483)
+transform = Transform3D(-0.730762, -0.0242163, 0.682203, -0.0331203, 0.999451, -1.20138e-09, -0.681829, -0.0225948, -0.731163, -14.9947, 0.488036, 57.6483)
 
 [node name="Arc6" parent="Props/Arcs" instance=ExtResource("10_m4385")]
 transform = Transform3D(-0.984043, -0.0326097, -0.17492, -0.0331203, 0.999451, -1.46929e-10, 0.174824, 0.0057934, -0.984582, -51.3185, -0.148615, 41.1117)
@@ -1634,7 +1641,7 @@ transform = Transform3D(0.989796, 0, 0.142491, 0, 1, 0, -0.142491, 0, 0.989796, 
 transform = Transform3D(0.999143, 0, -0.0413874, 0, 1, 0, 0.0413874, 0, 0.999143, -3.94127, 18.2062, 95.738)
 
 [node name="secret_tower" parent="Props" instance=ExtResource("24_ebask")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5893, -0.621696, 16.8457)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5893, -16.974, 16.8457)
 
 [node name="Castle_Door" parent="Props" instance=ExtResource("14_87xxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.9324, 0.302734, 116.34)
@@ -1652,9 +1659,6 @@ transform = Transform3D(0.331354, 0, -0.943506, 0, 1, 0, 0.943506, 0, 0.331354, 
 
 [node name="Key" parent="Collectables" instance=ExtResource("9_gfmul")]
 transform = Transform3D(1.95, 0, 0, 0, 1.95, 0, 0, 0, 1.95, -14.6151, -14.2432, 78.7651)
-
-[node name="Fire-potion" parent="Collectables" instance=ExtResource("15_6iqwe")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -111.732, 14.9174, 10.0546)
 
 [node name="Mthrill" type="Node3D" parent="Collectables"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.798, 0.137118, 16.0822)
@@ -1690,7 +1694,7 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 29.1025, -0.157018, 19.2085)
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 41.6396, -1.05977, -14.4716)
 
 [node name="Mythril11" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 59.4272, -0.0484272, -4.83286)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 59.4272, -0.0484272, -9.94672)
 
 [node name="Mythril12" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 69.995, -0.407342, 10.7956)
@@ -1901,6 +1905,20 @@ transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 
 
 [node name="Book2" parent="Collectables/Mthrill" instance=ExtResource("16_m4385")]
 transform = Transform3D(-2.44929, 0, 0.0590894, 0, 2.45, 0, -0.0590894, 0, -2.44929, 32.1855, 13.8885, 170.626)
+
+[node name="Potions" type="Node3D" parent="Collectables"]
+
+[node name="Fire-potion" parent="Collectables/Potions" instance=ExtResource("15_6iqwe")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -111.732, 14.9174, 10.0546)
+
+[node name="Speed-potion" parent="Collectables/Potions" instance=ExtResource("22_6grd1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.7967, 0.786367, 2.71973)
+
+[node name="Jump-potion" parent="Collectables/Potions" instance=ExtResource("23_glw7l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.4779, -0.152254, 29.3302)
+
+[node name="Level" parent="." instance=ExtResource("29_afy8w")]
+levelCollectables = SubResource("Resource_glw7l")
 
 [node name="LVL1_Blender_Imported" type="Node3D" parent="."]
 metadata/run = true

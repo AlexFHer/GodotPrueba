@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ex02udmugvjt"]
+[gd_scene load_steps=5 format=3 uid="uid://ex02udmugvjt"]
 
 [ext_resource type="Script" uid="uid://ct5811vn57wbb" path="res://assets/potions/speed-potion/speed-potion.gd" id="1_kst2q"]
 [ext_resource type="PackedScene" uid="uid://m8exfj8q7dc8" path="res://assets/potions/speed-potion/model/SpeedPotion.glb" id="2_12w7m"]
+[ext_resource type="AudioStream" uid="uid://dlkhvub4ig8yr" path="res://assets/potions/sfx/PotionPickUp.ogg" id="3_bhbop"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rfo5y"]
 radius = 0.490874
@@ -20,5 +21,8 @@ transform = Transform3D(3.33333, 0, 0, 0, 3.33333, 0, 0, 0, 3.33333, 0, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.438389, 0)
 shape = SubResource("CapsuleShape3D_rfo5y")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_bhbop")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
