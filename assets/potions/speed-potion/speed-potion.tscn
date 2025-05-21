@@ -8,8 +8,9 @@
 radius = 0.490874
 height = 0.981748
 
-[node name="Speed-potion" type="Area3D"]
+[node name="Speed-potion" type="Area3D" node_paths=PackedStringArray("potionPickupAudio")]
 script = ExtResource("1_kst2q")
+potionPickupAudio = NodePath("AudioStreamPlayer3D")
 potionType = 2
 
 [node name="Model" type="Node3D" parent="."]
