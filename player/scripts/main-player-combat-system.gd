@@ -21,6 +21,13 @@ func _process(delta: float) -> void:
 
 func _play_staff_hit_animation() -> void:
 	_animation_tree.set("parameters/StaffHitOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	_on_staff_hit_animtion_start()
+
+func _on_staff_hit_animtion_start() -> void:
+	_set_cetre_collision(true)
+
+func _on_staff_hit_animation_end() -> void:
+	_set_cetre_collision(false)
 
 func _play_staff_fire_animation() -> void:
 	_animation_tree.set("parameters/StaffThrowOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
@@ -58,4 +65,4 @@ func _enable_attack() -> void:
 	_can_attack = true
 
 func _set_cetre_collision(enabled: bool) -> void:
-	_cetre_collision.disabled = enabled
+	_cetre_collision.disabled = !enabled

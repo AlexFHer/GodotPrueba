@@ -242,6 +242,8 @@ unique_name_in_owner = true
 transform = Transform3D(1, 2.00816e-08, 0, 1.97324e-08, 1, 0, -1.86265e-09, -1.86265e-09, 1, -0.016, 1.051, 0.0706533)
 
 [node name="CetreArea3D" type="Area3D" parent="Rig/CetreBoneAttachmen"]
+transform = Transform3D(0.776932, -0.609771, -0.156705, 0.582516, 0.790654, -0.188521, 0.238854, 0.055185, 0.969486, 0.0443184, 0.722715, -0.297706)
+top_level = true
 
 [node name="CetreCollision" type="CollisionShape3D" parent="Rig/CetreBoneAttachmen/CetreArea3D"]
 unique_name_in_owner = true

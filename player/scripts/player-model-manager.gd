@@ -16,8 +16,6 @@ var potionTypeToTextureLookUp: Dictionary[PotionTypes.PotionType, CompressedText
 @onready var potionPlaceHolder: MeshInstance3D = $Armature/Potma/Armature_Potma/Skeleton3D/Poti_placeHolder
 
 func _ready() -> void:
-	print(potionTypeToTextureLookUp);
-	# PlayerPotions.selectedPotionChanged.connect(_on_player_selected_potion_changed);
 	PlayerPotions.potionUsed.connect(_on_potion_used);
 	PlayerPotions.potionEffectFinished.connect(_on_potion_effect_finished);
 	change_body_mesh_albedo_texture(bodyBaseColor)
@@ -30,7 +28,6 @@ func _on_player_selected_potion_changed(potionType: PotionTypes.PotionType):
 	
 func change_body_mesh_albedo_based_on_potion_type(potionType: PotionTypes.PotionType) -> void:
 	var texture = potionTypeToTextureLookUp.get(potionType)
-	print(texture)
 	if texture:
 		change_body_mesh_albedo_texture(texture)
 	else:
