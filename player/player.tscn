@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cf47i2djfslyw"]
+[gd_scene load_steps=44 format=3 uid="uid://cf47i2djfslyw"]
 
 [ext_resource type="Script" uid="uid://b3jy8x8um1xce" path="res://player/PlayerCharacter.gd" id="1_43pha"]
 [ext_resource type="Script" uid="uid://df8j4nq0qxet4" path="res://player/scripts/potions-manager.gd" id="2_86mlk"]
@@ -13,6 +13,9 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_itxij"]
 margin = 0.025
 height = 1.33974
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hg6s5"]
+size = Vector3(2.32422, 0.882263, 1.14795)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_32hag"]
 animation = &"PotmaFireBall"
@@ -35,6 +38,9 @@ animation = &"PotmaFall"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8t03j"]
 animation = &"PotmaIdle"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e7oew"]
+animation = &"PotmaJump"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kb6p2"]
 animation = &"PotmaRun"
 
@@ -44,25 +50,9 @@ animation = &"PotmaWalk"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ebec5"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yllr7"]
-advance_mode = 2
-advance_expression = "!is_on_floor()"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kb6p2"]
 advance_mode = 2
 advance_expression = "is_on_floor() and is_moving()"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hg6s5"]
-advance_mode = 2
-advance_expression = "!is_on_floor()"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8t03j"]
-advance_mode = 2
-advance_expression = "is_on_floor() and is_moving()"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2ieo8"]
-advance_mode = 2
-advance_expression = "is_on_floor() and !is_moving()"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wodsf"]
 advance_mode = 2
@@ -76,25 +66,48 @@ advance_expression = "isSprinting"
 advance_mode = 2
 advance_expression = "!isSprinting"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tqiix"]
-advance_mode = 2
-advance_expression = "!is_on_floor()"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c35mf"]
 advance_mode = 2
 advance_expression = "!is_moving()"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hg6s5"]
+advance_mode = 2
+advance_expression = "!is_on_floor()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8t03j"]
+advance_mode = 2
+advance_expression = "is_on_floor() and is_moving()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2ieo8"]
+advance_mode = 2
+advance_expression = "is_on_floor() and !is_moving()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tqiix"]
+advance_mode = 2
+advance_expression = "!is_on_floor()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_65viv"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yllr7"]
+advance_mode = 2
+advance_expression = "!is_on_floor()"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wodsf"]
+states/End/position = Vector2(1030, 100)
 states/PotmaFall/node = SubResource("AnimationNodeAnimation_hg6s5")
-states/PotmaFall/position = Vector2(661, -15)
+states/PotmaFall/position = Vector2(650, -26)
 states/PotmaIdle/node = SubResource("AnimationNodeAnimation_8t03j")
 states/PotmaIdle/position = Vector2(334, -15)
+states/PotmaJump/node = SubResource("AnimationNodeAnimation_e7oew")
+states/PotmaJump/position = Vector2(839, 65)
 states/PotmaRun/node = SubResource("AnimationNodeAnimation_kb6p2")
 states/PotmaRun/position = Vector2(661, 166)
 states/PotmaWalk/node = SubResource("AnimationNodeAnimation_2ieo8")
 states/PotmaWalk/position = Vector2(334, 166)
-transitions = ["Start", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_ebec5"), "PotmaIdle", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_yllr7"), "PotmaIdle", "PotmaWalk", SubResource("AnimationNodeStateMachineTransition_kb6p2"), "PotmaWalk", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_hg6s5"), "PotmaFall", "PotmaWalk", SubResource("AnimationNodeStateMachineTransition_8t03j"), "PotmaFall", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_2ieo8"), "PotmaWalk", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_wodsf"), "PotmaWalk", "PotmaRun", SubResource("AnimationNodeStateMachineTransition_32hag"), "PotmaRun", "PotmaWalk", SubResource("AnimationNodeStateMachineTransition_e7oew"), "PotmaRun", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_tqiix"), "PotmaRun", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_c35mf")]
-graph_offset = Vector2(161, -69)
+transitions = ["Start", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_ebec5"), "PotmaIdle", "PotmaWalk", SubResource("AnimationNodeStateMachineTransition_kb6p2"), "PotmaWalk", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_wodsf"), "PotmaWalk", "PotmaRun", SubResource("AnimationNodeStateMachineTransition_32hag"), "PotmaRun", "PotmaWalk", SubResource("AnimationNodeStateMachineTransition_e7oew"), "PotmaRun", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_c35mf"), "PotmaWalk", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_hg6s5"), "PotmaFall", "PotmaWalk", SubResource("AnimationNodeStateMachineTransition_8t03j"), "PotmaFall", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_2ieo8"), "PotmaRun", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_tqiix"), "PotmaJump", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_65viv"), "PotmaIdle", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_yllr7")]
+graph_offset = Vector2(186, -164)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tqiix"]
 animation = &"PotmaStaff_Hit"
@@ -107,7 +120,7 @@ animation = &"PotmaStaff_Hit"
 animation = &"Potma_Drink"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_2ieo8"]
-graph_offset = Vector2(717.542, -220.758)
+graph_offset = Vector2(-577, -114)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_32hag")
 nodes/Animation/position = Vector2(1180, 300)
 nodes/Die/node = SubResource("AnimationNodeAnimation_ebec5")
@@ -133,10 +146,6 @@ nodes/drink/position = Vector2(-240, 300)
 nodes/output/position = Vector2(1700, -80)
 node_connections = [&"DieOneShot", 0, &"StaffHitOneShot", &"DieOneShot", 1, &"Die", &"DrinkOneShot", 0, &"Locomotion", &"DrinkOneShot", 1, &"drink", &"HitOneShot", 0, &"DrinkOneShot", &"HitOneShot", 1, &"GetHit", &"StaffHitOneShot", 0, &"HitOneShot", &"StaffHitOneShot", 1, &"StaffHit", &"StaffThrowOneShot", 0, &"DieOneShot", &"StaffThrowOneShot", 1, &"Animation", &"output", 0, &"StaffThrowOneShot"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hg6s5"]
-radius = 0.101246
-height = 1.08432
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_wff3b"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rgyib"]
@@ -157,56 +166,19 @@ unique_name_in_owner = true
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 script = ExtResource("2_hg6s5")
 
+[node name="StaffArea3D" type="Area3D" parent="Rig"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.654711, 0.722715, -2.04243)
+
+[node name="StaffCollision" type="CollisionShape3D" parent="Rig/StaffArea3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.662109, 0.105377, 0.731203)
+shape = SubResource("BoxShape3D_hg6s5")
+debug_color = Color(0.983944, 0, 0.348276, 0.42)
+
 [node name="Armature" type="Node3D" parent="Rig"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Potma" parent="Rig/Armature" instance=ExtResource("3_rgyib")]
-
-[node name="Skeleton3D" parent="Rig/Armature/Potma/Armature_Potma" index="1"]
-bones/0/scale = Vector3(1.0001, 1.5874, 1)
-bones/1/rotation = Quaternion(-1.00248e-09, 5.5555e-08, -0.0107977, 0.999942)
-bones/2/rotation = Quaternion(-1.04018e-15, 2.25622e-15, 1.16415e-10, 1)
-bones/3/position = Vector3(0.00114547, 0.513367, 4.67408e-08)
-bones/3/rotation = Quaternion(-0.140121, -0.0307609, 0.110543, 0.983463)
-bones/3/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(0.0372376, -0.0643187, 0.236653, 0.968747)
-bones/5/rotation = Quaternion(-0.0148716, -0.0172288, 0.113554, 0.993271)
-bones/6/rotation = Quaternion(-0.071867, 0.0684472, -0.184214, 0.977863)
-bones/7/rotation = Quaternion(0.189588, 0.0477719, -0.12417, 0.972808)
-bones/8/rotation = Quaternion(-0.00537612, 0.00131138, 0.0568373, 0.998368)
-bones/9/rotation = Quaternion(0.00142786, 0.00188759, -0.238067, 0.971246)
-bones/10/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(0.00521291, 0.00148207, 0.0316859, -0.999483)
-bones/12/rotation = Quaternion(0.00104751, -0.000676199, 0.137867, 0.99045)
-bones/13/position = Vector3(-0.381927, 0.538961, 0.200674)
-bones/13/rotation = Quaternion(0.0887316, -0.0233445, 0.237803, 0.96697)
-bones/13/scale = Vector3(1, 1, 1)
-bones/14/position = Vector3(-0.0208587, 0.304109, 0.0642175)
-bones/14/rotation = Quaternion(0.266624, 0.39159, -0.244032, 0.846178)
-bones/15/position = Vector3(0.00649542, 0.304355, 0.0190345)
-bones/15/rotation = Quaternion(0.240114, 0.409043, -0.222159, 0.851865)
-bones/16/position = Vector3(0.0236655, 0.298314, -0.0304072)
-bones/16/rotation = Quaternion(0.20616, 0.418618, -0.201377, 0.861223)
-bones/17/rotation = Quaternion(0.00304194, 0.537803, -0.277137, 0.796212)
-bones/18/position = Vector3(0.628974, 0.328799, 0.247396)
-bones/18/rotation = Quaternion(0.110839, -0.266297, 0.394952, 0.872246)
-bones/18/scale = Vector3(1, 1, 1)
-bones/19/position = Vector3(0.0370811, 0.301376, 0.0534174)
-bones/19/rotation = Quaternion(-0.199673, -0.45444, 0.0112712, 0.868037)
-bones/20/position = Vector3(0.00883448, 0.300155, 0.00879566)
-bones/20/rotation = Quaternion(-0.24621, -0.459326, -0.0053726, 0.853447)
-bones/21/position = Vector3(-0.0158549, 0.287331, -0.0358041)
-bones/21/rotation = Quaternion(-0.297263, -0.451824, -0.0270239, 0.84069)
-bones/22/position = Vector3(-0.0734249, 0.255457, -0.0495475)
-bones/22/rotation = Quaternion(-0.404903, -0.330695, 0.093094, 0.847365)
-bones/23/rotation = Quaternion(0.449654, 0.00117715, 0.00187848, 0.8932)
-bones/24/position = Vector3(0.161945, 0.0100626, -0.305785)
-bones/24/rotation = Quaternion(0.0119517, 0.0103245, 0.426831, 0.904193)
-bones/25/position = Vector3(-0.00373613, 0.0986277, -0.0603431)
-bones/25/rotation = Quaternion(0.961951, -0.0103875, -0.00294811, 0.273008)
-bones/25/scale = Vector3(1, 1, 1)
-bones/26/position = Vector3(-0.273048, 0.0199177, -0.231511)
-bones/26/rotation = Quaternion(0.216417, 0.0155211, 0.0104256, 0.976122)
 
 [node name="PlayerAnimationTree" type="AnimationTree" parent="Rig"]
 unique_name_in_owner = true
@@ -230,25 +202,16 @@ parameters/StaffThrowOneShot/active = 0.0
 parameters/StaffThrowOneShot/internal_active = 0.0
 parameters/StaffThrowOneShot/request = 0
 
-[node name="CetreBoneAttachmen" type="BoneAttachment3D" parent="Rig"]
-transform = Transform3D(-0.625865, 0.779975, -0.0290465, 1.2174, 1.01815, -0.0206807, 0.00846796, -0.0304268, -0.999501, -0.158433, 0.586315, 0.305785)
+[node name="StaffBoneAttachment" type="BoneAttachment3D" parent="Rig"]
+transform = Transform3D(-0.485319, 0.87412, 0.0194776, 0.873813, 0.484136, 0.0454179, 0.0302709, 0.039062, -0.998778, -0.160798, 0.259295, 0.305785)
 bone_name = "Cetro"
 bone_idx = 24
 use_external_skeleton = true
 external_skeleton = NodePath("../Armature/Potma/Armature_Potma/Skeleton3D")
 
-[node name="ShootPosition" type="Node3D" parent="Rig/CetreBoneAttachmen"]
+[node name="ShootPosition" type="Node3D" parent="Rig/StaffBoneAttachment"]
 unique_name_in_owner = true
 transform = Transform3D(1, 2.00816e-08, 0, 1.97324e-08, 1, 0, -1.86265e-09, -1.86265e-09, 1, -0.016, 1.051, 0.0706533)
-
-[node name="CetreArea3D" type="Area3D" parent="Rig/CetreBoneAttachmen"]
-transform = Transform3D(0.776932, -0.609771, -0.156705, 0.582516, 0.790654, -0.188521, 0.238854, 0.055185, 0.969486, 0.0443184, 0.722715, -0.297706)
-top_level = true
-
-[node name="CetreCollision" type="CollisionShape3D" parent="Rig/CetreBoneAttachmen/CetreArea3D"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.37786e-09, 0.352143, -1.86265e-09)
-shape = SubResource("CapsuleShape3D_hg6s5")
 
 [node name="CameraPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.61594, 0)
@@ -339,5 +302,7 @@ script = ExtResource("10_2ieo8")
 unique_name_in_owner = true
 wait_time = 2.0
 one_shot = true
+
+[connection signal="body_entered" from="Rig/StaffArea3D" to="CombatSystem" method="_on_staff_area_3d_body_entered"]
 
 [editable path="Rig/Armature/Potma"]

@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://deo23lkuu8rao"]
+[gd_scene load_steps=8 format=3 uid="uid://deo23lkuu8rao"]
 
-[ext_resource type="PackedScene" uid="uid://ioticol13j7f" path="res://assets/castle_lever/model/Castle_Lever.glb" id="1_dlxsy"]
+[ext_resource type="PackedScene" uid="uid://drn281nw2kgoi" path="res://assets/castle_lever/model/Castle_Lever.glb" id="1_dlxsy"]
 [ext_resource type="Script" uid="uid://b3qy1s7dm55n8" path="res://assets/castle_lever/castle-lever.gd" id="1_dqx04"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w6ghc"]
@@ -11,14 +11,20 @@ animation = &"LeverAction"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w6ghc"]
 advance_mode = 2
-advance_condition = &"active"
+advance_expression = "active"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_a03qc"]
 states/LeverAction/node = SubResource("AnimationNodeAnimation_dqx04")
-states/LeverAction/position = Vector2(372, 71)
+states/LeverAction/position = Vector2(490, 100)
 transitions = ["Start", "LeverAction", SubResource("AnimationNodeStateMachineTransition_w6ghc")]
 
-[node name="Castle_Lever" type="StaticBody3D"]
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_pbiih"]
+graph_offset = Vector2(-447, 13)
+nodes/LeverStateMachine/node = SubResource("AnimationNodeStateMachine_a03qc")
+nodes/LeverStateMachine/position = Vector2(-280, 140)
+node_connections = [&"output", 0, &"LeverStateMachine"]
+
+[node name="Castle_Lever" type="AnimatableBody3D" groups=["CanGetHit"]]
 script = ExtResource("1_dqx04")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -29,14 +35,13 @@ shape = SubResource("BoxShape3D_w6ghc")
 
 [node name="Castle_Lever" parent="Model" instance=ExtResource("1_dlxsy")]
 
-[node name="Lever" parent="Model/Castle_Lever" index="1"]
-transform = Transform3D(0.781785, -0.169937, 0, 0.623548, 0.213061, 0, 0, 0, 1, 0, 0, 0)
+[node name="Skeleton3D" parent="Model/Castle_Lever/Lver" index="0"]
+bones/0/rotation = Quaternion(6.15165e-08, 1.1798e-07, -0.391488, 0.920183)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../Model/Castle_Lever")
-tree_root = SubResource("AnimationNodeStateMachine_a03qc")
+tree_root = SubResource("AnimationNodeBlendTree_pbiih")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../Model/Castle_Lever/AnimationPlayer")
-parameters/conditions/active = false
 
 [editable path="Model/Castle_Lever"]

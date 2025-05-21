@@ -4,7 +4,7 @@ extends Node
 @onready var _attack_reset_timer: Timer = %AttackResetTimer
 @onready var _shoot_position: Node3D = %ShootPosition
 @onready var _rig: Node3D = %Rig
-@onready var _cetre_collision: CollisionShape3D = %CetreCollision
+@onready var _staff_collision: CollisionShape3D = %StaffCollision
 
 var current_active_potion: PotionTypes.PotionType = PotionTypes.PotionType.None
 var _can_attack := true
@@ -13,21 +13,19 @@ func _ready() -> void:
 	PlayerPotions.potionEffectFinished.connect(_on_potion_effect_finished)
 	PlayerPotions.potionUsed.connect(_on_potion_used)
 	_attack_reset_timer.timeout.connect(_enable_attack)
+	_set_staff_collision(false)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("attack"):
 		if _can_attack:
 			attack()
 
 func _play_staff_hit_animation() -> void:
 	_animation_tree.set("parameters/StaffHitOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-	_on_staff_hit_animtion_start()
-
-func _on_staff_hit_animtion_start() -> void:
-	_set_cetre_collision(true)
+	_set_staff_collision(true)
 
 func _on_staff_hit_animation_end() -> void:
-	_set_cetre_collision(false)
+	_set_staff_collision(false)
 
 func _play_staff_fire_animation() -> void:
 	_animation_tree.set("parameters/StaffThrowOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
@@ -63,6 +61,12 @@ func _disable_attack() -> void:
 	
 func _enable_attack() -> void:
 	_can_attack = true
+	
+func _set_staff_collision(enabled: bool) -> void:
+	_staff_collision.disabled = !enabled
 
-func _set_cetre_collision(enabled: bool) -> void:
-	_cetre_collision.disabled = !enabled
+func _on_staff_area_3d_body_entered(body:Node3D) -> void:
+	print("Staff hit", body)
+	if body.is_in_group("CanGetHit"):
+		if body.has_method("get_hit"):
+			body.get_hit()
