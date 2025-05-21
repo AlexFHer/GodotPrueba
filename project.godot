@@ -46,6 +46,7 @@ Enemy="Enemies"
 CanPatrol="Entities which can patrol"
 Elevator=""
 FireBall=""
+CanGetHit="Entities which can get damaged"
 
 [gui]
 

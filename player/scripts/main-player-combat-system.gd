@@ -4,6 +4,7 @@ extends Node
 @onready var _attack_reset_timer: Timer = %AttackResetTimer
 @onready var _shoot_position: Node3D = %ShootPosition
 @onready var _rig: Node3D = %Rig
+@onready var _cetre_collision: CollisionShape3D = %CetreCollision
 
 var current_active_potion: PotionTypes.PotionType = PotionTypes.PotionType.None
 var _can_attack := true
@@ -55,3 +56,6 @@ func _disable_attack() -> void:
 	
 func _enable_attack() -> void:
 	_can_attack = true
+
+func _set_cetre_collision(enabled: bool) -> void:
+	_cetre_collision.disabled = enabled
