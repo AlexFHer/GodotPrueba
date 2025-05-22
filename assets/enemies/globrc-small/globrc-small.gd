@@ -105,17 +105,18 @@ func look_at_current_direction(delta: float):
 
 
 func patrol_point_reached():
-	if enemyState == EnemyState.FOLLOWING:
+	if enemyState == EnemyState.FOLLOWING or enemyState == EnemyState.DEAD:
 		return
 
-	enemyState = EnemyState.IDLE
+	
+	_change_state(EnemyState.IDLE)
 	var random = randi() % 3 + 3
 	await get_tree().create_timer(random).timeout
 	if enemyState == EnemyState.FOLLOWING:
 		return
 
 	get_next_patrol_point()
-	enemyState = EnemyState.PATROLLING
+	_change_state(EnemyState.PATROLLING)
 
 # TODO: Pasarlo a un prefab que gestion los puntos de control
 func get_next_patrol_point():
@@ -141,11 +142,11 @@ func _on_player_search_area_body_entered(body:Node3D) -> void:
 	if body.is_in_group("MainPlayer"):
 		player_out_of_bounds_timer.stop()
 		targetToFollow = body
-		enemyState = EnemyState.FOLLOWING
+		_change_state(EnemyState.FOLLOWING)
 
 func _on_player_out_of_bounds_timer_timeout() -> void:
 		targetToFollow = null
-		enemyState = EnemyState.PATROLLING
+		_change_state(EnemyState.PATROLLING)
 		player_out_of_bounds_timer.stop()
 
 func _on_player_search_area_body_exited(body: Node3D) -> void:
@@ -186,10 +187,15 @@ func get_hit():
 	die()
 
 func die():
-	enemyState = EnemyState.DEAD
+	_change_state(EnemyState.DEAD)
 	_animation_tree.set("parameters/DieOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	await get_tree().create_timer(3.0).timeout
 	queue_free()
 
 func is_dead() -> bool:
 	return enemyState == EnemyState.DEAD
+
+func _change_state(newState: EnemyState) -> void:
+	if enemyState == EnemyState.DEAD:
+		return
+	enemyState = newState
