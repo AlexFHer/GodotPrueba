@@ -187,3 +187,6 @@ func _is_player_not_moving_on_ground() -> bool:
 
 func is_moving() -> bool:
 	return abs(velocity.x) > 0.1 or abs(velocity.z) > 0.1
+
+func get_to_checkpoint() -> void:
+	position = Vector3(0, 0, 0)

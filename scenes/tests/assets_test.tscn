@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://p7m7neh87lyg"]
+[gd_scene load_steps=33 format=3 uid="uid://p7m7neh87lyg"]
 
 [ext_resource type="PackedScene" uid="uid://bbf8p4krgp531" path="res://assets/levels/levelManager.tscn" id="1_ad0rq"]
 [ext_resource type="PackedScene" uid="uid://bgp44hgj2ny5j" path="res://assets/arc/arc.tscn" id="1_ffoev"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://degbqjvqfd4lu" path="res://assets/patrolPoint/patrol-point.tscn" id="22_qhl0a"]
 [ext_resource type="PackedScene" uid="uid://cii1jxpiud2wy" path="res://assets/enemies/globrc-small/globrc-small.tscn" id="23_ouso1"]
 [ext_resource type="PackedScene" uid="uid://cani1cyqesgro" path="res://assets/castle_door/castle_door.tscn" id="23_prhcd"]
+[ext_resource type="PackedScene" uid="uid://0kbp5ta03h5x" path="res://assets/death-area/death-area.tscn" id="26_ouso1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3onbp"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -266,5 +267,8 @@ transform = Transform3D(1, -0.000168775, -6.33838e-05, 0.000168802, 1, 0.0004915
 
 [node name="Castle_Lever" parent="." instance=ExtResource("22_e1my4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.6926, 0.0592519, -12.6781)
+
+[node name="Death-area" parent="." instance=ExtResource("26_ouso1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.5226, -24.7184, 8.64645)
 
 [connection signal="active_changed" from="Castle_Lever" to="Assets/Castle door/CastleDoor" method="open_door"]
