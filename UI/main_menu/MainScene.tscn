@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://ighrfiwlmwnq"]
 
-[ext_resource type="Script" uid="uid://bx6kt7g2kl4j0" path="res://scenes/main_scene.gd" id="1_echbf"]
-[ext_resource type="VideoStream" uid="uid://cqkqqeimgx010" path="res://media/videos/Room_With_Fade_And_Title.ogv" id="2_611at"]
-[ext_resource type="VideoStream" uid="uid://n35ik0wjb0um" path="res://media/videos/Transition.ogv" id="3_611at"]
-[ext_resource type="VideoStream" uid="uid://dp5jgvfhfcr3w" path="res://media/videos/Book.ogv" id="4_k24pf"]
-[ext_resource type="Theme" uid="uid://u1hmgwnpsf0x" path="res://themes/Main_Menu.tres" id="5_1wiy7"]
-[ext_resource type="AudioStream" uid="uid://dacxd0d7w533x" path="res://media/Music/MA_IGAMP3_TheWorldOfSorcerersAndMagic_Looped.ogg" id="5_k24pf"]
+[ext_resource type="Script" uid="uid://bx6kt7g2kl4j0" path="res://scenes/main_scene.gd" id="1_gjggf"]
+[ext_resource type="VideoStream" uid="uid://cqkqqeimgx010" path="res://media/videos/Room_With_Fade_And_Title.ogv" id="2_hrww0"]
+[ext_resource type="VideoStream" uid="uid://n35ik0wjb0um" path="res://media/videos/Transition.ogv" id="3_7l1wp"]
+[ext_resource type="VideoStream" uid="uid://dp5jgvfhfcr3w" path="res://media/videos/Book.ogv" id="4_6q0ml"]
+[ext_resource type="Theme" uid="uid://u1hmgwnpsf0x" path="res://themes/Main_Menu.tres" id="5_487xm"]
+[ext_resource type="AudioStream" uid="uid://dacxd0d7w533x" path="res://media/Music/MA_IGAMP3_TheWorldOfSorcerersAndMagic_Looped.ogg" id="6_gsqen"]
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -14,14 +14,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_echbf")
+script = ExtResource("1_gjggf")
 
 [node name="Room" type="VideoStreamPlayer" parent="."]
 clip_contents = true
 layout_mode = 0
 offset_right = 1148.0
 offset_bottom = 635.0
-stream = ExtResource("2_611at")
+stream = ExtResource("2_hrww0")
 autoplay = true
 expand = true
 loop = true
@@ -30,14 +30,14 @@ loop = true
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 647.0
-stream = ExtResource("3_611at")
+stream = ExtResource("3_7l1wp")
 expand = true
 
 [node name="Book" type="VideoStreamPlayer" parent="."]
 layout_mode = 0
 offset_right = 1150.0
 offset_bottom = 649.0
-stream = ExtResource("4_k24pf")
+stream = ExtResource("4_6q0ml")
 expand = true
 loop = true
 
@@ -52,12 +52,12 @@ rotation = 0.0792239
 [node name="MainButtons" type="VBoxContainer" parent="CenterContainer"]
 visible = false
 layout_mode = 2
-theme = ExtResource("5_1wiy7")
+theme = ExtResource("5_487xm")
 theme_override_constants/separation = 10
 
 [node name="PlayButton" type="Button" parent="CenterContainer/MainButtons"]
 layout_mode = 2
-theme = ExtResource("5_1wiy7")
+theme = ExtResource("5_487xm")
 theme_override_font_sizes/font_size = 75
 text = "Play"
 
@@ -74,7 +74,7 @@ text = "Exit"
 [node name="SettingsMenu" type="VBoxContainer" parent="CenterContainer"]
 visible = false
 layout_mode = 2
-theme = ExtResource("5_1wiy7")
+theme = ExtResource("5_487xm")
 
 [node name="BackButton" type="Button" parent="CenterContainer/SettingsMenu"]
 layout_mode = 2
@@ -108,7 +108,7 @@ offset_left = 945.0
 offset_top = 466.0
 offset_right = 1034.0
 offset_bottom = 493.0
-theme = ExtResource("5_1wiy7")
+theme = ExtResource("5_487xm")
 
 [node name="Start_Button" type="Button" parent="Start"]
 layout_mode = 2
@@ -124,7 +124,7 @@ mouse_filter = 2
 color = Color(0.712926, 0.463987, 0.700082, 1)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_k24pf")
+stream = ExtResource("6_gsqen")
 volume_db = -7.154
 autoplay = true
 
