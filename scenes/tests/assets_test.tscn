@@ -1,8 +1,7 @@
-[gd_scene load_steps=33 format=3 uid="uid://p7m7neh87lyg"]
+[gd_scene load_steps=32 format=3 uid="uid://p7m7neh87lyg"]
 
 [ext_resource type="PackedScene" uid="uid://bbf8p4krgp531" path="res://assets/levels/levelManager.tscn" id="1_ad0rq"]
 [ext_resource type="PackedScene" uid="uid://bgp44hgj2ny5j" path="res://assets/arc/arc.tscn" id="1_ffoev"]
-[ext_resource type="Script" uid="uid://giigqq4cm0ab" path="res://scripts/puzzles/arcs-magic-chest-puzzle.gd" id="2_6fbhj"]
 [ext_resource type="Script" uid="uid://c4t2n0gbu5cvl" path="res://assets/collectable/level-collectables.gd" id="2_ecqs2"]
 [ext_resource type="Script" uid="uid://cketnnkhw8nqs" path="res://assets/arc/arc_puzzle.gd" id="3_k0883"]
 [ext_resource type="PackedScene" uid="uid://byu0b6177d1t6" path="res://assets/chests/magic_chest/magic_chest.tscn" id="4_1y740"]
@@ -186,14 +185,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1336, 0.0936669, -2.14838)
 [node name="Arc" parent="Assets/ArcsPuzzles/Arcs" instance=ExtResource("1_ffoev")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4639, 0, 20.499)
 
-[node name="ArcMagicChestPuzzle" type="Node3D" parent="Assets/ArcsPuzzles" node_paths=PackedStringArray("magic_chest", "arc_puzzle")]
+[node name="ArcMagicChestPuzzle" type="Node3D" parent="Assets/ArcsPuzzles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4359, 0, 0)
-script = ExtResource("2_6fbhj")
-magic_chest = NodePath("MagicChest")
-arc_puzzle = NodePath("ArcPuzzle")
 
 [node name="ArcPuzzle" type="Node3D" parent="Assets/ArcsPuzzles/ArcMagicChestPuzzle" node_paths=PackedStringArray("arcs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.250839, 0, -12.3714)
+transform = Transform3D(1, 0, 0, 0, 0.99995, 0.00998312, 0, -0.00998312, 0.99995, -0.250839, 0, -12.3714)
 script = ExtResource("3_k0883")
 arcs = [NodePath("Arc2"), NodePath("Arc3"), NodePath("Arc4")]
 
@@ -271,4 +267,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.6926, 0.0592519, -12.6781)
 [node name="Death-area" parent="." instance=ExtResource("26_ouso1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.5226, -24.7184, 8.64645)
 
+[connection signal="all_arcs_active" from="Assets/ArcsPuzzles/ArcMagicChestPuzzle/ArcPuzzle" to="Assets/ArcsPuzzles/ArcMagicChestPuzzle/MagicChest" method="deactivate_force_field"]
 [connection signal="active_changed" from="Castle_Lever" to="Assets/Castle door/CastleDoor" method="open_door"]

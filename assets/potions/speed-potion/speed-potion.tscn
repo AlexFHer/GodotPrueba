@@ -14,12 +14,14 @@ potionPickupAudio = NodePath("AudioStreamPlayer3D")
 potionType = 2
 
 [node name="Model" type="Node3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 
 [node name="SpeedPotion" parent="Model" instance=ExtResource("2_12w7m")]
 transform = Transform3D(3.33333, 0, 0, 0, 3.33333, 0, 0, 0, 3.33333, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="PotionCollision" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.438389, 0)
 shape = SubResource("CapsuleShape3D_rfo5y")
 

@@ -1,62 +1,53 @@
-[gd_scene load_steps=11 format=3 uid="uid://byu0b6177d1t6"]
+[gd_scene load_steps=13 format=3 uid="uid://byu0b6177d1t6"]
 
 [ext_resource type="Script" uid="uid://cxyexulxavcbm" path="res://assets/chests/magic_chest/magic_chest.gd" id="1_gdjlj"]
 [ext_resource type="PackedScene" uid="uid://dum74hskrrr8r" path="res://assets/chests/magic_chest/model/Force_Field.glb" id="1_y5w2v"]
 [ext_resource type="PackedScene" uid="uid://csfa612aq70i3" path="res://assets/chests/magic_chest/model/Magic_Chest.glb" id="2_5yrk7"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5yrk7"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j8qs2"]
 animation = &"ForceField"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gdjlj"]
+animation = &"Opening_Chest"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qvrp6"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5ol1r"]
+advance_mode = 2
+advance_expression = "opened"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_j8qs2"]
+states/ForceField/node = SubResource("AnimationNodeAnimation_j8qs2")
+states/ForceField/position = Vector2(398, 26)
+states/Opening_Chest/node = SubResource("AnimationNodeAnimation_gdjlj")
+states/Opening_Chest/position = Vector2(652, 100)
+transitions = ["Start", "ForceField", SubResource("AnimationNodeStateMachineTransition_qvrp6"), "ForceField", "Opening_Chest", SubResource("AnimationNodeStateMachineTransition_5ol1r")]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qvrp6"]
+size = Vector3(4.22875, 3.49091, 2.42096)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_gdjlj"]
 height = 2.85974
 radius = 3.52051
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gdjlj"]
-animation = &"Opening_Chest"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gdjlj"]
-advance_mode = 2
-advance_expression = "opened == true"
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_j8qs2"]
-states/Opening_Chest/node = SubResource("AnimationNodeAnimation_gdjlj")
-states/Opening_Chest/position = Vector2(486, 100)
-transitions = ["Start", "Opening_Chest", SubResource("AnimationNodeStateMachineTransition_gdjlj")]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_qvrp6"]
-size = Vector3(4.22875, 3.49091, 2.42096)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_j8qs2"]
 size = Vector3(7.67911, 4.38116, 6.76508)
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5yrk7"]
+animation = &"ForceField"
+
 [node name="MagicChest" type="StaticBody3D"]
 script = ExtResource("1_gdjlj")
-
-[node name="ForceFieldModel" type="StaticBody3D" parent="."]
-
-[node name="ForceField" parent="ForceFieldModel" instance=ExtResource("1_y5w2v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.911452, 0)
-
-[node name="ForceField" parent="ForceFieldModel/ForceField" index="0"]
-"blend_shapes/Key 1" = 0.941112
-"blend_shapes/Key 2" = 0.296727
-
-[node name="ForceFieldAnimationTree" type="AnimationTree" parent="ForceFieldModel"]
-root_node = NodePath("../ForceField")
-tree_root = SubResource("AnimationNodeAnimation_5yrk7")
-anim_player = NodePath("../ForceField/AnimationPlayer")
-
-[node name="ForceFieldCollisionShape" type="CollisionShape3D" parent="ForceFieldModel"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35052, 0)
-shape = SubResource("CylinderShape3D_gdjlj")
 
 [node name="MagicChestModel" type="Node3D" parent="."]
 
 [node name="Magic_Chest" parent="MagicChestModel" instance=ExtResource("2_5yrk7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.965674, 0)
 
-[node name="Chest_Cover" parent="MagicChestModel/Magic_Chest" index="1"]
-transform = Transform3D(1.10607, 0, 1.74846e-07, 0, 1, 0, -1.93391e-07, 0, 1, 0, 1.49148, 0)
+[node name="Skeleton3D" parent="MagicChestModel/Magic_Chest/Armature" index="0"]
+bones/0/position = Vector3(0, 3.2919, 0)
+bones/1/scale = Vector3(0, 0, 0)
 
 [node name="MagicChestAnimationTree" type="AnimationTree" parent="MagicChestModel"]
 root_node = NodePath("../Magic_Chest")
@@ -68,6 +59,10 @@ anim_player = NodePath("../Magic_Chest/AnimationPlayer")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0495412, 1.71323, -0.035553)
 shape = SubResource("BoxShape3D_qvrp6")
 
+[node name="ForceFieldCollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35052, 0)
+shape = SubResource("CylinderShape3D_gdjlj")
+
 [node name="PickupArea" type="Area3D" parent="."]
 
 [node name="PickupCollisionShape" type="CollisionShape3D" parent="PickupArea"]
@@ -75,7 +70,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.268082, 2.24966, -0.0384216
 shape = SubResource("BoxShape3D_j8qs2")
 debug_color = Color(0.982068, 0, 0.365495, 0.42)
 
+[node name="ForceFieldModel" type="StaticBody3D" parent="."]
+visible = false
+
+[node name="ForceField" parent="ForceFieldModel" instance=ExtResource("1_y5w2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.911452, 0)
+visible = false
+
+[node name="ForceField" parent="ForceFieldModel/ForceField" index="0"]
+"blend_shapes/Key 1" = 0.829161
+"blend_shapes/Key 2" = 0.821574
+
+[node name="ForceFieldAnimationTree" type="AnimationTree" parent="ForceFieldModel"]
+root_node = NodePath("../ForceField")
+tree_root = SubResource("AnimationNodeAnimation_5yrk7")
+anim_player = NodePath("../ForceField/AnimationPlayer")
+
 [connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]
 
-[editable path="ForceFieldModel/ForceField"]
 [editable path="MagicChestModel/Magic_Chest"]
+[editable path="ForceFieldModel/ForceField"]

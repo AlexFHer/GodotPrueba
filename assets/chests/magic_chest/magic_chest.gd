@@ -1,9 +1,7 @@
 class_name MagicChest extends StaticBody3D
 
-@onready var _forceField: Node3D = $ForceFieldModel
-@onready var _chest: Node3D = $MagicChestModel
-
-@onready var _chest_animation_tree: AnimationTree = $MagicChestModel/MagicChestAnimationTree
+@onready var _forceField: Node3D = $MagicChestModel/Magic_Chest/ForceField
+@onready var _forceFieldCollision: CollisionShape3D = $ForceFieldCollisionShape
 
 @export var numberOfMithrils := 10;
 
@@ -19,6 +17,7 @@ func deactivate_force_field() -> void:
 		return
 	
 	_forceField.queue_free()
+	_forceFieldCollision.queue_free()
 	isForceFieldActive = false
 
 func can_open() -> bool:
