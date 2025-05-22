@@ -41,7 +41,7 @@ layout_mode = 2
 text = "0"
 
 [node name="MythrillIcon" type="Sprite2D" parent="Mithril"]
-position = Vector2(158, 21)
+position = Vector2(123, 24)
 texture = ExtResource("2_a1273")
 
 [node name="Book" type="VBoxContainer" parent="."]

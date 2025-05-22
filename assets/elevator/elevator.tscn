@@ -4,14 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://sfun5jh1jb3w" path="res://assets/elevator/models/lift.glb" id="2_y53jv"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_y53jv"]
-height = 0.549438
+height = 0.30841
 radius = 0.981445
 
 [node name="Elevator" type="AnimatableBody3D" groups=["Elevator"]]
 script = ExtResource("1_kxntl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00343883, -0.268616, 0.000488281)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00343883, -0.38913, 0.000488281)
 shape = SubResource("CylinderShape3D_y53jv")
 
 [node name="lift" parent="." instance=ExtResource("2_y53jv")]

@@ -5,6 +5,7 @@ extends Area3D
 @export var mesh: Node3D;
 @export var collision: CollisionShape3D;
 @export var numberPackedScene: PackedScene;
+@export var mythrillParticles: GPUParticles3D
 
 func _on_body_entered(body:Node3D) -> void:
 	if body.is_in_group("MainPlayer"):
@@ -13,6 +14,7 @@ func _on_body_entered(body:Node3D) -> void:
 		disable_collision()
 		instantiate_number()
 		coinPickupAudio.play()
+		mythrillParticles.emitting = true
 		await coinPickupAudio.finished
 		queue_free()
 

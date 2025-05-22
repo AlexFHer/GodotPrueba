@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://db5dbo3xs7fuj" path="res://player/scripts/player-model-manager.gd" id="2_hg6s5"]
 [ext_resource type="Script" uid="uid://c42kqovjlaehm" path="res://player/scripts/playerCamera.gd" id="3_pe30o"]
 [ext_resource type="PackedScene" uid="uid://dknaa78iwawii" path="res://player/rig/Potma.glb" id="3_rgyib"]
-[ext_resource type="Script" uid="uid://csrohhn61kmsp" path="res://player/scripts/potions-ui-manager.gd" id="5_hdq68"]
+[ext_resource type="Script" uid="uid://csrohhn61kmsp" path="res://player/scripts/potions-UI-manager.gd" id="5_hdq68"]
 [ext_resource type="AudioStream" uid="uid://dil0kvwdclvji" path="res://player/sfx/walk.ogg" id="9_32hag"]
 [ext_resource type="Script" uid="uid://c7lupi603g5fs" path="res://player/scripts/potma-sounds.gd" id="9_hg6s5"]
 [ext_resource type="Script" uid="uid://cradpudh6rasp" path="res://player/scripts/main-player-combat-system.gd" id="10_2ieo8"]
@@ -363,6 +363,7 @@ stream = ExtResource("10_tqiix")
 
 [node name="PotmaJumpAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds"]
 stream = ExtResource("11_e7oew")
+volume_db = -22.857
 
 [node name="PotmaMegaJumpAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds"]
 stream = ExtResource("12_c35mf")
