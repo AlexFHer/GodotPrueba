@@ -5,7 +5,7 @@ extends CharacterBody3D
 
 @onready var animation_player: AnimationPlayer = $Rig/Armature/Potma/AnimationPlayer
 @onready var animation_tree: AnimationTree = $Rig/PlayerAnimationTree
-@onready var potmaSounds: PotmaSounds = $PotmaSounds
+@onready var potmaSounds: PotmaSounds = %PotmaSounds
 
 @export var checkpoint: Vector3 = Vector3.ZERO
 
@@ -67,8 +67,32 @@ func _physics_process(delta: float) -> void:
 	process_jump();
 	process_movement(delta);
 	process_planning();
+	_process_moving_sound();
 	
 	move_and_slide();
+
+func _process_moving_sound() -> void:
+	if !is_moving() and is_on_floor():
+		if potmaSounds.walkSoundAudioStream.is_playing():
+			potmaSounds.walkSoundAudioStream.stop();
+		if potmaSounds.runSoundAudioStream.is_playing():
+			potmaSounds.runSoundAudioStream.stop();
+		return;
+	
+	if isSprinting:
+		if !potmaSounds.runSoundAudioStream.is_playing():
+			potmaSounds.runSoundAudioStream.play();
+	else:
+		if !potmaSounds.walkSoundAudioStream.is_playing():
+			potmaSounds.walkSoundAudioStream.play();
+
+
+func _play_walk_sound() -> void:
+	if is_moving() and is_on_floor():
+		potmaSounds.walkSoundAudioStream.play();
+	else:
+		potmaSounds.walkSoundAudioStream.stop();
+
 
 func process_jump() -> void:
 	if is_on_floor():

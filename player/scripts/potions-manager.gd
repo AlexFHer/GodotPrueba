@@ -1,6 +1,7 @@
 extends Node
 
 @onready var _animation_tree: AnimationTree = %PlayerAnimationTree
+@onready var potmaSounds: PotmaSounds = %PotmaSounds
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("toggleLeftPotion"):
@@ -34,6 +35,7 @@ func mergePotion() -> void:
 
 func drinkPotion() -> void: 
 	PlayerPotions.usePotion();
+	potmaSounds.drinkSoundAudioStream.play();
 	_animation_tree.set("parameters/DrinkOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
  
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://cf47i2djfslyw"]
+[gd_scene load_steps=47 format=3 uid="uid://cf47i2djfslyw"]
 
 [ext_resource type="Script" uid="uid://b3jy8x8um1xce" path="res://player/PlayerCharacter.gd" id="1_43pha"]
 [ext_resource type="Script" uid="uid://df8j4nq0qxet4" path="res://player/scripts/potions-manager.gd" id="2_86mlk"]
@@ -6,9 +6,12 @@
 [ext_resource type="Script" uid="uid://c42kqovjlaehm" path="res://player/scripts/playerCamera.gd" id="3_pe30o"]
 [ext_resource type="PackedScene" uid="uid://dknaa78iwawii" path="res://player/rig/Potma.glb" id="3_rgyib"]
 [ext_resource type="Script" uid="uid://csrohhn61kmsp" path="res://player/scripts/potions-ui-manager.gd" id="5_hdq68"]
+[ext_resource type="AudioStream" uid="uid://dil0kvwdclvji" path="res://player/sfx/walk.ogg" id="9_32hag"]
 [ext_resource type="Script" uid="uid://c7lupi603g5fs" path="res://player/scripts/potma-sounds.gd" id="9_hg6s5"]
 [ext_resource type="Script" uid="uid://cradpudh6rasp" path="res://player/scripts/main-player-combat-system.gd" id="10_2ieo8"]
 [ext_resource type="PackedScene" uid="uid://bcugk5tgimuv4" path="res://assets/in-game-collectables-ui/in-game-collectables-ui.tscn" id="10_8t03j"]
+[ext_resource type="AudioStream" uid="uid://dqjjoyb2nkclu" path="res://player/sfx/FastWalk.ogg" id="10_tqiix"]
+[ext_resource type="AudioStream" uid="uid://dmjjxtn60qsik" path="res://player/sfx/DrinkPotion.ogg" id="15_bjvpn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_itxij"]
 margin = 0.025
@@ -338,7 +341,17 @@ label_settings = SubResource("LabelSettings_hg6s5")
 visible = false
 
 [node name="PotmaSounds" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("9_hg6s5")
+
+[node name="PotmaWalkAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds"]
+stream = ExtResource("9_32hag")
+
+[node name="PotmaDrinkAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds"]
+stream = ExtResource("15_bjvpn")
+
+[node name="PotmaRunAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds"]
+stream = ExtResource("10_tqiix")
 
 [node name="CombatSystem" type="Node" parent="."]
 script = ExtResource("10_2ieo8")
