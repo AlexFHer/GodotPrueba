@@ -70,7 +70,6 @@ func _physics_process(delta: float) -> void:
 	process_jump();
 	process_movement(delta);
 	process_planning();
-	print("isFloating: ", floating())
 	_process_moving_sound();
 	
 	move_and_slide();

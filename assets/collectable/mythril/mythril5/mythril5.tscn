@@ -26,7 +26,7 @@ mythrillParticles = NodePath("GPUParticles3D")
 [node name="Mythill_5" parent="Model" instance=ExtResource("2_6ou1a")]
 
 [node name="Mythrill5" parent="Model/Mythill_5" index="0"]
-transform = Transform3D(0.209296, 0.199448, -0.957297, -7.45058e-09, 0.978978, 0.203966, 0.977853, -0.0426891, 0.204896, 0, 0, 0)
+transform = Transform3D(-0.076447, 0.203368, -0.976114, -7.45059e-09, 0.978978, 0.203966, 0.997074, 0.0155925, -0.0748399, 0, 0, 0)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../Model/Mythill_5")
