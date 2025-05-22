@@ -66,7 +66,6 @@ func _set_staff_collision(enabled: bool) -> void:
 	_staff_collision.disabled = !enabled
 
 func _on_staff_area_3d_body_entered(body:Node3D) -> void:
-	print("Staff hit", body)
 	if body.is_in_group("CanGetHit"):
 		if body.has_method("get_hit"):
 			body.get_hit()

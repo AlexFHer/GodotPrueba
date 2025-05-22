@@ -44,10 +44,12 @@ func _ready() -> void:
 	pass
 
 func jump() -> void:
+	potmaSounds.jumpSoundAudioStream.play();
 	velocity.y += JUMP_FORCE;
 	disableJump();
 
 func megaJump() -> void:
+	potmaSounds.megaJumpSoundAudioStream.play();
 	velocity.y += JUMP_FORCE * 2;
 	disableJump();
 
@@ -72,7 +74,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide();
 
 func _process_moving_sound() -> void:
-	if !is_moving() and is_on_floor():
+	if !is_moving() or !is_on_floor():
 		if potmaSounds.walkSoundAudioStream.is_playing():
 			potmaSounds.walkSoundAudioStream.stop();
 		if potmaSounds.runSoundAudioStream.is_playing():
@@ -195,6 +197,7 @@ func determineJump() -> void:
 
 func dealDamage() -> void:
 	life -= 1;
+	potmaSounds.getHitSoundAudioStream.play();
 	lifeChanged.emit(life)
 	animation_tree.set("parameters/HitOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE);
 	checkIfPlayerIsDead();

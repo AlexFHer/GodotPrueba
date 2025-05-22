@@ -1,14 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://dq73nqh76thbg"]
+[gd_scene load_steps=8 format=3 uid="uid://dq73nqh76thbg"]
 
 [ext_resource type="Script" uid="uid://cniqyuj5o1d3x" path="res://assets/projectiles/fire-projectile/fire-projectile.gd" id="1_atwtp"]
 [ext_resource type="Script" uid="uid://bpv0dhrmqh112" path="res://assets/projectiles/resources/projectile-stats.gd" id="2_qb6xo"]
 [ext_resource type="PackedScene" uid="uid://f6d2xs85twu2" path="res://assets/projectiles/fire-projectile/Fireball.glb" id="3_wpr3v"]
+[ext_resource type="AudioStream" uid="uid://cr47mm1inbmrf" path="res://assets/projectiles/fire-projectile/sfx/Fireball.ogg" id="4_qh01r"]
 
-[sub_resource type="Resource" id="Resource_g7wyh"]
+[sub_resource type="Resource" id="Resource_qh01r"]
 script = ExtResource("2_qb6xo")
 speed = 4
 damage = 1
 lifeTime = 2
+metadata/_custom_type_script = "uid://bpv0dhrmqh112"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wpr3v"]
 height = 2.41215
@@ -16,9 +18,10 @@ height = 2.41215
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wpr3v"]
 animation = &"IcosphereAction"
 
-[node name="Fire-projectile" type="Area3D" groups=["FireBall"]]
+[node name="Fire-projectile" type="Area3D" node_paths=PackedStringArray("_audioStream") groups=["FireBall"]]
 script = ExtResource("1_atwtp")
-projectileStats = SubResource("Resource_g7wyh")
+projectileStats = SubResource("Resource_qh01r")
+_audioStream = NodePath("AudioStreamPlayer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.0221116, 0.999756, 0, -0.999756, 0.0221116, -0.0645909, 0, 0)
@@ -28,11 +31,16 @@ shape = SubResource("CapsuleShape3D_wpr3v")
 transform = Transform3D(0.415, 0, 0, 0, 0.415, 0, 0, 0, 0.415, 0.357163, 0, -0.122292)
 
 [node name="Icosphere" parent="Fireball" index="0"]
-transform = Transform3D(-4.51224e-08, 0, -1, 0, 1.00978, 0, 1.03228, 0, -4.37114e-08, -1.0409, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.0409, 0, 0)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../Fireball")
 tree_root = SubResource("AnimationNodeAnimation_wpr3v")
 anim_player = NodePath("../Fireball/AnimationPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_qh01r")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 
 [editable path="Fireball"]
