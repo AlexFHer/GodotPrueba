@@ -1,11 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://ighrfiwlmwnq"]
+[gd_scene load_steps=10 format=3 uid="uid://ighrfiwlmwnq"]
 
 [ext_resource type="Script" uid="uid://bx6kt7g2kl4j0" path="res://scenes/main_scene.gd" id="1_gjggf"]
 [ext_resource type="VideoStream" uid="uid://cqkqqeimgx010" path="res://media/videos/Room_With_Fade_And_Title.ogv" id="2_hrww0"]
 [ext_resource type="VideoStream" uid="uid://n35ik0wjb0um" path="res://media/videos/Transition.ogv" id="3_7l1wp"]
 [ext_resource type="VideoStream" uid="uid://dp5jgvfhfcr3w" path="res://media/videos/Book.ogv" id="4_6q0ml"]
+[ext_resource type="Texture2D" uid="uid://drg0t7rgohfyt" path="res://assets/collectable/mythril/Mythrill_Icon.png" id="5_6q0ml"]
 [ext_resource type="Theme" uid="uid://u1hmgwnpsf0x" path="res://themes/Main_Menu.tres" id="5_487xm"]
+[ext_resource type="Texture2D" uid="uid://d08xd48xv2kjh" path="res://assets/collectable/book/Book_icon.png" id="6_487xm"]
 [ext_resource type="AudioStream" uid="uid://dacxd0d7w533x" path="res://media/Music/MA_IGAMP3_TheWorldOfSorcerersAndMagic_Looped.ogg" id="6_gsqen"]
+[ext_resource type="Texture2D" uid="uid://borc2vg2bifr5" path="res://media/images/Level.PNG" id="6_hrww0"]
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -41,6 +44,28 @@ stream = ExtResource("4_6q0ml")
 expand = true
 loop = true
 
+[node name="OtherPage" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 2
+offset_left = 817.0
+offset_top = 405.0
+offset_right = 851.0
+offset_bottom = 468.0
+
+[node name="Label" type="Label" parent="OtherPage"]
+layout_mode = 2
+text = "0/120
+
+0/1"
+
+[node name="MythrillIcon" type="Sprite2D" parent="OtherPage"]
+position = Vector2(-42, 3)
+texture = ExtResource("5_6q0ml")
+
+[node name="BookIcon" type="Sprite2D" parent="OtherPage"]
+position = Vector2(-36, 63)
+texture = ExtResource("6_487xm")
+
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
 offset_left = -652.0
@@ -54,6 +79,11 @@ visible = false
 layout_mode = 2
 theme = ExtResource("5_487xm")
 theme_override_constants/separation = 10
+
+[node name="Level" type="Sprite2D" parent="CenterContainer/MainButtons"]
+position = Vector2(669.672, 66.9076)
+scale = Vector2(0.434956, 0.53862)
+texture = ExtResource("6_hrww0")
 
 [node name="PlayButton" type="Button" parent="CenterContainer/MainButtons"]
 layout_mode = 2

@@ -10,7 +10,7 @@
 animation = &"Mythrill5Action"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6jq5k"]
-radius = 0.28423
+radius = 0.759306
 
 [node name="Mythril5" type="Area3D" node_paths=PackedStringArray("coinPickupAudio", "mesh", "collision", "mythrillParticles")]
 script = ExtResource("1_6jq5k")
@@ -22,11 +22,12 @@ numberPackedScene = ExtResource("2_4f5f2")
 mythrillParticles = NodePath("GPUParticles3D")
 
 [node name="Model" type="Node3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 
 [node name="Mythill_5" parent="Model" instance=ExtResource("2_6ou1a")]
 
 [node name="Mythrill5" parent="Model/Mythill_5" index="0"]
-transform = Transform3D(-0.076447, 0.203368, -0.976114, -7.45059e-09, 0.978978, 0.203966, 0.997074, 0.0155925, -0.0748399, 0, 0, 0)
+transform = Transform3D(0.590314, 0.164635, -0.790206, 7.45058e-09, 0.978978, 0.203966, 0.807174, -0.120404, 0.577905, 0, 0, 0)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../Model/Mythill_5")

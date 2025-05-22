@@ -6,6 +6,7 @@ var level: int = 1
 @onready var video_player_3 = $Book
 @onready var start_button = $Start/Start_Button
 @onready var play_button = $CenterContainer/MainButtons/PlayButton
+@onready var otherPage = $OtherPage
 @onready var settings_button = $CenterContainer/MainButtons/SettingsButton
 @onready var exit_button = $CenterContainer/MainButtons/ExitButton
 @onready var back_button = $CenterContainer/SettingsMenu/BackButton
@@ -27,6 +28,7 @@ func _on_play_pressed() -> void:
 
 func _on_settings_pressed() -> void:
 	$CenterContainer/MainButtons.visible = false
+	$OtherPage.visible = false
 	$CenterContainer/SettingsMenu.visible = true
 	back_button.grab_focus()
 
@@ -35,6 +37,7 @@ func _on_exit_pressed() -> void:
 
 func _on_back_pressed() -> void:
 	$CenterContainer/MainButtons.visible = true
+	$OtherPage.visible = true
 	$CenterContainer/SettingsMenu.visible = false
 	play_button.grab_focus()
 
@@ -64,4 +67,5 @@ func _on_video_2_finished():
 	video_player_3.loop = true
 	video_player_3.play()
 	$CenterContainer/MainButtons.visible = true
+	$OtherPage.visible = true
 	play_button.grab_focus()

@@ -1,34 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://bts618lxd2a61"]
+[gd_scene load_steps=4 format=3 uid="uid://bts618lxd2a61"]
 
 [ext_resource type="PackedScene" uid="uid://dn6ph26t84j6d" path="res://assets/npcs/don pots potion seller/rig/DonPots.glb" id="1_e8pnv"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e8pnv"]
 animation = &"DonPots_Idle"
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_e8pnv"]
+size = Vector3(4.9812, 4.07138, 4.5238)
+
+[node name="Node3D" type="StaticBody3D"]
 
 [node name="rig" type="Node3D" parent="."]
 
 [node name="DonPots" parent="rig" instance=ExtResource("1_e8pnv")]
 
 [node name="Skeleton3D" parent="rig/DonPots/Armature" index="1"]
-bones/1/rotation = Quaternion(-0.12152, -0.00870283, 0.751902, 0.64792)
-bones/2/rotation = Quaternion(0.196198, -0.00939569, -0.0644811, 0.978397)
-bones/3/rotation = Quaternion(-0.0806896, -0.0146654, 0.474241, 0.876567)
-bones/4/rotation = Quaternion(0.210857, 0.104562, 0.0141598, 0.971805)
-bones/5/rotation = Quaternion(-6.36785e-10, 3.13986e-08, -0.0146035, 0.999893)
-bones/6/rotation = Quaternion(-0.121214, 0.012248, -0.770504, 0.625685)
-bones/7/rotation = Quaternion(0.196198, 0.00939571, 0.064481, 0.978397)
-bones/8/rotation = Quaternion(-0.0800807, 0.0176913, -0.506889, 0.858101)
-bones/9/rotation = Quaternion(0.210857, -0.104562, -0.0141598, 0.971805)
-bones/11/position = Vector3(-0.324517, 1.0181, -0.185878)
-bones/11/rotation = Quaternion(0.686023, -0.0303888, -0.0308783, 0.726289)
-bones/12/position = Vector3(0.245434, 0.983761, -0.216804)
-bones/12/rotation = Quaternion(0.676401, -0.0299796, -0.0312757, 0.735259)
+bones/0/scale = Vector3(1.00012, 1.13375, 1)
+bones/1/rotation = Quaternion(-0.118934, -0.0264125, 0.838714, 0.530769)
+bones/2/rotation = Quaternion(0.232537, -0.012817, -0.369185, 0.899702)
+bones/3/rotation = Quaternion(-0.0817384, 0.00668755, 0.231575, 0.969354)
+bones/4/rotation = Quaternion(0.250439, 0.0792602, -0.316121, 0.911628)
+bones/5/rotation = Quaternion(7.97714e-09, 3.0375e-08, 0.259492, 0.965745)
+bones/6/rotation = Quaternion(-0.117627, 0.0317283, -0.86171, 0.492559)
+bones/7/rotation = Quaternion(0.148532, 0.00564835, -0.206256, 0.967143)
+bones/8/rotation = Quaternion(-0.0754847, 0.0320618, -0.655506, 0.750724)
+bones/9/rotation = Quaternion(0.173304, -0.11442, -0.222683, 0.952516)
+bones/10/scale = Vector3(1, 1.31249, 1)
+bones/11/position = Vector3(-0.508084, 0.903853, -0.185878)
+bones/11/rotation = Quaternion(0.672762, -0.0356401, -0.0261573, 0.738537)
+bones/12/position = Vector3(0.494946, 0.872168, -0.216804)
+bones/12/rotation = Quaternion(0.631308, 0.200054, -0.231894, 0.712498)
 
 [node name="AnimationTree" type="AnimationTree" parent="rig"]
 root_node = NodePath("../DonPots")
 tree_root = SubResource("AnimationNodeAnimation_e8pnv")
 anim_player = NodePath("../DonPots/AnimationPlayer")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999999, -0.00150098, 0, 0.00150098, 0.999999, -0.172241, 0.483559, -0.359878)
+shape = SubResource("BoxShape3D_e8pnv")
 
 [editable path="rig/DonPots"]
