@@ -79,6 +79,7 @@ offset_right = 583.0
 offset_bottom = 40.0
 
 [node name="PotmaIcon" type="Sprite2D" parent="Lifes"]
+visible = false
 position = Vector2(30, 34)
 texture = ExtResource("4_yh3sy")
 

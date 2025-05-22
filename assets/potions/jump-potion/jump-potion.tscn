@@ -17,7 +17,7 @@ unique_name_in_owner = true
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 
 [node name="JumpPotion" parent="Model" instance=ExtResource("2_5sr0i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.853623, 0)
+transform = Transform3D(2.105, 0, 0, 0, 2.105, 0, 0, 0, 2.105, 0, 0.853623, 0)
 
 [node name="PotionCollision" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
