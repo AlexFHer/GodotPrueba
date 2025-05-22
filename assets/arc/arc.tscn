@@ -1,14 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgp44hgj2ny5j"]
+[gd_scene load_steps=6 format=3 uid="uid://bgp44hgj2ny5j"]
 
 [ext_resource type="Script" uid="uid://d1ecirgocrr65" path="res://assets/arc/arc.gd" id="1_3stq6"]
 [ext_resource type="PackedScene" uid="uid://bp1eqguoel6r6" path="res://assets/arc/model/Arc_On.glb" id="2_5xixg"]
 [ext_resource type="PackedScene" uid="uid://44asp1tqj063" path="res://assets/arc/model/Arc_Off.glb" id="2_r32ve"]
+[ext_resource type="AudioStream" uid="uid://1erv8t4p8q2b" path="res://assets/arc/sfx/Arc_Activated.ogg" id="4_xt5kk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5xixg"]
 size = Vector3(3.21375, 2.46614, 0.35498)
 
-[node name="Arc" type="Area3D"]
+[node name="Arc" type="Area3D" node_paths=PackedStringArray("arcActivated")]
 script = ExtResource("1_3stq6")
+arcActivated = NodePath("AudioStreamPlayer3D")
 
 [node name="DeactivationTimer" type="Timer" parent="."]
 wait_time = 15.0
@@ -27,5 +29,8 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="Arc_Off" parent="ArcOff" instance=ExtResource("2_r32ve")]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_xt5kk")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

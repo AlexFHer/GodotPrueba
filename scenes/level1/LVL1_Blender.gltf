@@ -15,7 +15,7 @@
 					"col_types":4,
 					"body_types":0,
 					"save_path":"//..\\..\\..\\..\\Godot\\GodotPrueba\\scenes\\level1\\LVL1_Blender.gltf",
-					"counter":56,
+					"counter":58,
 					"discard_mesh":0
 				}
 			},
@@ -523,17 +523,6 @@
 			"pbrMetallicRoughness":{
 				"baseColorTexture":{
 					"index":3
-				},
-				"metallicFactor":0,
-				"roughnessFactor":0.5
-			}
-		},
-		{
-			"doubleSided":true,
-			"name":"DarkHollow",
-			"pbrMetallicRoughness":{
-				"baseColorTexture":{
-					"index":4
 				},
 				"metallicFactor":0,
 				"roughnessFactor":0.5
@@ -1140,7 +1129,7 @@
 						"TEXCOORD_0":182
 					},
 					"indices":183,
-					"material":4
+					"material":2
 				}
 			]
 		},
@@ -1175,10 +1164,6 @@
 		{
 			"sampler":0,
 			"source":3
-		},
-		{
-			"sampler":0,
-			"source":4
 		}
 	],
 	"images":[
@@ -1201,11 +1186,6 @@
 			"mimeType":"image/png",
 			"name":"terrain",
 			"uri":"terrain.png"
-		},
-		{
-			"mimeType":"image/png",
-			"name":"s1-1_015-n.T",
-			"uri":"s1-1_015-n_T.png"
 		}
 	],
 	"accessors":[
@@ -2718,15 +2698,15 @@
 		{
 			"bufferView":180,
 			"componentType":5126,
-			"count":72,
+			"count":128,
 			"max":[
-				-43.01877212524414,
-				7.278013706207275,
-				95.38509368896484
+				-49.93700408935547,
+				7.342463493347168,
+				100.5365982055664
 			],
 			"min":[
-				-59.10383987426758,
-				0.509730339050293,
+				-58.900413513183594,
+				0.47135108709335327,
 				95.34040832519531
 			],
 			"type":"VEC3"
@@ -2734,19 +2714,19 @@
 		{
 			"bufferView":181,
 			"componentType":5126,
-			"count":72,
+			"count":128,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":182,
 			"componentType":5126,
-			"count":72,
+			"count":128,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":183,
 			"componentType":5123,
-			"count":108,
+			"count":576,
 			"type":"SCALAR"
 		},
 		{
@@ -3861,44 +3841,44 @@
 		},
 		{
 			"buffer":0,
-			"byteLength":864,
+			"byteLength":1536,
 			"byteOffset":1156228,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":864,
-			"byteOffset":1157092,
+			"byteLength":1536,
+			"byteOffset":1157764,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":576,
-			"byteOffset":1157956,
+			"byteLength":1024,
+			"byteOffset":1159300,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":216,
-			"byteOffset":1158532,
+			"byteLength":1152,
+			"byteOffset":1160324,
 			"target":34963
 		},
 		{
 			"buffer":0,
 			"byteLength":312,
-			"byteOffset":1158748,
+			"byteOffset":1161476,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":312,
-			"byteOffset":1159060,
+			"byteOffset":1161788,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":208,
-			"byteOffset":1159372,
+			"byteOffset":1162100,
 			"target":34962
 		}
 	],
@@ -3910,7 +3890,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":1159580,
+			"byteLength":1162308,
 			"uri":"LVL1_Blender.bin"
 		}
 	]

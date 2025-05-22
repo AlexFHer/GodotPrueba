@@ -1,8 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxsflo5m8ykws"]
+[gd_scene load_steps=5 format=3 uid="uid://bxsflo5m8ykws"]
 
 [ext_resource type="PackedScene" uid="uid://d17xl6o7wh0hx" path="res://assets/npcs/subnormales/Florcb.glb" id="1_58wre"]
+[ext_resource type="PackedScene" uid="uid://dmpnxrw61surf" path="res://assets/npcs/subnormales/Klorcb.glb" id="2_vftr2"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vftr2"]
+animation = &"Florcb_IDLE"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vd81p"]
+animation = &"Klobrc_IDLE"
 
 [node name="Node3D" type="Node3D"]
 
@@ -12,11 +17,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0368898)
 [node name="Skeleton3D" parent="Florcb/GT_Armature" index="0"]
 bones/0/position = Vector3(0.227634, -0.0863533, -0.0202251)
 bones/1/rotation = Quaternion(-0.0758027, 9.3401e-10, -1.80262e-08, 0.997123)
-bones/1/scale = Vector3(1, 1.14505, 1)
-bones/3/rotation = Quaternion(0.0611475, 1.10124e-05, -0.000160978, 0.998129)
+bones/3/rotation = Quaternion(0.0611476, -2.06168e-12, 1.43283e-08, 0.998129)
 bones/4/rotation = Quaternion(0.783605, -0.133168, -0.139302, 0.590613)
 bones/6/position = Vector3(0.00032001, 0.056561, 0.158147)
-bones/6/rotation = Quaternion(0.817034, 4.24161e-07, 8.0518e-07, 0.57659)
+bones/6/rotation = Quaternion(0.811091, 4.16233e-07, 8.09754e-07, 0.58492)
 bones/7/rotation = Quaternion(-0.0733596, 0.145755, 0.959803, 0.228369)
 bones/9/rotation = Quaternion(-0.235158, -0.0308859, 0.968084, -0.0809997)
 bones/10/rotation = Quaternion(0.0672257, 0.0056028, -0.288184, 0.955196)
@@ -31,4 +35,33 @@ root_node = NodePath("../Florcb")
 tree_root = SubResource("AnimationNodeAnimation_vftr2")
 anim_player = NodePath("../Florcb/AnimationPlayer")
 
+[node name="Klorcb" parent="." instance=ExtResource("2_vftr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0368898)
+
+[node name="Skeleton3D" parent="Klorcb/GF_Armature" index="0"]
+bones/0/scale = Vector3(1, 0.940608, 1)
+bones/1/rotation = Quaternion(-0.0659417, -1.16162e-10, 1.61264e-11, 0.997823)
+bones/2/rotation = Quaternion(0.160379, 3.67671e-07, 3.72503e-06, 0.987056)
+bones/5/rotation = Quaternion(0.539926, 3.66971e-07, 2.76994e-07, 0.841713)
+bones/6/position = Vector3(-0.204917, 0.527322, -0.0967984)
+bones/6/rotation = Quaternion(-0.0225672, -0.0521484, 0.916264, 0.396525)
+bones/7/rotation = Quaternion(0.429785, 0.181417, 0.276453, 0.840206)
+bones/8/rotation = Quaternion(-0.144619, 0.711646, 0.607433, -0.32198)
+bones/10/position = Vector3(-0.148495, 0.0429693, 0.121634)
+bones/10/rotation = Quaternion(0.782598, -0.0412383, 0.0244101, 0.620681)
+bones/11/rotation = Quaternion(-0.506297, 0.512236, -0.532063, 0.445181)
+bones/12/position = Vector3(0.192593, 0.489822, -0.0923946)
+bones/12/rotation = Quaternion(0.186091, -0.253423, 0.933355, -0.173191)
+bones/13/rotation = Quaternion(0.115278, 0.0138174, -0.0346053, 0.992634)
+bones/14/rotation = Quaternion(-0.023625, 0.0167582, 0.511404, 0.858852)
+bones/15/position = Vector3(0.148495, 0.0429693, 0.121634)
+bones/15/rotation = Quaternion(0.782598, 0.0412381, -0.0244099, 0.620681)
+bones/16/rotation = Quaternion(0.439596, 0.570516, -0.473296, -0.507207)
+
+[node name="Klorcb_tree" type="AnimationTree" parent="."]
+root_node = NodePath("../Klorcb")
+tree_root = SubResource("AnimationNodeAnimation_vd81p")
+anim_player = NodePath("../Klorcb/AnimationPlayer")
+
 [editable path="Florcb"]
+[editable path="Klorcb"]
