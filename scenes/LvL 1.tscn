@@ -1,4 +1,4 @@
-[gd_scene load_steps=178 format=4 uid="uid://bd31y7odxeu3"]
+[gd_scene load_steps=180 format=4 uid="uid://bd31y7odxeu3"]
 
 [ext_resource type="Texture2D" uid="uid://bxascs40x5oel" path="res://Materials/Skybox/PjBUIr3.png" id="2_n1ihf"]
 [ext_resource type="PackedScene" uid="uid://cf47i2djfslyw" path="res://player/player.tscn" id="4_n1ihf"]
@@ -14,8 +14,10 @@
 [ext_resource type="PackedScene" uid="uid://bgp44hgj2ny5j" path="res://assets/arc/arc.tscn" id="10_m4385"]
 [ext_resource type="Texture2D" uid="uid://doo5p7084pgp6" path="res://scenes/level1/Texture1.png" id="11_gssno"]
 [ext_resource type="Texture2D" uid="uid://ccumcuvbna27h" path="res://scenes/level1/spyro_autumn_plains.png" id="12_ab21n"]
+[ext_resource type="PackedScene" uid="uid://cii1jxpiud2wy" path="res://assets/enemies/globrc-small/globrc-small.tscn" id="12_pdlji"]
 [ext_resource type="PackedScene" uid="uid://dxt8axkp8hlwt" path="res://assets/collectable/mythril/mythril1/mythril1.tscn" id="12_qlgyj"]
 [ext_resource type="PackedScene" uid="uid://cdv7t4pgxo2rl" path="res://assets/elevator/elevator-point/elevator-point.tscn" id="13_3wafn"]
+[ext_resource type="PackedScene" uid="uid://degbqjvqfd4lu" path="res://assets/patrolPoint/patrol-point.tscn" id="13_4ak4b"]
 [ext_resource type="Texture2D" uid="uid://budmvxn7m3q32" path="res://scenes/level1/Town_Square_Tex.png" id="13_dbnbf"]
 [ext_resource type="PackedScene" uid="uid://cani1cyqesgro" path="res://assets/castle_door/castle_door.tscn" id="14_87xxg"]
 [ext_resource type="Texture2D" uid="uid://cridxte7xg516" path="res://scenes/level1/terrain.png" id="14_gfmul"]
@@ -1778,6 +1780,36 @@ transform = Transform3D(-0.311323, 0, -0.950304, 0, 1, 0, 0.950304, 0, -0.311323
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.2234, 0.764552, 97.3362)
 
 [node name="Enemies" type="Node3D" parent="."]
+
+[node name="GlobRC1" type="Node3D" parent="Enemies"]
+
+[node name="Globrc Small" parent="Enemies/GlobRC1" node_paths=PackedStringArray("patrolPoints") instance=ExtResource("12_pdlji")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.224, -0.902897, 29.8407)
+patrolPoints = [NodePath("../Patrol point marker"), NodePath("../Patrol point marker3"), NodePath("../Patrol point marker2")]
+
+[node name="Patrol point marker" parent="Enemies/GlobRC1" instance=ExtResource("13_4ak4b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.2032, -0.344097, 29.3286)
+
+[node name="Patrol point marker3" parent="Enemies/GlobRC1" instance=ExtResource("13_4ak4b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.9038, -1.00369, 18.2522)
+
+[node name="Patrol point marker2" parent="Enemies/GlobRC1" instance=ExtResource("13_4ak4b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.0317, -0.344097, 29.3286)
+
+[node name="GlobRC2" type="Node3D" parent="Enemies"]
+
+[node name="Globrc Small" parent="Enemies/GlobRC2" node_paths=PackedStringArray("patrolPoints") instance=ExtResource("12_pdlji")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7323, -14.8217, 81.9524)
+patrolPoints = [NodePath("../Patrol point marker2"), NodePath("../Patrol point marker"), NodePath("../Patrol point marker3")]
+
+[node name="Patrol point marker2" parent="Enemies/GlobRC2" instance=ExtResource("13_4ak4b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.1675, -14.5, 87.1849)
+
+[node name="Patrol point marker" parent="Enemies/GlobRC2" instance=ExtResource("13_4ak4b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.46861, -14.5, 87.1535)
+
+[node name="Patrol point marker3" parent="Enemies/GlobRC2" instance=ExtResource("13_4ak4b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.63814, -14.5, 79.0118)
 
 [node name="Props" type="Node3D" parent="."]
 

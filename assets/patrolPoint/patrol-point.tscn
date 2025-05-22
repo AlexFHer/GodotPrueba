@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cecc6rpus2y0t" path="res://assets/patrolPoint/patrol-point.gd" id="1_3tyxv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4t1s"]
-size = Vector3(0.193604, 0.185547, 0.246094)
+size = Vector3(0.193604, 0.943359, 0.246094)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3tyxv"]
 
@@ -11,11 +11,12 @@ size = Vector3(0.193604, 0.185547, 0.246094)
 script = ExtResource("1_3tyxv")
 
 [node name="PatrolPoint" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.405779, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0268728, 0)
 shape = SubResource("BoxShape3D_g4t1s")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.182533, 0, 0, 0, 0.486376, 0, 0, 0, 0.184099, 0, 0, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_3tyxv")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
