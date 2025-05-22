@@ -7,6 +7,8 @@ extends CharacterBody3D
 @onready var animation_tree: AnimationTree = $Rig/PlayerAnimationTree
 @onready var potmaSounds: PotmaSounds = $PotmaSounds
 
+@export var checkpoint: Vector3 = Vector3.ZERO
+
 const JUMP_FORCE := 10.0;
 const ROTATION_SENSIVITY := 10;
 const NORMAL_SPEED := 15;
@@ -189,4 +191,4 @@ func is_moving() -> bool:
 	return abs(velocity.x) > 0.1 or abs(velocity.z) > 0.1
 
 func get_to_checkpoint() -> void:
-	position = Vector3(0, 0, 0)
+	position = checkpoint
