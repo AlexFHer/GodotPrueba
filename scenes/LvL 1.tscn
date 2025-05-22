@@ -1887,7 +1887,7 @@ script = ExtResource("17_pqsgx")
 fire_towers = [NodePath("Fire_Tower_Puzzle"), NodePath("Fire_Tower_Puzzle2"), NodePath("Fire_Tower_Puzzle3"), NodePath("Fire_Tower_Puzzle4")]
 
 [node name="Fire_Tower_Puzzle" parent="Props/TowerFire" instance=ExtResource("23_m4385")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.6401, 15.8089, 6.18706)
+transform = Transform3D(0.999997, 0, -0.00228638, 0, 1, 0, 0.00228638, 0, 0.999997, -99.3169, 15.3451, 6.02347)
 
 [node name="Fire_Tower_Puzzle2" parent="Props/TowerFire" instance=ExtResource("23_m4385")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.3968, 14.7519, -22.2095)

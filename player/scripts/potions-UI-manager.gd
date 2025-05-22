@@ -24,9 +24,9 @@ func _enter_tree() -> void:
 	PlayerPotions.selectedPotionChanged.connect(_on_selected_potion_changed);
 	PlayerPotions.potionUsed.connect(_on_potion_used);
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("combineSelection"):
-		_on_combine_selection_pressed()
+# func _unhandled_input(event: InputEvent) -> void:
+# 	if event.is_action_pressed("combineSelection"):
+# 		_on_combine_selection_pressed()
 
 func getNumberOfPotionsByType(potionType: PotionTypes.PotionType) -> String:
 	var potionSize = PlayerPotions.potionsDictionary.get(potionType);

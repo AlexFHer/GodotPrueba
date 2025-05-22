@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://ighrfiwlmwnq"]
 
 [ext_resource type="Script" uid="uid://bx6kt7g2kl4j0" path="res://scenes/main_scene.gd" id="1_gjggf"]
-[ext_resource type="VideoStream" uid="uid://cqkqqeimgx010" path="res://media/videos/Room_With_Fade_And_Title.ogv" id="2_hrww0"]
-[ext_resource type="VideoStream" uid="uid://n35ik0wjb0um" path="res://media/videos/Transition.ogv" id="3_7l1wp"]
-[ext_resource type="VideoStream" uid="uid://dp5jgvfhfcr3w" path="res://media/videos/Book.ogv" id="4_6q0ml"]
+[ext_resource type="VideoStream" path="res://media/videos/Room_With_Fade_And_Title.ogv" id="2_hrww0"]
+[ext_resource type="VideoStream" uid="uid://dkkt7vx68kcvr" path="res://media/videos/Transition.ogv" id="3_7l1wp"]
+[ext_resource type="VideoStream" uid="uid://cx4oipblvg3lp" path="res://media/videos/Book.ogv" id="4_6q0ml"]
 [ext_resource type="Texture2D" uid="uid://drg0t7rgohfyt" path="res://assets/collectable/mythril/Mythrill_Icon.png" id="5_6q0ml"]
 [ext_resource type="Theme" uid="uid://u1hmgwnpsf0x" path="res://themes/Main_Menu.tres" id="5_487xm"]
 [ext_resource type="Texture2D" uid="uid://d08xd48xv2kjh" path="res://assets/collectable/book/Book_icon.png" id="6_487xm"]
@@ -21,25 +21,34 @@ script = ExtResource("1_gjggf")
 
 [node name="Room" type="VideoStreamPlayer" parent="."]
 clip_contents = true
-layout_mode = 0
-offset_right = 1148.0
-offset_bottom = 635.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 stream = ExtResource("2_hrww0")
 autoplay = true
 expand = true
 loop = true
 
 [node name="Transition" type="VideoStreamPlayer" parent="."]
-layout_mode = 0
-offset_right = 1155.0
-offset_bottom = 647.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 stream = ExtResource("3_7l1wp")
 expand = true
 
 [node name="Book" type="VideoStreamPlayer" parent="."]
-layout_mode = 0
-offset_right = 1150.0
-offset_bottom = 649.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 stream = ExtResource("4_6q0ml")
 expand = true
 loop = true
