@@ -23,7 +23,7 @@ mythrillParticles = NodePath("Mythrill_particles")
 [node name="Mythill_1" parent="." instance=ExtResource("1_u86b4")]
 
 [node name="Mythrill 1" parent="Mythill_1" index="0"]
-transform = Transform3D(-0.848924, -0.21713, -0.48185, 7.45056e-09, 0.911711, -0.410833, 0.528511, -0.348767, -0.773975, 0, 0, 0)
+transform = Transform3D(-0.238495, 0.398978, 0.885402, 1.49011e-08, 0.911711, -0.410833, -0.971141, -0.0979818, -0.217439, 0, 0, 0)
 
 [node name="AnimationPlayer" parent="Mythill_1" index="1"]
 autoplay = "Mythrill 1Action"

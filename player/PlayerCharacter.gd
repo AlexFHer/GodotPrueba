@@ -26,6 +26,7 @@ signal lifeChanged(newLife: int);
 
 var speed := 10.0;
 var isSprinting := false;
+var isFloating := false;
 var lastMovementDirection := Vector3.FORWARD
 var gravity := -20;
 
@@ -69,6 +70,7 @@ func _physics_process(delta: float) -> void:
 	process_jump();
 	process_movement(delta);
 	process_planning();
+	print("isFloating: ", floating())
 	_process_moving_sound();
 	
 	move_and_slide();
@@ -113,8 +115,10 @@ func process_jump() -> void:
 func process_planning() -> void:
 	if Input.is_action_pressed("jump") and not is_on_floor():
 		gravity = PLANNING_GRAVITY
+		isFloating = true
 	else:
 		gravity = ORIGINAL_GRAVITY
+		isFloating = false
 
 func process_movement(delta) -> void:
 	var rawInput := Input.get_vector("move-left", "move-right", "move-forward", "move-backwards");
@@ -222,3 +226,6 @@ func is_moving() -> bool:
 
 func get_to_checkpoint() -> void:
 	position = checkpoint
+
+func floating() -> bool:
+	return isFloating
