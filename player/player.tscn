@@ -351,6 +351,7 @@ script = ExtResource("9_hg6s5")
 
 [node name="PotmaWalkAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds"]
 stream = ExtResource("9_32hag")
+volume_db = -8.312
 
 [node name="PotmaGetHitAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds"]
 stream = ExtResource("10_yllr7")
@@ -370,6 +371,7 @@ stream = ExtResource("12_c35mf")
 
 [node name="PotmaStaffHitAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds"]
 stream = ExtResource("15_32hag")
+volume_db = -13.506
 
 [node name="CombatSystem" type="Node" parent="."]
 script = ExtResource("10_2ieo8")
