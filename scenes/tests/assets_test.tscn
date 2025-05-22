@@ -218,7 +218,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.445, 2.93941, -17.8097)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.1021, 2.93941, -16.8595)
 
 [node name="secret_tower" parent="Assets/FireTowers" instance=ExtResource("15_3gt13")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5638, -0.091713, -37.0064)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.564, 0, -37.006)
+activated_position_y = 16.065
 
 [node name="Fire-potion5" parent="Assets/FireTowers" instance=ExtResource("5_la3k2")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 7.8394, 1.5, -11.2776)
@@ -268,4 +269,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.6926, 0.0592519, -12.6781)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.5226, -24.7184, 8.64645)
 
 [connection signal="all_arcs_active" from="Assets/ArcsPuzzles/ArcMagicChestPuzzle/ArcPuzzle" to="Assets/ArcsPuzzles/ArcMagicChestPuzzle/MagicChest" method="deactivate_force_field"]
+[connection signal="all_fire_towers_active" from="Assets/FireTowers/Puzzle" to="Assets/FireTowers/secret_tower" method="activate_secret_tower"]
 [connection signal="active_changed" from="Castle_Lever" to="Assets/Castle door/CastleDoor" method="open_door"]
