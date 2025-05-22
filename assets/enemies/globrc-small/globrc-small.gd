@@ -41,13 +41,17 @@ func _ready():
 	attach_to_patrol_points()	
 
 func _physics_process(delta: float) -> void:
+	if enemyState == EnemyState.DEAD:
+		velocity = Vector3.ZERO
+		return;
+
 	if enemyState == EnemyState.PATROLLING:
 		patrol(delta)
 	if enemyState == EnemyState.IDLE:
 		velocity = Vector3.ZERO
 	if enemyState == EnemyState.FOLLOWING:
 		follow_target(delta)
-	
+
 	if isEnemyInRange:
 		velocity = Vector3.ZERO
 	look_at_current_direction(delta)
@@ -113,6 +117,7 @@ func patrol_point_reached():
 	get_next_patrol_point()
 	enemyState = EnemyState.PATROLLING
 
+# TODO: Pasarlo a un prefab que gestion los puntos de control
 func get_next_patrol_point():
 	var indexOfCurrentPatrolPoint := patrolPoints.find(currentPatrolPoint)
 	if indexOfCurrentPatrolPoint != -1:
@@ -149,6 +154,9 @@ func _on_player_search_area_body_exited(body: Node3D) -> void:
 
 
 func _on_hitable_area_body_entered(body:Node3D) -> void:
+	if is_dead():
+		return
+
 	if body.is_in_group("MainPlayer"):
 		isEnemyInRange = true
 		attack()
@@ -174,5 +182,14 @@ func _on_can_attack_timer_timeout() -> void:
 	if isEnemyInRange:
 		attack()
 
+func get_hit():
+	die()
+
 func die():
 	enemyState = EnemyState.DEAD
+	_animation_tree.set("parameters/DieOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	await get_tree().create_timer(3.0).timeout
+	queue_free()
+
+func is_dead() -> bool:
+	return enemyState == EnemyState.DEAD

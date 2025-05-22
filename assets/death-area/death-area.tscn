@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://0kbp5ta03h5x"]
+
+[ext_resource type="Script" uid="uid://bidrqaqp1yqra" path="res://assets/death-area/death-area.gd" id="1_xpqks"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_38i3j"]
+
+[node name="Death-area" type="Area3D"]
+script = ExtResource("1_xpqks")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("WorldBoundaryShape3D_38i3j")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

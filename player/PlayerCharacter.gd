@@ -7,6 +7,8 @@ extends CharacterBody3D
 @onready var animation_tree: AnimationTree = $Rig/PlayerAnimationTree
 @onready var potmaSounds: PotmaSounds = $PotmaSounds
 
+@export var checkpoint: Vector3 = Vector3.ZERO
+
 const JUMP_FORCE := 10.0;
 const ROTATION_SENSIVITY := 10;
 const NORMAL_SPEED := 15;
@@ -26,6 +28,8 @@ var speed := 10.0;
 var isSprinting := false;
 var lastMovementDirection := Vector3.FORWARD
 var gravity := -20;
+
+var canMove := true;
 
 # Jump
 var jumpBuffer := false;
@@ -87,6 +91,10 @@ func process_planning() -> void:
 		gravity = ORIGINAL_GRAVITY
 
 func process_movement(delta) -> void:
+	if !canMove:
+		velocity = Vector3.ZERO
+		return;
+
 	var rawInput := Input.get_vector("move-left", "move-right", "move-forward", "move-backwards");
 	var forward := _camera.global_basis.z
 	var right := _camera.global_basis.x
@@ -133,6 +141,15 @@ func _on_potion_used(potionType: PotionTypes.PotionType) -> void:
 		speedPotionUsed(potionType);
 	if potionType == PotionTypes.PotionType.JumpAndSpeed:
 		_activate_jump_speed_potion(potionType);
+	
+	disable_can_move_due_drink_potion();
+
+
+# TODO: Implementarlo con la animacion correspondiente
+func disable_can_move_due_drink_potion() -> void:
+	canMove = false;
+	await get_tree().create_timer(2.1).timeout
+	canMove = true;
 
 func _activate_jump_speed_potion(potionType: PotionTypes.PotionType) -> void:
 	activateMegaJump()
@@ -172,3 +189,6 @@ func _is_player_not_moving_on_ground() -> bool:
 
 func is_moving() -> bool:
 	return abs(velocity.x) > 0.1 or abs(velocity.z) > 0.1
+
+func get_to_checkpoint() -> void:
+	position = checkpoint
