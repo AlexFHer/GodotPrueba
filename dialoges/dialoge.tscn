@@ -15,6 +15,7 @@ offset_bottom = -651.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_il0tr")
+d_file = "res://dialoges/pocima_dialoge.json"
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0

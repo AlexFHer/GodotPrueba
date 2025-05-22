@@ -19,7 +19,7 @@ func load_dialogue():
     return content
 
 func _input(event):
-    if event.is_action_pressed("ui_accept"):
+    if event.is_action_pressed("Talk"):
         next_script()
 
 func next_script():

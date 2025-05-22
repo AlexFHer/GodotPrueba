@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cu673ns5f7wxu"]
+[gd_scene load_steps=8 format=3 uid="uid://cu673ns5f7wxu"]
 
 [ext_resource type="Script" uid="uid://dbqyexmvtbw0l" path="res://assets/fire_towers/tower_fire_puzzle.gd" id="1_gje8v"]
 [ext_resource type="PackedScene" uid="uid://bqtvadcvrnqj7" path="res://assets/fire_towers/model/TowerFirePlace.glb" id="1_xt7tj"]
 [ext_resource type="PackedScene" uid="uid://frq00p7ashc5" path="res://assets/fire_towers/model/Fire_Tower.glb" id="2_gje8v"]
+[ext_resource type="AudioStream" uid="uid://dmwp33tq6noif" path="res://assets/fire_towers/sfx/Fire_Tower.ogg" id="4_og63g"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_flmx6"]
 animation = &"IcosphereAction"
@@ -14,8 +15,9 @@ size = Vector3(6.90672, 4.7981, 6.1781)
 height = 8.52026
 radius = 2.4707
 
-[node name="Fire_Tower_Puzzle" type="Area3D"]
+[node name="Fire_Tower_Puzzle" type="Area3D" node_paths=PackedStringArray("towerFireAudio")]
 script = ExtResource("1_gje8v")
+towerFireAudio = NodePath("AudioStreamPlayer3D")
 
 [node name="TowerFirePlace2" parent="." instance=ExtResource("1_xt7tj")]
 
@@ -25,8 +27,8 @@ script = ExtResource("1_gje8v")
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -1.935, 0)
 
 [node name="Icosphere" parent="Fire_Tower_Model/Fire_Tower" index="0"]
-"blend_shapes/Key 1" = 0.0560501
-"blend_shapes/Key 2" = 0.17936
+"blend_shapes/Key 1" = 0.899573
+"blend_shapes/Key 2" = 0.168059
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../Fire_Tower_Model/Fire_Tower")
@@ -43,6 +45,9 @@ debug_color = Color(0.981259, 0, 0.37262, 0.42)
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.40247, 0)
 shape = SubResource("CylinderShape3D_flmx6")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_og63g")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 

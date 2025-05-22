@@ -7,8 +7,9 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_vjdkv"]
 size = Vector3(2.02118, 1.96102, 1.74645)
 
-[node name="Jump-potion" type="Area3D"]
+[node name="Jump-potion" type="Area3D" node_paths=PackedStringArray("potionPickupAudio")]
 script = ExtResource("1_tjabp")
+potionPickupAudio = NodePath("AudioStreamPlayer3D")
 potionType = 1
 
 [node name="Model" type="Node3D" parent="."]
