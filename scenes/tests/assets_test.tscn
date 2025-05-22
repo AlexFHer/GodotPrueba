@@ -260,7 +260,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.704, 6.06641, -4.1293)
 patrolPoints = [NodePath("../Patrol point marker"), NodePath("../Patrol point marker2"), NodePath("../Patrol point marker3"), NodePath("../Patrol point marker4"), NodePath("../Patrol point marker5"), NodePath("../Patrol point marker6")]
 
 [node name="MainCharacter" parent="." instance=ExtResource("11_3onbp")]
-transform = Transform3D(1, -0.000168775, -6.33838e-05, 0.000168802, 1, 0.000491578, 6.33117e-05, -0.000491587, 1, 7.70081, 0.202615, 13.3133)
+transform = Transform3D(1, -0.000168775, -6.33838e-05, 0.000168802, 1, 0.000491578, 6.33117e-05, -0.000491587, 1, 5.92509, 0.202615, 10.3516)
 
 [node name="Castle_Lever" parent="." instance=ExtResource("22_e1my4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.6926, 0.0592519, -12.6781)

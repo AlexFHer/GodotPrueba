@@ -26,6 +26,7 @@ signal lifeChanged(newLife: int);
 
 var speed := 10.0;
 var isSprinting := false;
+var isFloating := false;
 var lastMovementDirection := Vector3.FORWARD
 var gravity := -20;
 
@@ -113,15 +114,15 @@ func process_jump() -> void:
 func process_planning() -> void:
 	if Input.is_action_pressed("jump") and not is_on_floor():
 		gravity = PLANNING_GRAVITY
+		isFloating = true
 	else:
 		gravity = ORIGINAL_GRAVITY
+		isFloating = false
 
 func process_movement(delta) -> void:
-	if !canMove:
-		velocity = Vector3.ZERO
-		return;
-
 	var rawInput := Input.get_vector("move-left", "move-right", "move-forward", "move-backwards");
+	if !canMove:
+		rawInput = Vector2.ZERO;
 	var forward := _camera.global_basis.z
 	var right := _camera.global_basis.x
 	
@@ -174,8 +175,11 @@ func _on_potion_used(potionType: PotionTypes.PotionType) -> void:
 # TODO: Implementarlo con la animacion correspondiente
 func disable_can_move_due_drink_potion() -> void:
 	canMove = false;
+	canJump = false;
+
 	await get_tree().create_timer(2.1).timeout
 	canMove = true;
+	canJump = true
 
 func _activate_jump_speed_potion(potionType: PotionTypes.PotionType) -> void:
 	activateMegaJump()
@@ -205,7 +209,9 @@ func dealDamage() -> void:
 func checkIfPlayerIsDead() -> void:
 	if life <= 0:
 		animation_tree.set("parameters/DieOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE);
-		await get_tree().create_timer(3).timeout
+		await get_tree().create_timer(0.5).timeout
+		# restart_game();
+		get_tree().reload_current_scene()
 		# TODO: implement game over
 
 func _is_player_moving_on_ground() -> bool:
@@ -219,3 +225,6 @@ func is_moving() -> bool:
 
 func get_to_checkpoint() -> void:
 	position = checkpoint
+
+func floating() -> bool:
+	return isFloating

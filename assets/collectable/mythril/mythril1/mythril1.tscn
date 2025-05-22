@@ -1,10 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dxt8axkp8hlwt"]
+[gd_scene load_steps=8 format=3 uid="uid://dxt8axkp8hlwt"]
 
 [ext_resource type="Script" uid="uid://crdiafxoaxufc" path="res://assets/collectable/mythril/mythril.gd" id="1_1m2s7"]
 [ext_resource type="PackedScene" uid="uid://dxab3wp53sllu" path="res://assets/collectable/mythril/mythril1/mesh/Mythill_1.glb" id="1_u86b4"]
 [ext_resource type="PackedScene" uid="uid://236eq0nbguwn" path="res://assets/numbers/1/number_1.tscn" id="2_soaja"]
 [ext_resource type="AudioStream" uid="uid://drf15e030ekbo" path="res://assets/collectable/mythril/sfx/Mythrill.ogg" id="3_dsks7"]
-[ext_resource type="Texture2D" uid="uid://dxy4dbrfbkswy" path="res://assets/particles/kenney_particles/magic_05.png" id="5_lvrot"]
+[ext_resource type="PackedScene" uid="uid://c5gxf5fsemlpb" path="res://assets/particles/mythrill_particles.tscn" id="6_3up1n"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u86b4"]
 animation = &"Mythrill 1Action"
@@ -12,45 +12,18 @@ animation = &"Mythrill 1Action"
 [sub_resource type="SphereShape3D" id="SphereShape3D_u86b4"]
 radius = 0.272552
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3up1n"]
-transparency = 1
-vertex_color_use_as_albedo = true
-albedo_color = Color(0, 1, 1, 1)
-albedo_texture = ExtResource("5_lvrot")
-billboard_mode = 3
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mr0r5"]
-transparency = 1
-albedo_texture = ExtResource("5_lvrot")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4qyhb"]
-lifetime_randomness = 0.33
-angle_min = -450.5
-angle_max = 92.8
-direction = Vector3(0, 0, 0)
-spread = 160.909
-initial_velocity_min = 7.33
-initial_velocity_max = 7.33
-scale_min = 0.0
-scale_max = 0.0
-
-[sub_resource type="QuadMesh" id="QuadMesh_t586n"]
-
 [node name="Mythril1" type="Area3D" node_paths=PackedStringArray("coinPickupAudio", "mesh", "collision", "mythrillParticles")]
 script = ExtResource("1_1m2s7")
 coinPickupAudio = NodePath("CoinPickupAudio")
 mesh = NodePath("Mythill_1")
 collision = NodePath("GrabCollisionShape")
 numberPackedScene = ExtResource("2_soaja")
-mythrillParticles = NodePath("GPUParticles3D")
+mythrillParticles = NodePath("Mythrill_particles")
 
 [node name="Mythill_1" parent="." instance=ExtResource("1_u86b4")]
 
 [node name="Mythrill 1" parent="Mythill_1" index="0"]
-transform = Transform3D(0.0730234, 0.409736, 0.909277, -2.98023e-08, 0.911711, -0.410833, -0.997328, 0.0300005, 0.0665764, 0, 0, 0)
+transform = Transform3D(-0.238495, 0.398978, 0.885402, 1.49011e-08, 0.911711, -0.410833, -0.971141, -0.0979818, -0.217439, 0, 0, 0)
 
 [node name="AnimationPlayer" parent="Mythill_1" index="1"]
 autoplay = "Mythrill 1Action"
@@ -68,16 +41,7 @@ shape = SubResource("SphereShape3D_u86b4")
 stream = ExtResource("3_dsks7")
 volume_db = -15.0
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-material_override = SubResource("StandardMaterial3D_3up1n")
-material_overlay = SubResource("StandardMaterial3D_mr0r5")
-emitting = false
-amount = 20
-lifetime = 0.16
-one_shot = true
-explosiveness = 0.35
-process_material = SubResource("ParticleProcessMaterial_4qyhb")
-draw_pass_1 = SubResource("QuadMesh_t586n")
+[node name="Mythrill_particles" parent="." instance=ExtResource("6_3up1n")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 

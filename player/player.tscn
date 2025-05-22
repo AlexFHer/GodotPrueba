@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://cf47i2djfslyw"]
+[gd_scene load_steps=55 format=3 uid="uid://cf47i2djfslyw"]
 
 [ext_resource type="Script" uid="uid://b3jy8x8um1xce" path="res://player/PlayerCharacter.gd" id="1_43pha"]
 [ext_resource type="Script" uid="uid://df8j4nq0qxet4" path="res://player/scripts/potions-manager.gd" id="2_86mlk"]
@@ -22,7 +22,7 @@ margin = 0.025
 height = 1.33974
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hg6s5"]
-size = Vector3(2.32422, 0.882263, 1.14795)
+size = Vector3(1.30914, 0.882263, 1.14795)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_32hag"]
 animation = &"PotmaFireBall"
@@ -42,11 +42,11 @@ animation = &"Potma_Hit"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hg6s5"]
 animation = &"PotmaFall"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e7oew"]
+animation = &"PotmaFloat"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8t03j"]
 animation = &"PotmaIdle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e7oew"]
-animation = &"PotmaJump"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kb6p2"]
 animation = &"PotmaRun"
@@ -58,22 +58,27 @@ animation = &"PotmaWalk"
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kb6p2"]
+xfade_time = 0.2
 advance_mode = 2
 advance_expression = "is_on_floor() and is_moving()"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wodsf"]
+xfade_time = 0.2
 advance_mode = 2
 advance_expression = "!is_moving()"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_32hag"]
+xfade_time = 0.2
 advance_mode = 2
 advance_expression = "isSprinting"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e7oew"]
+xfade_time = 0.2
 advance_mode = 2
 advance_expression = "!isSprinting"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c35mf"]
+xfade_time = 0.2
 advance_mode = 2
 advance_expression = "!is_moving()"
 
@@ -90,31 +95,53 @@ advance_mode = 2
 advance_expression = "is_on_floor() and !is_moving()"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tqiix"]
+xfade_time = 0.2
 advance_mode = 2
 advance_expression = "!is_on_floor()"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_65viv"]
-switch_mode = 2
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yllr7"]
 advance_mode = 2
 advance_expression = "!is_on_floor()"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_65viv"]
+xfade_time = 1.5
+advance_mode = 2
+advance_expression = "floating()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x7c3f"]
+advance_mode = 2
+advance_expression = "!floating()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bjvpn"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "is_on_floor()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s7qer"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "is_on_floor()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g4c7l"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "is_on_floor()"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wodsf"]
 states/End/position = Vector2(1030, 100)
 states/PotmaFall/node = SubResource("AnimationNodeAnimation_hg6s5")
-states/PotmaFall/position = Vector2(650, -26)
+states/PotmaFall/position = Vector2(650, -25)
+states/PotmaFloat/node = SubResource("AnimationNodeAnimation_e7oew")
+states/PotmaFloat/position = Vector2(501, -146)
 states/PotmaIdle/node = SubResource("AnimationNodeAnimation_8t03j")
 states/PotmaIdle/position = Vector2(334, -15)
-states/PotmaJump/node = SubResource("AnimationNodeAnimation_e7oew")
-states/PotmaJump/position = Vector2(839, 65)
 states/PotmaRun/node = SubResource("AnimationNodeAnimation_kb6p2")
 states/PotmaRun/position = Vector2(661, 166)
 states/PotmaWalk/node = SubResource("AnimationNodeAnimation_2ieo8")
 states/PotmaWalk/position = Vector2(334, 166)
-transitions = ["Start", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_ebec5"), "PotmaIdle", "PotmaWalk", SubResource("AnimationNodeStateMachineTransition_kb6p2"), "PotmaWalk", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_wodsf"), "PotmaWalk", "PotmaRun", SubResource("AnimationNodeStateMachineTransition_32hag"), "PotmaRun", "PotmaWalk", SubResource("AnimationNodeStateMachineTransition_e7oew"), "PotmaRun", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_c35mf"), "PotmaWalk", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_hg6s5"), "PotmaFall", "PotmaWalk", SubResource("AnimationNodeStateMachineTransition_8t03j"), "PotmaFall", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_2ieo8"), "PotmaRun", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_tqiix"), "PotmaJump", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_65viv"), "PotmaIdle", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_yllr7")]
-graph_offset = Vector2(186, -164)
+states/Start/position = Vector2(30, 51)
+transitions = ["Start", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_ebec5"), "PotmaIdle", "PotmaWalk", SubResource("AnimationNodeStateMachineTransition_kb6p2"), "PotmaWalk", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_wodsf"), "PotmaWalk", "PotmaRun", SubResource("AnimationNodeStateMachineTransition_32hag"), "PotmaRun", "PotmaWalk", SubResource("AnimationNodeStateMachineTransition_e7oew"), "PotmaRun", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_c35mf"), "PotmaWalk", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_hg6s5"), "PotmaFall", "PotmaWalk", SubResource("AnimationNodeStateMachineTransition_8t03j"), "PotmaFall", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_2ieo8"), "PotmaRun", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_tqiix"), "PotmaIdle", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_yllr7"), "PotmaFall", "PotmaFloat", SubResource("AnimationNodeStateMachineTransition_65viv"), "PotmaFloat", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_x7c3f"), "PotmaFloat", "PotmaRun", SubResource("AnimationNodeStateMachineTransition_bjvpn"), "PotmaFloat", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_s7qer"), "PotmaFloat", "PotmaWalk", SubResource("AnimationNodeStateMachineTransition_g4c7l")]
+graph_offset = Vector2(-105, -167)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tqiix"]
 animation = &"PotmaStaff_Hit"
@@ -127,7 +154,7 @@ animation = &"PotmaStaff_Hit"
 animation = &"Potma_Drink"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_2ieo8"]
-graph_offset = Vector2(-159.159, -123.354)
+graph_offset = Vector2(-255.267, -80.8003)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_32hag")
 nodes/Animation/position = Vector2(1180, 300)
 nodes/Die/node = SubResource("AnimationNodeAnimation_ebec5")
@@ -178,7 +205,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.654711, 0.722715, -2.04243
 
 [node name="StaffCollision" type="CollisionShape3D" parent="Rig/StaffArea3D"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.662109, 0.105377, 0.731203)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.59262, 0.105377, 0.731203)
 shape = SubResource("BoxShape3D_hg6s5")
 debug_color = Color(0.983944, 0, 0.348276, 0.42)
 
