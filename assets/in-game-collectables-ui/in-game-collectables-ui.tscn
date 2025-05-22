@@ -63,10 +63,12 @@ text = "Books"
 
 [node name="BooksCount" type="Label" parent="Book/BooksContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "0"
 
 [node name="BookIcon" type="Sprite2D" parent="Book"]
+unique_name_in_owner = true
 position = Vector2(0, 28)
 texture = ExtResource("3_vl5cs")
 
