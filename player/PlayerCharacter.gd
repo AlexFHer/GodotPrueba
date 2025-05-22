@@ -206,7 +206,9 @@ func dealDamage() -> void:
 func checkIfPlayerIsDead() -> void:
 	if life <= 0:
 		animation_tree.set("parameters/DieOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE);
-		await get_tree().create_timer(3).timeout
+		await get_tree().create_timer(0.5).timeout
+		# restart_game();
+		get_tree().reload_current_scene()
 		# TODO: implement game over
 
 func _is_player_moving_on_ground() -> bool:

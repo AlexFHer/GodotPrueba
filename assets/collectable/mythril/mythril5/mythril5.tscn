@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b854210s7kevt"]
+[gd_scene load_steps=8 format=3 uid="uid://b854210s7kevt"]
 
 [ext_resource type="Script" uid="uid://crdiafxoaxufc" path="res://assets/collectable/mythril/mythril.gd" id="1_6jq5k"]
 [ext_resource type="PackedScene" uid="uid://d0dsbl6ka3onh" path="res://assets/numbers/5/number_5.tscn" id="2_4f5f2"]
 [ext_resource type="PackedScene" uid="uid://dseyhmj85scns" path="res://assets/collectable/mythril/mythril5/mesh/Mythill_5.glb" id="2_6ou1a"]
 [ext_resource type="AudioStream" uid="uid://drf15e030ekbo" path="res://assets/collectable/mythril/sfx/Mythrill.ogg" id="3_6ou1a"]
+[ext_resource type="PackedScene" uid="uid://c5gxf5fsemlpb" path="res://assets/particles/mythrill_particles.tscn" id="5_7buom"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6jq5k"]
 animation = &"Mythrill5Action"
@@ -11,20 +12,21 @@ animation = &"Mythrill5Action"
 [sub_resource type="SphereShape3D" id="SphereShape3D_6jq5k"]
 radius = 0.28423
 
-[node name="Mythril5" type="Area3D" node_paths=PackedStringArray("coinPickupAudio", "mesh", "collision")]
+[node name="Mythril5" type="Area3D" node_paths=PackedStringArray("coinPickupAudio", "mesh", "collision", "mythrillParticles")]
 script = ExtResource("1_6jq5k")
 value = 5
 coinPickupAudio = NodePath("CoinPickupAudio")
 mesh = NodePath("Model")
 collision = NodePath("GrabCollisionShape")
 numberPackedScene = ExtResource("2_4f5f2")
+mythrillParticles = NodePath("GPUParticles3D")
 
 [node name="Model" type="Node3D" parent="."]
 
 [node name="Mythill_5" parent="Model" instance=ExtResource("2_6ou1a")]
 
 [node name="Mythrill5" parent="Model/Mythill_5" index="0"]
-transform = Transform3D(-0.236372, -0.198186, 0.951237, -1.49012e-08, 0.978978, 0.203965, -0.971663, 0.0482117, -0.231403, 0, 0, 0)
+transform = Transform3D(0.209296, 0.199448, -0.957297, -7.45058e-09, 0.978978, 0.203966, 0.977853, -0.0426891, 0.204896, 0, 0, 0)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../Model/Mythill_5")
@@ -38,6 +40,8 @@ shape = SubResource("SphereShape3D_6jq5k")
 [node name="CoinPickupAudio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_6ou1a")
 volume_db = -15.0
+
+[node name="GPUParticles3D" parent="." instance=ExtResource("5_7buom")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 

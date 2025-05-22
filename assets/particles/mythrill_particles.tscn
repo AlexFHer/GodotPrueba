@@ -27,9 +27,7 @@ initial_velocity_max = 7.33
 
 [sub_resource type="QuadMesh" id="QuadMesh_bc1jv"]
 
-[node name="Mythrill_particles" type="Node3D"]
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="GPUParticles3D" type="GPUParticles3D"]
 material_override = SubResource("StandardMaterial3D_ly54j")
 material_overlay = SubResource("StandardMaterial3D_nf57c")
 emitting = false
