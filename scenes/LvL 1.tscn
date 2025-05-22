@@ -1,4 +1,4 @@
-[gd_scene load_steps=177 format=4 uid="uid://bd31y7odxeu3"]
+[gd_scene load_steps=178 format=4 uid="uid://bd31y7odxeu3"]
 
 [ext_resource type="Texture2D" uid="uid://bxascs40x5oel" path="res://Materials/Skybox/PjBUIr3.png" id="2_n1ihf"]
 [ext_resource type="PackedScene" uid="uid://cf47i2djfslyw" path="res://player/player.tscn" id="4_n1ihf"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://deo23lkuu8rao" path="res://assets/castle_lever/castle_lever.tscn" id="15_6wdta"]
 [ext_resource type="PackedScene" uid="uid://bp8ulxplapvk2" path="res://assets/collectable/book/book.tscn" id="16_m4385"]
 [ext_resource type="PackedScene" uid="uid://byu0b6177d1t6" path="res://assets/chests/magic_chest/magic_chest.tscn" id="16_uhwg3"]
+[ext_resource type="Script" uid="uid://cul11equ6lnw5" path="res://scripts/puzzles/fire-tower-all-active-puzzle.gd" id="17_pqsgx"]
 [ext_resource type="PackedScene" uid="uid://ex02udmugvjt" path="res://assets/potions/speed-potion/speed-potion.tscn" id="22_6grd1"]
 [ext_resource type="PackedScene" uid="uid://cyqqtvfimjbqb" path="res://assets/potions/jump-potion/jump-potion.tscn" id="23_glw7l"]
 [ext_resource type="PackedScene" uid="uid://cu673ns5f7wxu" path="res://assets/fire_towers/Tower_Fire_Puzzle.tscn" id="23_m4385"]
@@ -1745,7 +1746,7 @@ shadow_enabled = true
 environment = SubResource("Environment_eq8v2")
 
 [node name="MainCharacter" parent="." instance=ExtResource("4_n1ihf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -93.3678, 5.74509, 12.709)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116.636, 24.5205, 12.709)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="MainCharacter"]
 stream = ExtResource("27_87xxg")
@@ -1852,7 +1853,9 @@ transform = Transform3D(-0.730762, -0.0242163, 0.682203, -0.0331203, 0.999451, -
 [node name="Arc6" parent="Props/Arcs" instance=ExtResource("10_m4385")]
 transform = Transform3D(-0.984043, -0.0326097, -0.17492, -0.0331203, 0.999451, -1.46929e-10, 0.174824, 0.0057934, -0.984582, -51.3185, -0.148615, 41.1117)
 
-[node name="TowerFire" type="Node3D" parent="Props"]
+[node name="TowerFire" type="Node3D" parent="Props" node_paths=PackedStringArray("fire_towers")]
+script = ExtResource("17_pqsgx")
+fire_towers = [NodePath("Fire_Tower_Puzzle"), NodePath("Fire_Tower_Puzzle2"), NodePath("Fire_Tower_Puzzle3"), NodePath("Fire_Tower_Puzzle4")]
 
 [node name="Fire_Tower_Puzzle" parent="Props/TowerFire" instance=ExtResource("23_m4385")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.6401, 15.8089, 6.18706)
@@ -1868,6 +1871,7 @@ transform = Transform3D(0.999143, 0, -0.0413874, 0, 1, 0, 0.0413874, 0, 0.999143
 
 [node name="secret_tower" parent="Props" instance=ExtResource("24_ebask")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5893, -16.974, 16.8457)
+activated_position_y = 13.557
 
 [node name="Castle_Door" parent="Props" instance=ExtResource("14_87xxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.9324, 0.302734, 116.34)
@@ -1890,6 +1894,9 @@ transform = Transform3D(1.95, 0, 0, 0, 1.95, 0, 0, 0, 1.95, -14.6151, -14.2432, 
 
 [node name="Fire-potion" parent="Collectables/Potions" instance=ExtResource("15_6iqwe")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -111.732, 14.9174, 10.0546)
+
+[node name="Fire-potion2" parent="Collectables/Potions" instance=ExtResource("15_6iqwe")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -111.732, 14.9174, 8.0546)
 
 [node name="Speed-potion" parent="Collectables/Potions" instance=ExtResource("22_6grd1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.7967, 0.786367, 2.71973)
@@ -3054,6 +3061,7 @@ transform = Transform3D(0.888621, -0.111558, -0.444867, 0.208011, 0.9625, 0.1741
 shape = SubResource("ConcavePolygonShape3D_s0n5b")
 
 [connection signal="all_arcs_active" from="Props/Arcs" to="Collectables/magic_chest" method="deactivate_force_field"]
+[connection signal="all_fire_towers_active" from="Props/TowerFire" to="Props/secret_tower" method="activate_secret_tower"]
 [connection signal="active_changed" from="Props/Castle_Lever" to="Props/Castle_Door" method="open_door"]
 
 [editable path="LVL1_Blender"]
