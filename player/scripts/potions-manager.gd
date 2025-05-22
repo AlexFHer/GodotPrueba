@@ -32,10 +32,11 @@ func mergePotion() -> void:
 	else:
 		pass
 
+func _on_drink_animation_finished() -> void:
+	potmaSounds.drinkSoundAudioStream.play();
 
 func drinkPotion() -> void: 
 	PlayerPotions.usePotion();
-	potmaSounds.drinkSoundAudioStream.play();
 	_animation_tree.set("parameters/DrinkOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
  
 
