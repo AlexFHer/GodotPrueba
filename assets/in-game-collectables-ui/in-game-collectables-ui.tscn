@@ -85,5 +85,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="KeyIcon" type="Sprite2D" parent="Key"]
+unique_name_in_owner = true
 position = Vector2(1102, 603)
 texture = ExtResource("5_7q2y6")

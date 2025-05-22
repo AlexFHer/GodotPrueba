@@ -9,8 +9,7 @@ script = ExtResource("1_h5bql")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Pause menu" parent="CanvasLayer" instance=ExtResource("2_bge5n")]
-
-[node name="InGameCollectablesUI" parent="CanvasLayer/Pause menu" instance=ExtResource("3_swvh1")]
+[node name="InGameCollectablesUI" parent="CanvasLayer" instance=ExtResource("3_swvh1")]
 unique_name_in_owner = true
-layout_mode = 1
+
+[node name="Pause menu" parent="CanvasLayer" instance=ExtResource("2_bge5n")]
