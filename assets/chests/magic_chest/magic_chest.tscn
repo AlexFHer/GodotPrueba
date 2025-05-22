@@ -1,8 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://byu0b6177d1t6"]
+[gd_scene load_steps=12 format=3 uid="uid://byu0b6177d1t6"]
 
 [ext_resource type="Script" uid="uid://cxyexulxavcbm" path="res://assets/chests/magic_chest/magic_chest.gd" id="1_gdjlj"]
-[ext_resource type="PackedScene" uid="uid://dum74hskrrr8r" path="res://assets/chests/magic_chest/model/Force_Field.glb" id="1_y5w2v"]
 [ext_resource type="PackedScene" uid="uid://csfa612aq70i3" path="res://assets/chests/magic_chest/model/Magic_Chest.glb" id="2_5yrk7"]
+[ext_resource type="AudioStream" uid="uid://csvs88gj7gqq3" path="res://assets/chests/sfx/ChestOpening.ogg" id="3_gdjlj"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j8qs2"]
 animation = &"ForceField"
@@ -33,9 +33,6 @@ radius = 3.52051
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j8qs2"]
 size = Vector3(7.67911, 4.38116, 6.76508)
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5yrk7"]
-animation = &"ForceField"
 
 [node name="MagicChest" type="StaticBody3D"]
 script = ExtResource("1_gdjlj")
@@ -70,23 +67,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.268082, 2.24966, -0.0384216
 shape = SubResource("BoxShape3D_j8qs2")
 debug_color = Color(0.982068, 0, 0.365495, 0.42)
 
-[node name="ForceFieldModel" type="StaticBody3D" parent="."]
-visible = false
-
-[node name="ForceField" parent="ForceFieldModel" instance=ExtResource("1_y5w2v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.911452, 0)
-visible = false
-
-[node name="ForceField" parent="ForceFieldModel/ForceField" index="0"]
-"blend_shapes/Key 1" = 0.829161
-"blend_shapes/Key 2" = 0.821574
-
-[node name="ForceFieldAnimationTree" type="AnimationTree" parent="ForceFieldModel"]
-root_node = NodePath("../ForceField")
-tree_root = SubResource("AnimationNodeAnimation_5yrk7")
-anim_player = NodePath("../ForceField/AnimationPlayer")
+[node name="OpenAudioStreamPlayer" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_gdjlj")
 
 [connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]
 
 [editable path="MagicChestModel/Magic_Chest"]
-[editable path="ForceFieldModel/ForceField"]

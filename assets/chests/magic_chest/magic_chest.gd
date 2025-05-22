@@ -2,6 +2,7 @@ class_name MagicChest extends StaticBody3D
 
 @onready var _forceField: Node3D = $MagicChestModel/Magic_Chest/ForceField
 @onready var _forceFieldCollision: CollisionShape3D = $ForceFieldCollisionShape
+@onready var _chest_open_audio: AudioStreamPlayer3D = $OpenAudioStreamPlayer
 
 @export var numberOfMithrils := 10;
 
@@ -10,7 +11,7 @@ var isForceFieldActive := true;
 
 func open_chest() -> void:
 	opened = true;
-	pass;
+	_chest_open_audio.play()
 
 func deactivate_force_field() -> void:
 	if _forceField == null:
