@@ -1748,8 +1748,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -93.3678, 5.74509, 12.709)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="MainCharacter"]
 stream = ExtResource("27_87xxg")
-volume_db = 3.117
+volume_db = -49.549
+unit_size = 119.1
+max_db = 6.0
 autoplay = true
+max_distance = 1409.66
+panning_strength = 1.7
 
 [node name="Level" parent="." instance=ExtResource("29_afy8w")]
 levelCollectables = SubResource("Resource_glw7l")
@@ -1786,10 +1790,11 @@ elevatorPoints = [NodePath("../Elevator point"), NodePath("../Elevator point2")]
 
 [node name="Elevator point2" parent="Props/Elevators/Lift1" instance=ExtResource("13_3wafn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.43572, 0)
-waitTime = 2.0
+waitTime = 1.0
 
 [node name="Elevator point" parent="Props/Elevators/Lift1" instance=ExtResource("13_3wafn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.00364, 0)
+waitTime = 1.0
 
 [node name="Lift3" type="Node3D" parent="Props/Elevators"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.65653, -1.25573, 82.2936)
@@ -1800,10 +1805,11 @@ elevatorPoints = [NodePath("../Elevator point"), NodePath("../Elevator point2")]
 
 [node name="Elevator point2" parent="Props/Elevators/Lift3" instance=ExtResource("13_3wafn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.2792, 0)
-waitTime = 2.0
+waitTime = 1.0
 
 [node name="Elevator point" parent="Props/Elevators/Lift3" instance=ExtResource("13_3wafn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.00364, 0)
+waitTime = 1.0
 
 [node name="Lift2" type="Node3D" parent="Props/Elevators"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.0652, 27.962, -69.4541)
@@ -1814,10 +1820,11 @@ elevatorPoints = [NodePath("../Elevator point"), NodePath("../Elevator point2")]
 
 [node name="Elevator point2" parent="Props/Elevators/Lift2" instance=ExtResource("13_3wafn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.7954, 0)
-waitTime = 2.0
+waitTime = 1.0
 
 [node name="Elevator point" parent="Props/Elevators/Lift2" instance=ExtResource("13_3wafn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.00364, 0)
+waitTime = 1.0
 
 [node name="Arcs" type="Node3D" parent="Props" node_paths=PackedStringArray("arcs")]
 script = ExtResource("9_8lmy1")
@@ -1874,6 +1881,17 @@ transform = Transform3D(0.331354, 0, -0.943506, 0, 1, 0, 0.943506, 0, 0.331354, 
 
 [node name="Key" parent="Collectables" instance=ExtResource("9_gfmul")]
 transform = Transform3D(1.95, 0, 0, 0, 1.95, 0, 0, 0, 1.95, -14.6151, -14.2432, 78.7651)
+
+[node name="Potions" type="Node3D" parent="Collectables"]
+
+[node name="Fire-potion" parent="Collectables/Potions" instance=ExtResource("15_6iqwe")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -111.732, 14.9174, 10.0546)
+
+[node name="Speed-potion" parent="Collectables/Potions" instance=ExtResource("22_6grd1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.7967, 0.786367, 2.71973)
+
+[node name="Jump-potion" parent="Collectables/Potions" instance=ExtResource("23_glw7l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.1746, 0.866414, -18.9989)
 
 [node name="Mthrill" type="Node3D" parent="Collectables"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.798, 0.137118, 16.0822)
@@ -2120,18 +2138,6 @@ transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 
 
 [node name="Book2" parent="Collectables/Mthrill" instance=ExtResource("16_m4385")]
 transform = Transform3D(-2.44929, 0, 0.0590894, 0, 2.45, 0, -0.0590894, 0, -2.44929, 32.1855, 13.8885, 170.626)
-
-[node name="Potions" type="Node3D" parent="Collectables/Mthrill"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.798, -0.137118, -16.0822)
-
-[node name="Fire-potion" parent="Collectables/Mthrill/Potions" instance=ExtResource("15_6iqwe")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -111.732, 14.9174, 10.0546)
-
-[node name="Speed-potion" parent="Collectables/Mthrill/Potions" instance=ExtResource("22_6grd1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.7967, 0.786367, 2.71973)
-
-[node name="Jump-potion" parent="Collectables/Mthrill/Potions" instance=ExtResource("23_glw7l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.4779, -0.152254, 29.3302)
 
 [node name="LVL1_Blender" parent="." instance=ExtResource("5_7idjg")]
 visible = false
@@ -3044,5 +3050,6 @@ transform = Transform3D(0.888621, -0.111558, -0.444867, 0.208011, 0.9625, 0.1741
 shape = SubResource("ConcavePolygonShape3D_s0n5b")
 
 [connection signal="all_arcs_active" from="Props/Arcs" to="Collectables/magic_chest" method="deactivate_force_field"]
+[connection signal="active_changed" from="Props/Castle_Lever" to="Props/Castle_Door" method="open_door"]
 
 [editable path="LVL1_Blender"]
