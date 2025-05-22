@@ -1,4 +1,4 @@
-class_name PotmaSounds extends Node;
+class_name PotmaSounds extends Node3D;
 
 @onready var walkSoundAudioStream: AudioStreamPlayer3D = $PotmaWalkAudioStream;
 @onready var drinkSoundAudioStream: AudioStreamPlayer3D = $PotmaDrinkAudioStream;
