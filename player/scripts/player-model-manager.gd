@@ -15,13 +15,24 @@ var potionTypeToTextureLookUp: Dictionary[PotionTypes.PotionType, CompressedText
 
 @onready var potionPlaceHolder: MeshInstance3D = $Armature/Potma/Armature_Potma/Skeleton3D/Poti_placeHolder
 
+var currentPotion: PotionTypes.PotionType = PotionTypes.PotionType.None
+
 func _ready() -> void:
 	PlayerPotions.potionUsed.connect(_on_potion_used);
 	PlayerPotions.potionEffectFinished.connect(_on_potion_effect_finished);
 	change_body_mesh_albedo_texture(bodyBaseColor)
 
+
+# TODO: Utilizar este event para cambiar el color del cuerpo en vez del create timer que hay en el on_potion_used
+func on_potion_drink_animation_finished() -> void:
+	if currentPotion != PotionTypes.PotionType.None:
+		change_body_mesh_albedo_based_on_potion_type(currentPotion)
+
 func _on_potion_used(potionType: PotionTypes.PotionType) -> void:
+	currentPotion = potionType
+	await get_tree().create_timer(2.1).timeout
 	change_body_mesh_albedo_based_on_potion_type(potionType)
+
 
 func _on_player_selected_potion_changed(potionType: PotionTypes.PotionType):
 	change_body_mesh_albedo_based_on_potion_type(potionType)
@@ -38,3 +49,5 @@ func change_body_mesh_albedo_texture(texture: CompressedTexture2D) -> void:
 
 func _on_potion_effect_finished(_potionType: PotionTypes.PotionType) -> void:
 	change_body_mesh_albedo_texture(bodyBaseColor)
+	currentPotion = PotionTypes.PotionType.None
+
