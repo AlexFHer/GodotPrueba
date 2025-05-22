@@ -1,10 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://cii1jxpiud2wy"]
+[gd_scene load_steps=19 format=3 uid="uid://cii1jxpiud2wy"]
 
 [ext_resource type="Script" uid="uid://d0y71oajl8iqn" path="res://assets/enemies/globrc-small/globrc-small.gd" id="1_3rf8u"]
 [ext_resource type="PackedScene" uid="uid://cpnbng5cyexv7" path="res://assets/enemies/globrc-small/rig/Globrc_Thin.glb" id="2_c4b4g"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3rf8u"]
 animation = &"GT_Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jto2g"]
+animation = &"GT_Die"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_80nkx"]
 animation = &"GT_Idle"
@@ -23,19 +26,30 @@ advance_expression = "velocity"
 advance_mode = 2
 advance_expression = "!velocity"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1dxc2"]
+advance_mode = 2
+advance_expression = "is_dead()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dvqsj"]
+advance_mode = 2
+advance_expression = "is_dead()"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jto2g"]
+states/GT_Die/node = SubResource("AnimationNodeAnimation_jto2g")
+states/GT_Die/position = Vector2(550, 145)
 states/GT_Idle/node = SubResource("AnimationNodeAnimation_80nkx")
 states/GT_Idle/position = Vector2(342, 83)
 states/GT_Run/node = SubResource("AnimationNodeAnimation_c4b4g")
 states/GT_Run/position = Vector2(342, 263)
 states/Start/position = Vector2(154, 157)
-transitions = ["Start", "GT_Idle", SubResource("AnimationNodeStateMachineTransition_2ky47"), "GT_Idle", "GT_Run", SubResource("AnimationNodeStateMachineTransition_3rf8u"), "GT_Run", "GT_Idle", SubResource("AnimationNodeStateMachineTransition_c4b4g")]
-graph_offset = Vector2(84, 11)
+transitions = ["Start", "GT_Idle", SubResource("AnimationNodeStateMachineTransition_2ky47"), "GT_Idle", "GT_Run", SubResource("AnimationNodeStateMachineTransition_3rf8u"), "GT_Run", "GT_Idle", SubResource("AnimationNodeStateMachineTransition_c4b4g"), "GT_Idle", "GT_Die", SubResource("AnimationNodeStateMachineTransition_1dxc2"), "GT_Run", "GT_Die", SubResource("AnimationNodeStateMachineTransition_dvqsj")]
+graph_offset = Vector2(104, 38)
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_c4b4g"]
 filters = ["GT_Armature/Skeleton3D:GT.Arm.R", "GT_Armature/Skeleton3D:GT.Hand.R", "GT_Armature/Skeleton3D:GT.Head", "GT_Armature/Skeleton3D:GT.Mouth", "GT_Armature/Skeleton3D:GT.Nose", "GT_Armature/Skeleton3D:GT.Ojos", "GT_Armature/Skeleton3D:GT.Upper_Body", "GT_Armature/Skeleton3D:GT.Weapon"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_1dxc2"]
+graph_offset = Vector2(-675.13, 90.3188)
 "nodes/Attack Anim/node" = SubResource("AnimationNodeAnimation_3rf8u")
 "nodes/Attack Anim/position" = Vector2(-620, 360)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_jto2g")
@@ -57,7 +71,7 @@ size = Vector3(0.924194, 0.358643, 0.669678)
 radius = 0.27519
 height = 0.960382
 
-[node name="Globrc Small" type="CharacterBody3D" groups=["CanPatrol", "Enemy"]]
+[node name="Globrc Small" type="CharacterBody3D" groups=["CanGetHit", "CanPatrol", "Enemy"]]
 script = ExtResource("1_3rf8u")
 
 [node name="Rig" type="Node3D" parent="."]
@@ -67,23 +81,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.115247, 0)
 [node name="Globrc_Thin" parent="Rig" instance=ExtResource("2_c4b4g")]
 
 [node name="Skeleton3D" parent="Rig/Globrc_Thin/GT_Armature" index="0"]
-bones/0/position = Vector3(0, -0.0320101, 0)
-bones/0/rotation = Quaternion(-2.98023e-08, 1.19209e-07, -2.52435e-29, 1)
-bones/1/rotation = Quaternion(-0.0758027, 2.13778e-14, -1.80728e-08, 0.997123)
-bones/2/rotation = Quaternion(-3.55271e-15, -1.11022e-15, -8.8818e-16, 1)
-bones/3/rotation = Quaternion(0.0611476, -1.20129e-14, 1.45787e-08, 0.998129)
-bones/4/rotation = Quaternion(0.740221, -0.123063, -0.148305, 0.644154)
-bones/5/scale = Vector3(1, 1, 1)
+bones/0/position = Vector3(-1.44777e-08, -0.0607253, -0.060724)
+bones/0/rotation = Quaternion(-0.435877, 1.07289e-07, 5.19606e-08, 0.900006)
+bones/1/rotation = Quaternion(-0.395188, -4.57947e-08, -1.14764e-08, 0.9186)
+bones/2/rotation = Quaternion(0.109502, 6.40716e-08, 8.08149e-09, 0.993987)
+bones/3/rotation = Quaternion(-0.0451942, -9.35434e-09, 1.58831e-08, 0.998978)
+bones/4/rotation = Quaternion(0.653369, -0.0869448, -0.171987, 0.7321)
+bones/5/scale = Vector3(1.03733, 1.03733, 1.03733)
 bones/6/position = Vector3(0.000320008, 0.0565609, 0.158147)
-bones/6/rotation = Quaternion(0.696971, 2.64327e-07, 8.70795e-07, 0.717099)
-bones/7/rotation = Quaternion(2.08339e-07, -1.68607e-07, 0.924894, 0.380225)
+bones/6/rotation = Quaternion(0.735039, 8.63111e-07, 2.54625e-07, 0.678025)
+bones/7/rotation = Quaternion(-0.338182, -0.0282625, 0.590807, 0.731971)
 bones/8/rotation = Quaternion(0.0672257, -0.00560281, 0.288184, 0.955196)
-bones/9/position = Vector3(-0.0473607, 0.0269786, -0.170675)
-bones/9/rotation = Quaternion(-0.0467328, 0.744814, 0.659496, -0.0901839)
-bones/10/rotation = Quaternion(-0.156938, -0.381749, 0.842435, -0.346326)
-bones/12/rotation = Quaternion(0.980426, -0.0173777, -0.0189072, -0.195206)
+bones/9/position = Vector3(-0.116312, -0.00563714, -0.0248426)
+bones/9/rotation = Quaternion(0.185364, 0.590232, 0.0358704, 0.784844)
+bones/10/rotation = Quaternion(-0.150604, -0.136723, 0.922695, -0.327504)
+bones/12/rotation = Quaternion(0.985086, -0.0256353, -0.00152593, -0.170134)
 bones/13/rotation = Quaternion(0.536616, -0.483698, 0.539789, -0.432096)
-bones/14/rotation = Quaternion(0.987401, 0.0149651, -0.0208687, -0.156143)
+bones/14/rotation = Quaternion(0.999066, 0.0173946, -0.0188912, -0.0347552)
 
 [node name="AnimationTree" type="AnimationTree" parent="Rig"]
 root_node = NodePath("../Globrc_Thin")
