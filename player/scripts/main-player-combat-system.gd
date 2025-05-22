@@ -5,6 +5,7 @@ extends Node
 @onready var _shoot_position: Node3D = %ShootPosition
 @onready var _rig: Node3D = %Rig
 @onready var _staff_collision: CollisionShape3D = %StaffCollision
+@onready var _potmaSounds: PotmaSounds = %PotmaSounds
 
 var current_active_potion: PotionTypes.PotionType = PotionTypes.PotionType.None
 var _can_attack := true
@@ -21,6 +22,7 @@ func _process(_delta: float) -> void:
 			attack()
 
 func _play_staff_hit_animation() -> void:
+	_potmaSounds.staffHitSoundAudioStream.play()
 	_animation_tree.set("parameters/StaffHitOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	_set_staff_collision(true)
 

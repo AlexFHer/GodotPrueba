@@ -6,3 +6,4 @@ class_name PotmaSounds extends Node3D;
 @onready var getHitSoundAudioStream: AudioStreamPlayer3D = $PotmaGetHitAudioStream;
 @onready var jumpSoundAudioStream: AudioStreamPlayer3D = $PotmaJumpAudioStream;
 @onready var megaJumpSoundAudioStream: AudioStreamPlayer3D = $PotmaMegaJumpAudioStream;
+@onready var staffHitSoundAudioStream: AudioStreamPlayer3D = $PotmaStaffHitAudioStream;

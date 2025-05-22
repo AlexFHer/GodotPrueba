@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://cf47i2djfslyw"]
+[gd_scene load_steps=51 format=3 uid="uid://cf47i2djfslyw"]
 
 [ext_resource type="Script" uid="uid://b3jy8x8um1xce" path="res://player/PlayerCharacter.gd" id="1_43pha"]
 [ext_resource type="Script" uid="uid://df8j4nq0qxet4" path="res://player/scripts/potions-manager.gd" id="2_86mlk"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://dlpvxiqe8gci7" path="res://player/sfx/Hit.ogg" id="10_yllr7"]
 [ext_resource type="AudioStream" uid="uid://dcbopcwp4jk72" path="res://player/sfx/Jump.ogg" id="11_e7oew"]
 [ext_resource type="AudioStream" uid="uid://b3o11owhrsjrw" path="res://player/sfx/SuperJump.ogg" id="12_c35mf"]
+[ext_resource type="AudioStream" uid="uid://cuaihw2sw2ono" path="res://player/sfx/StaffHit.ogg" id="15_32hag"]
 [ext_resource type="AudioStream" uid="uid://dmjjxtn60qsik" path="res://player/sfx/DrinkPotion.ogg" id="15_bjvpn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_itxij"]
@@ -365,6 +366,9 @@ stream = ExtResource("11_e7oew")
 
 [node name="PotmaMegaJumpAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds"]
 stream = ExtResource("12_c35mf")
+
+[node name="PotmaStaffHitAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds"]
+stream = ExtResource("15_32hag")
 
 [node name="CombatSystem" type="Node" parent="."]
 script = ExtResource("10_2ieo8")
