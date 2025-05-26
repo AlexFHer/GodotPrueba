@@ -132,7 +132,11 @@ func process_movement(delta) -> void:
 	
 	var yVelocity := velocity.y;
 	velocity.y = 0;
-	velocity = velocity.move_toward(moveDirection * speed, ACCELERATION * delta)
+	# Cambia move_toward por interpolación directa para quitar el patinado
+	if moveDirection.length() > 0.1:
+		velocity = moveDirection * speed
+	else:
+		velocity = Vector3.ZERO
 	velocity.y = yVelocity + gravity * delta
 	# manages rig rotation based on input
 	if moveDirection.length() > 0.2:
