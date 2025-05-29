@@ -1,0 +1,98 @@
+[gd_scene load_steps=12 format=3 uid="uid://btsrth5llm6nf"]
+
+[ext_resource type="Script" uid="uid://dslsa80i3t8qk" path="res://assets/enemies/globrc-big/globrc-big.gd" id="1_sbrch"]
+[ext_resource type="PackedScene" uid="uid://drcdilr67ioqi" path="res://assets/enemies/globrc-big/rig/Globrc_Fat.glb" id="2_srgs1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_srgs1"]
+size = Vector3(4.01114, 1, 4.73128)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sbrch"]
+animation = &"GF_Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_srgs1"]
+animation = &"GF_Ready"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4mpkc"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_khftw"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "state == 1"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j2o2b"]
+xfade_time = 0.3
+advance_mode = 2
+advance_expression = "state == 0"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_cjwt5"]
+states/GF_Idle/node = SubResource("AnimationNodeAnimation_sbrch")
+states/GF_Idle/position = Vector2(474, 100)
+states/GF_Ready/node = SubResource("AnimationNodeAnimation_srgs1")
+states/GF_Ready/position = Vector2(616, -18)
+transitions = ["Start", "GF_Idle", SubResource("AnimationNodeStateMachineTransition_4mpkc"), "GF_Idle", "GF_Ready", SubResource("AnimationNodeStateMachineTransition_khftw"), "GF_Ready", "GF_Idle", SubResource("AnimationNodeStateMachineTransition_j2o2b")]
+graph_offset = Vector2(42, -229)
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_sbrch"]
+graph_offset = Vector2(-355, 4)
+nodes/Locomotion/node = SubResource("AnimationNodeStateMachine_cjwt5")
+nodes/Locomotion/position = Vector2(-153, 125)
+node_connections = [&"output", 0, &"Locomotion"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sbrch"]
+radius = 0.633784
+height = 1.64641
+
+[node name="Globrc-big" type="CharacterBody3D"]
+script = ExtResource("1_sbrch")
+
+[node name="Rig" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Globrc_Fat" parent="Rig" instance=ExtResource("2_srgs1")]
+
+[node name="Skeleton3D" parent="Rig/Globrc_Fat/GF_Armature" index="0"]
+bones/1/scale = Vector3(1, 1.00476, 1)
+bones/2/rotation = Quaternion(0.159751, 0.00584775, 0.0361105, 0.986479)
+bones/5/rotation = Quaternion(0.539926, 2.01385e-07, 2.56359e-07, 0.841713)
+bones/6/position = Vector3(-0.204919, 0.548783, -0.097704)
+bones/7/rotation = Quaternion(0.109225, -0.012962, 0.0521566, 0.992563)
+bones/8/position = Vector3(-0.0785205, 0.270979, -0.0975532)
+bones/8/rotation = Quaternion(-0.144619, 0.711646, 0.607433, -0.32198)
+bones/9/position = Vector3(0.0546801, 1.09216, -0.0573496)
+bones/9/rotation = Quaternion(-0.0229885, -0.40132, -0.0187743, 0.915457)
+bones/10/rotation = Quaternion(-0.0214756, 1.03903e-08, 0.257758, 0.965971)
+bones/11/rotation = Quaternion(0.998764, -0.0475658, -0.00587446, 0.0131374)
+bones/13/position = Vector3(0.204919, 0.548783, -0.0977039)
+bones/13/rotation = Quaternion(0.022567, -0.0521483, 0.916264, -0.396525)
+bones/14/rotation = Quaternion(0.113434, 0.0247531, -0.129155, 0.984804)
+bones/15/rotation = Quaternion(-0.0287704, -0.00335187, -0.19455, 0.980465)
+bones/16/rotation = Quaternion(0.998764, 0.0475658, 0.0058747, 0.0131374)
+bones/17/rotation = Quaternion(0.477796, 0.538916, -0.507103, -0.47342)
+
+[node name="PlayerInRangeArea3D" type="Area3D" parent="Rig"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rig/PlayerInRangeArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.102127, 1.05821, 3.13035)
+shape = SubResource("BoxShape3D_srgs1")
+debug_color = Color(0.905358, 0.267529, 0.380772, 0.42)
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("%Rig/Globrc_Fat")
+tree_root = SubResource("AnimationNodeBlendTree_sbrch")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../Rig/Globrc_Fat/AnimationPlayer")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.769592, 0)
+shape = SubResource("CapsuleShape3D_sbrch")
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="LeaveReadyTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+
+[connection signal="body_entered" from="Rig/PlayerInRangeArea3D" to="." method="_on_player_in_range_area_3d_body_entered"]
+[connection signal="body_exited" from="Rig/PlayerInRangeArea3D" to="." method="_on_player_in_range_area_3d_body_exited"]
+
+[editable path="Rig/Globrc_Fat"]

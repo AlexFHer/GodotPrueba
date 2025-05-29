@@ -1,4 +1,4 @@
-extends CharacterBody3D
+class_name MainPlayer extends CharacterBody3D
 
 @onready var _rig: Node3D = $Rig;
 @onready var _camera: Camera3D = %MainCharacterCamera;
