@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://cf47i2djfslyw"]
+[gd_scene load_steps=56 format=3 uid="uid://cf47i2djfslyw"]
 
 [ext_resource type="Script" uid="uid://b3jy8x8um1xce" path="res://player/PlayerCharacter.gd" id="1_43pha"]
 [ext_resource type="Script" uid="uid://df8j4nq0qxet4" path="res://player/scripts/potions-manager.gd" id="2_86mlk"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://c42kqovjlaehm" path="res://player/scripts/playerCamera.gd" id="3_pe30o"]
 [ext_resource type="PackedScene" uid="uid://dknaa78iwawii" path="res://player/rig/Potma.glb" id="3_rgyib"]
 [ext_resource type="Script" uid="uid://csrohhn61kmsp" path="res://player/scripts/potions-ui-manager.gd" id="5_hdq68"]
+[ext_resource type="Script" uid="uid://ddpfgdsydcw0q" path="res://player/scripts/potions-particles-system.gd" id="6_tqiix"]
 [ext_resource type="AudioStream" uid="uid://dil0kvwdclvji" path="res://player/sfx/walk.ogg" id="9_32hag"]
 [ext_resource type="Script" uid="uid://c7lupi603g5fs" path="res://player/scripts/potma-sounds.gd" id="9_hg6s5"]
 [ext_resource type="Script" uid="uid://cradpudh6rasp" path="res://player/scripts/main-player-combat-system.gd" id="10_2ieo8"]
@@ -309,8 +310,13 @@ spring_length = 3.0
 unique_name_in_owner = true
 fov = 91.0422
 
-[node name="PotionsManager" type="Node3D" parent="."]
+[node name="PotionsManager" type="Node3D" parent="." node_paths=PackedStringArray("_potion_particles_system")]
 script = ExtResource("2_86mlk")
+_potion_particles_system = NodePath("PotionsParticlesSystem")
+
+[node name="PotionsParticlesSystem" type="Node3D" parent="PotionsManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03907, 0)
+script = ExtResource("6_tqiix")
 
 [node name="PotionsTimer" type="Timer" parent="."]
 unique_name_in_owner = true

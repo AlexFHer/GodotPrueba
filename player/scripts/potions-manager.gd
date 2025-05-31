@@ -2,6 +2,7 @@ extends Node
 
 @onready var _animation_tree: AnimationTree = %PlayerAnimationTree
 @onready var potmaSounds: PotmaSounds = %PotmaSounds
+@export var _potion_particles_system: PotionsParticleSystem;
 
 var current_active_potion: PotionTypes.PotionType = PotionTypes.PotionType.None
 
@@ -37,7 +38,8 @@ func mergePotion() -> void:
 		pass
 
 func _on_drink_animation_finished() -> void:
-	potmaSounds.drinkSoundAudioStream.play();
+	potmaSounds.drinkSoundAudioStream.play()
+	_potion_particles_system._play_particles(current_active_potion)
 
 func drinkPotion() -> void:
 	if current_active_potion != PotionTypes.PotionType.None:

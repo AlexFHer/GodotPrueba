@@ -1,12 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://88o2otlhwgug"]
+[gd_scene load_steps=8 format=3 uid="uid://dsvbj3b05j2ne"]
 
-[ext_resource type="Texture2D" uid="uid://cp8vcb4x0jmxp" path="res://assets/particles/kenney_particles/circle_03.png" id="1_pvofh"]
+[ext_resource type="Texture2D" uid="uid://cp8vcb4x0jmxp" path="res://assets/particles/kenney_particles/circle_03.png" id="1_7bfa4"]
+[ext_resource type="Script" uid="uid://chae0u4xc2q7q" path="res://player/particles/potion_particle.gd" id="2_vtoa6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u57am"]
 transparency = 1
 vertex_color_use_as_albedo = true
-albedo_color = Color(0.140461, 0.726172, 1, 1)
-albedo_texture = ExtResource("1_pvofh")
+albedo_color = Color(0.33976, 0.795219, 0.0968139, 1)
+albedo_texture = ExtResource("1_7bfa4")
 billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
@@ -41,3 +42,4 @@ one_shot = true
 explosiveness = 0.35
 process_material = SubResource("ParticleProcessMaterial_4yvrh")
 draw_pass_1 = SubResource("QuadMesh_a8ryc")
+script = ExtResource("2_vtoa6")
