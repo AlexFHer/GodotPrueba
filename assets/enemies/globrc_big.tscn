@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://drcdilr67ioqi" path="res://assets/enemies/globrc-big/rig/Globrc_Fat.glb" id="2_f02vi"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_8xb7j"]
+graph_offset = Vector2(-331.357, -102.165)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xjgy5"]
 size = Vector3(3.83188, 0.271973, 6.82706)
@@ -27,24 +28,30 @@ unique_name_in_owner = true
 
 [node name="Globrc_Fat" parent="Rig" instance=ExtResource("2_f02vi")]
 
-[node name="Skeleton3D" parent="Rig/Globrc_Fat/GF_Armature" index="1"]
-bones/1/scale = Vector3(1, 1.05677, 1)
-bones/2/rotation = Quaternion(0.156949, 0.0303591, 0.18747, 0.969175)
-bones/5/rotation = Quaternion(0.539926, 2.01385e-07, 2.56359e-07, 0.841713)
-bones/6/position = Vector3(-0.204919, 0.542502, -0.097704)
-bones/7/rotation = Quaternion(0.127827, 0.0428656, -0.0798533, 0.987647)
-bones/8/position = Vector3(-0.0785205, 0.270979, -0.0975532)
-bones/8/rotation = Quaternion(-0.144619, 0.711646, 0.607433, -0.32198)
-bones/9/position = Vector3(0.0475852, 1.05645, -0.0573306)
+[node name="Skeleton3D" parent="Rig/Globrc_Fat/GF_Armature" index="0"]
+bones/0/position = Vector3(0.0124629, -0.0220165, 0.00427997)
+bones/0/rotation = Quaternion(-2.52345e-08, -0.312873, 1.86487e-08, 0.949795)
+bones/1/rotation = Quaternion(-0.0472585, -1.4927e-08, 0.0349248, 0.998272)
+bones/2/rotation = Quaternion(-0.0334687, 0.000620141, 0.0370715, 0.998752)
+bones/3/rotation = Quaternion(0.881859, 0.0728684, 0.168893, 0.434155)
+bones/5/rotation = Quaternion(0.753145, 0.0186028, 0.0150237, 0.657419)
+bones/6/position = Vector3(-0.316121, 0.813543, -0.150724)
+bones/6/rotation = Quaternion(-0.613095, 0.433211, 0.439877, 0.492901)
+bones/7/rotation = Quaternion(0.342699, -0.0471323, 0.104864, 0.932384)
+bones/8/position = Vector3(-0.131952, 0.386684, -0.120445)
+bones/8/rotation = Quaternion(-0.270069, 0.404586, 0.556535, -0.67353)
+bones/9/position = Vector3(0.0652215, 1.58855, -0.08842)
 bones/9/rotation = Quaternion(-0.0229885, -0.40132, -0.0187743, 0.915457)
-bones/10/rotation = Quaternion(-0.0214756, 1.03903e-08, 0.257758, 0.965971)
-bones/11/rotation = Quaternion(0.998764, -0.0475658, -0.00587446, 0.0131374)
-bones/13/position = Vector3(0.204919, 0.542502, -0.0977039)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/rotation = Quaternion(0.184581, 0.212593, 0.584258, 0.761168)
+bones/11/rotation = Quaternion(0.955463, -0.0471044, 0.00886117, -0.291193)
+bones/12/rotation = Quaternion(-0.477799, 0.538919, -0.507101, 0.473417)
+bones/13/position = Vector3(0.316122, 0.813543, -0.150724)
 bones/13/rotation = Quaternion(0.022567, -0.0521483, 0.916264, -0.396525)
-bones/14/rotation = Quaternion(0.113434, 0.0247531, -0.129155, 0.984804)
-bones/15/rotation = Quaternion(-0.0287704, -0.00335187, -0.19455, 0.980465)
-bones/16/rotation = Quaternion(0.998764, 0.0475658, 0.0058747, 0.0131374)
-bones/17/rotation = Quaternion(0.477796, 0.538916, -0.507103, -0.47342)
+bones/14/rotation = Quaternion(0.550966, 0.269257, 0.0418229, 0.788789)
+bones/15/rotation = Quaternion(0.109606, 0.0596799, -0.275519, 0.95316)
+bones/16/rotation = Quaternion(0.985833, -0.129836, -0.0292822, 0.102071)
+bones/17/rotation = Quaternion(0.352768, 0.627919, -0.395282, -0.570109)
 
 [node name="AnimationTree" type="AnimationTree" parent="Rig"]
 root_node = NodePath("../Globrc_Fat")

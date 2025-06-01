@@ -5,6 +5,7 @@ const ROTATION_SENSIVITY := 4.0
 const DEFAULT_MITHRIL := 10
 
 const MELEE_ATTACK_COLLISION_DURATION := 0.2
+const DIE_DELAY_TIME := 2
 
 enum State {
 	Idle,
@@ -15,16 +16,16 @@ enum State {
 
 @onready var _rig: Node3D = %Rig
 @onready var _leave_ready_timer: Timer = %LeaveReadyTimer
-@onready var _animation_tree: AnimationTree = %AnimationTree
-
+@onready var death_particles: GPUParticles3D = %DeathParticles
 @onready var attack_collider: CollisionShape3D = %MeleeAttackCollider
 
 @export var number_of_mythril: int = DEFAULT_MITHRIL
-@export var death_particles: PackedScene
+
 
 var state := State.Idle
 
 var isPlayerInRange := false
+var isPlayerInAttackRange := false
 var player: MainPlayer = null
 
 func _ready() -> void:
@@ -45,16 +46,16 @@ func disable_attack_collision() -> void:
 	attack_collider.disabled = true
 
 func on_die_animation_finished() -> void:
+	await get_tree().create_timer(DIE_DELAY_TIME).timeout
 	_hide_mesh();
 	if death_particles:
-		var particles = death_particles.instantiate()
-		particles.global_position = _rig.global_position
-		get_tree().current_scene.add_child(particles)
-		particles.play()
-		# On particles end, we can remove the enemy
-		if particles.has_signal("finished"):
-			particles.connect("finished", _on_death_particles_finished)
+		death_particles.emitting = true
+		death_particles.finished.connect(_on_death_particles_finished)
 
+func get_hit() -> void:
+	if state == State.Dead:
+		return
+	die()
 
 func _set_state(new_state: State) -> void:
 	if state == State.Dead:
@@ -97,22 +98,23 @@ func _on_player_in_range_area_3d_body_exited(body:Node3D) -> void:
 func _on_attack_range_area_3d_body_entered(body:Node3D) -> void:
 	if body is MainPlayer:
 		_set_state(State.Attack)
+		isPlayerInAttackRange = true
 
+func _on_attack_range_area_3d_body_exited(body:Node3D) -> void:
+	if body is MainPlayer:
+		isPlayerInAttackRange = false
+		
 func _on_attack_animation_finished() -> void:
-	pass
+	if !isPlayerInAttackRange:
+		_set_state(State.Ready)
 
 func _on_attack_collision_area_3d_body_entered(body:Node3D) -> void:
 	if body is MainPlayer:
 		body.dealDamage()
 		disable_attack_collision()
 
-func _start_die_one_shot() -> void:
-	_animation_tree.set("parameters/DieOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-
 func _on_death_particles_finished() -> void:
 	queue_free()
 
 func _hide_mesh() -> void:
 	_rig.visible = false
-	_rig.collision_layer = 0
-	_rig.collision_mask = 0

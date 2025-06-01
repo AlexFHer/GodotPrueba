@@ -71,3 +71,8 @@ func _on_staff_area_3d_body_entered(body:Node3D) -> void:
 	if body.is_in_group("CanGetHit"):
 		if body.has_method("get_hit"):
 			body.get_hit()
+
+func _on_staff_area_3d_area_entered(area:Area3D) -> void:
+	if area.is_in_group("CanGetHit"):
+		if area.has_method("get_hit"):
+			area.get_hit()

@@ -38,7 +38,7 @@ initial_velocity_max = 10.99
 
 [sub_resource type="QuadMesh" id="QuadMesh_q3h6d"]
 
-[node name="DeadParticles" type="GPUParticles3D"]
+[node name="DeathParticles" type="GPUParticles3D"]
 transform = Transform3D(1, 0, 0, 0, 0.0195465, 0.999809, 0, -0.999809, 0.0195465, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_cw7mt")
 emitting = false
