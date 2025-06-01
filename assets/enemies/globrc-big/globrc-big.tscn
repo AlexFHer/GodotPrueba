@@ -1,10 +1,25 @@
-[gd_scene load_steps=12 format=3 uid="uid://btsrth5llm6nf"]
+[gd_scene load_steps=19 format=3 uid="uid://btsrth5llm6nf"]
 
 [ext_resource type="Script" uid="uid://dslsa80i3t8qk" path="res://assets/enemies/globrc-big/globrc-big.gd" id="1_sbrch"]
 [ext_resource type="PackedScene" uid="uid://drcdilr67ioqi" path="res://assets/enemies/globrc-big/rig/Globrc_Fat.glb" id="2_srgs1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_srgs1"]
 size = Vector3(4.01114, 1, 4.73128)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sbrch"]
+size = Vector3(3.4541, 1.10217, 2.53319)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_sbrch"]
+height = 0.423223
+radius = 1.27832
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_khftw"]
+animation = &"GF_Die"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_j2o2b"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4mpkc"]
+animation = &"GF_Attack"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sbrch"]
 animation = &"GF_Idle"
@@ -25,25 +40,42 @@ xfade_time = 0.3
 advance_mode = 2
 advance_expression = "state == 0"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cjwt5"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "state == 3"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ka0tt"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_cjwt5"]
+states/End/position = Vector2(996, 100)
+states/GF_Attack/node = SubResource("AnimationNodeAnimation_4mpkc")
+states/GF_Attack/position = Vector2(746, 100)
 states/GF_Idle/node = SubResource("AnimationNodeAnimation_sbrch")
 states/GF_Idle/position = Vector2(474, 100)
 states/GF_Ready/node = SubResource("AnimationNodeAnimation_srgs1")
 states/GF_Ready/position = Vector2(616, -18)
-transitions = ["Start", "GF_Idle", SubResource("AnimationNodeStateMachineTransition_4mpkc"), "GF_Idle", "GF_Ready", SubResource("AnimationNodeStateMachineTransition_khftw"), "GF_Ready", "GF_Idle", SubResource("AnimationNodeStateMachineTransition_j2o2b")]
-graph_offset = Vector2(42, -229)
+transitions = ["Start", "GF_Idle", SubResource("AnimationNodeStateMachineTransition_4mpkc"), "GF_Idle", "GF_Ready", SubResource("AnimationNodeStateMachineTransition_khftw"), "GF_Ready", "GF_Idle", SubResource("AnimationNodeStateMachineTransition_j2o2b"), "GF_Ready", "GF_Attack", SubResource("AnimationNodeStateMachineTransition_cjwt5"), "GF_Attack", "GF_Ready", SubResource("AnimationNodeStateMachineTransition_ka0tt")]
+graph_offset = Vector2(254, -69)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_sbrch"]
-graph_offset = Vector2(-355, 4)
+graph_offset = Vector2(-310, 71)
+nodes/DieAnim/node = SubResource("AnimationNodeAnimation_khftw")
+nodes/DieAnim/position = Vector2(-280, 340)
+nodes/DieOneShot/node = SubResource("AnimationNodeOneShot_j2o2b")
+nodes/DieOneShot/position = Vector2(40, 120)
 nodes/Locomotion/node = SubResource("AnimationNodeStateMachine_cjwt5")
-nodes/Locomotion/position = Vector2(-153, 125)
-node_connections = [&"output", 0, &"Locomotion"]
+nodes/Locomotion/position = Vector2(-320, 100)
+node_connections = [&"DieOneShot", 0, &"Locomotion", &"DieOneShot", 1, &"DieAnim", &"output", 0, &"DieOneShot"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sbrch"]
 radius = 0.633784
 height = 1.64641
 
-[node name="Globrc-big" type="CharacterBody3D"]
+[node name="Globrc-big" type="CharacterBody3D" groups=["CanGetHit"]]
 script = ExtResource("1_sbrch")
 
 [node name="Rig" type="Node3D" parent="."]
@@ -52,23 +84,27 @@ unique_name_in_owner = true
 [node name="Globrc_Fat" parent="Rig" instance=ExtResource("2_srgs1")]
 
 [node name="Skeleton3D" parent="Rig/Globrc_Fat/GF_Armature" index="0"]
-bones/1/scale = Vector3(1, 1.00476, 1)
-bones/2/rotation = Quaternion(0.159751, 0.00584775, 0.0361105, 0.986479)
-bones/5/rotation = Quaternion(0.539926, 2.01385e-07, 2.56359e-07, 0.841713)
-bones/6/position = Vector3(-0.204919, 0.548783, -0.097704)
-bones/7/rotation = Quaternion(0.109225, -0.012962, 0.0521566, 0.992563)
-bones/8/position = Vector3(-0.0785205, 0.270979, -0.0975532)
+bones/0/position = Vector3(0.0124629, -0.0220165, 0.00427997)
+bones/0/rotation = Quaternion(-2.98023e-08, 1.19209e-07, -4.23516e-22, 1)
+bones/1/rotation = Quaternion(-3.55271e-15, -3.55271e-15, 6.01853e-36, 1)
+bones/2/rotation = Quaternion(0.0167272, 1.0903e-14, 3.98807e-09, 0.99986)
+bones/5/rotation = Quaternion(0.539926, 2.01542e-07, 2.56113e-07, 0.841713)
+bones/6/position = Vector3(-0.316121, 0.813543, -0.150724)
+bones/6/rotation = Quaternion(-0.0225673, -0.0521484, 0.916264, 0.396525)
+bones/7/rotation = Quaternion(0.107313, -0.0183238, 0.0648112, 0.991941)
+bones/8/position = Vector3(-0.121131, 0.41803, -0.150492)
 bones/8/rotation = Quaternion(-0.144619, 0.711646, 0.607433, -0.32198)
-bones/9/position = Vector3(0.0546801, 1.09216, -0.0573496)
+bones/9/position = Vector3(0.0652217, 1.58855, -0.0884202)
 bones/9/rotation = Quaternion(-0.0229885, -0.40132, -0.0187743, 0.915457)
-bones/10/rotation = Quaternion(-0.0214756, 1.03903e-08, 0.257758, 0.965971)
-bones/11/rotation = Quaternion(0.998764, -0.0475658, -0.00587446, 0.0131374)
-bones/13/position = Vector3(0.204919, 0.548783, -0.0977039)
+bones/10/rotation = Quaternion(-0.0214756, 1.30158e-08, 0.257758, 0.965971)
+bones/11/rotation = Quaternion(0.998764, -0.0475659, -0.00588056, 0.0131371)
+bones/12/rotation = Quaternion(-0.477799, 0.538919, -0.5071, 0.473416)
+bones/13/position = Vector3(0.316122, 0.813543, -0.150724)
 bones/13/rotation = Quaternion(0.022567, -0.0521483, 0.916264, -0.396525)
 bones/14/rotation = Quaternion(0.113434, 0.0247531, -0.129155, 0.984804)
 bones/15/rotation = Quaternion(-0.0287704, -0.00335187, -0.19455, 0.980465)
-bones/16/rotation = Quaternion(0.998764, 0.0475658, 0.0058747, 0.0131374)
-bones/17/rotation = Quaternion(0.477796, 0.538916, -0.507103, -0.47342)
+bones/16/rotation = Quaternion(0.998764, 0.0475659, 0.00588078, 0.0131371)
+bones/17/rotation = Quaternion(0.477799, 0.538919, -0.5071, -0.473416)
 
 [node name="PlayerInRangeArea3D" type="Area3D" parent="Rig"]
 
@@ -77,11 +113,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.102127, 1.05821, 3.13035)
 shape = SubResource("BoxShape3D_srgs1")
 debug_color = Color(0.905358, 0.267529, 0.380772, 0.42)
 
+[node name="AttackRangeArea3D" type="Area3D" parent="Rig"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rig/AttackRangeArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0913086, 0.924622, 2.04488)
+shape = SubResource("BoxShape3D_sbrch")
+
+[node name="AttackCollisionArea3D" type="Area3D" parent="Rig"]
+
+[node name="MeleeAttackCollider" type="CollisionShape3D" parent="Rig/AttackCollisionArea3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35155, 1.83429)
+shape = SubResource("CylinderShape3D_sbrch")
+
 [node name="AnimationTree" type="AnimationTree" parent="."]
+unique_name_in_owner = true
 root_node = NodePath("%Rig/Globrc_Fat")
 tree_root = SubResource("AnimationNodeBlendTree_sbrch")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../Rig/Globrc_Fat/AnimationPlayer")
+parameters/DieOneShot/active = false
+parameters/DieOneShot/internal_active = false
+parameters/DieOneShot/request = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.769592, 0)
@@ -91,8 +144,11 @@ shape = SubResource("CapsuleShape3D_sbrch")
 
 [node name="LeaveReadyTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true
+editor_description = "Este timer es para saber cuando termina de estar en ready, el enemigo te sigue segundos despues de salirte de su rango"
 
 [connection signal="body_entered" from="Rig/PlayerInRangeArea3D" to="." method="_on_player_in_range_area_3d_body_entered"]
 [connection signal="body_exited" from="Rig/PlayerInRangeArea3D" to="." method="_on_player_in_range_area_3d_body_exited"]
+[connection signal="body_entered" from="Rig/AttackRangeArea3D" to="." method="_on_attack_range_area_3d_body_entered"]
+[connection signal="body_entered" from="Rig/AttackCollisionArea3D" to="." method="_on_attack_collision_area_3d_body_entered"]
 
 [editable path="Rig/Globrc_Fat"]

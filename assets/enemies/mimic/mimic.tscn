@@ -26,16 +26,6 @@ unique_name_in_owner = true
 
 [node name="Mimic_Chest" parent="Rig" instance=ExtResource("1_k5pec")]
 
-[node name="Skeleton3D" parent="Rig/Mimic_Chest/Mimic_Armature" index="0"]
-bones/0/position = Vector3(0, -0.0587736, 0.0659206)
-bones/1/rotation = Quaternion(0.759205, 1.16293e-07, 2.62051e-08, 0.650851)
-bones/2/position = Vector3(0.0246937, 0.15414, -0.145632)
-bones/2/rotation = Quaternion(0.03568, -0.0248671, 0.000810407, 0.999053)
-bones/2/scale = Vector3(0.549976, 0.549975, 0.549975)
-bones/3/position = Vector3(3.05474e-10, 0.461228, -8.30849e-09)
-bones/3/rotation = Quaternion(0.270655, 0.107354, -0.0541653, 0.955137)
-bones/3/scale = Vector3(1, 1, 1)
-
 [node name="AnimationTree" type="AnimationTree" parent="Rig"]
 root_node = NodePath("../Mimic_Chest")
 tree_root = SubResource("AnimationNodeBlendTree_bh34b")
