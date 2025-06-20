@@ -1,9 +1,59 @@
-[gd_scene load_steps=8 format=3 uid="uid://b8ruujys6hpsv"]
+[gd_scene load_steps=18 format=3 uid="uid://b8ruujys6hpsv"]
 
 [ext_resource type="Script" uid="uid://dco8o0fkdeer1" path="res://assets/enemies/mimic/mimic.gd" id="1_bh34b"]
 [ext_resource type="PackedScene" uid="uid://cyvlxuv7ocn53" path="res://assets/enemies/mimic/rig/Mimic_Chest.glb" id="1_k5pec"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bh34b"]
+animation = &"Mimic_Die"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uhs3j"]
+animation = &"Mimic_Ready"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1yx5p"]
+animation = &"Mimic_atac"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3h6ei"]
+animation = &"Mimic_closed"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7u230"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_le8vv"]
+advance_mode = 2
+advance_condition = &"ready"
+advance_expression = "enemyState == 1"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b6en0"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d02m6"]
+advance_mode = 2
+advance_condition = &"death"
+advance_expression = "enemyState == 3"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s6ukm"]
+advance_mode = 2
+advance_condition = &"attack"
+advance_expression = "enemyState == 2"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_muh83"]
+states/End/position = Vector2(1032, 100)
+states/Mimic_Die/node = SubResource("AnimationNodeAnimation_bh34b")
+states/Mimic_Die/position = Vector2(864, 100)
+states/Mimic_Ready/node = SubResource("AnimationNodeAnimation_uhs3j")
+states/Mimic_Ready/position = Vector2(511, 100)
+states/Mimic_atac/node = SubResource("AnimationNodeAnimation_1yx5p")
+states/Mimic_atac/position = Vector2(700, 100)
+states/Mimic_closed/node = SubResource("AnimationNodeAnimation_3h6ei")
+states/Mimic_closed/position = Vector2(334, 100)
+transitions = ["Start", "Mimic_closed", SubResource("AnimationNodeStateMachineTransition_7u230"), "Mimic_closed", "Mimic_Ready", SubResource("AnimationNodeStateMachineTransition_le8vv"), "Mimic_Die", "End", SubResource("AnimationNodeStateMachineTransition_b6en0"), "Mimic_atac", "Mimic_Die", SubResource("AnimationNodeStateMachineTransition_d02m6"), "Mimic_Ready", "Mimic_atac", SubResource("AnimationNodeStateMachineTransition_s6ukm")]
+
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bh34b"]
+graph_offset = Vector2(-450.568, -70.5751)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_muh83")
+nodes/StateMachine/position = Vector2(-200, 80)
+node_connections = [&"output", 0, &"StateMachine"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1yx5p"]
 size = Vector3(3.83188, 0.271973, 2.82786)
@@ -26,11 +76,24 @@ unique_name_in_owner = true
 
 [node name="Mimic_Chest" parent="Rig" instance=ExtResource("1_k5pec")]
 
+[node name="Skeleton3D" parent="Rig/Mimic_Chest/Mimic_Armature" index="0"]
+bones/0/position = Vector3(0, -0.0587736, 0.0659206)
+bones/1/rotation = Quaternion(0.759205, 1.16293e-07, 2.62051e-08, 0.650851)
+bones/2/position = Vector3(0.0246937, 0.15414, -0.145632)
+bones/2/rotation = Quaternion(0.03568, -0.0248671, 0.000810407, 0.999053)
+bones/2/scale = Vector3(0.549976, 0.549975, 0.549975)
+bones/3/position = Vector3(3.05474e-10, 0.461228, -8.30849e-09)
+bones/3/rotation = Quaternion(0.270655, 0.107354, -0.0541653, 0.955137)
+bones/3/scale = Vector3(1, 1, 1)
+
 [node name="AnimationTree" type="AnimationTree" parent="Rig"]
 root_node = NodePath("../Mimic_Chest")
 tree_root = SubResource("AnimationNodeBlendTree_bh34b")
 advance_expression_base_node = NodePath("../..")
 anim_player = NodePath("../Mimic_Chest/AnimationPlayer")
+parameters/StateMachine/conditions/attack = false
+parameters/StateMachine/conditions/death = false
+parameters/StateMachine/conditions/ready = false
 
 [node name="PlayerSearchArea" type="Area3D" parent="Rig"]
 

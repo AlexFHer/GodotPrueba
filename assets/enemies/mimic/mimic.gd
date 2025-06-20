@@ -17,8 +17,8 @@ var canAttack := true
 
 enum EnemyState {
 	IDLE,
+	READY,
 	FOLLOWING,
-	ATTACKING,
 	DEAD
 }
 var enemyState: EnemyState = EnemyState.IDLE
@@ -31,6 +31,8 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	if enemyState == EnemyState.IDLE:
 		velocity = Vector3.ZERO
+		return;
+		
 	if enemyState == EnemyState.FOLLOWING:
 		follow_target(delta)
 	
