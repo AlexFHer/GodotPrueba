@@ -1,4 +1,4 @@
-[gd_scene load_steps=192 format=4 uid="uid://bd31y7odxeu3"]
+[gd_scene load_steps=193 format=4 uid="uid://bd31y7odxeu3"]
 
 [ext_resource type="Texture2D" uid="uid://bxascs40x5oel" path="res://Materials/Skybox/PjBUIr3.png" id="2_n1ihf"]
 [ext_resource type="PackedScene" uid="uid://cf47i2djfslyw" path="res://player/player.tscn" id="4_n1ihf"]
@@ -36,6 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://bbf8p4krgp531" path="res://assets/levels/levelManager.tscn" id="29_afy8w"]
 [ext_resource type="PackedScene" uid="uid://b854210s7kevt" path="res://assets/collectable/mythril/mythril5/mythril5.tscn" id="30_0o4qt"]
 [ext_resource type="Script" uid="uid://c4t2n0gbu5cvl" path="res://assets/collectable/level-collectables.gd" id="30_6grd1"]
+[ext_resource type="PackedScene" uid="uid://brjbkcir1dmm2" path="res://media/level-sound.tscn" id="37_4ak4b"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qn70i"]
 panorama = ExtResource("2_n1ihf")
@@ -1904,15 +1905,6 @@ environment = SubResource("Environment_eq8v2")
 [node name="MainCharacter" parent="." instance=ExtResource("4_n1ihf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -94.0105, -1.04429, 12.709)
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="MainCharacter"]
-stream = ExtResource("27_87xxg")
-volume_db = -49.549
-unit_size = 119.1
-max_db = 6.0
-autoplay = true
-max_distance = 1409.66
-panning_strength = 1.7
-
 [node name="Level" parent="." instance=ExtResource("29_afy8w")]
 levelCollectables = SubResource("Resource_glw7l")
 
@@ -3382,6 +3374,9 @@ metadata/collision = "trimesh"
 [node name="CollisionShape3D_Crystal_021" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_021"]
 transform = Transform3D(1, 0, 0, 0, -0.943829, -0.330434, 0, 0.330434, -0.943829, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_qhx10")
+
+[node name="LevelSound" parent="." instance=ExtResource("37_4ak4b")]
+stream = ExtResource("27_87xxg")
 
 [connection signal="all_arcs_active" from="Props/Arcs" to="Collectables/magic_chest" method="deactivate_force_field"]
 [connection signal="all_fire_towers_active" from="Props/TowerFire" to="Props/secret_tower" method="activate_secret_tower"]
