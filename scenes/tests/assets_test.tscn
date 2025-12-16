@@ -44,7 +44,6 @@ glow_enabled = true
 [sub_resource type="Resource" id="Resource_je5t0"]
 script = ExtResource("2_ecqs2")
 requiredMithrils = 10
-requiredBooks = 0
 metadata/_custom_type_script = "uid://c4t2n0gbu5cvl"
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_tv8gj"]

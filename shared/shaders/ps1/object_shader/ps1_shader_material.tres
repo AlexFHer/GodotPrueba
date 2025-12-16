@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bfdynsqyhlewp"]
+
+[ext_resource type="Shader" uid="uid://bycx080mcrugw" path="res://shared/shaders/ps1/object_shader/ps1_shader.gdshader" id="1_spyh4"]
+[ext_resource type="Texture2D" uid="uid://doo5p7084pgp6" path="res://scenes/level1/Texture1.png" id="2_ofr88"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_spyh4")
+shader_parameter/affine_mapping = true
+shader_parameter/albedo = ExtResource("2_ofr88")
+shader_parameter/alpha_scissor = 0.270000012825
+shader_parameter/jitter = 0.5130000243675
+shader_parameter/resolution = Vector2i(320, 240)

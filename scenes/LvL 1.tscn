@@ -1,5 +1,6 @@
-[gd_scene load_steps=193 format=4 uid="uid://bd31y7odxeu3"]
+[gd_scene load_steps=194 format=4 uid="uid://bd31y7odxeu3"]
 
+[ext_resource type="PackedScene" uid="uid://mxcenmnbnh8" path="res://shared/shaders/ps1/post_process/ps1_post_process.tscn" id="1_ubpg7"]
 [ext_resource type="Texture2D" uid="uid://bxascs40x5oel" path="res://Materials/Skybox/PjBUIr3.png" id="2_n1ihf"]
 [ext_resource type="PackedScene" uid="uid://cf47i2djfslyw" path="res://player/player.tscn" id="4_n1ihf"]
 [ext_resource type="PackedScene" uid="uid://xhkrf7v8lsoy" path="res://scenes/level1/LVL1_Blender.gltf" id="5_7idjg"]
@@ -61,7 +62,6 @@ resource_name = "StoneHill"
 cull_mode = 2
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("11_gssno")
-roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_4064j"]
 _surfaces = [{
@@ -3377,6 +3377,8 @@ shape = SubResource("ConcavePolygonShape3D_qhx10")
 
 [node name="LevelSound" parent="." instance=ExtResource("37_4ak4b")]
 stream = ExtResource("27_87xxg")
+
+[node name="PSX_Postproduction" parent="." instance=ExtResource("1_ubpg7")]
 
 [connection signal="all_arcs_active" from="Props/Arcs" to="Collectables/magic_chest" method="deactivate_force_field"]
 [connection signal="all_fire_towers_active" from="Props/TowerFire" to="Props/secret_tower" method="activate_secret_tower"]

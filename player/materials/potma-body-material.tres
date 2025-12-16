@@ -1,6 +1,8 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dycp7ybksc3ix"]
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dycp7ybksc3ix"]
 
 [ext_resource type="Texture2D" uid="uid://cwpanmmheug6p" path="res://player/materials/PotmaGradient_Base_color.png" id="1_rftil"]
+[ext_resource type="Material" uid="uid://bfdynsqyhlewp" path="res://shared/shaders/ps1/object_shader/ps1_shader_material.tres" id="2_kmr1s"]
 
 [resource]
+next_pass = ExtResource("2_kmr1s")
 albedo_texture = ExtResource("1_rftil")

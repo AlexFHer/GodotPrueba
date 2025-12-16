@@ -26,10 +26,6 @@ towerFireAudio = NodePath("AudioStreamPlayer3D")
 [node name="Fire_Tower" parent="Fire_Tower_Model" instance=ExtResource("2_gje8v")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -1.935, 0)
 
-[node name="Icosphere" parent="Fire_Tower_Model/Fire_Tower" index="0"]
-"blend_shapes/Key 1" = 0.899573
-"blend_shapes/Key 2" = 0.168059
-
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../Fire_Tower_Model/Fire_Tower")
 tree_root = SubResource("AnimationNodeAnimation_flmx6")

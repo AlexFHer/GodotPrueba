@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://drjpxm3s112ob"]
+
+[ext_resource type="Shader" uid="uid://brsy6tw3jgsdn" path="res://shared/shaders/ps1/post_process/ps1_shader_post_process.gdshader" id="1_xcq7w"]
+
+[resource]
+shader = ExtResource("1_xcq7w")
+shader_parameter/pixel_resolution = 240.0
+shader_parameter/color_steps = 16
+shader_parameter/noise_strength = 0.06
+shader_parameter/enable_dither = true
+shader_parameter/dither_strength = 0.3
+shader_parameter/enable_glow = true
+shader_parameter/glow_strength = 0.4
+shader_parameter/glow_spread = 0.005
+shader_parameter/enable_vintage = false
+shader_parameter/vintage_strength = 0.8
