@@ -1,4 +1,4 @@
-[gd_scene load_steps=194 format=4 uid="uid://bd31y7odxeu3"]
+[gd_scene format=4 uid="uid://bd31y7odxeu3"]
 
 [ext_resource type="PackedScene" uid="uid://mxcenmnbnh8" path="res://shared/shaders/ps1/post_process/ps1_post_process.tscn" id="1_ubpg7"]
 [ext_resource type="Texture2D" uid="uid://bxascs40x5oel" path="res://Materials/Skybox/PjBUIr3.png" id="2_n1ihf"]
@@ -1893,493 +1893,493 @@ shadow_mesh = SubResource("ArrayMesh_7unl8")
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_qhx10"]
 data = PackedVector3Array(15.0457, -33.7294, 13.8226, 38.5189, 22.7766, 11.3175, 15.0457, -23.9244, -15.8917, 15.0457, -23.9244, -15.8917, 38.5189, 22.7766, 11.3175, 1.9856, 46.2181, -33.1602, 15.0457, -23.9244, -15.8917, 1.9856, 46.2181, -33.1602, -14.7167, -20.8944, -25.0741, -14.7167, -20.8944, -25.0741, 1.9856, 46.2181, -33.1602, -57.1251, 37.2641, -16.171, -14.7167, -20.8944, -25.0741, -57.1251, 37.2641, -16.171, -33.1113, -28.8269, -1.0346, 15.0457, -33.7294, 13.8226, 1.9856, -0.6648, 55.7952, 38.5189, 22.7766, 11.3175, -14.7167, -36.7594, 23.005, 1.9856, -0.6648, 55.7952, 15.0457, -33.7294, 13.8226, -33.1113, -28.8269, -1.0346, -57.1251, 37.2641, -16.171, -57.1251, 8.2891, 38.8061, -33.1113, -28.8269, -1.0346, -57.1251, 8.2891, 38.8061, -14.7167, -36.7594, 23.005, -14.7167, -36.7594, 23.005, -57.1251, 8.2891, 38.8061, 1.9856, -0.6648, 55.7952, -57.1251, 37.2641, -16.171, -14.352, 54.06, 27.2999, -57.1251, 8.2891, 38.8061, -57.1251, 8.2891, 38.8061, -14.352, 54.06, 27.2999, 1.9856, -0.6648, 55.7952, 1.9856, -0.6648, 55.7952, -14.352, 54.06, 27.2999, 38.5189, 22.7766, 11.3175, 38.5189, 22.7766, 11.3175, -14.352, 54.06, 27.2999, 1.9856, 46.2181, -33.1602, 1.9856, 46.2181, -33.1602, -14.352, 54.06, 27.2999, -57.1251, 37.2641, -16.171, 20.4943, -10.9278, 1.7865, 41.4874, -4.0925, -2.1356, 20.1476, -11.52, -6.5413, 20.1476, -11.52, -6.5413, 41.4874, -4.0925, -2.1356, 35.1768, 3.3465, -15.5621, 20.1476, -11.52, -6.5413, 35.1768, 3.3465, -15.5621, 12.1004, -11.7525, -8.7806, 12.1004, -11.7525, -8.7806, 35.1768, 3.3465, -15.5621, 24.9662, 15.3828, -10.4336, 12.1004, -11.7525, -8.7806, 24.9662, 15.3828, -10.4336, 7.4737, -11.3039, -1.8367, 20.4943, -10.9278, 1.7865, 35.1768, 3.3465, 11.291, 41.4874, -4.0925, -2.1356, 12.6615, -10.7942, 4.6942, 35.1768, 3.3465, 11.291, 20.4943, -10.9278, 1.7865, 7.4737, -11.3039, -1.8367, 24.9662, 15.3828, -10.4336, 24.9662, 15.3828, 6.1624, 7.4737, -11.3039, -1.8367, 24.9662, 15.3828, 6.1624, 12.6615, -10.7942, 4.6942, 12.6615, -10.7942, 4.6942, 24.9662, 15.3828, 6.1624, 35.1768, 3.3465, 11.291, 24.9662, 15.3828, -10.4336, 41.6952, 14.5969, -2.1356, 24.9662, 15.3828, 6.1624, 24.9662, 15.3828, 6.1624, 41.6952, 14.5969, -2.1356, 35.1768, 3.3465, 11.291, 35.1768, 3.3465, 11.291, 41.6952, 14.5969, -2.1356, 41.4874, -4.0925, -2.1356, 41.4874, -4.0925, -2.1356, 41.6952, 14.5969, -2.1356, 35.1768, 3.3465, -15.5621, 35.1768, 3.3465, -15.5621, 41.6952, 14.5969, -2.1356, 24.9662, 15.3828, -10.4336, 16.8821, -17.837, 12.4004, 29.0979, -13.1224, 20.6324, 20.7419, -18.2455, 8.1396, 20.7419, -18.2455, 8.1396, 29.0979, -13.1224, 20.6324, 32.4941, -7.9912, 10.9795, 20.7419, -18.2455, 8.1396, 32.4941, -7.9912, 10.9795, 17.8706, -18.4058, 3.1446, 17.8706, -18.4058, 3.1446, 32.4941, -7.9912, 10.9795, 24.9938, 0.3109, 8.5587, 17.8706, -18.4058, 3.1446, 24.9938, 0.3109, 8.5587, 12.2361, -18.0964, 4.3183, 16.8821, -17.837, 12.4004, 19.4985, -7.9912, 24.1773, 29.0979, -13.1224, 20.6324, 11.6253, -17.7449, 10.0388, 19.4985, -7.9912, 24.1773, 16.8821, -17.837, 12.4004, 12.2361, -18.0964, 4.3183, 24.9938, 0.3109, 8.5587, 16.9622, 0.3109, 16.7153, 12.2361, -18.0964, 4.3183, 16.9622, 0.3109, 16.7153, 11.6253, -17.7449, 10.0388, 11.6253, -17.7449, 10.0388, 16.9622, 0.3109, 16.7153, 19.4985, -7.9912, 24.1773, 24.9938, 0.3109, 8.5587, 29.2, -0.2312, 20.733, 16.9622, 0.3109, 16.7153, 16.9622, 0.3109, 16.7153, 29.2, -0.2312, 20.733, 19.4985, -7.9912, 24.1773, 19.4985, -7.9912, 24.1773, 29.2, -0.2312, 20.733, 29.0979, -13.1224, 20.6324, 29.0979, -13.1224, 20.6324, 29.2, -0.2312, 20.733, 32.4941, -7.9912, 10.9795, 32.4941, -7.9912, 10.9795, 29.2, -0.2312, 20.733, 24.9938, 0.3109, 8.5587, -36.2569, -23.2756, -4.985, -61.2421, -20.4758, 16.7558, -29.9041, -27.045, 4.9573, -29.9041, -27.045, 4.9573, -61.2421, -20.4758, 16.7558, -43.9928, -13.197, 32.7137, -29.9041, -27.045, 4.9573, -43.9928, -13.197, 32.7137, -17.8286, -26.1012, 2.3676, -17.8286, -26.1012, 2.3676, -43.9928, -13.197, 32.7137, -35.0001, 8.3245, 24.8958, -17.8286, -26.1012, 2.3676, -35.0001, 8.3245, 24.8958, -16.7182, -21.7485, -9.1755, -36.2569, -23.2756, -4.985, -62.9096, -3.4524, -0.9246, -61.2421, -20.4758, 16.7558, -28.1077, -20.0022, -13.7195, -62.9096, -3.4524, -0.9246, -36.2569, -23.2756, -4.985, -16.7182, -21.7485, -9.1755, -35.0001, 8.3245, 24.8958, -46.6912, 14.3469, 4.1063, -16.7182, -21.7485, -9.1755, -46.6912, 14.3469, 4.1063, -28.1077, -20.0022, -13.7195, -28.1077, -20.0022, -13.7195, -46.6912, 14.3469, 4.1063, -62.9096, -3.4524, -0.9246, -35.0001, 8.3245, 24.8958, -62.5962, 5.8901, 25.1552, -46.6912, 14.3469, 4.1063, -46.6912, 14.3469, 4.1063, -62.5962, 5.8901, 25.1552, -62.9096, -3.4524, -0.9246, -62.9096, -3.4524, -0.9246, -62.5962, 5.8901, 25.1552, -61.2421, -20.4758, 16.7558, -61.2421, -20.4758, 16.7558, -62.5962, 5.8901, 25.1552, -43.9928, -13.197, 32.7137, -43.9928, -13.197, 32.7137, -62.5962, 5.8901, 25.1552, -35.0001, 8.3245, 24.8958, -13.2296, -11.1118, -35.1014, -33.4557, 11.8438, -56.3217, -23.633, -9.3811, -26.0851, -23.633, -9.3811, -26.0851, -33.4557, 11.8438, -56.3217, -39.933, 24.4861, -32.7072, -23.633, -9.3811, -26.0851, -39.933, 24.4861, -32.7072, -19.1246, -13.242, -13.5436, -19.1246, -13.242, -13.5436, -39.933, 24.4861, -32.7072, -16.9683, 35.8338, -22.5453, -19.1246, -13.242, -13.5436, -16.9683, 35.8338, -22.5453, -5.9346, -17.359, -14.8089, -13.2296, -11.1118, -35.1014, -6.4874, 15.3785, -60.7539, -33.4557, 11.8438, -56.3217, -2.2914, -16.0424, -28.1324, -6.4874, 15.3785, -60.7539, -13.2296, -11.1118, -35.1014, -5.9346, -17.359, -14.8089, -16.9683, 35.8338, -22.5453, 3.7021, 30.205, -39.879, -5.9346, -17.359, -14.8089, 3.7021, 30.205, -39.879, -2.2914, -16.0424, -28.1324, -2.2914, -16.0424, -28.1324, 3.7021, 30.205, -39.879, -6.4874, 15.3785, -60.7539, -16.9683, 35.8338, -22.5453, -22.5569, 40.6742, -52.6868, 3.7021, 30.205, -39.879, 3.7021, 30.205, -39.879, -22.5569, 40.6742, -52.6868, -6.4874, 15.3785, -60.7539, -6.4874, 15.3785, -60.7539, -22.5569, 40.6742, -52.6868, -33.4557, 11.8438, -56.3217, -33.4557, 11.8438, -56.3217, -22.5569, 40.6742, -52.6868, -39.933, 24.4861, -32.7072, -39.933, 24.4861, -32.7072, -22.5569, 40.6742, -52.6868, -16.9683, 35.8338, -22.5453, -36.1779, -7.7147, -26.6609, -58.2121, -10.1985, -9.8808, -31.9633, -2.97, -18.4692, -31.9633, -2.97, -18.4692, -58.2121, -10.1985, -9.8808, -52.8944, 8.3812, -2.8033, -31.9633, -2.97, -18.4692, -52.8944, 8.3812, -2.8033, -23.8167, 2.5096, -21.7837, -23.8167, 2.5096, -21.7837, -52.8944, 8.3812, -2.8033, -55.4217, 21.9612, -18.0598, -36.1779, -7.7147, -26.6609, -64.0257, -8.1009, -29.5119, -58.2121, -10.1985, -9.8808, -30.6361, -5.1674, -35.0382, -64.0257, -8.1009, -29.5119, -36.1779, -7.7147, -26.6609, -30.6361, -5.1674, -35.0382, -62.3011, 11.7748, -34.5666, -64.0257, -8.1009, -29.5119, -22.9963, 1.1516, -32.0241, -62.3011, 11.7748, -34.5666, -30.6361, -5.1674, -35.0382, -55.4217, 21.9612, -18.0598, -22.9963, 1.1516, -32.0241, -23.8167, 2.5096, -21.7837, -22.9963, 1.1516, -32.0241, -55.4217, 21.9612, -18.0598, -62.3011, 11.7748, -34.5666, -62.3011, 11.7748, -34.5666, -72.8833, 7.1481, -14.4711, -64.0257, -8.1009, -29.5119, -55.4217, 21.9612, -18.0598, -72.8833, 7.1481, -14.4711, -62.3011, 11.7748, -34.5666, -64.0257, -8.1009, -29.5119, -72.8833, 7.1481, -14.4711, -58.2121, -10.1985, -9.8808, -52.8944, 8.3812, -2.8033, -72.8833, 7.1481, -14.4711, -55.4217, 21.9612, -18.0598, -58.2121, -10.1985, -9.8808, -72.8833, 7.1481, -14.4711, -52.8944, 8.3812, -2.8033, -8.4124, -24.6064, 28.5347, -8.9986, -33.8456, 40.9248, -3.9843, -27.9823, 27.0461, -3.9843, -27.9823, 27.0461, -8.9986, -33.8456, 40.9248, 2.427, -34.0011, 40.2369, -3.9843, -27.9823, 27.0461, 2.427, -34.0011, 40.2369, -0.8925, -25.2063, 23.0518, -0.8925, -25.2063, 23.0518, 2.427, -34.0011, 40.2369, 6.2482, -23.4396, 42.4491, -0.8925, -25.2063, 23.0518, 6.2482, -23.4396, 42.4491, -3.4097, -20.1147, 22.0717, -8.4124, -24.6064, 28.5347, -12.2387, -23.1878, 43.5622, -8.9986, -33.8456, 40.9248, -8.0573, -19.7441, 25.4604, -12.2387, -23.1878, 43.5622, -8.4124, -24.6064, 28.5347, -3.4097, -20.1147, 22.0717, 6.2482, -23.4396, 42.4491, -2.8156, -16.7567, 44.5043, -3.4097, -20.1147, 22.0717, -2.8156, -16.7567, 44.5043, -8.0573, -19.7441, 25.4604, -8.0573, -19.7441, 25.4604, -2.8156, -16.7567, 44.5043, -12.2387, -23.1878, 43.5622, 6.2482, -23.4396, 42.4491, -2.6063, -28.1379, 50.5561, -2.8156, -16.7567, 44.5043, -2.8156, -16.7567, 44.5043, -2.6063, -28.1379, 50.5561, -12.2387, -23.1878, 43.5622, -12.2387, -23.1878, 43.5622, -2.6063, -28.1379, 50.5561, -8.9986, -33.8456, 40.9248, -8.9986, -33.8456, 40.9248, -2.6063, -28.1379, 50.5561, 2.427, -34.0011, 40.2369, 2.427, -34.0011, 40.2369, -2.6063, -28.1379, 50.5561, 6.2482, -23.4396, 42.4491, -35.7773, -36.4383, 5.7739, -55.0859, -47.1271, 13.5715, -32.8269, -38.0751, 13.8174, -32.8269, -38.0751, 13.8174, -55.0859, -47.1271, 13.5715, -51.5942, -39.444, 28.7008, -32.8269, -38.0751, 13.8174, -51.5942, -39.444, 28.7008, -25.9878, -32.8658, 15.2917, -25.9878, -32.8658, 15.2917, -51.5942, -39.444, 28.7008, -53.3408, -22.3432, 26.5497, -25.9878, -32.8658, 15.2917, -53.3408, -22.3432, 26.5497, -24.7116, -28.0093, 8.1593, -35.7773, -36.4383, 5.7739, -58.9905, -34.7743, 2.07, -55.0859, -47.1271, 13.5715, -30.7618, -30.2174, 2.277, -58.9905, -34.7743, 2.07, -35.7773, -36.4383, 5.7739, -24.7116, -28.0093, 8.1593, -53.3408, -22.3432, 26.5497, -57.9119, -19.4572, 10.0911, -24.7116, -28.0093, 8.1593, -57.9119, -19.4572, 10.0911, -30.7618, -30.2174, 2.277, -30.7618, -30.2174, 2.277, -57.9119, -19.4572, 10.0911, -58.9905, -34.7743, 2.07, -53.3408, -22.3432, 26.5497, -67.7145, -33.4764, 19.4725, -57.9119, -19.4572, 10.0911, -57.9119, -19.4572, 10.0911, -67.7145, -33.4764, 19.4725, -58.9905, -34.7743, 2.07, -58.9905, -34.7743, 2.07, -67.7145, -33.4764, 19.4725, -55.0859, -47.1271, 13.5715, -55.0859, -47.1271, 13.5715, -67.7145, -33.4764, 19.4725, -51.5942, -39.444, 28.7008, -51.5942, -39.444, 28.7008, -67.7145, -33.4764, 19.4725, -53.3408, -22.3432, 26.5497, 7.95, 0.8709, -22.7738, 24.9743, 5.2012, -23.2851, 10.2348, -4.8119, -20.456, 10.2348, -4.8119, -20.456, 24.9743, 5.2012, -23.2851, 26.9836, -7.2042, -26.6386, 10.2348, -4.8119, -20.456, 26.9836, -7.2042, -26.6386, 5.5237, -9.3113, -21.1258, 5.5237, -9.3113, -21.1258, 26.9836, -7.2042, -26.6386, 21.6295, -9.1237, -38.3357, 5.5237, -9.3113, -21.1258, 21.6295, -9.1237, -38.3357, 0.3272, -6.4092, -23.8575, 7.95, 0.8709, -22.7738, 18.3781, 10.9485, -32.9099, 24.9743, 5.2012, -23.2851, 1.8268, -0.1162, -24.876, 18.3781, 10.9485, -32.9099, 7.95, 0.8709, -22.7738, 0.3272, -6.4092, -23.8575, 21.6295, -9.1237, -38.3357, 16.311, 2.0952, -42.2116, 0.3272, -6.4092, -23.8575, 16.311, 2.0952, -42.2116, 1.8268, -0.1162, -24.876, 1.8268, -0.1162, -24.876, 16.311, 2.0952, -42.2116, 18.3781, 10.9485, -32.9099, 21.6295, -9.1237, -38.3357, 29.9288, 2.857, -36.8692, 16.311, 2.0952, -42.2116, 16.311, 2.0952, -42.2116, 29.9288, 2.857, -36.8692, 18.3781, 10.9485, -32.9099, 18.3781, 10.9485, -32.9099, 29.9288, 2.857, -36.8692, 24.9743, 5.2012, -23.2851, 24.9743, 5.2012, -23.2851, 29.9288, 2.857, -36.8692, 26.9836, -7.2042, -26.6386, 26.9836, -7.2042, -26.6386, 29.9288, 2.857, -36.8692, 21.6295, -9.1237, -38.3357, -3.5183, -27.1234, 25.2016, 26.2805, -27.9906, 48.729, 6.3681, -28.8195, 15.2184, 6.3681, -28.8195, 15.2184, 26.2805, -27.9906, 48.729, 39.9339, -14.1739, 28.4131, 6.3681, -28.8195, 15.2184, 39.9339, -14.1739, 28.4131, 0.7197, -25.0857, 2.7911, 0.7197, -25.0857, 2.7911, 39.9339, -14.1739, 28.4131, 28.1427, 11.1991, 25.7274, 0.7197, -25.0857, 2.7911, 28.1427, 11.1991, 25.7274, -12.6576, -21.0819, 5.0937, -3.5183, -27.1234, 25.2016, 6.0509, -11.1561, 58.599, 26.2805, -27.9906, 48.729, -15.2767, -22.3413, 18.9445, 6.0509, -11.1561, 58.599, -3.5183, -27.1234, 25.2016, -12.6576, -21.0819, 5.0937, 28.1427, 11.1991, 25.7274, 7.2021, 13.0642, 44.3832, -12.6576, -21.0819, 5.0937, 7.2021, 13.0642, 44.3832, -15.2767, -22.3413, 18.9445, -15.2767, -22.3413, 18.9445, 7.2021, 13.0642, 44.3832, 6.0509, -11.1561, 58.599, 28.1427, 11.1991, 25.7274, 34.7294, 1.8146, 55.2327, 7.2021, 13.0642, 44.3832, 7.2021, 13.0642, 44.3832, 34.7294, 1.8146, 55.2327, 6.0509, -11.1561, 58.599, 6.0509, -11.1561, 58.599, 34.7294, 1.8146, 55.2327, 26.2805, -27.9906, 48.729, 26.2805, -27.9906, 48.729, 34.7294, 1.8146, 55.2327, 39.9339, -14.1739, 28.4131, 39.9339, -14.1739, 28.4131, 34.7294, 1.8146, 55.2327, 28.1427, 11.1991, 25.7274)
 
-[node name="LvL1" type="Node3D"]
+[node name="LvL1" type="Node3D" unique_id=1224593435]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=43686651]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=390164011]
 environment = SubResource("Environment_eq8v2")
 
-[node name="MainCharacter" parent="." instance=ExtResource("4_n1ihf")]
+[node name="MainCharacter" parent="." unique_id=371973747 instance=ExtResource("4_n1ihf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -94.0105, -1.04429, 12.709)
 
-[node name="Level" parent="." instance=ExtResource("29_afy8w")]
+[node name="Level" parent="." unique_id=97350656 instance=ExtResource("29_afy8w")]
 levelCollectables = SubResource("Resource_glw7l")
 
-[node name="Death-area" parent="Level" instance=ExtResource("6_jknnb")]
+[node name="Death-area" parent="Level" unique_id=1022755762 instance=ExtResource("6_jknnb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5994, -18.9571, 79.3553)
 
-[node name="NPCs" type="Node3D" parent="."]
+[node name="NPCs" type="Node3D" parent="." unique_id=2129206971]
 
-[node name="Pocima" parent="NPCs" instance=ExtResource("10_7idjg")]
+[node name="Pocima" parent="NPCs" unique_id=1773434987 instance=ExtResource("10_7idjg")]
 transform = Transform3D(0.0738823, 0, -0.997267, 0, 1, 0, 0.997267, 0, 0.0738823, -67.1327, 0.65489, 11.3476)
 script = ExtResource("6_qlgyj")
 dialogue_scene = ExtResource("6_glw7l")
 dialogue_file = "res://dialoges/pocima_dialoge.json"
 
-[node name="Don Pots Potion Seller" parent="NPCs" instance=ExtResource("14_nqwgu")]
+[node name="Don Pots Potion Seller" parent="NPCs" unique_id=944810814 instance=ExtResource("14_nqwgu")]
 transform = Transform3D(-0.311323, 0, -0.950304, 0, 1, 0, 0.950304, 0, -0.311323, 20.2032, 2.8677, 28.1188)
 
-[node name="Subnormales" parent="NPCs" instance=ExtResource("7_glw7l")]
+[node name="Subnormales" parent="NPCs" unique_id=1259254334 instance=ExtResource("7_glw7l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.2234, 0.764552, 97.3362)
 
-[node name="Enemies" type="Node3D" parent="."]
+[node name="Enemies" type="Node3D" parent="." unique_id=1657359130]
 
-[node name="GlobRC1" type="Node3D" parent="Enemies"]
+[node name="GlobRC1" type="Node3D" parent="Enemies" unique_id=137001973]
 
-[node name="Globrc Small" parent="Enemies/GlobRC1" node_paths=PackedStringArray("patrolPoints") instance=ExtResource("12_pdlji")]
+[node name="Globrc Small" parent="Enemies/GlobRC1" unique_id=1236569404 node_paths=PackedStringArray("patrolPoints") instance=ExtResource("12_pdlji")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.224, -0.902897, 29.8407)
 patrolPoints = [NodePath("../Patrol point marker"), NodePath("../Patrol point marker3"), NodePath("../Patrol point marker2")]
 
-[node name="Patrol point marker" parent="Enemies/GlobRC1" instance=ExtResource("13_4ak4b")]
+[node name="Patrol point marker" parent="Enemies/GlobRC1" unique_id=1733833057 instance=ExtResource("13_4ak4b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.2032, -0.344097, 29.3286)
 
-[node name="Patrol point marker3" parent="Enemies/GlobRC1" instance=ExtResource("13_4ak4b")]
+[node name="Patrol point marker3" parent="Enemies/GlobRC1" unique_id=989275549 instance=ExtResource("13_4ak4b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.9038, -1.00369, 18.2522)
 
-[node name="Patrol point marker2" parent="Enemies/GlobRC1" instance=ExtResource("13_4ak4b")]
+[node name="Patrol point marker2" parent="Enemies/GlobRC1" unique_id=1779746120 instance=ExtResource("13_4ak4b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.0317, -0.344097, 29.3286)
 
-[node name="GlobRC2" type="Node3D" parent="Enemies"]
+[node name="GlobRC2" type="Node3D" parent="Enemies" unique_id=972018247]
 
-[node name="Globrc Small" parent="Enemies/GlobRC2" node_paths=PackedStringArray("patrolPoints") instance=ExtResource("12_pdlji")]
+[node name="Globrc Small" parent="Enemies/GlobRC2" unique_id=1253816866 node_paths=PackedStringArray("patrolPoints") instance=ExtResource("12_pdlji")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7323, -14.8217, 81.9524)
 patrolPoints = [NodePath("../Patrol point marker2"), NodePath("../Patrol point marker"), NodePath("../Patrol point marker3")]
 
-[node name="Patrol point marker2" parent="Enemies/GlobRC2" instance=ExtResource("13_4ak4b")]
+[node name="Patrol point marker2" parent="Enemies/GlobRC2" unique_id=2062288155 instance=ExtResource("13_4ak4b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.1675, -14.5, 87.1849)
 
-[node name="Patrol point marker" parent="Enemies/GlobRC2" instance=ExtResource("13_4ak4b")]
+[node name="Patrol point marker" parent="Enemies/GlobRC2" unique_id=615880179 instance=ExtResource("13_4ak4b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.46861, -14.5, 87.1535)
 
-[node name="Patrol point marker3" parent="Enemies/GlobRC2" instance=ExtResource("13_4ak4b")]
+[node name="Patrol point marker3" parent="Enemies/GlobRC2" unique_id=224289543 instance=ExtResource("13_4ak4b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.63814, -14.5, 79.0118)
 
-[node name="Props" type="Node3D" parent="."]
+[node name="Props" type="Node3D" parent="." unique_id=691022274]
 
-[node name="Elevators" type="Node3D" parent="Props"]
+[node name="Elevators" type="Node3D" parent="Props" unique_id=337495650]
 
-[node name="Lift1" type="Node3D" parent="Props/Elevators"]
+[node name="Lift1" type="Node3D" parent="Props/Elevators" unique_id=2107500249]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.5514, 7.97472, -4.11419)
 
-[node name="Elevator" parent="Props/Elevators/Lift1" node_paths=PackedStringArray("elevatorPoints") instance=ExtResource("14_uhwg3")]
+[node name="Elevator" parent="Props/Elevators/Lift1" unique_id=796786743 node_paths=PackedStringArray("elevatorPoints") instance=ExtResource("14_uhwg3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.034, 0)
 elevatorPoints = [NodePath("../Elevator point"), NodePath("../Elevator point2")]
 
-[node name="Elevator point2" parent="Props/Elevators/Lift1" instance=ExtResource("13_3wafn")]
+[node name="Elevator point2" parent="Props/Elevators/Lift1" unique_id=396485756 instance=ExtResource("13_3wafn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.43572, 0)
 waitTime = 1.0
 
-[node name="Elevator point" parent="Props/Elevators/Lift1" instance=ExtResource("13_3wafn")]
+[node name="Elevator point" parent="Props/Elevators/Lift1" unique_id=1985864816 instance=ExtResource("13_3wafn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.00364, 0)
 waitTime = 1.0
 
-[node name="Lift3" type="Node3D" parent="Props/Elevators"]
+[node name="Lift3" type="Node3D" parent="Props/Elevators" unique_id=2005624511]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.65653, -1.25573, 82.2936)
 
-[node name="Elevator" parent="Props/Elevators/Lift3" node_paths=PackedStringArray("elevatorPoints") instance=ExtResource("14_uhwg3")]
+[node name="Elevator" parent="Props/Elevators/Lift3" unique_id=421877220 node_paths=PackedStringArray("elevatorPoints") instance=ExtResource("14_uhwg3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.034, 0)
 elevatorPoints = [NodePath("../Elevator point"), NodePath("../Elevator point2")]
 
-[node name="Elevator point2" parent="Props/Elevators/Lift3" instance=ExtResource("13_3wafn")]
+[node name="Elevator point2" parent="Props/Elevators/Lift3" unique_id=234796534 instance=ExtResource("13_3wafn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.2792, 0)
 waitTime = 1.0
 
-[node name="Elevator point" parent="Props/Elevators/Lift3" instance=ExtResource("13_3wafn")]
+[node name="Elevator point" parent="Props/Elevators/Lift3" unique_id=644595706 instance=ExtResource("13_3wafn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.00364, 0)
 waitTime = 1.0
 
-[node name="Lift2" type="Node3D" parent="Props/Elevators"]
+[node name="Lift2" type="Node3D" parent="Props/Elevators" unique_id=641680596]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.0652, 27.962, -69.4541)
 
-[node name="Elevator" parent="Props/Elevators/Lift2" node_paths=PackedStringArray("elevatorPoints") instance=ExtResource("14_uhwg3")]
+[node name="Elevator" parent="Props/Elevators/Lift2" unique_id=1053619082 node_paths=PackedStringArray("elevatorPoints") instance=ExtResource("14_uhwg3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.034, 0)
 elevatorPoints = [NodePath("../Elevator point"), NodePath("../Elevator point2")]
 
-[node name="Elevator point2" parent="Props/Elevators/Lift2" instance=ExtResource("13_3wafn")]
+[node name="Elevator point2" parent="Props/Elevators/Lift2" unique_id=1043637485 instance=ExtResource("13_3wafn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.7954, 0)
 waitTime = 1.0
 
-[node name="Elevator point" parent="Props/Elevators/Lift2" instance=ExtResource("13_3wafn")]
+[node name="Elevator point" parent="Props/Elevators/Lift2" unique_id=1993554940 instance=ExtResource("13_3wafn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.00364, 0)
 waitTime = 1.0
 
-[node name="Arcs" type="Node3D" parent="Props" node_paths=PackedStringArray("arcs")]
+[node name="Arcs" type="Node3D" parent="Props" unique_id=1011778592 node_paths=PackedStringArray("arcs")]
 script = ExtResource("9_8lmy1")
 arcs = [NodePath("Arc1"), NodePath("Arc2"), NodePath("Arc3"), NodePath("Arc4"), NodePath("Arc5"), NodePath("Arc6")]
 
-[node name="Arc1" parent="Props/Arcs" instance=ExtResource("10_m4385")]
+[node name="Arc1" parent="Props/Arcs" unique_id=733292793 instance=ExtResource("10_m4385")]
 transform = Transform3D(0.418715, 0.0138756, -0.908012, -0.0331203, 0.999451, 0, 0.907514, 0.0300736, 0.418945, -62.5358, 0.518116, 0.0323925)
 
-[node name="Arc2" parent="Props/Arcs" instance=ExtResource("10_m4385")]
+[node name="Arc2" parent="Props/Arcs" unique_id=2009454286 instance=ExtResource("10_m4385")]
 transform = Transform3D(0.127029, 0.00420956, -0.99189, -0.104259, 0.994508, -0.00913151, 0.986405, 0.104573, 0.126771, -31.9219, -0.786218, -7.82955)
 
-[node name="Arc3" parent="Props/Arcs" instance=ExtResource("10_m4385")]
+[node name="Arc3" parent="Props/Arcs" unique_id=2109152987 instance=ExtResource("10_m4385")]
 transform = Transform3D(-0.651172, -0.0215788, -0.758623, -0.168892, 0.97865, 0.117133, 0.739899, 0.204399, -0.640914, -1.42708, -0.937606, 2.17656)
 
-[node name="Arc4" parent="Props/Arcs" instance=ExtResource("10_m4385")]
+[node name="Arc4" parent="Props/Arcs" unique_id=1910421889 instance=ExtResource("10_m4385")]
 transform = Transform3D(-0.999342, -0.0331167, 0.0148349, -0.0331203, 0.999451, -1.12597e-09, -0.0148267, -0.000491336, -0.99989, 4.2907, 0.817137, 31.7184)
 
-[node name="Arc5" parent="Props/Arcs" instance=ExtResource("10_m4385")]
+[node name="Arc5" parent="Props/Arcs" unique_id=1486595455 instance=ExtResource("10_m4385")]
 transform = Transform3D(-0.730762, -0.0242163, 0.682203, -0.0331203, 0.999451, -1.20138e-09, -0.681829, -0.0225948, -0.731163, -14.9947, 0.488036, 57.6483)
 
-[node name="Arc6" parent="Props/Arcs" instance=ExtResource("10_m4385")]
+[node name="Arc6" parent="Props/Arcs" unique_id=2143243028 instance=ExtResource("10_m4385")]
 transform = Transform3D(-0.984043, -0.0326097, -0.17492, -0.0331203, 0.999451, -1.46929e-10, 0.174824, 0.0057934, -0.984582, -51.3185, -0.148615, 41.1117)
 
-[node name="TowerFire" type="Node3D" parent="Props" node_paths=PackedStringArray("fire_towers")]
+[node name="TowerFire" type="Node3D" parent="Props" unique_id=1289080765 node_paths=PackedStringArray("fire_towers")]
 script = ExtResource("17_pqsgx")
 fire_towers = [NodePath("Fire_Tower_Puzzle"), NodePath("Fire_Tower_Puzzle2"), NodePath("Fire_Tower_Puzzle3"), NodePath("Fire_Tower_Puzzle4")]
 
-[node name="Fire_Tower_Puzzle" parent="Props/TowerFire" instance=ExtResource("23_m4385")]
+[node name="Fire_Tower_Puzzle" parent="Props/TowerFire" unique_id=220341677 instance=ExtResource("23_m4385")]
 transform = Transform3D(0.999997, 0, -0.00228638, 0, 1, 0, 0.00228638, 0, 0.999997, -99.3169, 15.3451, 6.02347)
 
-[node name="Fire_Tower_Puzzle2" parent="Props/TowerFire" instance=ExtResource("23_m4385")]
+[node name="Fire_Tower_Puzzle2" parent="Props/TowerFire" unique_id=2190679 instance=ExtResource("23_m4385")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.3968, 14.7519, -22.2095)
 
-[node name="Fire_Tower_Puzzle3" parent="Props/TowerFire" instance=ExtResource("23_m4385")]
+[node name="Fire_Tower_Puzzle3" parent="Props/TowerFire" unique_id=476146911 instance=ExtResource("23_m4385")]
 transform = Transform3D(0.989796, 0, 0.142491, 0, 1, 0, -0.142491, 0, 0.989796, 48.9895, 15.2091, 13.9212)
 
-[node name="Fire_Tower_Puzzle4" parent="Props/TowerFire" instance=ExtResource("23_m4385")]
+[node name="Fire_Tower_Puzzle4" parent="Props/TowerFire" unique_id=1452116333 instance=ExtResource("23_m4385")]
 transform = Transform3D(0.999143, 0, -0.0413874, 0, 1, 0, 0.0413874, 0, 0.999143, -4.26279, 15.8709, 95.4539)
 
-[node name="secret_tower" parent="Props" instance=ExtResource("24_ebask")]
+[node name="secret_tower" parent="Props" unique_id=1362351534 instance=ExtResource("24_ebask")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5893, -16.974, 16.8457)
 activated_position_y = 13.557
 
-[node name="Castle_Door" parent="Props" instance=ExtResource("14_87xxg")]
+[node name="Castle_Door" parent="Props" unique_id=1841639146 instance=ExtResource("14_87xxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.9324, 0.302734, 116.34)
 
-[node name="Castle_Lever" parent="Props" instance=ExtResource("15_6wdta")]
+[node name="Castle_Lever" parent="Props" unique_id=1600894094 instance=ExtResource("15_6wdta")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.0031, 44.9397, -62.7325)
 
-[node name="Collectables" type="Node3D" parent="."]
+[node name="Collectables" type="Node3D" parent="." unique_id=1473370256]
 
-[node name="magic_chest" parent="Collectables" instance=ExtResource("16_uhwg3")]
+[node name="magic_chest" parent="Collectables" unique_id=1133284286 instance=ExtResource("16_uhwg3")]
 transform = Transform3D(0.825, 0, 0, 0, 0.825, 0, 0, 0, 0.825, -53.4332, 4.64057, 12.1053)
 
-[node name="Chest" parent="Collectables" instance=ExtResource("8_dbnbf")]
+[node name="Chest" parent="Collectables" unique_id=1175139398 instance=ExtResource("8_dbnbf")]
 transform = Transform3D(0.331354, 0, -0.943506, 0, 1, 0, 0.943506, 0, 0.331354, 38.0009, 3.99104, -4.83747)
 
-[node name="Key" parent="Collectables" instance=ExtResource("9_gfmul")]
+[node name="Key" parent="Collectables" unique_id=1787400527 instance=ExtResource("9_gfmul")]
 transform = Transform3D(1.95, 0, 0, 0, 1.95, 0, 0, 0, 1.95, -14.6151, -14.2432, 78.7651)
 
-[node name="Potions" type="Node3D" parent="Collectables"]
+[node name="Potions" type="Node3D" parent="Collectables" unique_id=1652011926]
 
-[node name="Fire-potion" parent="Collectables/Potions" instance=ExtResource("15_6iqwe")]
+[node name="Fire-potion" parent="Collectables/Potions" unique_id=134272289 instance=ExtResource("15_6iqwe")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -111.645, 13.8744, 3.98507)
 
-[node name="Fire-potion2" parent="Collectables/Potions" instance=ExtResource("15_6iqwe")]
+[node name="Fire-potion2" parent="Collectables/Potions" unique_id=1629225852 instance=ExtResource("15_6iqwe")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.0468, 14.2229, 70.024)
 
-[node name="Fire-potion3" parent="Collectables/Potions" instance=ExtResource("15_6iqwe")]
+[node name="Fire-potion3" parent="Collectables/Potions" unique_id=276625813 instance=ExtResource("15_6iqwe")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 65.6676, 14.2229, 101.009)
 
-[node name="Fire-potion4" parent="Collectables/Potions" instance=ExtResource("15_6iqwe")]
+[node name="Fire-potion4" parent="Collectables/Potions" unique_id=1513012221 instance=ExtResource("15_6iqwe")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -55.9256, 1.5482, 86.586)
 
-[node name="Speed-potion" parent="Collectables/Potions" instance=ExtResource("22_6grd1")]
+[node name="Speed-potion" parent="Collectables/Potions" unique_id=1570255692 instance=ExtResource("22_6grd1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.7967, 0.786367, 2.71973)
 
-[node name="Speed-potion2" parent="Collectables/Potions" instance=ExtResource("22_6grd1")]
+[node name="Speed-potion2" parent="Collectables/Potions" unique_id=1627102972 instance=ExtResource("22_6grd1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.278, 0.786367, 18.3808)
 
-[node name="Speed-potion3" parent="Collectables/Potions" instance=ExtResource("22_6grd1")]
+[node name="Speed-potion3" parent="Collectables/Potions" unique_id=825818351 instance=ExtResource("22_6grd1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -106.028, 13.7323, 35.6844)
 
-[node name="Speed-potion4" parent="Collectables/Potions" instance=ExtResource("22_6grd1")]
+[node name="Speed-potion4" parent="Collectables/Potions" unique_id=1930029881 instance=ExtResource("22_6grd1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.93243, 13.7323, 130.24)
 
-[node name="Jump-potion" parent="Collectables/Potions" instance=ExtResource("23_glw7l")]
+[node name="Jump-potion" parent="Collectables/Potions" unique_id=1289016098 instance=ExtResource("23_glw7l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.1746, 0.866414, -18.9989)
 
-[node name="Jump-potion4" parent="Collectables/Potions" instance=ExtResource("23_glw7l")]
+[node name="Jump-potion4" parent="Collectables/Potions" unique_id=119892563 instance=ExtResource("23_glw7l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.625, 14.5669, 13.3645)
 
-[node name="Jump-potion2" parent="Collectables/Potions" instance=ExtResource("23_glw7l")]
+[node name="Jump-potion2" parent="Collectables/Potions" unique_id=2115040827 instance=ExtResource("23_glw7l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.7399, 23.3207, -72.992)
 
-[node name="Jump-potion3" parent="Collectables/Potions" instance=ExtResource("23_glw7l")]
+[node name="Jump-potion3" parent="Collectables/Potions" unique_id=1565176323 instance=ExtResource("23_glw7l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.9885, -14.5421, 75.1389)
 
-[node name="Mthrill" type="Node3D" parent="Collectables"]
+[node name="Mthrill" type="Node3D" parent="Collectables" unique_id=2124573314]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.798, 0.137118, 16.0822)
 
-[node name="Mythril1" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril1" parent="Collectables/Mthrill" unique_id=109606134 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
-[node name="Mythril2" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril2" parent="Collectables/Mthrill" unique_id=2106527964 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 7.11209, -0.157018, 5.85981)
 
-[node name="Mythril3" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril3" parent="Collectables/Mthrill" unique_id=1374631878 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -19.5741, -3.2129, 0)
 
-[node name="Mythril4" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril4" parent="Collectables/Mthrill" unique_id=123990524 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16.8179, 2.64333, 7.13681)
 
-[node name="Mythril5" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril5" parent="Collectables/Mthrill" unique_id=1959857042 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20.8964, 4.62868, -4.32665)
 
-[node name="Mythril6" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril6" parent="Collectables/Mthrill" unique_id=593072788 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 31.3044, 4.62868, -4.32665)
 
-[node name="Mythril7" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril7" parent="Collectables/Mthrill" unique_id=759259496 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 26.7481, 4.62868, 1.6072)
 
-[node name="Mythril8" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril8" parent="Collectables/Mthrill" unique_id=1729844155 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 26.7481, 4.62868, -8.7689)
 
-[node name="Mythril9" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril9" parent="Collectables/Mthrill" unique_id=333661495 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 29.1025, -0.157018, 19.2085)
 
-[node name="Mythril10" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril10" parent="Collectables/Mthrill" unique_id=1462746182 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 41.6396, -1.05977, -14.4716)
 
-[node name="Mythril11" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril11" parent="Collectables/Mthrill" unique_id=1204541988 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 59.4272, -0.0484272, -9.94672)
 
-[node name="Mythril12" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril12" parent="Collectables/Mthrill" unique_id=580024581 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 69.995, -0.407342, 10.7956)
 
-[node name="Mythril13" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril13" parent="Collectables/Mthrill" unique_id=407142291 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 65.2683, 0.552648, 26.89)
 
-[node name="Mythril14" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril14" parent="Collectables/Mthrill" unique_id=934623847 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 57.863, 0.552648, 48.4786)
 
-[node name="Mythril15" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril15" parent="Collectables/Mthrill" unique_id=1436036456 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32.5315, 0.552648, 38.2534)
 
-[node name="Mythril16" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril16" parent="Collectables/Mthrill" unique_id=1352096586 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 57.8532, -0.677918, -28.4846)
 
-[node name="Mythril17" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril17" parent="Collectables/Mthrill" unique_id=1944163446 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 79.2851, 0.738718, -27.3626)
 
-[node name="Mythril18" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril18" parent="Collectables/Mthrill" unique_id=1918636819 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 89.663, 2.74338, -22.6734)
 
-[node name="Mythril19" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril19" parent="Collectables/Mthrill" unique_id=56521779 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 89.663, 2.74338, -18.5568)
 
-[node name="Mythril20" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril20" parent="Collectables/Mthrill" unique_id=1063278149 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 91.6195, 2.74338, -20.5378)
 
-[node name="Mythril21" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril21" parent="Collectables/Mthrill" unique_id=313221636 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 87.4413, 2.74338, -20.5378)
 
-[node name="Mythril22" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril22" parent="Collectables/Mthrill" unique_id=1256014636 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 100.223, 3.86299, -13.1237)
 
-[node name="Mythril23" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril23" parent="Collectables/Mthrill" unique_id=845622160 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 108.22, 4.54596, -17.8024)
 
-[node name="Mythril24" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril24" parent="Collectables/Mthrill" unique_id=25334993 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 113.259, 4.15586, -23.5865)
 
-[node name="Mythril25" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril25" parent="Collectables/Mthrill" unique_id=860333060 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 113.259, 4.15586, -16.2463)
 
-[node name="Mythril26" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril26" parent="Collectables/Mthrill" unique_id=589615185 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 118.065, 4.15586, -17.8727)
 
-[node name="Mythril27" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril27" parent="Collectables/Mthrill" unique_id=458350388 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 110.097, 4.15586, -20.5941)
 
-[node name="Mythril28" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril28" parent="Collectables/Mthrill" unique_id=1381391601 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 117.365, 13.3801, -12.3754)
 
-[node name="Mythril29" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril29" parent="Collectables/Mthrill" unique_id=615070127 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 102.037, 15.2775, 37.752)
 
-[node name="Mythril30" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril30" parent="Collectables/Mthrill" unique_id=727873097 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 135.736, 13.4358, 94.4327)
 
-[node name="Mythril31" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril31" parent="Collectables/Mthrill" unique_id=952241323 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 90.7849, 13.4358, 108.857)
 
-[node name="Mythril32" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril32" parent="Collectables/Mthrill" unique_id=309478225 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 67.8992, 13.4358, 66.9922)
 
-[node name="Mythril33" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril33" parent="Collectables/Mthrill" unique_id=1669004777 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 34.2414, 13.4358, 66.9922)
 
-[node name="Mythril70" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril70" parent="Collectables/Mthrill" unique_id=2062435250 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 28.7882, 13.7154, 83.8095)
 
-[node name="Mythril71" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril71" parent="Collectables/Mthrill" unique_id=857516425 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.73167, 13.7154, 104.393)
 
-[node name="Mythril72" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril72" parent="Collectables/Mthrill" unique_id=1311002589 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -5.56778, 13.7154, 122.905)
 
-[node name="Mythril73" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril73" parent="Collectables/Mthrill" unique_id=453285291 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.67784, 13.7154, 150.133)
 
-[node name="Mythril74" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril74" parent="Collectables/Mthrill" unique_id=211833553 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16.6181, 13.7154, 160.585)
 
-[node name="Mythril75" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril75" parent="Collectables/Mthrill" unique_id=440173033 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 33.9643, 13.7154, 163.807)
 
-[node name="Mythril76" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril76" parent="Collectables/Mthrill" unique_id=1997790336 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 52.2967, 13.7154, 162.041)
 
-[node name="Mythril77" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril77" parent="Collectables/Mthrill" unique_id=2147043712 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 69.3807, 13.7154, 157.664)
 
-[node name="Mythril78" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril78" parent="Collectables/Mthrill" unique_id=1554777494 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 84.7118, 13.7154, 138.314)
 
-[node name="Mythril79" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril79" parent="Collectables/Mthrill" unique_id=562453207 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 87.1442, 13.7154, 119.196)
 
-[node name="Mythril34" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril34" parent="Collectables/Mthrill" unique_id=934362725 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 18.1978, 13.4358, 42.8137)
 
-[node name="Mythril80" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril80" parent="Collectables/Mthrill" unique_id=1575922072 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0.00429344, 0, -0.00429344, 2, -9.58675, 13.5087, 26.2142)
 
-[node name="Mythril35" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril35" parent="Collectables/Mthrill" unique_id=1447158121 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -34.8812, 13.4358, -18.5712)
 
-[node name="Mythril36" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril36" parent="Collectables/Mthrill" unique_id=879055298 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -8.45728, 13.4358, -28.3134)
 
-[node name="Mythril37" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril37" parent="Collectables/Mthrill" unique_id=1708610868 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 68.1662, 13.4358, -50.0363)
 
-[node name="Mythril38" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril38" parent="Collectables/Mthrill" unique_id=506138784 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 29.1867, 13.4358, -45.4903)
 
-[node name="Mythril39" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril39" parent="Collectables/Mthrill" unique_id=768490195 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 29.1867, 18.5203, -53.9959)
 
-[node name="Mythril40" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril40" parent="Collectables/Mthrill" unique_id=753667605 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 29.1867, 21.5296, -64.6023)
 
-[node name="Mythril86" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril86" parent="Collectables/Mthrill" unique_id=133749484 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 21.0572, 22.7285, -85.1165)
 
-[node name="Mythril87" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril87" parent="Collectables/Mthrill" unique_id=1182466166 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 35.0611, 22.7285, -82.0906)
 
-[node name="Mythril41" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril41" parent="Collectables/Mthrill" unique_id=396993048 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 101.2, 13.6166, -43.2385)
 
-[node name="Mythril42" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril42" parent="Collectables/Mthrill" unique_id=1655471219 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 140.207, 13.6166, 61.407)
 
-[node name="Mythril43" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril43" parent="Collectables/Mthrill" unique_id=642963845 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 102.691, -2.58226, 53.7486)
 
-[node name="Mythril44" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril44" parent="Collectables/Mthrill" unique_id=230656882 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 99.6111, -2.58226, 53.7486)
 
-[node name="Mythril45" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril45" parent="Collectables/Mthrill" unique_id=1394776640 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 96.1563, -2.58226, 53.7486)
 
-[node name="Mythril46" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril46" parent="Collectables/Mthrill" unique_id=770634986 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 86.5054, -5.03705, 84.8325)
 
-[node name="Mythril47" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril47" parent="Collectables/Mthrill" unique_id=1741954938 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 102.157, -3.45273, 84.8325)
 
-[node name="Mythril48" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril48" parent="Collectables/Mthrill" unique_id=267238752 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 118.233, -5.79738, 77.623)
 
-[node name="Mythril49" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril49" parent="Collectables/Mthrill" unique_id=1208088139 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 120.631, -7.60592, 69.5165)
 
-[node name="Mythril50" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril50" parent="Collectables/Mthrill" unique_id=1801415830 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 111.582, -9.99301, 70.8055)
 
-[node name="Mythril51" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril51" parent="Collectables/Mthrill" unique_id=507827942 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 108.619, -11.5048, 64.3999)
 
-[node name="Mythril52" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril52" parent="Collectables/Mthrill" unique_id=1017882576 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 101.109, -13.5461, 63.0335)
 
-[node name="Mythril53" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril53" parent="Collectables/Mthrill" unique_id=470319356 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 95.1557, -15.1888, 62.6838)
 
-[node name="Mythril54" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril54" parent="Collectables/Mthrill" unique_id=28398327 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 81.4525, -15.1888, 62.6838)
 
-[node name="Mythril55" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril55" parent="Collectables/Mthrill" unique_id=431521954 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 51.3046, -14.7773, 63.7484)
 
-[node name="Mythril56" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril56" parent="Collectables/Mthrill" unique_id=324275264 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 34.7572, -14.7773, 63.7484)
 
-[node name="Mythril57" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril57" parent="Collectables/Mthrill" unique_id=1478467175 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 24.7593, -14.7773, 69.2433)
 
-[node name="Mythril58" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril58" parent="Collectables/Mthrill" unique_id=73515408 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 27.7115, -14.7773, 69.2433)
 
-[node name="Mythril59" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril59" parent="Collectables/Mthrill" unique_id=79618586 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 30.256, -14.7773, 68.823)
 
-[node name="Mythril60" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril60" parent="Collectables/Mthrill" unique_id=588122944 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 22.8049, 0.526377, 65.4812)
 
-[node name="Mythril61" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril61" parent="Collectables/Mthrill" unique_id=84303582 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 40.4554, 0.526377, 71.0256)
 
-[node name="Mythril62" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril62" parent="Collectables/Mthrill" unique_id=1636739082 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 43.5846, 0.526377, 85.347)
 
-[node name="Mythril66" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril66" parent="Collectables/Mthrill" unique_id=2032361411 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 49.6433, 0.526377, 90.9895)
 
-[node name="Mythril67" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril67" parent="Collectables/Mthrill" unique_id=1127271546 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 54.2165, 0.526377, 87.1362)
 
-[node name="Mythril68" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril68" parent="Collectables/Mthrill" unique_id=1002850438 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 57.9153, 0.526377, 94.6667)
 
-[node name="Mythril69" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril69" parent="Collectables/Mthrill" unique_id=1065749049 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 39.0736, 0.526377, 90.5756)
 
-[node name="Mythril63" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril63" parent="Collectables/Mthrill" unique_id=905577146 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 49.6433, 0.526377, 59.7501)
 
-[node name="Mythril64" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril64" parent="Collectables/Mthrill" unique_id=524109914 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 49.6433, 0.526377, 80.977)
 
-[node name="Mythril65" parent="Collectables/Mthrill" instance=ExtResource("12_qlgyj")]
+[node name="Mythril65" parent="Collectables/Mthrill" unique_id=1398102525 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 49.6433, 0.526377, 69.5326)
 
-[node name="Book2" parent="Collectables/Mthrill" instance=ExtResource("16_m4385")]
+[node name="Book2" parent="Collectables/Mthrill" unique_id=887144989 instance=ExtResource("16_m4385")]
 transform = Transform3D(-2.44929, 0, 0.0590894, 0, 2.45, 0, -0.0590894, 0, -2.44929, 32.1855, 13.8885, 170.626)
 
-[node name="Mythril81" parent="Collectables/Mthrill" instance=ExtResource("30_0o4qt")]
+[node name="Mythril81" parent="Collectables/Mthrill" unique_id=1993242055 instance=ExtResource("30_0o4qt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.0223, 13.7739, 173.753)
 
-[node name="Mythril82" parent="Collectables/Mthrill" instance=ExtResource("30_0o4qt")]
+[node name="Mythril82" parent="Collectables/Mthrill" unique_id=1036390909 instance=ExtResource("30_0o4qt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.0766, 13.7739, 171.508)
 
-[node name="Mythril83" parent="Collectables/Mthrill" instance=ExtResource("30_0o4qt")]
+[node name="Mythril83" parent="Collectables/Mthrill" unique_id=189656981 instance=ExtResource("30_0o4qt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.7255, -14.6388, 63.865)
 
-[node name="Mythril84" parent="Collectables/Mthrill" instance=ExtResource("30_0o4qt")]
+[node name="Mythril84" parent="Collectables/Mthrill" unique_id=1001320998 instance=ExtResource("30_0o4qt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.7255, 44.9135, -91.5489)
 
-[node name="Mythril85" parent="Collectables/Mthrill" instance=ExtResource("30_0o4qt")]
+[node name="Mythril85" parent="Collectables/Mthrill" unique_id=1637689345 instance=ExtResource("30_0o4qt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.9051, 22.8768, -92.2026)
 
-[node name="LVL1_Blender" parent="." instance=ExtResource("5_7idjg")]
+[node name="LVL1_Blender" parent="." unique_id=1764737711 instance=ExtResource("5_7idjg")]
 visible = false
 metadata/run = false
 
-[node name="LVL1_Blender_Imported" type="Node3D" parent="."]
+[node name="LVL1_Blender_Imported" type="Node3D" parent="." unique_id=1158115489]
 metadata/run = true
 
-[node name="StaticBody3D_Floor1" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Floor1" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=634821481]
 
-[node name="Floor1" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Floor1"]
+[node name="Floor1" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Floor1" unique_id=368163935]
 mesh = SubResource("ArrayMesh_oay1p")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2396,13 +2396,13 @@ metadata/center_z = "-25.8492603302002"
 metadata/center_y = "-1.00958514213562"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Floor1" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Floor1"]
+[node name="CollisionShape3D_Floor1" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Floor1" unique_id=1921533455]
 shape = SubResource("ConcavePolygonShape3D_pdlji")
 
-[node name="StaticBody3D_Walls" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Walls" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=1604609900]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.0878, 4.85494, 58.8413)
 
-[node name="Walls" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Walls"]
+[node name="Walls" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Walls" unique_id=1466350699]
 mesh = SubResource("ArrayMesh_tlpxf")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2419,12 +2419,12 @@ metadata/center_z = "-51.3233070373535"
 metadata/center_y = "1.57004547119141"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Walls" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Walls"]
+[node name="CollisionShape3D_Walls" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Walls" unique_id=1929823778]
 shape = SubResource("ConcavePolygonShape3D_4ak4b")
 
-[node name="StaticBody3D_Floor2" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Floor2" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=1417004795]
 
-[node name="Floor2" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Floor2"]
+[node name="Floor2" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Floor2" unique_id=1227089812]
 mesh = SubResource("ArrayMesh_ihnqs")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2440,12 +2440,12 @@ metadata/center_z = "28.5955848693848"
 metadata/center_y = "0.19857835769653"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Floor2" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Floor2"]
+[node name="CollisionShape3D_Floor2" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Floor2" unique_id=1573223559]
 shape = SubResource("ConcavePolygonShape3D_ubpg7")
 
-[node name="StaticBody3D_Floor3" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Floor3" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=1000569574]
 
-[node name="Floor3" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Floor3"]
+[node name="Floor3" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Floor3" unique_id=287602657]
 mesh = SubResource("ArrayMesh_u2cx5")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2461,12 +2461,12 @@ metadata/center_z = "-21.1701431274414"
 metadata/center_y = "-3.10105121135712"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Floor3" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Floor3"]
+[node name="CollisionShape3D_Floor3" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Floor3" unique_id=1663249544]
 shape = SubResource("ConcavePolygonShape3D_svmnj")
 
-[node name="StaticBody3D_BossCastle" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_BossCastle" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=1896017482]
 
-[node name="BossCastle" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_BossCastle"]
+[node name="BossCastle" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_BossCastle" unique_id=780715253]
 mesh = SubResource("ArrayMesh_va32a")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2482,12 +2482,12 @@ metadata/center_z = "0.40523529052734"
 metadata/center_y = "6.20073509216309"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_BossCastle" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_BossCastle"]
+[node name="CollisionShape3D_BossCastle" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_BossCastle" unique_id=2109129818]
 shape = SubResource("ConcavePolygonShape3D_v5w50")
 
-[node name="StaticBody3D_Tower" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Tower" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=1085348745]
 
-[node name="Tower" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Tower"]
+[node name="Tower" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Tower" unique_id=188654012]
 mesh = SubResource("ArrayMesh_2qyy8")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2501,12 +2501,12 @@ metadata/center_z = "1.27488136291504"
 metadata/center_y = "-0.76748657226563"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Tower" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Tower"]
+[node name="CollisionShape3D_Tower" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Tower" unique_id=311641622]
 shape = SubResource("ConcavePolygonShape3D_cm0ad")
 
-[node name="StaticBody3D_Tunnel" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Tunnel" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=242863365]
 
-[node name="Tunnel" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Tunnel"]
+[node name="Tunnel" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Tunnel" unique_id=610234392]
 mesh = SubResource("ArrayMesh_60egu")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2522,12 +2522,12 @@ metadata/center_z = "-9.95220184326172"
 metadata/center_y = "-3.51644206047058"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Tunnel" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Tunnel"]
+[node name="CollisionShape3D_Tunnel" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Tunnel" unique_id=1969166670]
 shape = SubResource("ConcavePolygonShape3D_yc31f")
 
-[node name="StaticBody3D_Underground" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Underground" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=1368465339]
 
-[node name="Underground" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Underground"]
+[node name="Underground" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Underground" unique_id=715316053]
 mesh = SubResource("ArrayMesh_uhv2a")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2543,12 +2543,12 @@ metadata/center_z = "0.69353485107422"
 metadata/center_y = "-1.22117304801941"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Underground" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Underground"]
+[node name="CollisionShape3D_Underground" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Underground" unique_id=395354433]
 shape = SubResource("ConcavePolygonShape3D_236ip")
 
-[node name="StaticBody3D_Puente" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Puente" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=1807896514]
 
-[node name="Puente" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Puente"]
+[node name="Puente" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Puente" unique_id=1222655980]
 mesh = SubResource("ArrayMesh_qqx2x")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2562,12 +2562,12 @@ metadata/center_z = "-11.3761806488037"
 metadata/center_y = "-2.72139692306519"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Puente" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Puente"]
+[node name="CollisionShape3D_Puente" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Puente" unique_id=743292278]
 shape = SubResource("ConcavePolygonShape3D_245a3")
 
-[node name="StaticBody3D_Room1" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Room1" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=1854589166]
 
-[node name="Room1" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Room1"]
+[node name="Room1" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Room1" unique_id=570869700]
 mesh = SubResource("ArrayMesh_3ijau")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2583,12 +2583,12 @@ metadata/center_z = "-1.19419860839844"
 metadata/center_y = "0.56824421882629"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Room1" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Room1"]
+[node name="CollisionShape3D_Room1" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Room1" unique_id=189920445]
 shape = SubResource("ConcavePolygonShape3D_b0wgu")
 
-[node name="StaticBody3D_Plataforms_001" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Plataforms_001" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=916990800]
 
-[node name="Plataforms_001" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Plataforms_001"]
+[node name="Plataforms_001" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Plataforms_001" unique_id=1606996085]
 mesh = SubResource("ArrayMesh_h7h4j")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2602,12 +2602,12 @@ metadata/center_z = "6.88160848617554"
 metadata/center_y = "-0.08102357387543"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Plataforms_001" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Plataforms_001"]
+[node name="CollisionShape3D_Plataforms_001" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Plataforms_001" unique_id=2089118213]
 shape = SubResource("ConcavePolygonShape3D_qkvgs")
 
-[node name="StaticBody3D_Balcony_001" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Balcony_001" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=217995207]
 
-[node name="Balcony_001" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Balcony_001"]
+[node name="Balcony_001" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Balcony_001" unique_id=1217460491]
 mesh = SubResource("ArrayMesh_8ru3x")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2623,12 +2623,12 @@ metadata/center_z = "-45.5295829772949"
 metadata/center_y = "-0.24783802032471"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Balcony_001" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Balcony_001"]
+[node name="CollisionShape3D_Balcony_001" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Balcony_001" unique_id=1968936427]
 shape = SubResource("ConcavePolygonShape3D_fsvjr")
 
-[node name="StaticBody3D_Plataforms_002" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Plataforms_002" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=172168078]
 
-[node name="Plataforms_002" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Plataforms_002"]
+[node name="Plataforms_002" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Plataforms_002" unique_id=1225223382]
 mesh = SubResource("ArrayMesh_3174h")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2642,12 +2642,12 @@ metadata/center_z = "-0.3602876663208"
 metadata/center_y = "-0.55485725402832"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Plataforms_002" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Plataforms_002"]
+[node name="CollisionShape3D_Plataforms_002" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Plataforms_002" unique_id=360375510]
 shape = SubResource("ConcavePolygonShape3D_b1b52")
 
-[node name="StaticBody3D_Balcony" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Balcony" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=99197860]
 
-[node name="Balcony" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Balcony"]
+[node name="Balcony" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Balcony" unique_id=1279621770]
 mesh = SubResource("ArrayMesh_oaq28")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2655,12 +2655,12 @@ metadata/extras = {
 }
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Balcony" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Balcony"]
+[node name="CollisionShape3D_Balcony" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Balcony" unique_id=1810393960]
 shape = SubResource("ConcavePolygonShape3D_hwrp3")
 
-[node name="StaticBody3D_Tunnel_002" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Tunnel_002" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=961348650]
 
-[node name="Tunnel_002" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Tunnel_002"]
+[node name="Tunnel_002" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Tunnel_002" unique_id=1838919881]
 mesh = SubResource("ArrayMesh_rmlwu")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2676,12 +2676,12 @@ metadata/center_z = "-9.95220184326172"
 metadata/center_y = "-3.51644206047058"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Tunnel_002" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Tunnel_002"]
+[node name="CollisionShape3D_Tunnel_002" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Tunnel_002" unique_id=1827110915]
 shape = SubResource("ConcavePolygonShape3D_miawt")
 
-[node name="StaticBody3D_Tunnel_003" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Tunnel_003" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=499002798]
 
-[node name="Tunnel_003" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Tunnel_003"]
+[node name="Tunnel_003" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Tunnel_003" unique_id=1503861849]
 mesh = SubResource("ArrayMesh_x2laa")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2697,12 +2697,12 @@ metadata/center_z = "-9.95220184326172"
 metadata/center_y = "-3.51644206047058"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Tunnel_003" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Tunnel_003"]
+[node name="CollisionShape3D_Tunnel_003" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Tunnel_003" unique_id=1650891552]
 shape = SubResource("ConcavePolygonShape3D_hlc7t")
 
-[node name="StaticBody3D_Tunnel_004" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Tunnel_004" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=879067943]
 
-[node name="Tunnel_004" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Tunnel_004"]
+[node name="Tunnel_004" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Tunnel_004" unique_id=1709873915]
 mesh = SubResource("ArrayMesh_33tb6")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2718,12 +2718,12 @@ metadata/center_z = "-45.5295829772949"
 metadata/center_y = "-0.24783802032471"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Tunnel_004" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Tunnel_004"]
+[node name="CollisionShape3D_Tunnel_004" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Tunnel_004" unique_id=1667772896]
 shape = SubResource("ConcavePolygonShape3D_64tkp")
 
-[node name="StaticBody3D_Tunnel_005" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Tunnel_005" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=983908228]
 
-[node name="Tunnel_005" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Tunnel_005"]
+[node name="Tunnel_005" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Tunnel_005" unique_id=1334738112]
 mesh = SubResource("ArrayMesh_uwpbl")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2739,12 +2739,12 @@ metadata/center_z = "-45.5295829772949"
 metadata/center_y = "-0.24783802032471"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Tunnel_005" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Tunnel_005"]
+[node name="CollisionShape3D_Tunnel_005" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Tunnel_005" unique_id=560002866]
 shape = SubResource("ConcavePolygonShape3D_wa15g")
 
-[node name="StaticBody3D_CastleFloor" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_CastleFloor" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=1173462499]
 
-[node name="CastleFloor" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_CastleFloor"]
+[node name="CastleFloor" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_CastleFloor" unique_id=384959779]
 mesh = SubResource("ArrayMesh_a6brc")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2752,12 +2752,12 @@ metadata/extras = {
 }
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_CastleFloor" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_CastleFloor"]
+[node name="CollisionShape3D_CastleFloor" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_CastleFloor" unique_id=1189175112]
 shape = SubResource("ConcavePolygonShape3D_71trb")
 
-[node name="StaticBody3D_Crystal" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Crystal" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=1254028501]
 
-[node name="Crystal" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal"]
+[node name="Crystal" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal" unique_id=2029738198]
 mesh = SubResource("ArrayMesh_gehnt")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2771,12 +2771,12 @@ metadata/center_z = "0.0"
 metadata/center_y = "0.08026027679443"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Crystal" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal"]
+[node name="CollisionShape3D_Crystal" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal" unique_id=198705683]
 shape = SubResource("ConcavePolygonShape3D_x6gfn")
 
-[node name="StaticBody3D_Crystal_001" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Crystal_001" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=68466367]
 
-[node name="Crystal_001" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_001"]
+[node name="Crystal_001" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_001" unique_id=887475070]
 mesh = SubResource("ArrayMesh_67s4x")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2790,12 +2790,12 @@ metadata/center_z = "0.0"
 metadata/center_y = "0.08026027679443"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Crystal_001" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_001"]
+[node name="CollisionShape3D_Crystal_001" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_001" unique_id=1014977722]
 shape = SubResource("ConcavePolygonShape3D_cd1me")
 
-[node name="StaticBody3D_Crystal_002" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Crystal_002" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=1813590710]
 
-[node name="Crystal_002" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_002"]
+[node name="Crystal_002" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_002" unique_id=596629574]
 mesh = SubResource("ArrayMesh_jrhro")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2809,12 +2809,12 @@ metadata/center_z = "0.0"
 metadata/center_y = "0.08026027679443"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Crystal_002" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_002"]
+[node name="CollisionShape3D_Crystal_002" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_002" unique_id=2138814046]
 shape = SubResource("ConcavePolygonShape3D_d2im1")
 
-[node name="StaticBody3D_Crystal_003" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Crystal_003" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=57115259]
 
-[node name="Crystal_003" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_003"]
+[node name="Crystal_003" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_003" unique_id=317871203]
 mesh = SubResource("ArrayMesh_72bon")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2828,12 +2828,12 @@ metadata/center_z = "0.0"
 metadata/center_y = "0.08026027679443"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Crystal_003" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_003"]
+[node name="CollisionShape3D_Crystal_003" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_003" unique_id=378359501]
 shape = SubResource("ConcavePolygonShape3D_38ftt")
 
-[node name="StaticBody3D_Crystal_004" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Crystal_004" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=1217258713]
 
-[node name="Crystal_004" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_004"]
+[node name="Crystal_004" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_004" unique_id=1888274309]
 mesh = SubResource("ArrayMesh_nfbir")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2847,12 +2847,12 @@ metadata/center_z = "0.0"
 metadata/center_y = "0.08026027679443"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Crystal_004" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_004"]
+[node name="CollisionShape3D_Crystal_004" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_004" unique_id=676252135]
 shape = SubResource("ConcavePolygonShape3D_swhnm")
 
-[node name="StaticBody3D_Crystal_005" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Crystal_005" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=1156590464]
 
-[node name="Crystal_005" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_005"]
+[node name="Crystal_005" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_005" unique_id=1177182488]
 mesh = SubResource("ArrayMesh_8ihwk")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2866,13 +2866,13 @@ metadata/center_z = "0.0"
 metadata/center_y = "0.08026027679443"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Crystal_005" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_005"]
+[node name="CollisionShape3D_Crystal_005" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_005" unique_id=3876664]
 shape = SubResource("ConcavePolygonShape3D_kndxn")
 
-[node name="StaticBody3D_Crystal_006" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Crystal_006" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=1508838584]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.29158, 11.113, 57.1197)
 
-[node name="Crystal_006" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_006"]
+[node name="Crystal_006" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_006" unique_id=1315370935]
 mesh = SubResource("ArrayMesh_mxxu3")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2886,12 +2886,12 @@ metadata/center_z = "0.0"
 metadata/center_y = "0.08026027679443"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Crystal_006" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_006"]
+[node name="CollisionShape3D_Crystal_006" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_006" unique_id=1056850813]
 shape = SubResource("ConcavePolygonShape3D_lpxyk")
 
-[node name="StaticBody3D_Crystal_007" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Crystal_007" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=35200917]
 
-[node name="Crystal_007" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_007"]
+[node name="Crystal_007" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_007" unique_id=1744768102]
 mesh = SubResource("ArrayMesh_ggws3")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2905,12 +2905,12 @@ metadata/center_z = "0.0"
 metadata/center_y = "0.08026027679443"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Crystal_007" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_007"]
+[node name="CollisionShape3D_Crystal_007" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_007" unique_id=93585742]
 shape = SubResource("ConcavePolygonShape3D_2ykbh")
 
-[node name="StaticBody3D_Crystal_008" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Crystal_008" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=1342876885]
 
-[node name="Crystal_008" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_008"]
+[node name="Crystal_008" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_008" unique_id=623202942]
 mesh = SubResource("ArrayMesh_06imq")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2924,12 +2924,12 @@ metadata/center_z = "0.0"
 metadata/center_y = "0.08026027679443"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Crystal_008" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_008"]
+[node name="CollisionShape3D_Crystal_008" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_008" unique_id=1006942870]
 shape = SubResource("ConcavePolygonShape3D_iceux")
 
-[node name="StaticBody3D_Crystal_009" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Crystal_009" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=817973448]
 
-[node name="Crystal_009" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_009"]
+[node name="Crystal_009" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_009" unique_id=759140474]
 mesh = SubResource("ArrayMesh_rns6k")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2943,12 +2943,12 @@ metadata/center_z = "0.0"
 metadata/center_y = "0.08026027679443"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Crystal_009" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_009"]
+[node name="CollisionShape3D_Crystal_009" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_009" unique_id=894092027]
 shape = SubResource("ConcavePolygonShape3D_tr75p")
 
-[node name="StaticBody3D_Crystal_010" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Crystal_010" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=604861034]
 
-[node name="Crystal_010" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_010"]
+[node name="Crystal_010" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_010" unique_id=670376036]
 mesh = SubResource("ArrayMesh_d0nha")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2962,12 +2962,12 @@ metadata/center_z = "0.0"
 metadata/center_y = "0.08026027679443"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Crystal_010" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_010"]
+[node name="CollisionShape3D_Crystal_010" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_010" unique_id=221930166]
 shape = SubResource("ConcavePolygonShape3D_brxt3")
 
-[node name="StaticBody3D_Crystal_011" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Crystal_011" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=767621692]
 
-[node name="Crystal_011" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_011"]
+[node name="Crystal_011" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_011" unique_id=2128903945]
 mesh = SubResource("ArrayMesh_lcyha")
 skeleton = NodePath("")
 metadata/extras = {
@@ -2981,12 +2981,12 @@ metadata/center_z = "0.0"
 metadata/center_y = "0.08026027679443"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Crystal_011" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_011"]
+[node name="CollisionShape3D_Crystal_011" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_011" unique_id=1969829826]
 shape = SubResource("ConcavePolygonShape3D_xjnt3")
 
-[node name="StaticBody3D_Crystal_012" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Crystal_012" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=61730211]
 
-[node name="Crystal_012" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_012"]
+[node name="Crystal_012" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_012" unique_id=154156158]
 mesh = SubResource("ArrayMesh_3n2d2")
 skeleton = NodePath("")
 metadata/extras = {
@@ -3000,12 +3000,12 @@ metadata/center_z = "0.0"
 metadata/center_y = "0.08026027679443"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Crystal_012" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_012"]
+[node name="CollisionShape3D_Crystal_012" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_012" unique_id=1633719375]
 shape = SubResource("ConcavePolygonShape3D_bypp4")
 
-[node name="StaticBody3D_Crystal_013" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Crystal_013" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=1747532040]
 
-[node name="Crystal_013" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_013"]
+[node name="Crystal_013" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_013" unique_id=1091039620]
 mesh = SubResource("ArrayMesh_f558t")
 skeleton = NodePath("")
 metadata/extras = {
@@ -3019,12 +3019,12 @@ metadata/center_z = "0.0"
 metadata/center_y = "0.08026027679443"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Crystal_013" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_013"]
+[node name="CollisionShape3D_Crystal_013" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_013" unique_id=495360970]
 shape = SubResource("ConcavePolygonShape3D_y6tko")
 
-[node name="StaticBody3D_TowerProp" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_TowerProp" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=510277221]
 
-[node name="TowerProp" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_TowerProp"]
+[node name="TowerProp" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_TowerProp" unique_id=21096525]
 mesh = SubResource("ArrayMesh_o5j3k")
 skeleton = NodePath("")
 metadata/extras = {
@@ -3040,12 +3040,12 @@ metadata/center_z = "0.44772338867188"
 metadata/center_y = "-0.07364368438721"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_TowerProp" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_TowerProp"]
+[node name="CollisionShape3D_TowerProp" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_TowerProp" unique_id=443910514]
 shape = SubResource("ConcavePolygonShape3D_2isr8")
 
-[node name="StaticBody3D_TowerProp_001" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_TowerProp_001" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=985352999]
 
-[node name="TowerProp_001" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_TowerProp_001"]
+[node name="TowerProp_001" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_TowerProp_001" unique_id=973426865]
 mesh = SubResource("ArrayMesh_jimve")
 skeleton = NodePath("")
 metadata/extras = {
@@ -3061,12 +3061,12 @@ metadata/center_z = "0.44772338867188"
 metadata/center_y = "-0.07364368438721"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_TowerProp_001" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_TowerProp_001"]
+[node name="CollisionShape3D_TowerProp_001" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_TowerProp_001" unique_id=1541680456]
 shape = SubResource("ConcavePolygonShape3D_bxkpb")
 
-[node name="StaticBody3D_TowerProp_002" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_TowerProp_002" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=214165744]
 
-[node name="TowerProp_002" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_TowerProp_002"]
+[node name="TowerProp_002" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_TowerProp_002" unique_id=835459640]
 mesh = SubResource("ArrayMesh_b2slg")
 skeleton = NodePath("")
 metadata/extras = {
@@ -3082,12 +3082,12 @@ metadata/center_z = "0.44772338867188"
 metadata/center_y = "-0.07364368438721"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_TowerProp_002" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_TowerProp_002"]
+[node name="CollisionShape3D_TowerProp_002" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_TowerProp_002" unique_id=1204018670]
 shape = SubResource("ConcavePolygonShape3D_6ivur")
 
-[node name="StaticBody3D_TowerProp_003" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_TowerProp_003" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=867833530]
 
-[node name="TowerProp_003" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_TowerProp_003"]
+[node name="TowerProp_003" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_TowerProp_003" unique_id=226425518]
 mesh = SubResource("ArrayMesh_selmm")
 skeleton = NodePath("")
 metadata/extras = {
@@ -3103,12 +3103,12 @@ metadata/center_z = "0.44772338867188"
 metadata/center_y = "-0.07364368438721"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_TowerProp_003" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_TowerProp_003"]
+[node name="CollisionShape3D_TowerProp_003" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_TowerProp_003" unique_id=856503370]
 shape = SubResource("ConcavePolygonShape3D_mxndd")
 
-[node name="StaticBody3D_Bars" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Bars" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=1715346046]
 
-[node name="Bars" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Bars"]
+[node name="Bars" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Bars" unique_id=1614394753]
 mesh = SubResource("ArrayMesh_b65mj")
 skeleton = NodePath("")
 metadata/extras = {
@@ -3124,13 +3124,13 @@ metadata/center_z = "-19.1150741577148"
 metadata/center_y = "-0.72060537338257"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Bars" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Bars"]
+[node name="CollisionShape3D_Bars" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Bars" unique_id=1172550085]
 shape = SubResource("ConcavePolygonShape3D_wv7r5")
 
-[node name="StaticBody3D_Crystal_014" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Crystal_014" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=1763610334]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.1541, 4.63858, 82.7969)
 
-[node name="Crystal_014" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_014"]
+[node name="Crystal_014" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_014" unique_id=1055657920]
 transform = Transform3D(0.52352, 0.61226, 0.592507, -0.405398, 0.790656, -0.458819, -0.749386, 2.98023e-08, 0.662134, 0, 0, 0)
 mesh = SubResource("ArrayMesh_udi32")
 skeleton = NodePath("")
@@ -3145,14 +3145,14 @@ metadata/center_z = "0.0"
 metadata/center_y = "0.08026027679443"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Crystal_014" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_014"]
+[node name="CollisionShape3D_Crystal_014" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_014" unique_id=1988405710]
 transform = Transform3D(0.52352, 0.61226, 0.592507, -0.405398, 0.790656, -0.458819, -0.749386, 2.98023e-08, 0.662134, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_gyafy")
 
-[node name="StaticBody3D_Crystal_015" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Crystal_015" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=466125672]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.2822, 12.2244, 22.4765)
 
-[node name="Crystal_015" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_015"]
+[node name="Crystal_015" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_015" unique_id=177926175]
 transform = Transform3D(0.407056, 0.913403, 0, -0.913403, 0.407056, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_yfmqg")
 skeleton = NodePath("")
@@ -3167,14 +3167,14 @@ metadata/center_z = "0.0"
 metadata/center_y = "0.08026027679443"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Crystal_015" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_015"]
+[node name="CollisionShape3D_Crystal_015" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_015" unique_id=198438089]
 transform = Transform3D(0.407056, 0.913403, 0, -0.913403, 0.407056, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_2cdtq")
 
-[node name="StaticBody3D_Crystal_016" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Crystal_016" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=1144909427]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.7409, 11.5249, -43.0881)
 
-[node name="Crystal_016" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_016"]
+[node name="Crystal_016" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_016" unique_id=840988889]
 transform = Transform3D(0.761295, 0.208455, 0.613983, -0.610918, 0.547902, 0.571474, -0.217276, -0.810154, 0.544464, 0, 0, 0)
 mesh = SubResource("ArrayMesh_7iydq")
 skeleton = NodePath("")
@@ -3189,14 +3189,14 @@ metadata/center_z = "0.0"
 metadata/center_y = "0.08026027679443"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Crystal_016" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_016"]
+[node name="CollisionShape3D_Crystal_016" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_016" unique_id=146430336]
 transform = Transform3D(0.761295, 0.208455, 0.613983, -0.610918, 0.547902, 0.571474, -0.217276, -0.810154, 0.544464, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_s0n5b")
 
-[node name="StaticBody3D_Crystal_017" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Crystal_017" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=510750626]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.1726, -7.22399, 81.7243)
 
-[node name="Crystal_017" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_017"]
+[node name="Crystal_017" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_017" unique_id=204704345]
 transform = Transform3D(-0.18532, -0.982678, 0, 0.982678, -0.18532, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_e8r2p")
 skeleton = NodePath("")
@@ -3211,14 +3211,14 @@ metadata/center_z = "0.0"
 metadata/center_y = "0.08026027679443"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Crystal_017" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_017"]
+[node name="CollisionShape3D_Crystal_017" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_017" unique_id=1906641427]
 transform = Transform3D(-0.18532, -0.982678, 0, 0.982678, -0.18532, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_55015")
 
-[node name="StaticBody3D_Crystal_018" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Crystal_018" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=1116625207]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.8751, 12.7666, -26.0541)
 
-[node name="Crystal_018" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_018"]
+[node name="Crystal_018" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_018" unique_id=1597374275]
 transform = Transform3D(0.414612, 0.89621, 0.157815, -0.895298, 0.432779, -0.105565, -0.162908, -0.0975229, 0.98181, 0, 0, 0)
 mesh = SubResource("ArrayMesh_3myb2")
 skeleton = NodePath("")
@@ -3233,14 +3233,14 @@ metadata/center_z = "0.0"
 metadata/center_y = "0.08026027679443"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Crystal_018" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_018"]
+[node name="CollisionShape3D_Crystal_018" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_018" unique_id=984554562]
 transform = Transform3D(0.414612, 0.89621, 0.157815, -0.895298, 0.432779, -0.105565, -0.162908, -0.0975229, 0.98181, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_qsyed")
 
-[node name="StaticBody3D_Crystal_019" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Crystal_019" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=979641972]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.9516, 24.6651, -75.6903)
 
-[node name="Crystal_019" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_019"]
+[node name="Crystal_019" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_019" unique_id=1764336849]
 transform = Transform3D(0.806896, -0.115734, 0.579245, 0.109475, 0.99293, 0.0458885, -0.58046, 0.0263854, 0.813861, 0, 0, 0)
 mesh = SubResource("ArrayMesh_u28sr")
 skeleton = NodePath("")
@@ -3255,14 +3255,14 @@ metadata/center_z = "0.0"
 metadata/center_y = "0.08026027679443"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Crystal_019" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_019"]
+[node name="CollisionShape3D_Crystal_019" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_019" unique_id=600760710]
 transform = Transform3D(0.806896, -0.115734, 0.579245, 0.109475, 0.99293, 0.0458885, -0.58046, 0.0263854, 0.813861, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_6jtgn")
 
-[node name="StaticBody3D_Crystal_020" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Crystal_020" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=392315551]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.8524, 1.36826, 115.341)
 
-[node name="Crystal_020" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_020"]
+[node name="Crystal_020" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_020" unique_id=1975500444]
 transform = Transform3D(0.888621, -0.111558, -0.444867, 0.208011, 0.9625, 0.174139, 0.408758, -0.247281, 0.878504, 0, 0, 0)
 mesh = SubResource("ArrayMesh_tc2rn")
 skeleton = NodePath("")
@@ -3277,14 +3277,14 @@ metadata/center_z = "0.0"
 metadata/center_y = "0.08026027679443"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Crystal_020" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_020"]
+[node name="CollisionShape3D_Crystal_020" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_020" unique_id=504014077]
 transform = Transform3D(0.888621, -0.111558, -0.444867, 0.208011, 0.9625, 0.174139, 0.408758, -0.247281, 0.878504, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_7w3dv")
 
-[node name="StaticBody3D_Floor2_001" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Floor2_001" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=1808956428]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -207.678, 120.356, -53.7134)
 
-[node name="Floor2_001" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Floor2_001"]
+[node name="Floor2_001" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Floor2_001" unique_id=1394633096]
 transform = Transform3D(-0.147414, 0, -0.989075, 0, 1, 0, 0.989075, 0, -0.147414, 0, 0, 0)
 mesh = SubResource("ArrayMesh_rhnbp")
 skeleton = NodePath("")
@@ -3301,14 +3301,14 @@ metadata/center_z = "28.5955848693848"
 metadata/center_y = "0.19857835769653"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Floor2_001" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Floor2_001"]
+[node name="CollisionShape3D_Floor2_001" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Floor2_001" unique_id=798395839]
 transform = Transform3D(-0.147414, 0, -0.989075, 0, 1, 0, 0.989075, 0, -0.147414, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_hm0qp")
 
-[node name="StaticBody3D_Walls_001" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Walls_001" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=121059574]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96576, 17.5962, 0)
 
-[node name="Walls_001" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Walls_001"]
+[node name="Walls_001" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Walls_001" unique_id=273965374]
 mesh = SubResource("ArrayMesh_3trau")
 skeleton = NodePath("")
 metadata/extras = {
@@ -3325,13 +3325,13 @@ metadata/center_z = "-51.3233070373535"
 metadata/center_y = "1.57004547119141"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Walls_001" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Walls_001"]
+[node name="CollisionShape3D_Walls_001" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Walls_001" unique_id=897631606]
 shape = SubResource("ConcavePolygonShape3D_qcf7h")
 
-[node name="StaticBody3D_Walls_002" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Walls_002" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=227838684]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -223.5, 127.434, -9.19934)
 
-[node name="Walls_002" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Walls_002"]
+[node name="Walls_002" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Walls_002" unique_id=1647663911]
 transform = Transform3D(-0.0911361, 0, -0.995838, 0, 1, 0, 0.995838, 0, -0.0911361, 0, 0, 0)
 mesh = SubResource("ArrayMesh_7c3p4")
 skeleton = NodePath("")
@@ -3349,14 +3349,14 @@ metadata/center_z = "-51.3233070373535"
 metadata/center_y = "1.57004547119141"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Walls_002" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Walls_002"]
+[node name="CollisionShape3D_Walls_002" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Walls_002" unique_id=339649530]
 transform = Transform3D(-0.0911361, 0, -0.995838, 0, 1, 0, 0.995838, 0, -0.0911361, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_r8klh")
 
-[node name="StaticBody3D_Crystal_021" type="StaticBody3D" parent="LVL1_Blender_Imported"]
+[node name="StaticBody3D_Crystal_021" type="StaticBody3D" parent="LVL1_Blender_Imported" unique_id=2098901602]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -195.855, 69.7029, -52.591)
 
-[node name="Crystal_021" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_021"]
+[node name="Crystal_021" type="MeshInstance3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_021" unique_id=1199407474]
 transform = Transform3D(1, 0, 0, 0, -0.943829, -0.330434, 0, 0.330434, -0.943829, 0, 0, 0)
 mesh = SubResource("ArrayMesh_pmofs")
 skeleton = NodePath("")
@@ -3371,14 +3371,14 @@ metadata/center_z = "0.0"
 metadata/center_y = "0.08026027679443"
 metadata/collision = "trimesh"
 
-[node name="CollisionShape3D_Crystal_021" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_021"]
+[node name="CollisionShape3D_Crystal_021" type="CollisionShape3D" parent="LVL1_Blender_Imported/StaticBody3D_Crystal_021" unique_id=1155102992]
 transform = Transform3D(1, 0, 0, 0, -0.943829, -0.330434, 0, 0.330434, -0.943829, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_qhx10")
 
-[node name="LevelSound" parent="." instance=ExtResource("37_4ak4b")]
+[node name="LevelSound" parent="." unique_id=1796803577 instance=ExtResource("37_4ak4b")]
 stream = ExtResource("27_87xxg")
 
-[node name="PSX_Postproduction" parent="." instance=ExtResource("1_ubpg7")]
+[node name="PSX_Postproduction" parent="." unique_id=1145915740 instance=ExtResource("1_ubpg7")]
 
 [connection signal="all_arcs_active" from="Props/Arcs" to="Collectables/magic_chest" method="deactivate_force_field"]
 [connection signal="all_fire_towers_active" from="Props/TowerFire" to="Props/secret_tower" method="activate_secret_tower"]
