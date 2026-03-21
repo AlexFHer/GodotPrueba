@@ -1,0 +1,161 @@
+[gd_scene format=3 uid="uid://b6slr7s7ogwg1"]
+
+[ext_resource type="PackedScene" uid="uid://bbf8p4krgp531" path="res://assets/levels/levelManager.tscn" id="1_n6sci"]
+[ext_resource type="Script" uid="uid://c4t2n0gbu5cvl" path="res://assets/collectable/level-collectables.gd" id="2_l7cy2"]
+[ext_resource type="PackedScene" uid="uid://i088rp1g8077" path="res://assets/global_death/global_death.tscn" id="3_bh741"]
+[ext_resource type="PackedScene" uid="uid://cii1jxpiud2wy" path="res://assets/enemies/globrc-small/globrc-small.tscn" id="10_gv8ya"]
+[ext_resource type="PackedScene" uid="uid://degbqjvqfd4lu" path="res://assets/patrolPoint/patrol-point.tscn" id="11_y7qyr"]
+[ext_resource type="PackedScene" uid="uid://bgp44hgj2ny5j" path="res://assets/arc/arc.tscn" id="12_khvno"]
+[ext_resource type="Script" uid="uid://cketnnkhw8nqs" path="res://assets/arc/arc_puzzle.gd" id="12_ptet3"]
+[ext_resource type="PackedScene" uid="uid://ontkeeyy4mk7" path="res://assets/potions/fire-potion/fire-potion.tscn" id="13_ptet3"]
+[ext_resource type="PackedScene" uid="uid://cyqqtvfimjbqb" path="res://assets/potions/jump-potion/jump-potion.tscn" id="14_dxe5k"]
+[ext_resource type="PackedScene" uid="uid://ex02udmugvjt" path="res://assets/potions/speed-potion/speed-potion.tscn" id="15_2fkf1"]
+[ext_resource type="PackedScene" uid="uid://mykeuox7c8sn" path="res://assets/key/key.tscn" id="15_dxe5k"]
+[ext_resource type="PackedScene" uid="uid://cdv7t4pgxo2rl" path="res://assets/elevator/elevator-point/elevator-point.tscn" id="15_l7cy2"]
+[ext_resource type="PackedScene" uid="uid://b4khq8j6mf6b1" path="res://assets/chests/normal_chest/chest.tscn" id="16_2fkf1"]
+[ext_resource type="PackedScene" uid="uid://db13eu4sc8rt5" path="res://assets/elevator/elevator.tscn" id="16_7iq1i"]
+[ext_resource type="Script" uid="uid://giigqq4cm0ab" path="res://scripts/puzzles/arcs-magic-chest-puzzle.gd" id="16_o2ktb"]
+[ext_resource type="PackedScene" uid="uid://byu0b6177d1t6" path="res://assets/chests/magic_chest/magic_chest.tscn" id="17_l7cy2"]
+[ext_resource type="PackedScene" uid="uid://bd31y7odxeu3" path="res://scenes/level1/LvL 1.tscn" id="20_ow8r8"]
+
+[sub_resource type="Resource" id="Resource_l7cy2"]
+script = ExtResource("2_l7cy2")
+requiredMithrils = 150
+requiredBooks = 1
+metadata/_custom_type_script = "uid://c4t2n0gbu5cvl"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l7cy2"]
+load_path = "res://.godot/imported/Skybox1.png-2977c383f50d20c572265b2f740a12a9.s3tc.ctex"
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_dxe5k"]
+panorama = SubResource("CompressedTexture2D_l7cy2")
+filter = false
+
+[sub_resource type="Sky" id="Sky_w0n07"]
+sky_material = SubResource("PanoramaSkyMaterial_dxe5k")
+
+[sub_resource type="Environment" id="Environment_u3tis"]
+background_mode = 2
+sky = SubResource("Sky_w0n07")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="SceneTest" type="Node3D"]
+
+[node name="Level manager" parent="." instance=ExtResource("1_n6sci")]
+visible = false
+levelCollectables = SubResource("Resource_l7cy2")
+levelName = "TestLevel"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_u3tis")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.998009, -0.0546163, 0.0315326, -1.49013e-08, 0.499998, 0.866027, -0.0630654, -0.864303, 0.499003, -2.19103, 12.9262, 10.8119)
+visible = false
+shadow_enabled = true
+
+[node name="global-death" parent="." instance=ExtResource("3_bh741")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -25.3343, 0)
+visible = false
+
+[node name="Patrol point marker" parent="." instance=ExtResource("11_y7qyr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.0121, 1.52635, -5.46845)
+visible = false
+
+[node name="Patrol point marker2" parent="." instance=ExtResource("11_y7qyr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.6309, 1.52635, -5.46845)
+visible = false
+
+[node name="Patrol point marker3" parent="." instance=ExtResource("11_y7qyr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.6309, 1.52635, -17.484)
+visible = false
+
+[node name="Patrol point marker4" parent="." instance=ExtResource("11_y7qyr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.3073, 1.52635, -17.484)
+visible = false
+
+[node name="Patrol point marker5" parent="." instance=ExtResource("11_y7qyr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.0102, 1.52635, -17.484)
+visible = false
+
+[node name="Patrol point marker6" parent="." instance=ExtResource("11_y7qyr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.0102, 1.52635, -5.50205)
+visible = false
+
+[node name="Globrc" parent="." node_paths=PackedStringArray("patrolPoints") instance=ExtResource("10_gv8ya")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.6738, 0.985344, -11.6839)
+visible = false
+patrolPoints = [NodePath("../Patrol point marker"), NodePath("../Patrol point marker2"), NodePath("../Patrol point marker3"), NodePath("../Patrol point marker4"), NodePath("../Patrol point marker5"), NodePath("../Patrol point marker6")]
+
+[node name="Key2" parent="." instance=ExtResource("15_dxe5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4454, 5.18719, -8.59138)
+visible = false
+
+[node name="Key" parent="." instance=ExtResource("15_dxe5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.9928, 1.50311, -12.3837)
+visible = false
+
+[node name="Chest" parent="." instance=ExtResource("16_2fkf1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.1674, 1.51754, -20.0904)
+visible = false
+
+[node name="LvL1" parent="." instance=ExtResource("20_ow8r8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.7291, 1.08237, -2.59654)
+
+[node name="Fire-potion" parent="." instance=ExtResource("13_ptet3")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -36.1897, 2.11338, -22.6454)
+visible = false
+
+[node name="Jump-potion" parent="." instance=ExtResource("14_dxe5k")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -33.16, 1.50003, -22.9048)
+visible = false
+
+[node name="Speed-potion" parent="." instance=ExtResource("15_2fkf1")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -38.2126, 2.08089, -22.2296)
+visible = false
+
+[node name="Elevator1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -98.5248, 6.16755, -8.62841)
+
+[node name="Elevator point 1" parent="Elevator1" instance=ExtResource("15_l7cy2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.01877, 0)
+visible = false
+
+[node name="Elevator point 2" parent="Elevator1" instance=ExtResource("15_l7cy2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.30497, 0)
+visible = false
+
+[node name="Elevator" parent="Elevator1" node_paths=PackedStringArray("elevatorPoints") instance=ExtResource("16_7iq1i")]
+visible = false
+elevatorPoints = [NodePath("../Elevator point 1"), NodePath("../Elevator point 2")]
+
+[node name="Node3D" type="Node3D" parent="." node_paths=PackedStringArray("arcs")]
+script = ExtResource("12_ptet3")
+arcs = [null, null, null]
+
+[node name="ArcMagicChestPuzzle1" type="Node3D" parent="." node_paths=PackedStringArray("magic_chest", "arc_puzzle")]
+script = ExtResource("16_o2ktb")
+magic_chest = NodePath("MagicChest")
+arc_puzzle = NodePath("ArcPuzzle")
+
+[node name="MagicChest" parent="ArcMagicChestPuzzle1" instance=ExtResource("17_l7cy2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -125.236, -2.08446, 15.3535)
+visible = false
+
+[node name="ArcPuzzle" type="Node3D" parent="ArcMagicChestPuzzle1" node_paths=PackedStringArray("arcs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -122.911, -3.75727, -5.15296)
+script = ExtResource("12_ptet3")
+arcs = [NodePath("Arc1"), NodePath("Arc2"), NodePath("Arc3")]
+
+[node name="Arc1" parent="ArcMagicChestPuzzle1/ArcPuzzle" instance=ExtResource("12_khvno")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.08873, 1.1137, 9.24085)
+visible = false
+
+[node name="Arc2" parent="ArcMagicChestPuzzle1/ArcPuzzle" instance=ExtResource("12_khvno")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.08873, 1.1137, 20.8125)
+visible = false
+
+[node name="Arc3" parent="ArcMagicChestPuzzle1/ArcPuzzle" instance=ExtResource("12_khvno")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.08873, 1.1137, 29.6097)
+visible = false

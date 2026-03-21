@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxascs40x5oel"
-path.s3tc="res://.godot/imported/PjBUIr3.png-02142eafa07102eb3d5a074cce53d010.s3tc.ctex"
+uid="uid://c624fw8ta52ja"
+path.s3tc="res://.godot/imported/s1-1_013-n_T.png-9eeb19b27ea733299009b22b39f6aa74.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://materials/skybox/PjBUIr3.png"
-dest_files=["res://.godot/imported/PjBUIr3.png-02142eafa07102eb3d5a074cce53d010.s3tc.ctex"]
+source_file="res://scenes/level1/scenes/s1-1_013-n_T.png"
+dest_files=["res://.godot/imported/s1-1_013-n_T.png-9eeb19b27ea733299009b22b39f6aa74.s3tc.ctex"]
 
 [params]
 

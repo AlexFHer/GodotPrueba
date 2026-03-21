@@ -3,13 +3,12 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://muvhrgobkmv6"
-path="res://.godot/imported/LVL1_Blender.gltf-6262a485ff8ed0e2bbd8652224594e9c.scn"
+uid="uid://bydhvsqwgbe6f"
+valid=false
 
 [deps]
 
-source_file="res://scenes/level1/LVL1_Blender.gltf"
-dest_files=["res://.godot/imported/LVL1_Blender.gltf-6262a485ff8ed0e2bbd8652224594e9c.scn"]
+source_file="res://scenes/level1/scenes/LVL1_Blender.gltf"
 
 [params]
 

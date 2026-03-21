@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxascs40x5oel"
-path.s3tc="res://.godot/imported/PjBUIr3.png-02142eafa07102eb3d5a074cce53d010.s3tc.ctex"
+uid="uid://b7lldhdo8u4cu"
+path.s3tc="res://.godot/imported/LvL1_terrain.png-7bcd1e90e409d9d64d3f9af52b776a75.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "8ef56d68037cda97b75e5ef66ab6b6e3"
+}
 
 [deps]
 
-source_file="res://materials/skybox/PjBUIr3.png"
-dest_files=["res://.godot/imported/PjBUIr3.png-02142eafa07102eb3d5a074cce53d010.s3tc.ctex"]
+source_file="res://scenes/level1/scenes/LvL1_terrain.png"
+dest_files=["res://.godot/imported/LvL1_terrain.png-7bcd1e90e409d9d64d3f9af52b776a75.s3tc.ctex"]
 
 [params]
 

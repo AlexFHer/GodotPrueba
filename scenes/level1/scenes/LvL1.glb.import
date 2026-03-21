@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://muvhrgobkmv6"
-path="res://.godot/imported/LVL1_Blender.gltf-6262a485ff8ed0e2bbd8652224594e9c.scn"
+uid="uid://bv2w7ywub24im"
+path="res://.godot/imported/LvL1.glb-aa1add85dbd45dafd9b3ff335aa40aac.scn"
 
 [deps]
 
-source_file="res://scenes/level1/LVL1_Blender.gltf"
-dest_files=["res://.godot/imported/LVL1_Blender.gltf-6262a485ff8ed0e2bbd8652224594e9c.scn"]
+source_file="res://scenes/level1/scenes/LvL1.glb"
+dest_files=["res://.godot/imported/LvL1.glb-aa1add85dbd45dafd9b3ff335aa40aac.scn"]
 
 [params]
 
@@ -38,5 +38,5 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={}
-gltf/naming_version=2
+gltf/naming_version=1
 gltf/embedded_image_handling=1

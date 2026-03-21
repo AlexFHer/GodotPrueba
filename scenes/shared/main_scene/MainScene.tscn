@@ -1,0 +1,176 @@
+[gd_scene format=3 uid="uid://ighrfiwlmwnq"]
+
+[ext_resource type="Script" uid="uid://bx6kt7g2kl4j0" path="res://scenes/shared/main_scene/main_scene.gd" id="1_gjggf"]
+[ext_resource type="VideoStream" path="res://media/videos/Room_With_Fade_And_Title.ogv" id="2_hrww0"]
+[ext_resource type="VideoStream" uid="uid://dkkt7vx68kcvr" path="res://media/videos/Transition.ogv" id="3_7l1wp"]
+[ext_resource type="VideoStream" uid="uid://cx4oipblvg3lp" path="res://media/videos/Book.ogv" id="4_6q0ml"]
+[ext_resource type="Texture2D" uid="uid://drg0t7rgohfyt" path="res://assets/collectable/mythril/Mythrill_Icon.png" id="5_6q0ml"]
+[ext_resource type="Theme" uid="uid://u1hmgwnpsf0x" path="res://shared/ui/themes/Main_Menu.tres" id="5_487xm"]
+[ext_resource type="Texture2D" uid="uid://d08xd48xv2kjh" path="res://assets/collectable/book/Book_icon.png" id="6_487xm"]
+[ext_resource type="AudioStream" uid="uid://dacxd0d7w533x" path="res://media/Music/MA_IGAMP3_TheWorldOfSorcerersAndMagic_Looped.ogg" id="6_gsqen"]
+[ext_resource type="Texture2D" uid="uid://borc2vg2bifr5" path="res://media/images/Level.PNG" id="6_hrww0"]
+
+[node name="MainScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gjggf")
+
+[node name="Room" type="VideoStreamPlayer" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_hrww0")
+autoplay = true
+expand = true
+loop = true
+
+[node name="Transition" type="VideoStreamPlayer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("3_7l1wp")
+expand = true
+
+[node name="Book" type="VideoStreamPlayer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("4_6q0ml")
+expand = true
+loop = true
+
+[node name="OtherPage" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 2
+offset_left = 817.0
+offset_top = 405.0
+offset_right = 851.0
+offset_bottom = 468.0
+
+[node name="Label" type="Label" parent="OtherPage"]
+layout_mode = 2
+text = "0/120
+
+0/1"
+
+[node name="MythrillIcon" type="Sprite2D" parent="OtherPage"]
+position = Vector2(-42, 3)
+texture = ExtResource("5_6q0ml")
+
+[node name="BookIcon" type="Sprite2D" parent="OtherPage"]
+position = Vector2(-36, 63)
+texture = ExtResource("6_487xm")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_left = -652.0
+offset_top = -25.0
+offset_right = 1268.0
+offset_bottom = 475.0
+rotation = 0.0792239
+
+[node name="MainButtons" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("5_487xm")
+theme_override_constants/separation = 10
+
+[node name="Level" type="Sprite2D" parent="CenterContainer/MainButtons"]
+position = Vector2(669.672, 66.9076)
+scale = Vector2(0.434956, 0.53862)
+texture = ExtResource("6_hrww0")
+
+[node name="PlayButton" type="Button" parent="CenterContainer/MainButtons"]
+layout_mode = 2
+theme = ExtResource("5_487xm")
+theme_override_font_sizes/font_size = 75
+text = "Play"
+
+[node name="SettingsButton" type="Button" parent="CenterContainer/MainButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "Settings"
+
+[node name="ExitButton" type="Button" parent="CenterContainer/MainButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "Exit"
+
+[node name="SettingsMenu" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("5_487xm")
+
+[node name="BackButton" type="Button" parent="CenterContainer/SettingsMenu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "Back"
+
+[node name="FullScreenCheck" type="CheckBox" parent="CenterContainer/SettingsMenu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "FullScreen
+"
+
+[node name="MainVolSlider" type="HSlider" parent="CenterContainer/SettingsMenu"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="Label" type="Label" parent="CenterContainer/SettingsMenu/MainVolSlider"]
+custom_minimum_size = Vector2(484, 50)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 40
+text = "Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Start" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 945.0
+offset_top = 466.0
+offset_right = 1034.0
+offset_bottom = 493.0
+theme = ExtResource("5_487xm")
+
+[node name="Start_Button" type="Button" parent="Start"]
+layout_mode = 2
+text = "PRESS START"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+z_index = -4096
+layout_mode = 0
+offset_right = 1924.0
+offset_bottom = 1075.0
+mouse_filter = 2
+color = Color(0.712926, 0.463987, 0.700082, 1)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_gsqen")
+volume_db = -7.154
+autoplay = true
+
+[connection signal="pressed" from="CenterContainer/MainButtons/PlayButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CenterContainer/MainButtons/SettingsButton" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="CenterContainer/MainButtons/ExitButton" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="CenterContainer/SettingsMenu/BackButton" to="." method="_on_back_pressed"]
+[connection signal="toggled" from="CenterContainer/SettingsMenu/FullScreenCheck" to="." method="_on_full_screen_toggled"]
+[connection signal="value_changed" from="CenterContainer/SettingsMenu/MainVolSlider" to="." method="_on_main_vol_slider_value_changed"]
+[connection signal="button_down" from="Start/Start_Button" to="." method="_on_start_button_down"]
