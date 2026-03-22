@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://cf47i2djfslyw"]
+[gd_scene format=3 uid="uid://cf47i2djfslyw"]
 
 [ext_resource type="Script" uid="uid://b3jy8x8um1xce" path="res://player/PlayerCharacter.gd" id="1_43pha"]
 [ext_resource type="Script" uid="uid://df8j4nq0qxet4" path="res://player/scripts/potions-manager.gd" id="2_86mlk"]
@@ -44,11 +44,11 @@ animation = &"Potma_Hit"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hg6s5"]
 animation = &"PotmaFall"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e7oew"]
-animation = &"PotmaFloat"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8t03j"]
 animation = &"PotmaIdle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e7oew"]
+animation = &"PotmaJump"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kb6p2"]
 animation = &"PotmaRun"
@@ -108,45 +108,41 @@ advance_mode = 2
 advance_expression = "!is_on_floor()"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_65viv"]
-xfade_time = 0.5
 advance_mode = 2
-advance_expression = "floating()"
+advance_expression = "velocity.y > 0.1 && !is_on_floor()"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x7c3f"]
-xfade_time = 0.3
 advance_mode = 2
-advance_expression = "!floating()"
+advance_expression = "velocity.y > 0.1 && !is_on_floor()"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bjvpn"]
-xfade_time = 0.1
+xfade_time = 0.2
+switch_mode = 2
 advance_mode = 2
-advance_expression = "is_on_floor()"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s7qer"]
-xfade_time = 0.1
 advance_mode = 2
-advance_expression = "is_on_floor()"
+advance_expression = "velocity.y > 0.1 && !is_on_floor()"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g4c7l"]
-xfade_time = 0.1
 advance_mode = 2
-advance_expression = "is_on_floor()"
+advance_expression = "is_on_ground()"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wodsf"]
-states/End/position = Vector2(1030, 100)
+states/End/position = Vector2(1011, 62)
 states/PotmaFall/node = SubResource("AnimationNodeAnimation_hg6s5")
-states/PotmaFall/position = Vector2(650, -25)
-states/PotmaFloat/node = SubResource("AnimationNodeAnimation_e7oew")
-states/PotmaFloat/position = Vector2(491, -160)
+states/PotmaFall/position = Vector2(607, -15)
 states/PotmaIdle/node = SubResource("AnimationNodeAnimation_8t03j")
 states/PotmaIdle/position = Vector2(334, -15)
+states/PotmaJump/node = SubResource("AnimationNodeAnimation_e7oew")
+states/PotmaJump/position = Vector2(789, -240)
 states/PotmaRun/node = SubResource("AnimationNodeAnimation_kb6p2")
 states/PotmaRun/position = Vector2(661, 166)
 states/PotmaWalk/node = SubResource("AnimationNodeAnimation_2ieo8")
 states/PotmaWalk/position = Vector2(334, 166)
 states/Start/position = Vector2(30, 51)
-transitions = ["Start", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_ebec5"), "PotmaIdle", "PotmaWalk", SubResource("AnimationNodeStateMachineTransition_kb6p2"), "PotmaWalk", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_wodsf"), "PotmaWalk", "PotmaRun", SubResource("AnimationNodeStateMachineTransition_32hag"), "PotmaRun", "PotmaWalk", SubResource("AnimationNodeStateMachineTransition_e7oew"), "PotmaRun", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_c35mf"), "PotmaWalk", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_hg6s5"), "PotmaFall", "PotmaWalk", SubResource("AnimationNodeStateMachineTransition_8t03j"), "PotmaFall", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_2ieo8"), "PotmaRun", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_tqiix"), "PotmaIdle", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_yllr7"), "PotmaFall", "PotmaFloat", SubResource("AnimationNodeStateMachineTransition_65viv"), "PotmaFloat", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_x7c3f"), "PotmaFloat", "PotmaRun", SubResource("AnimationNodeStateMachineTransition_bjvpn"), "PotmaFloat", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_s7qer"), "PotmaFloat", "PotmaWalk", SubResource("AnimationNodeStateMachineTransition_g4c7l")]
-graph_offset = Vector2(61, -154)
+transitions = ["Start", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_ebec5"), "PotmaIdle", "PotmaWalk", SubResource("AnimationNodeStateMachineTransition_kb6p2"), "PotmaWalk", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_wodsf"), "PotmaWalk", "PotmaRun", SubResource("AnimationNodeStateMachineTransition_32hag"), "PotmaRun", "PotmaWalk", SubResource("AnimationNodeStateMachineTransition_e7oew"), "PotmaRun", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_c35mf"), "PotmaWalk", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_hg6s5"), "PotmaFall", "PotmaWalk", SubResource("AnimationNodeStateMachineTransition_8t03j"), "PotmaFall", "PotmaIdle", SubResource("AnimationNodeStateMachineTransition_2ieo8"), "PotmaRun", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_tqiix"), "PotmaIdle", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_yllr7"), "PotmaRun", "PotmaJump", SubResource("AnimationNodeStateMachineTransition_65viv"), "PotmaWalk", "PotmaJump", SubResource("AnimationNodeStateMachineTransition_x7c3f"), "PotmaJump", "PotmaFall", SubResource("AnimationNodeStateMachineTransition_bjvpn"), "PotmaIdle", "PotmaJump", SubResource("AnimationNodeStateMachineTransition_s7qer"), "PotmaJump", "End", SubResource("AnimationNodeStateMachineTransition_g4c7l")]
+graph_offset = Vector2(197, -285)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tqiix"]
 animation = &"PotmaStaff_Hit"
@@ -159,7 +155,7 @@ animation = &"PotmaStaff_Hit"
 animation = &"Potma_Drink"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_2ieo8"]
-graph_offset = Vector2(-174.294, -92.1881)
+graph_offset = Vector2(-397.69727, -161.75766)
 nodes/output/position = Vector2(1700, -80)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_32hag")
 nodes/Animation/position = Vector2(1180, 300)
@@ -197,31 +193,31 @@ font_size = 20
 [sub_resource type="LabelSettings" id="LabelSettings_hg6s5"]
 font_size = 24
 
-[node name="MainCharacter" type="CharacterBody3D" groups=["MainPlayer"]]
+[node name="MainCharacter" type="CharacterBody3D" unique_id=220301657 groups=["MainPlayer"]]
 script = ExtResource("1_43pha")
 
-[node name="CharacterCollision" type="CollisionShape3D" parent="."]
+[node name="CharacterCollision" type="CollisionShape3D" parent="." unique_id=1043848217]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.600911, 0)
 shape = SubResource("CapsuleShape3D_itxij")
 
-[node name="Rig" type="Node3D" parent="."]
+[node name="Rig" type="Node3D" parent="." unique_id=16098918]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 script = ExtResource("2_hg6s5")
 
-[node name="StaffArea3D" type="Area3D" parent="Rig"]
+[node name="StaffArea3D" type="Area3D" parent="Rig" unique_id=179753287]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.654711, 0.722715, -2.04243)
 
-[node name="StaffCollision" type="CollisionShape3D" parent="Rig/StaffArea3D"]
+[node name="StaffCollision" type="CollisionShape3D" parent="Rig/StaffArea3D" unique_id=1101134789]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.559745, 0.105377, 0.870241)
 shape = SubResource("BoxShape3D_hg6s5")
 debug_color = Color(0.983944, 0, 0.348276, 0.42)
 
-[node name="Armature" type="Node3D" parent="Rig"]
+[node name="Armature" type="Node3D" parent="Rig" unique_id=716977589]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="Potma" parent="Rig/Armature" instance=ExtResource("3_rgyib")]
+[node name="Potma" parent="Rig/Armature" unique_id=1137498179 instance=ExtResource("3_rgyib")]
 
 [node name="Skeleton3D" parent="Rig/Armature/Potma/Armature_Potma" index="1"]
 bones/0/scale = Vector3(1.0001018, 1.5873997, 1)
@@ -269,7 +265,7 @@ bones/25/scale = Vector3(1, 1.0000004, 1)
 bones/26/position = Vector3(-0.27304772, 0.019917695, -0.23151103)
 bones/26/rotation = Quaternion(0.2164167, 0.015521085, 0.010425584, 0.976122)
 
-[node name="PlayerAnimationTree" type="AnimationTree" parent="Rig"]
+[node name="PlayerAnimationTree" type="AnimationTree" parent="Rig" unique_id=1884237260]
 unique_name_in_owner = true
 root_node = NodePath("%PlayerAnimationTree/../Armature/Potma")
 tree_root = SubResource("AnimationNodeBlendTree_2ieo8")
@@ -291,48 +287,48 @@ parameters/StaffThrowOneShot/active = false
 parameters/StaffThrowOneShot/internal_active = false
 parameters/StaffThrowOneShot/request = 0
 
-[node name="StaffBoneAttachment" type="BoneAttachment3D" parent="Rig"]
+[node name="StaffBoneAttachment" type="BoneAttachment3D" parent="Rig" unique_id=959773533]
 transform = Transform3D(-0.62586546, 0.7799752, -0.029046478, 1.2173997, 1.0181545, -0.020680672, 0.00846796, -0.030426849, -0.99950105, -0.1584329, 0.5863154, 0.30578473)
 bone_name = "Cetro"
 bone_idx = 24
 use_external_skeleton = true
 external_skeleton = NodePath("../Armature/Potma/Armature_Potma/Skeleton3D")
 
-[node name="ShootPosition" type="Node3D" parent="Rig/StaffBoneAttachment"]
+[node name="ShootPosition" type="Node3D" parent="Rig/StaffBoneAttachment" unique_id=382200012]
 unique_name_in_owner = true
 transform = Transform3D(1, 2.00816e-08, 0, 1.97324e-08, 1, 0, -1.86265e-09, -1.86265e-09, 1, -0.016, 1.051, 0.0706533)
 
-[node name="CameraPivot" type="Node3D" parent="."]
+[node name="CameraPivot" type="Node3D" parent="." unique_id=1195898707]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.61594, 0)
 script = ExtResource("3_pe30o")
 
-[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot"]
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot" unique_id=1616724621]
 transform = Transform3D(-1, -3.69465e-08, 7.92319e-08, 0, 0.906308, 0.422618, -8.74228e-08, 0.422618, -0.906308, 0, 0, 0)
 shape = SubResource("SphereShape3D_wff3b")
 spring_length = 3.0
 
-[node name="MainCharacterCamera" type="Camera3D" parent="CameraPivot/SpringArm3D"]
+[node name="MainCharacterCamera" type="Camera3D" parent="CameraPivot/SpringArm3D" unique_id=183372892]
 unique_name_in_owner = true
 fov = 91.0422
 
-[node name="Ps1PostProcess" type="MeshInstance3D" parent="CameraPivot/SpringArm3D/MainCharacterCamera"]
+[node name="Ps1PostProcess" type="MeshInstance3D" parent="CameraPivot/SpringArm3D/MainCharacterCamera" unique_id=825285301]
 visible = false
 mesh = SubResource("QuadMesh_tqiix")
 surface_material_override/0 = ExtResource("5_e7oew")
 
-[node name="PotionsManager" type="Node3D" parent="." node_paths=PackedStringArray("_potion_particles_system")]
+[node name="PotionsManager" type="Node3D" parent="." unique_id=1233766524 node_paths=PackedStringArray("_potion_particles_system")]
 script = ExtResource("2_86mlk")
 _potion_particles_system = NodePath("PotionsParticlesSystem")
 
-[node name="PotionsParticlesSystem" type="Node3D" parent="PotionsManager"]
+[node name="PotionsParticlesSystem" type="Node3D" parent="PotionsManager" unique_id=1952334961]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03907, 0)
 script = ExtResource("6_tqiix")
 
-[node name="PotionsTimer" type="Timer" parent="."]
+[node name="PotionsTimer" type="Timer" parent="." unique_id=156579745]
 unique_name_in_owner = true
 one_shot = true
 
-[node name="PotionsUI" type="Control" parent="."]
+[node name="PotionsUI" type="Control" parent="." unique_id=377943629]
 layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
@@ -344,7 +340,7 @@ offset_bottom = -19.0
 grow_vertical = 0
 script = ExtResource("5_hdq68")
 
-[node name="Panel" type="Panel" parent="PotionsUI"]
+[node name="Panel" type="Panel" parent="PotionsUI" unique_id=1699736304]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -352,7 +348,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CurrentPotionTexture" type="TextureRect" parent="PotionsUI"]
+[node name="CurrentPotionTexture" type="TextureRect" parent="PotionsUI" unique_id=196022268]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -361,7 +357,7 @@ grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 2
 
-[node name="PotionTimerLabel" type="Label" parent="PotionsUI"]
+[node name="PotionTimerLabel" type="Label" parent="PotionsUI" unique_id=892920339]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 3
@@ -379,7 +375,7 @@ text = "1"
 label_settings = SubResource("LabelSettings_rgyib")
 horizontal_alignment = 2
 
-[node name="NumberOfPotions" type="Label" parent="PotionsUI"]
+[node name="NumberOfPotions" type="Label" parent="PotionsUI" unique_id=1052358987]
 layout_mode = 1
 offset_left = 3.0
 offset_top = 3.0
@@ -388,41 +384,41 @@ offset_bottom = 31.0
 text = "1"
 label_settings = SubResource("LabelSettings_hg6s5")
 
-[node name="In game collectables UI" parent="." instance=ExtResource("10_8t03j")]
+[node name="In game collectables UI" parent="." unique_id=247358460 instance=ExtResource("10_8t03j")]
 visible = false
 
-[node name="PotmaSounds" type="Node3D" parent="."]
+[node name="PotmaSounds" type="Node3D" parent="." unique_id=282238775]
 unique_name_in_owner = true
 script = ExtResource("9_hg6s5")
 
-[node name="PotmaWalkAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds"]
+[node name="PotmaWalkAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds" unique_id=1443826663]
 stream = ExtResource("9_32hag")
 volume_db = -8.312
 
-[node name="PotmaGetHitAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds"]
+[node name="PotmaGetHitAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds" unique_id=1511518771]
 stream = ExtResource("10_yllr7")
 
-[node name="PotmaDrinkAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds"]
+[node name="PotmaDrinkAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds" unique_id=961015786]
 stream = ExtResource("15_bjvpn")
 
-[node name="PotmaRunAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds"]
+[node name="PotmaRunAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds" unique_id=158058342]
 stream = ExtResource("10_tqiix")
 
-[node name="PotmaJumpAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds"]
+[node name="PotmaJumpAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds" unique_id=1049365347]
 stream = ExtResource("11_e7oew")
 volume_db = -22.857
 
-[node name="PotmaMegaJumpAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds"]
+[node name="PotmaMegaJumpAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds" unique_id=775421422]
 stream = ExtResource("12_c35mf")
 
-[node name="PotmaStaffHitAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds"]
+[node name="PotmaStaffHitAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds" unique_id=56039993]
 stream = ExtResource("15_32hag")
 volume_db = -13.506
 
-[node name="CombatSystem" type="Node" parent="."]
+[node name="CombatSystem" type="Node" parent="." unique_id=732579862]
 script = ExtResource("10_2ieo8")
 
-[node name="AttackResetTimer" type="Timer" parent="CombatSystem"]
+[node name="AttackResetTimer" type="Timer" parent="CombatSystem" unique_id=2000239338]
 unique_name_in_owner = true
 wait_time = 2.0
 one_shot = true

@@ -9,13 +9,13 @@ class_name MainPlayer extends CharacterBody3D
 
 @export var checkpoint: Vector3 = Vector3.ZERO
 
-const JUMP_FORCE := 10.0;
+const JUMP_FORCE := 13.0;
+const MEGA_JUMP_MULTIPLIER := 2.5;
 const ROTATION_SENSIVITY := 10;
 const NORMAL_SPEED := 15;
 const IMPROVED_SPEED := 20;
 const ACCELERATION := 20.0;
 const ORIGINAL_GRAVITY := -30;
-const PLANNING_GRAVITY := -10;
 
 # life system
 
@@ -28,7 +28,7 @@ var speed := 10.0;
 var isSprinting := false;
 var isFloating := false;
 var lastMovementDirection := Vector3.FORWARD
-var gravity := -20;
+var gravity := -25;
 
 var canMove := true;
 
@@ -51,7 +51,7 @@ func jump() -> void:
 
 func megaJump() -> void:
 	potmaSounds.megaJumpSoundAudioStream.play();
-	velocity.y += JUMP_FORCE * 2;
+	velocity.y += JUMP_FORCE * MEGA_JUMP_MULTIPLIER;
 	disableJump();
 
 func activateMegaJump() -> void:
@@ -69,7 +69,6 @@ func disableJump() -> void:
 func _physics_process(delta: float) -> void:
 	process_jump();
 	process_movement(delta);
-	process_planning();
 	_process_moving_sound();
 	
 	move_and_slide();
@@ -109,15 +108,6 @@ func process_jump() -> void:
 		else:
 			jumpBuffer = true;
 			get_tree().create_timer(jumpBufferTimer).timeout.connect(on_jump_buffer_timer_ends)
-			
-
-func process_planning() -> void:
-	if Input.is_action_pressed("jump") and not is_on_floor():
-		gravity = PLANNING_GRAVITY
-		isFloating = true
-	else:
-		gravity = ORIGINAL_GRAVITY
-		isFloating = false
 
 func process_movement(delta) -> void:
 	var rawInput := Input.get_vector("move-left", "move-right", "move-forward", "move-backwards");
@@ -226,7 +216,7 @@ func _is_player_not_moving_on_ground() -> bool:
 
 func is_moving() -> bool:
 	return abs(velocity.x) > 0.1 or abs(velocity.z) > 0.1
-
+	
 func get_to_checkpoint() -> void:
 	position = checkpoint
 
