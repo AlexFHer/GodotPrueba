@@ -1,29 +1,22 @@
 extends Control
 
-@onready var numberOfPotions: Label = $NumberOfPotions
-@onready var potionsTimer: Timer = %PotionsTimer
-@onready var potionsTimerLabel: Label = %PotionTimerLabel
-@onready var potionIconTexture: TextureRect = $CurrentPotionTexture
+@onready var leftPotionCountLabel: Label = %LeftPotionCount
+@onready var rightPotionCountLabel: Label = %RightPotionCount
+@onready var leftPotionIconTexture: TextureRect = %LeftPotionIcon
+@onready var rightPotionIconTexture: TextureRect = %RightPotionIcon
 
 var firePotionIcon: Texture = preload("res://assets/potions/fire-potion/Fire_Poti_icon.png")
 var jumpPotionIcon: Texture = preload("res://assets/potions/jump-potion/Jump_Poti_icon.png")
 var speedPotionIcon: Texture = preload("res://assets/potions/speed-potion/Speed_Poti_icon.png")
 
-var selectedPotionType := PotionTypes.PotionType.None;
-
-var showPotionTimer = false;
-
-func _ready() -> void:
-	_configure_timer();
-
-func _process(_delta: float) -> void:
-	_process_potions_timer();
+var selectedLeftPotionType := PotionTypes.PotionType.None;
+var selectedRightPotionType := PotionTypes.PotionType.None;
 
 func _enter_tree() -> void:
 	PlayerPotions.potionsChanged.connect(_on_potions_change);
-	PlayerPotions.selectedPotionChanged.connect(_on_selected_potion_changed);
-	PlayerPotions.potionUsed.connect(_on_potion_used);
-
+	PlayerPotions.selectedLeftPotionChanged.connect(_on_selected_left_potion_changed);
+	PlayerPotions.selectedRightPotionChanged.connect(_on_selected_right_potion_changed);
+				
 # func _unhandled_input(event: InputEvent) -> void:
 # 	if event.is_action_pressed("combineSelection"):
 # 		_on_combine_selection_pressed()
@@ -35,48 +28,41 @@ func getNumberOfPotionsByType(potionType: PotionTypes.PotionType) -> String:
 	else:
 		return str(potionSize)
 
-func evaluateText(potionType: PotionTypes.PotionType) -> void:
+func _getPotionIcon(potionType: PotionTypes.PotionType) -> Texture:
 	match(potionType):
 		PotionTypes.PotionType.Jump:
-			potionIconTexture.texture = jumpPotionIcon
+			return jumpPotionIcon
 		PotionTypes.PotionType.Speed:
-			potionIconTexture.texture = speedPotionIcon
+			return speedPotionIcon
 		PotionTypes.PotionType.Fire:
-			potionIconTexture.texture = firePotionIcon
+			return firePotionIcon
 		_:
-			potionIconTexture.texture = null
+			return null
 
-func evaluateNumber(potionType: PotionTypes.PotionType) -> void:
-	numberOfPotions.text = getNumberOfPotionsByType(potionType)
+func evaluateLeftIcon(potionType: PotionTypes.PotionType) -> void:
+	leftPotionIconTexture.texture = _getPotionIcon(potionType)
 
-func _configure_timer() -> void:
-	potionsTimer.one_shot = true;
-	potionsTimer.connect("timeout", _on_potions_timer_timeout)
+func evaluateRightIcon(potionType: PotionTypes.PotionType) -> void:
+	rightPotionIconTexture.texture = _getPotionIcon(potionType)
 
-func _process_potions_timer() -> void:
-	if not potionsTimer.is_stopped():
-		potionsTimerLabel.text = str(int(potionsTimer.time_left))
+func evaluateLeftNumber(potionType: PotionTypes.PotionType) -> void:
+	leftPotionCountLabel.text = getNumberOfPotionsByType(potionType)
 
-func _on_potions_timer_timeout() -> void:
-	potionsTimerLabel.visible = false;
+func evaluateRightNumber(potionType: PotionTypes.PotionType) -> void:
+	rightPotionCountLabel.text = getNumberOfPotionsByType(potionType)
 
 func _on_potions_change(_potions: Dictionary):
-	evaluateNumber(selectedPotionType)
+	evaluateLeftNumber(selectedLeftPotionType)
+	evaluateRightNumber(selectedRightPotionType)
+	evaluateLeftIcon(selectedLeftPotionType)
+	evaluateRightIcon(selectedRightPotionType)
 
-func _on_selected_potion_changed(potionType: PotionTypes.PotionType) -> void:
-	selectedPotionType = potionType;
-	evaluateNumber(potionType);
-	evaluateText(potionType);
+func _on_selected_left_potion_changed(potionType: PotionTypes.PotionType) -> void:
+	selectedLeftPotionType = potionType;
+	evaluateLeftNumber(potionType);
+	evaluateLeftIcon(potionType);
 
-func _on_potion_used(potionType: PotionTypes.PotionType) -> void:
-	var potionConfig = PotionsConfig.get_potion_properties(potionType);
-	if potionConfig:
-		potionsTimer.wait_time = potionConfig.lifeTime;
-		potionsTimerLabel.visible = true;
-		potionsTimer.start()
-
-func _on_combine_selection_pressed() -> void:
-	if not PlayerPotions.areThereAnyPotions():
-		return
-	
-	PotionMergerService.selectedPotionToMerge = selectedPotionType;
+func _on_selected_right_potion_changed(potionType: PotionTypes.PotionType) -> void:
+	selectedRightPotionType = potionType;
+	evaluateRightNumber(potionType);
+	evaluateRightIcon(potionType);

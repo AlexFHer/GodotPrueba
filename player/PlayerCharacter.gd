@@ -26,7 +26,6 @@ signal lifeChanged(newLife: int);
 
 var speed := 10.0;
 var isSprinting := false;
-var isFloating := false;
 var lastMovementDirection := Vector3.FORWARD
 var gravity := -25;
 
@@ -216,9 +215,6 @@ func _is_player_not_moving_on_ground() -> bool:
 
 func is_moving() -> bool:
 	return abs(velocity.x) > 0.1 or abs(velocity.z) > 0.1
-	
+
 func get_to_checkpoint() -> void:
 	position = checkpoint
-
-func floating() -> bool:
-	return isFloating

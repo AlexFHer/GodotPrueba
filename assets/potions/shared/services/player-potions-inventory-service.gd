@@ -2,11 +2,17 @@ class_name PotionsData extends Node
 
 # Diccionario Dictionary[Tipo de pocion, numero de pociones]
 var potionsDictionary: Dictionary[PotionTypes.PotionType, int] = {}
+var selectedLeftPotionType: PotionTypes.PotionType = PotionTypes.PotionType.None;
+var selectedRightPotionType: PotionTypes.PotionType = PotionTypes.PotionType.None;
+
+# Mantiene compatibilidad con scripts que aun usan una sola seleccion.
 var selectedPotionType: PotionTypes.PotionType = PotionTypes.PotionType.None;
 
 var canDrinkPotion := true;
 
 signal potionsChanged(dictionary: Dictionary[PotionTypes.PotionType, int]);
+signal selectedLeftPotionChanged(potionType: PotionTypes.PotionType);
+signal selectedRightPotionChanged(potionType: PotionTypes.PotionType); 
 signal selectedPotionChanged(potionType: PotionTypes.PotionType);
 signal potionUsed(potionType: PotionTypes.PotionType);
 signal potionEffectFinished(potionType: PotionTypes.PotionType);
@@ -31,10 +37,12 @@ func removeOnePotionByType(potionType: PotionTypes.PotionType):
 		potionsDictionary.erase(potionType)
 	
 	_emitPotions()
+	_checkPotionsAvailability();
 
 func removeAllPotions() -> void:
 	potionsDictionary.clear()
 	_emitPotions()
+	_checkPotionsAvailability();
 
 func areThereAnyPotions() -> bool:
 	for potionKey in potionsDictionary.keys():
@@ -49,34 +57,63 @@ func getFirstPotion() -> PotionTypes.PotionType:
 	return potionsDictionary.keys()[0]
 
 func toggleLeftPotion() -> void:
-	var lastPotion = _getLastPotionType(selectedPotionType);
-	selectPotion(lastPotion);
+	var lastPotion = _getLastPotionType(selectedLeftPotionType);
+	selectLeftPotion(lastPotion);
 
 func toggleRightPotion() -> void:
-	var nextPotion = _getNextPotionType(selectedPotionType);
-	selectPotion(nextPotion);
+	var nextPotion = _getNextPotionType(selectedRightPotionType);
+	selectRightPotion(nextPotion);
+
+func selectLeftPotion(potionType: PotionTypes.PotionType) -> void:
+	selectedLeftPotionType = potionType;
+	selectedLeftPotionChanged.emit(potionType);
+
+func selectRightPotion(potionType: PotionTypes.PotionType) -> void:
+	selectedRightPotionType = potionType;
+	selectedRightPotionChanged.emit(potionType);
+	_syncLegacySelectedPotionType();
 
 func selectPotion(potionType: PotionTypes.PotionType) -> void:
-	selectedPotionType = potionType;
-	selectedPotionChanged.emit(potionType);
+	# Compatibilidad hacia atras: seleccion simple = slot derecho.
+	selectRightPotion(potionType);
 
 func usePotion() -> void:
-	if not isThereAnyPotionOfType(selectedPotionType):
+	# Compatibilidad hacia atras: usar pocion usa el slot derecho.
+	useRightPotion();
+
+func useLeftPotion() -> void:
+	_usePotionByType(selectedLeftPotionType);
+
+func useRightPotion() -> void:
+	_usePotionByType(selectedRightPotionType);
+
+func _usePotionByType(potionType: PotionTypes.PotionType) -> void:
+	if not isThereAnyPotionOfType(potionType):
 		return
-	potionUsed.emit(selectedPotionType);
-	emitWhenPotionFinish(selectedPotionType);
-	removeOnePotionByType(selectedPotionType);
-	_checkPotionsAvailability();
+	potionUsed.emit(potionType);
+	emitWhenPotionFinish(potionType);
+	removeOnePotionByType(potionType);
 
 func _checkPotionsAvailability() -> void:
 	if not areThereAnyPotions():
 		_unselectPotion();
-		
+		return
+
 	if potionsDictionary.keys().size() == 1:
-		selectPotion(getFirstPotion())
+		var onlyPotionType = getFirstPotion()
+		selectLeftPotion(onlyPotionType)
+		selectRightPotion(onlyPotionType)
+		return
+
+	if not isThereAnyPotionOfType(selectedLeftPotionType):
+		selectLeftPotion(getFirstPotion())
+
+	if not isThereAnyPotionOfType(selectedRightPotionType):
+		selectRightPotion(getFirstPotion())
 
 func _unselectPotion() -> void:
-	selectPotion(PotionTypes.PotionType.None)
+	selectLeftPotion(PotionTypes.PotionType.None)
+	selectRightPotion(PotionTypes.PotionType.None)
 
 func _getLastPotionType(currentType: PotionTypes.PotionType) -> PotionTypes.PotionType:
 	if not areThereAnyPotions():
@@ -87,12 +124,10 @@ func _getLastPotionType(currentType: PotionTypes.PotionType) -> PotionTypes.Poti
 	
 	var keys = potionsDictionary.keys();
 	var foundTypeIndex = keys.find(currentType)
-	if foundTypeIndex != -1:
-		var doesItExist = foundTypeIndex - 1 < keys.size()
-		if doesItExist:
-			return keys[foundTypeIndex - 1]
-			
-	return keys[keys.size() - 1]
+	if foundTypeIndex == -1:
+		return keys[0]
+
+	return keys[(foundTypeIndex - 1 + keys.size()) % keys.size()]
 
 func _getNextPotionType(currentType: PotionTypes.PotionType) -> PotionTypes.PotionType:
 	if not areThereAnyPotions():
@@ -103,20 +138,25 @@ func _getNextPotionType(currentType: PotionTypes.PotionType) -> PotionTypes.Poti
 	
 	var keys = potionsDictionary.keys();
 	var foundTypeIndex = keys.find(currentType)
-	if foundTypeIndex != -1:
-		var doesItExist = foundTypeIndex + 1 < keys.size()
-		if doesItExist:
-			return keys[foundTypeIndex + 1]
-			
-	return keys[0]
+	if foundTypeIndex == -1:
+		return keys[0]
+
+	return keys[(foundTypeIndex + 1) % keys.size()]
 
 func _emitPotions() -> void:
 	potionsChanged.emit(potionsDictionary);
 
 
 func _checkIfPotionShouldBeSelectedOnPickUp(pickedUpPotion: PotionTypes.PotionType) -> void:
-	if selectedPotionType == PotionTypes.PotionType.None:
-		selectPotion(pickedUpPotion)
+	if selectedLeftPotionType == PotionTypes.PotionType.None:
+		selectLeftPotion(pickedUpPotion)
+
+	if selectedRightPotionType == PotionTypes.PotionType.None:
+		selectRightPotion(pickedUpPotion)
+
+func _syncLegacySelectedPotionType() -> void:
+	selectedPotionType = selectedRightPotionType;
+	selectedPotionChanged.emit(selectedPotionType);
 	
 func emitWhenPotionFinish(potionType: PotionTypes.PotionType) -> void:
 	canDrinkPotion = false;

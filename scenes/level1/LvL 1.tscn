@@ -1903,7 +1903,7 @@ shadow_enabled = true
 environment = SubResource("Environment_eq8v2")
 
 [node name="MainCharacter" parent="." unique_id=371973747 instance=ExtResource("4_n1ihf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89.73018, -3.2080672, 16.228098)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -77.54362, 0.295326, 16.228098)
 
 [node name="Level" parent="." unique_id=97350656 instance=ExtResource("29_afy8w")]
 levelCollectables = SubResource("Resource_glw7l")
