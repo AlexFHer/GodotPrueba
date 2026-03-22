@@ -8,6 +8,7 @@ extends Control
 var firePotionIcon: Texture = preload("res://assets/potions/fire-potion/Fire_Poti_icon.png")
 var jumpPotionIcon: Texture = preload("res://assets/potions/jump-potion/Jump_Poti_icon.png")
 var speedPotionIcon: Texture = preload("res://assets/potions/speed-potion/Speed_Poti_icon.png")
+var fireAndSpeedPotionIcon: Texture = preload("res://assets/potions/merged_potions/speed_and_fire/Fire_Poti_icon.png");
 
 var selectedLeftPotionType := PotionTypes.PotionType.None;
 var selectedRightPotionType := PotionTypes.PotionType.None;
@@ -36,6 +37,8 @@ func _getPotionIcon(potionType: PotionTypes.PotionType) -> Texture:
 			return speedPotionIcon
 		PotionTypes.PotionType.Fire:
 			return firePotionIcon
+		PotionTypes.PotionType.SpeedAndFire:
+			return fireAndSpeedPotionIcon
 		_:
 			return null
 

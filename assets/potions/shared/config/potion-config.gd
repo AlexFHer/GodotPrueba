@@ -5,7 +5,8 @@ const _potionProperties = {
 	PotionTypes.PotionType.Speed: { "lifeTime": 20 },
 	PotionTypes.PotionType.Fire: { "lifeTime": 30 },
 	PotionTypes.PotionType.JumpAndSpeed: { "lifeTime": 30 },
-	PotionTypes.PotionType.JumpAndFire: { "lifeTime": 30 }
+	PotionTypes.PotionType.JumpAndFire: { "lifeTime": 30 },
+	PotionTypes.PotionType.SpeedAndFire: { "lifeTime": 30 }
 }
 
 static func get_potion_properties(potionType: PotionTypes.PotionType):

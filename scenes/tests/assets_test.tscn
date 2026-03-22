@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://p7m7neh87lyg"]
+[gd_scene format=3 uid="uid://p7m7neh87lyg"]
 
 [ext_resource type="PackedScene" uid="uid://bbf8p4krgp531" path="res://assets/levels/levelManager.tscn" id="1_ad0rq"]
 [ext_resource type="PackedScene" uid="uid://bgp44hgj2ny5j" path="res://assets/arc/arc.tscn" id="1_ffoev"]
@@ -52,228 +52,279 @@ size = Vector2(50, 50)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_3onbp"]
 data = PackedVector3Array(25, 0, 25, -25, 0, 25, 25, 0, -25, -25, 0, 25, -25, 0, -25, 25, 0, -25)
 
-[node name="AssetsTest" type="Node3D"]
+[sub_resource type="LabelSettings" id="LabelSettings_68yrm"]
+font_size = 12
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="AssetsTest" type="Node3D" unique_id=1955061583]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1814489424]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Environment" type="Node" parent="DirectionalLight3D"]
+[node name="Environment" type="Node" parent="DirectionalLight3D" unique_id=1931349721]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="DirectionalLight3D"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="DirectionalLight3D" unique_id=1484041503]
 environment = SubResource("Environment_la3k2")
 
-[node name="LevelManager" parent="." instance=ExtResource("1_ad0rq")]
+[node name="LevelManager" parent="." unique_id=1029599727 instance=ExtResource("1_ad0rq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.8305, 0, 9.11253)
 levelCollectables = SubResource("Resource_je5t0")
 
-[node name="Floor" type="StaticBody3D" parent="."]
+[node name="Floor" type="StaticBody3D" parent="." unique_id=255515654]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=1192566953]
 transform = Transform3D(4.27385, 0, 0, 0, 1, 0, 0, 0, 1, 80.1142, 0, 0)
 mesh = SubResource("PlaneMesh_tv8gj")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=1348176946]
 transform = Transform3D(5.45855, 0, 0, 0, 1, 0, 0, 0, 1, 109.553, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_3onbp")
 
-[node name="Assets" type="Node" parent="."]
+[node name="Assets" type="Node" parent="." unique_id=868524150]
 
-[node name="Elevator" type="Node" parent="Assets"]
+[node name="Elevator" type="Node" parent="Assets" unique_id=1082703808]
 
-[node name="Elevator" parent="Assets/Elevator" node_paths=PackedStringArray("elevatorPoints") instance=ExtResource("9_je5t0")]
+[node name="Elevator" parent="Assets/Elevator" unique_id=1506831647 node_paths=PackedStringArray("elevatorPoints") instance=ExtResource("9_je5t0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.12166, 6.9348, -19.4918)
 elevatorPoints = [NodePath("../Elevator point"), NodePath("../Elevator point2"), NodePath("../Elevator point3")]
 
-[node name="Elevator point" parent="Assets/Elevator" instance=ExtResource("10_3onbp")]
+[node name="Elevator point" parent="Assets/Elevator" unique_id=991191399 instance=ExtResource("10_3onbp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3959, -1.4119, -18.8546)
 
-[node name="Elevator point2" parent="Assets/Elevator" instance=ExtResource("10_3onbp")]
+[node name="Elevator point2" parent="Assets/Elevator" unique_id=165732447 instance=ExtResource("10_3onbp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30768, 12.9489, -18.553)
 
-[node name="Elevator point3" parent="Assets/Elevator" instance=ExtResource("10_3onbp")]
+[node name="Elevator point3" parent="Assets/Elevator" unique_id=1943856062 instance=ExtResource("10_3onbp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.56546, 13.999, -18.5008)
 
-[node name="Potions" type="Node" parent="Assets"]
+[node name="Potions" type="Node" parent="Assets" unique_id=1811558555]
 
-[node name="Fire-potion" parent="Assets/Potions" instance=ExtResource("5_la3k2")]
+[node name="Fire-potion" parent="Assets/Potions" unique_id=782449201 instance=ExtResource("5_la3k2")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -14.4787, 1.13433, 20.5438)
 
-[node name="Fire-potion2" parent="Assets/Potions" instance=ExtResource("5_la3k2")]
+[node name="Fire-potion2" parent="Assets/Potions" unique_id=1984711652 instance=ExtResource("5_la3k2")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -12.479, 1.13433, 20.544)
 
-[node name="Fire-potion3" parent="Assets/Potions" instance=ExtResource("5_la3k2")]
+[node name="Fire-potion3" parent="Assets/Potions" unique_id=1263592618 instance=ExtResource("5_la3k2")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -10.4787, 1.13433, 20.5438)
 
-[node name="Fire-potion4" parent="Assets/Potions" instance=ExtResource("5_la3k2")]
+[node name="Fire-potion4" parent="Assets/Potions" unique_id=967898842 instance=ExtResource("5_la3k2")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -8.47874, 1.13433, 20.5438)
 
-[node name="Speed-potion" parent="Assets/Potions" instance=ExtResource("7_ifow6")]
+[node name="Speed-potion" parent="Assets/Potions" unique_id=1431916363 instance=ExtResource("7_ifow6")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -15.2301, 0.77703, 15.1078)
 
-[node name="Speed-potion2" parent="Assets/Potions" instance=ExtResource("7_ifow6")]
+[node name="Speed-potion2" parent="Assets/Potions" unique_id=1806701292 instance=ExtResource("7_ifow6")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -13.2301, 0.77703, 15.1078)
 
-[node name="Speed-potion3" parent="Assets/Potions" instance=ExtResource("7_ifow6")]
+[node name="Speed-potion3" parent="Assets/Potions" unique_id=845264916 instance=ExtResource("7_ifow6")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -11.2301, 0.77703, 15.1078)
 
-[node name="Speed-potion4" parent="Assets/Potions" instance=ExtResource("7_ifow6")]
+[node name="Speed-potion4" parent="Assets/Potions" unique_id=748296626 instance=ExtResource("7_ifow6")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -9.23009, 0.77703, 15.1078)
 
-[node name="Speed-potion5" parent="Assets/Potions" instance=ExtResource("7_ifow6")]
+[node name="Speed-potion5" parent="Assets/Potions" unique_id=1165584785 instance=ExtResource("7_ifow6")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -7.23009, 0.77703, 15.1078)
 
-[node name="Jump-potion5" parent="Assets/Potions" instance=ExtResource("6_ifow6")]
+[node name="Jump-potion5" parent="Assets/Potions" unique_id=300709112 instance=ExtResource("6_ifow6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.18393, 1.11222, 17.6895)
 
-[node name="Jump-potion6" parent="Assets/Potions" instance=ExtResource("6_ifow6")]
+[node name="Jump-potion6" parent="Assets/Potions" unique_id=1340920335 instance=ExtResource("6_ifow6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.18393, 1.11222, 17.6895)
 
-[node name="Jump-potion8" parent="Assets/Potions" instance=ExtResource("6_ifow6")]
+[node name="Jump-potion8" parent="Assets/Potions" unique_id=1148430711 instance=ExtResource("6_ifow6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5901, 1.11222, 17.6895)
 
-[node name="Jump-potion9" parent="Assets/Potions" instance=ExtResource("6_ifow6")]
+[node name="Jump-potion9" parent="Assets/Potions" unique_id=1456573566 instance=ExtResource("6_ifow6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5901, 1.11222, 17.6895)
 
-[node name="Jump-potion10" parent="Assets/Potions" instance=ExtResource("6_ifow6")]
+[node name="Jump-potion10" parent="Assets/Potions" unique_id=401627127 instance=ExtResource("6_ifow6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5901, 1.11222, 17.6895)
 
-[node name="Key and chest" type="Node" parent="Assets"]
+[node name="Key and chest" type="Node" parent="Assets" unique_id=2017632963]
 
-[node name="Key" parent="Assets/Key and chest" instance=ExtResource("5_1y740")]
+[node name="Key" parent="Assets/Key and chest" unique_id=1644856230 instance=ExtResource("5_1y740")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.8729, 0.37795, 8.85732)
 
-[node name="Chest" parent="Assets/Key and chest" instance=ExtResource("6_w36ty")]
+[node name="Chest" parent="Assets/Key and chest" unique_id=507751912 instance=ExtResource("6_w36ty")]
 transform = Transform3D(0.000392866, 0.000124588, 1, -0.000450863, 1, -0.000124418, -1, -0.000450816, 0.00039292, -23.279, 0, 9.34915)
 
-[node name="Chest2" parent="Assets/Key and chest" instance=ExtResource("6_w36ty")]
+[node name="Chest2" parent="Assets/Key and chest" unique_id=584546158 instance=ExtResource("6_w36ty")]
 transform = Transform3D(0.000392866, 0.000124588, 1, -0.000450863, 1, -0.000124418, -1, -0.000450816, 0.00039292, -23.279, 0, 6.34915)
 
-[node name="Book" parent="Assets/Key and chest" instance=ExtResource("10_58f3n")]
+[node name="Book" parent="Assets/Key and chest" unique_id=737393037 instance=ExtResource("10_58f3n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.89, 0, 9.85055)
 
-[node name="Mythril1" parent="Assets/Key and chest" instance=ExtResource("11_b8nyo")]
+[node name="Mythril1" parent="Assets/Key and chest" unique_id=2029501615 instance=ExtResource("11_b8nyo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1323, 0.0484309, 7.2313)
 
-[node name="Mythril2" parent="Assets/Key and chest" instance=ExtResource("11_b8nyo")]
+[node name="Mythril2" parent="Assets/Key and chest" unique_id=1376596489 instance=ExtResource("11_b8nyo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1323, 0.0484309, 7.2313)
 
-[node name="Mythril3" parent="Assets/Key and chest" instance=ExtResource("11_b8nyo")]
+[node name="Mythril3" parent="Assets/Key and chest" unique_id=1427892786 instance=ExtResource("11_b8nyo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1323, 0.0484309, 7.2313)
 
-[node name="Mythril5" parent="Assets/Key and chest" instance=ExtResource("12_e1my4")]
+[node name="Mythril5" parent="Assets/Key and chest" unique_id=1812413762 instance=ExtResource("12_e1my4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3392, 0.0361109, 3.38261)
 
-[node name="Mythril6" parent="Assets/Key and chest" instance=ExtResource("12_e1my4")]
+[node name="Mythril6" parent="Assets/Key and chest" unique_id=642686886 instance=ExtResource("12_e1my4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3392, 0.0361109, 3.38261)
 
-[node name="Mythril7" parent="Assets/Key and chest" instance=ExtResource("12_e1my4")]
+[node name="Mythril7" parent="Assets/Key and chest" unique_id=1269484991 instance=ExtResource("12_e1my4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6608, 0.0361109, 3.38261)
 
-[node name="Mythril10" parent="Assets/Key and chest" instance=ExtResource("13_prhcd")]
+[node name="Mythril10" parent="Assets/Key and chest" unique_id=153594930 instance=ExtResource("13_prhcd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.8664, 0.0936669, -2.14838)
 
-[node name="Mythril11" parent="Assets/Key and chest" instance=ExtResource("13_prhcd")]
+[node name="Mythril11" parent="Assets/Key and chest" unique_id=249889009 instance=ExtResource("13_prhcd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8664, 0.0936669, -2.14838)
 
-[node name="Mythril12" parent="Assets/Key and chest" instance=ExtResource("13_prhcd")]
+[node name="Mythril12" parent="Assets/Key and chest" unique_id=781599475 instance=ExtResource("13_prhcd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1336, 0.0936669, -2.14838)
 
-[node name="ArcsPuzzles" type="Node" parent="Assets"]
+[node name="ArcsPuzzles" type="Node" parent="Assets" unique_id=1790516074]
 
-[node name="Arcs" type="Node3D" parent="Assets/ArcsPuzzles"]
+[node name="Arcs" type="Node3D" parent="Assets/ArcsPuzzles" unique_id=1419638502]
 
-[node name="Arc" parent="Assets/ArcsPuzzles/Arcs" instance=ExtResource("1_ffoev")]
+[node name="Arc" parent="Assets/ArcsPuzzles/Arcs" unique_id=1730293733 instance=ExtResource("1_ffoev")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4639, 0, 20.499)
 
-[node name="ArcMagicChestPuzzle" type="Node3D" parent="Assets/ArcsPuzzles"]
+[node name="ArcMagicChestPuzzle" type="Node3D" parent="Assets/ArcsPuzzles" unique_id=1083945560]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4359, 0, 0)
 
-[node name="ArcPuzzle" type="Node3D" parent="Assets/ArcsPuzzles/ArcMagicChestPuzzle" node_paths=PackedStringArray("arcs")]
+[node name="ArcPuzzle" type="Node3D" parent="Assets/ArcsPuzzles/ArcMagicChestPuzzle" unique_id=824331752 node_paths=PackedStringArray("arcs")]
 transform = Transform3D(1, 0, 0, 0, 0.99995, 0.00998312, 0, -0.00998312, 0.99995, -0.250839, 0, -12.3714)
 script = ExtResource("3_k0883")
 arcs = [NodePath("Arc2"), NodePath("Arc3"), NodePath("Arc4")]
 
-[node name="Arc2" parent="Assets/ArcsPuzzles/ArcMagicChestPuzzle/ArcPuzzle" instance=ExtResource("1_ffoev")]
+[node name="Arc2" parent="Assets/ArcsPuzzles/ArcMagicChestPuzzle/ArcPuzzle" unique_id=898758840 instance=ExtResource("1_ffoev")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.222775, 0, 7.63486)
 
-[node name="Arc3" parent="Assets/ArcsPuzzles/ArcMagicChestPuzzle/ArcPuzzle" instance=ExtResource("1_ffoev")]
+[node name="Arc3" parent="Assets/ArcsPuzzles/ArcMagicChestPuzzle/ArcPuzzle" unique_id=970992998 instance=ExtResource("1_ffoev")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.222775, 0, 0.54456)
 
-[node name="Arc4" parent="Assets/ArcsPuzzles/ArcMagicChestPuzzle/ArcPuzzle" instance=ExtResource("1_ffoev")]
+[node name="Arc4" parent="Assets/ArcsPuzzles/ArcMagicChestPuzzle/ArcPuzzle" unique_id=638417607 instance=ExtResource("1_ffoev")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.222775, 0, -6.64554)
 
-[node name="MagicChest" parent="Assets/ArcsPuzzles/ArcMagicChestPuzzle" instance=ExtResource("4_1y740")]
+[node name="MagicChest" parent="Assets/ArcsPuzzles/ArcMagicChestPuzzle" unique_id=1410666131 instance=ExtResource("4_1y740")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.73497, -1.90735e-06, -12.3088)
 
-[node name="FireTowers" type="Node" parent="Assets"]
+[node name="FireTowers" type="Node" parent="Assets" unique_id=738117494]
 
-[node name="Puzzle" type="Node" parent="Assets/FireTowers" node_paths=PackedStringArray("fire_towers")]
+[node name="Puzzle" type="Node" parent="Assets/FireTowers" unique_id=937158979 node_paths=PackedStringArray("fire_towers")]
 script = ExtResource("18_b8nyo")
 fire_towers = [NodePath("../Fire_Tower_Puzzle"), NodePath("../Fire_Tower_Puzzle2")]
 
-[node name="Fire_Tower_Puzzle" parent="Assets/FireTowers" instance=ExtResource("14_u30na")]
+[node name="Fire_Tower_Puzzle" parent="Assets/FireTowers" unique_id=742409512 instance=ExtResource("14_u30na")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.445, 2.93941, -17.8097)
 
-[node name="Fire_Tower_Puzzle2" parent="Assets/FireTowers" instance=ExtResource("14_u30na")]
+[node name="Fire_Tower_Puzzle2" parent="Assets/FireTowers" unique_id=272601862 instance=ExtResource("14_u30na")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.1021, 2.93941, -16.8595)
 
-[node name="secret_tower" parent="Assets/FireTowers" instance=ExtResource("15_3gt13")]
+[node name="secret_tower" parent="Assets/FireTowers" unique_id=549735185 instance=ExtResource("15_3gt13")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.564, 0, -37.006)
 activated_position_y = 16.065
 
-[node name="Fire-potion5" parent="Assets/FireTowers" instance=ExtResource("5_la3k2")]
+[node name="Fire-potion5" parent="Assets/FireTowers" unique_id=1498672326 instance=ExtResource("5_la3k2")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 7.8394, 1.5, -11.2776)
 
-[node name="Fire-potion6" parent="Assets/FireTowers" instance=ExtResource("5_la3k2")]
+[node name="Fire-potion6" parent="Assets/FireTowers" unique_id=1148273449 instance=ExtResource("5_la3k2")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 17.8878, 1.5, -11.2776)
 
-[node name="Castle door" type="Node" parent="Assets"]
+[node name="Castle door" type="Node" parent="Assets" unique_id=663001593]
 
-[node name="CastleDoor" parent="Assets/Castle door" instance=ExtResource("23_prhcd")]
+[node name="CastleDoor" parent="Assets/Castle door" unique_id=1049113456 instance=ExtResource("23_prhcd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.026, 0.0736191, -17.4725)
 
-[node name="Enemies" type="Node" parent="Assets"]
+[node name="Enemies" type="Node" parent="Assets" unique_id=934290846]
 
-[node name="Globrc Small2" type="Node3D" parent="Assets/Enemies"]
+[node name="Globrc Small2" type="Node3D" parent="Assets/Enemies" unique_id=1151357017]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.4019, -6.06641, -15.2375)
 
-[node name="Patrol point marker" parent="Assets/Enemies/Globrc Small2" instance=ExtResource("22_qhl0a")]
+[node name="Patrol point marker" parent="Assets/Enemies/Globrc Small2" unique_id=482674414 instance=ExtResource("22_qhl0a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7728, 6.49066, -4.16511)
 
-[node name="Patrol point marker2" parent="Assets/Enemies/Globrc Small2" instance=ExtResource("22_qhl0a")]
+[node name="Patrol point marker2" parent="Assets/Enemies/Globrc Small2" unique_id=511285698 instance=ExtResource("22_qhl0a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.772804, 6.49066, -4.16511)
 
-[node name="Patrol point marker3" parent="Assets/Enemies/Globrc Small2" instance=ExtResource("22_qhl0a")]
+[node name="Patrol point marker3" parent="Assets/Enemies/Globrc Small2" unique_id=395210491 instance=ExtResource("22_qhl0a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3507, 6.49066, -4.16511)
 
-[node name="Patrol point marker4" parent="Assets/Enemies/Globrc Small2" instance=ExtResource("22_qhl0a")]
+[node name="Patrol point marker4" parent="Assets/Enemies/Globrc Small2" unique_id=2004055252 instance=ExtResource("22_qhl0a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3507, 6.49066, 15.8349)
 
-[node name="Patrol point marker5" parent="Assets/Enemies/Globrc Small2" instance=ExtResource("22_qhl0a")]
+[node name="Patrol point marker5" parent="Assets/Enemies/Globrc Small2" unique_id=567837585 instance=ExtResource("22_qhl0a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6493, 6.49066, 15.8349)
 
-[node name="Patrol point marker6" parent="Assets/Enemies/Globrc Small2" instance=ExtResource("22_qhl0a")]
+[node name="Patrol point marker6" parent="Assets/Enemies/Globrc Small2" unique_id=1050450307 instance=ExtResource("22_qhl0a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6493, 6.49066, 15.8349)
 
-[node name="Globrc Small" parent="Assets/Enemies/Globrc Small2" node_paths=PackedStringArray("patrolPoints") instance=ExtResource("23_ouso1")]
+[node name="Globrc Small" parent="Assets/Enemies/Globrc Small2" unique_id=1232112618 node_paths=PackedStringArray("patrolPoints") instance=ExtResource("23_ouso1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.704, 6.06641, -4.1293)
 patrolPoints = [NodePath("../Patrol point marker"), NodePath("../Patrol point marker2"), NodePath("../Patrol point marker3"), NodePath("../Patrol point marker4"), NodePath("../Patrol point marker5"), NodePath("../Patrol point marker6")]
 
-[node name="Globrc-big" parent="Assets/Enemies" instance=ExtResource("26_68yrm")]
+[node name="Globrc-big" parent="Assets/Enemies" unique_id=1939251381 instance=ExtResource("26_68yrm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4803, 0, 7.83197)
 
-[node name="MainCharacter" parent="." instance=ExtResource("11_3onbp")]
+[node name="MainCharacter" parent="." unique_id=1180872510 instance=ExtResource("11_3onbp")]
 transform = Transform3D(1, -0.000168775, -6.33838e-05, 0.000168802, 1, 0.000491578, 6.33117e-05, -0.000491587, 1, 5.92509, 0.202615, 10.3516)
 
-[node name="Castle_Lever" parent="." instance=ExtResource("22_e1my4")]
+[node name="Castle_Lever" parent="." unique_id=1167176156 instance=ExtResource("22_e1my4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.6926, 0.0592519, -12.6781)
 
-[node name="Death-area" parent="." instance=ExtResource("26_ouso1")]
+[node name="Death-area" parent="." unique_id=524068863 instance=ExtResource("26_ouso1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.5226, -24.7184, 8.64645)
 
-[node name="Mimic" parent="." instance=ExtResource("27_68yrm")]
+[node name="Mimic" parent="." unique_id=229997278 instance=ExtResource("27_68yrm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.3757, 0, 5.19624)
+
+[node name="CurrentPotionTexture" type="TextureRect" parent="." unique_id=1081261396]
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CurrentPotionTexture" unique_id=1369486961]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_right = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CurrentPotionTexture/MarginContainer" unique_id=1705494825]
+layout_mode = 2
+alignment = 2
+
+[node name="PotionTimerLabel" type="Label" parent="CurrentPotionTexture/MarginContainer/VBoxContainer" unique_id=408216886]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_68yrm")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="CurrentPotionTexture" type="TextureRect" parent="CurrentPotionTexture" unique_id=1243115464]
+layout_mode = 0
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CurrentPotionTexture/CurrentPotionTexture" unique_id=1571472548]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_right = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CurrentPotionTexture/CurrentPotionTexture/MarginContainer" unique_id=2028788431]
+layout_mode = 2
+alignment = 2
+
+[node name="PotionTimerLabel" type="Label" parent="CurrentPotionTexture/CurrentPotionTexture/MarginContainer/VBoxContainer" unique_id=232613285]
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_68yrm")
+horizontal_alignment = 2
+vertical_alignment = 2
 
 [connection signal="all_arcs_active" from="Assets/ArcsPuzzles/ArcMagicChestPuzzle/ArcPuzzle" to="Assets/ArcsPuzzles/ArcMagicChestPuzzle/MagicChest" method="deactivate_force_field"]
 [connection signal="all_fire_towers_active" from="Assets/FireTowers/Puzzle" to="Assets/FireTowers/secret_tower" method="activate_secret_tower"]

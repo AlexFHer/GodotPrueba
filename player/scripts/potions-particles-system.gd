@@ -7,7 +7,8 @@ var speed_particle: PackedScene = preload("res://player/particles/SpeedPotion_Pa
 var particles: Dictionary[PotionTypes.PotionType, PackedScene] = {
 	PotionTypes.PotionType.Fire: fire_particle,
 	PotionTypes.PotionType.Jump: jump_particle,
-	PotionTypes.PotionType.Speed: speed_particle
+	PotionTypes.PotionType.Speed: speed_particle,
+	PotionTypes.PotionType.SpeedAndFire: fire_particle,
 };
 
 func _play_particles(potionType: PotionTypes.PotionType) -> void:
