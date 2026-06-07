@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfan8sid4fn4e"
-path="res://.godot/imported/icon.png-42eecb177c550c2d08fecf70995b7dba.ctex"
+uid="uid://n4ipce805ima"
+path="res://.godot/imported/Jump_Poti_icon.png-652935d0114cd3d1903e96c6c10584a5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/blender_godot_pipeline/icon.png"
-dest_files=["res://.godot/imported/icon.png-42eecb177c550c2d08fecf70995b7dba.ctex"]
+source_file="res://assets/potions/jump_potion/Jump_Poti_icon.png"
+dest_files=["res://.godot/imported/Jump_Poti_icon.png-652935d0114cd3d1903e96c6c10584a5.ctex"]
 
 [params]
 

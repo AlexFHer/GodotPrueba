@@ -12,7 +12,7 @@ func _on_body_entered(body: Node3D) -> void:
 			open_chest()
 			openChestAudio.play()
 		else:
-			print("Player does not have a key to open the chest")
+			GameLog.warn("Player attempted to open chest without key")
 
 func open_chest():
 	if opened:

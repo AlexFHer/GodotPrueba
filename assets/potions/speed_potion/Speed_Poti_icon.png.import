@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfan8sid4fn4e"
-path="res://.godot/imported/icon.png-42eecb177c550c2d08fecf70995b7dba.ctex"
+uid="uid://ds4wfsnoeldns"
+path="res://.godot/imported/Speed_Poti_icon.png-f08c920fc633ec543e0a7d48b142dd6b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/blender_godot_pipeline/icon.png"
-dest_files=["res://.godot/imported/icon.png-42eecb177c550c2d08fecf70995b7dba.ctex"]
+source_file="res://assets/potions/speed_potion/Speed_Poti_icon.png"
+dest_files=["res://.godot/imported/Speed_Poti_icon.png-f08c920fc633ec543e0a7d48b142dd6b.ctex"]
 
 [params]
 

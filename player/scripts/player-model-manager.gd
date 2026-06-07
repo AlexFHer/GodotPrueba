@@ -23,7 +23,7 @@ func _ready() -> void:
 	change_body_mesh_albedo_texture(bodyBaseColor)
 
 
-# TODO: Utilizar este event para cambiar el color del cuerpo en vez del create timer que hay en el on_potion_used
+# This callback is used when drink animation events are wired from the animation player.
 func on_potion_drink_animation_finished() -> void:
 	if currentPotion != PotionTypes.PotionType.None:
 		change_body_mesh_albedo_based_on_potion_type(currentPotion)

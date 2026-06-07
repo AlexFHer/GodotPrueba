@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfan8sid4fn4e"
-path="res://.godot/imported/icon.png-42eecb177c550c2d08fecf70995b7dba.ctex"
+uid="uid://pdsduun16krm"
+path="res://.godot/imported/Fire_Poti_icon.png-2d7fa7908b62c0de255dda7b93174f8b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/blender_godot_pipeline/icon.png"
-dest_files=["res://.godot/imported/icon.png-42eecb177c550c2d08fecf70995b7dba.ctex"]
+source_file="res://assets/potions/fire_potion/Fire_Poti_icon.png"
+dest_files=["res://.godot/imported/Fire_Poti_icon.png-2d7fa7908b62c0de255dda7b93174f8b.ctex"]
 
 [params]
 

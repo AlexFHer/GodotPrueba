@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://8o6mtcl0idi8"]
 
-[ext_resource type="Script" uid="uid://4ep5210jrhnh" path="res://assets/npcs/npc_dialoge.gd" id="1_0pp4a"]
+[ext_resource type="Script" uid="uid://4ep5210jrhnh" path="res://assets/npcs/npc_dialogue.gd" id="1_0pp4a"]
 [ext_resource type="PackedScene" uid="uid://drk3t1ixoax3c" path="res://assets/npcs/pocima/rig/Pocima.glb" id="1_shwg8"]
-[ext_resource type="PackedScene" uid="uid://fox24sa5qc0d" path="res://dialoges/dialoge.tscn" id="3_lrc1j"]
+[ext_resource type="PackedScene" uid="uid://fox24sa5qc0d" path="res://dialogues/dialogue.tscn" id="3_lrc1j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0pp4a"]
 radius = 0.619731
@@ -38,7 +38,7 @@ shape = SubResource("CapsuleShape3D_0pp4a")
 [node name="chat_detection_area" type="Area3D" parent="rig"]
 script = ExtResource("1_0pp4a")
 dialogue_scene = ExtResource("3_lrc1j")
-dialogue_file = "res://dialoges/pocima_dialoge.json"
+dialogue_file = "res://dialogues/potion_dialogue.json"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rig/chat_detection_area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0633545, 0.586657, 0.391693)

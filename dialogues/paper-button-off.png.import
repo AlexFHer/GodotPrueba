@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfan8sid4fn4e"
-path="res://.godot/imported/icon.png-42eecb177c550c2d08fecf70995b7dba.ctex"
+uid="uid://doyrrfw3i5jla"
+path="res://.godot/imported/paper-button-off.png-1bc660469b4f8894a2e30ada6b4e67dd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/blender_godot_pipeline/icon.png"
-dest_files=["res://.godot/imported/icon.png-42eecb177c550c2d08fecf70995b7dba.ctex"]
+source_file="res://dialogues/paper-button-off.png"
+dest_files=["res://.godot/imported/paper-button-off.png-1bc660469b4f8894a2e30ada6b4e67dd.ctex"]
 
 [params]
 

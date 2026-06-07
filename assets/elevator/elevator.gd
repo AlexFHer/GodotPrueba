@@ -49,7 +49,7 @@ func on_elevator_point_reached(reachedPoint: ElevatorPoint) -> void:
 	setCurrentElevatorPoint(null);
 	await get_tree().create_timer(reachedPoint.waitTime).timeout;
 	var nextPoint = get_next_elevator_point(reachedPoint);
-	print(nextPoint);
+	GameLog.debug("Elevator moving to next point: %s" % nextPoint.name)
 	setCurrentElevatorPoint(nextPoint);
 
 func get_next_elevator_point(currentPoint: ElevatorPoint) -> ElevatorPoint:

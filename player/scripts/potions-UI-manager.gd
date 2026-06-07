@@ -5,9 +5,9 @@ extends Control
 @onready var leftPotionIconTexture: TextureRect = %LeftPotionIcon
 @onready var rightPotionIconTexture: TextureRect = %RightPotionIcon
 
-var firePotionIcon: Texture = preload("res://assets/potions/fire-potion/Fire_Poti_icon.png")
-var jumpPotionIcon: Texture = preload("res://assets/potions/jump-potion/Jump_Poti_icon.png")
-var speedPotionIcon: Texture = preload("res://assets/potions/speed-potion/Speed_Poti_icon.png")
+var firePotionIcon: Texture = preload("res://assets/potions/fire_potion/Fire_Poti_icon.png")
+var jumpPotionIcon: Texture = preload("res://assets/potions/jump_potion/Jump_Poti_icon.png")
+var speedPotionIcon: Texture = preload("res://assets/potions/speed_potion/Speed_Poti_icon.png")
 var fireAndSpeedPotionIcon: Texture = preload("res://assets/potions/merged_potions/speed_and_fire/Fire_Poti_icon.png");
 
 var selectedLeftPotionType := PotionTypes.PotionType.None;
@@ -18,9 +18,6 @@ func _enter_tree() -> void:
 	PlayerPotions.selectedLeftPotionChanged.connect(_on_selected_left_potion_changed);
 	PlayerPotions.selectedRightPotionChanged.connect(_on_selected_right_potion_changed);
 				
-# func _unhandled_input(event: InputEvent) -> void:
-# 	if event.is_action_pressed("combineSelection"):
-# 		_on_combine_selection_pressed()
 
 func getNumberOfPotionsByType(potionType: PotionTypes.PotionType) -> String:
 	var potionSize = PlayerPotions.potionsDictionary.get(potionType);

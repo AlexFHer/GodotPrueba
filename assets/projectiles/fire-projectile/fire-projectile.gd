@@ -22,7 +22,7 @@ static func new_fire_projectile() -> FireProjectile:
 	return instance;
 
 func _on_body_entered(body:Node3D) -> void:
-	print("Body entered: ", body.name);
+	GameLog.debug("Projectile hit body: %s" % body.name)
 	if body.is_in_group("CanGetHit") and !body.is_in_group("MainPlayer"):
 		if body.has_method("get_hit"):
 			body.get_hit();

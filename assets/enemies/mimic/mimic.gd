@@ -9,8 +9,6 @@ class_name MimicChest extends Enemy
 @export var speed: float = 250.0
 @export var attackDamage: int = 1
 
-const ROTATION_SENSIVITY := 10
-
 var targetToFollow: Node3D = null
 var isEnemyInRange := false
 var canAttack := true
@@ -29,37 +27,27 @@ func _ready():
 	weapon_hit_collision_shape.disabled = true
 
 func _physics_process(delta: float) -> void:
+	if _is_dead():
+		velocity = Vector3.ZERO
+		return
+
 	if enemyState == EnemyState.IDLE:
 		velocity = Vector3.ZERO
 		return;
 		
 	if enemyState == EnemyState.FOLLOWING:
-		follow_target(delta)
+		_follow_target(delta)
 	
 	if isEnemyInRange:
 		velocity = Vector3.ZERO
 	look_at_current_direction(delta)
 	move_and_slide()
 
-func follow_target(delta: float):
-	if targetToFollow == null:
-		return
-
-	move_to_point(targetToFollow, delta)
-
-func move_to_point(point: Node3D, delta: float):
-	var direction = (point.global_position - global_transform.origin).normalized()
-	direction.y = 0
-	velocity = direction * speed * delta
-
-	if global_transform.origin.distance_to(point.global_position) < 0.2:
-		velocity = Vector3.ZERO
-		return
+func _follow_target(delta: float):
+	super.follow_target(targetToFollow, delta, speed)
 
 func look_at_current_direction(delta: float):
-	if velocity.length() > 0:
-		var targetAngle := Vector3.BACK.signed_angle_to(velocity, Vector3.UP)
-		_rig.global_rotation.y = lerp_angle(_rig.rotation.y, targetAngle, ROTATION_SENSIVITY * delta)
+	super.rotate_rig_to_velocity(_rig, delta)
 
 func attack():
 	if not canAttack:
@@ -71,20 +59,41 @@ func attack():
 
 func _on_player_search_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("MainPlayer"):
-		player_out_of_bounds_timer.stop()
+		_stop_out_of_bounds_timer_if_possible()
 		targetToFollow = body
-		enemyState = EnemyState.FOLLOWING
+		_set_state(EnemyState.FOLLOWING)
 
 func _on_player_out_of_bounds_timer_timeout() -> void:
 	targetToFollow = null
-	enemyState = EnemyState.IDLE
-	player_out_of_bounds_timer.stop()
+	_set_state(EnemyState.IDLE)
+	_stop_out_of_bounds_timer_if_possible()
 
 func _on_player_search_area_body_exited(body: Node3D) -> void:
 	if body.is_in_group("MainPlayer"):
-		player_out_of_bounds_timer.start()
+		_start_out_of_bounds_timer_if_possible()
+
+func _start_out_of_bounds_timer_if_possible() -> void:
+	if _is_dead():
+		return
+	if not is_inside_tree():
+		return
+	if player_out_of_bounds_timer == null:
+		return
+	if not player_out_of_bounds_timer.is_inside_tree():
+		return
+	player_out_of_bounds_timer.start()
+
+func _stop_out_of_bounds_timer_if_possible() -> void:
+	if player_out_of_bounds_timer == null:
+		return
+	if not player_out_of_bounds_timer.is_inside_tree():
+		return
+	player_out_of_bounds_timer.stop()
 
 func _on_hitable_area_body_entered(body: Node3D) -> void:
+	if _is_dead():
+		return
+
 	if body.is_in_group("MainPlayer"):
 		isEnemyInRange = true
 		attack()
@@ -110,4 +119,12 @@ func _on_can_attack_timer_timeout() -> void:
 		attack()
 
 func die():
-	enemyState = EnemyState.DEAD
+	_set_state(EnemyState.DEAD)
+
+func _is_dead() -> bool:
+	return enemyState == EnemyState.DEAD
+
+func _set_state(new_state: EnemyState) -> void:
+	if enemyState == EnemyState.DEAD:
+		return
+	enemyState = new_state

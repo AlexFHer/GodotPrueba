@@ -16,9 +16,9 @@ For the fog, I took direct inspiration and direction from the excellent [Godot4-
 ![Fog Pink](https://github.com/GEG-fairbear8974/PSX-Style-Camera-Shader/assets/112404117/e5e852ff-f5c5-4b0b-b006-81b7ee4950bc)
 
 ## Instructions
-If downloading the project, just open up the camera_example.tscn and check out how it works. 
+If downloading the project, open `res://assets/psx_camera/camera_example.tscn` and check out how it works.
 
-If starting from stratch, create a new 3D scene and add a camera. Create a new MeshInstance3D as a child of the camera, assign it a QuadMesh, then make the size 2x2. Check the box "flip faces". Move the mesh so it's in front of the camera very slightly. Then all you need to do is give the QuadMesh a new material -> New ShaderMaterial -> New Shader. Assign the psx_camera_shader.gdshader to the material and boom you're done. Check the shader parameters to make adjustments and edit everything:
+If starting from stratch, create a new 3D scene and add a camera. Create a new MeshInstance3D as a child of the camera, assign it a QuadMesh, then make the size 2x2. Check the box "flip faces". Move the mesh so it's in front of the camera very slightly. Then all you need to do is give the QuadMesh a new material -> New ShaderMaterial -> New Shader. Assign `res://assets/psx_camera/psx_camera_shader.gdshader` to the material and boom you're done. Check the shader parameters to make adjustments and edit everything:
 
 ## Variables
 Enable Fog - Enables/disables fog  

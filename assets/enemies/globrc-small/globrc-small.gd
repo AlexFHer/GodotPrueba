@@ -11,8 +11,6 @@ class_name GlobrcSmall extends Enemy
 @export var speed: float = 250.0
 @export var attackDamage: int = 1
 
-const ROTATION_SENSIVITY := 10;
-
 var currentPatrolPoint: PatrolPoint = null;
 
 var targetToFollow: Node3D = null
@@ -50,42 +48,27 @@ func _physics_process(delta: float) -> void:
 	if enemyState == EnemyState.IDLE:
 		velocity = Vector3.ZERO
 	if enemyState == EnemyState.FOLLOWING:
-		follow_target(delta)
+		_follow_target(delta)
 
 	if isEnemyInRange:
 		velocity = Vector3.ZERO
 	look_at_current_direction(delta)
 	move_and_slide()
 
-func follow_target(delta: float):
-	if targetToFollow == null:
-		return
-
-	move_to_point(targetToFollow, delta)
+func _follow_target(delta: float):
+	super.follow_target(targetToFollow, delta, speed)
 
 func patrol(delta: float):
 	# Check if the enemy is within a certain distance of the patrol point
 
 	if currentPatrolPoint != null:
 		# Move towards the patrol point
-		move_to_point(currentPatrolPoint, delta)
+		super.move_to_point(currentPatrolPoint, delta, speed)
 
 func attach_to_patrol_points():
 	# Attach the enemy to the patrol points
 	for point in patrolPoints:
 		point.patrolPointReached.connect(patrol_point_reached)
-
-func move_to_point(point: Node3D, delta: float):
-	# Move towards the patrol point
-	var direction = (point.global_position - global_transform.origin).normalized()
-	# remove any y component
-	direction.y = 0
-	velocity = direction * speed * delta
-	
-	# Check if the enemy has reached the point
-	if global_transform.origin.distance_to(point.global_position) < 0.2:
-		velocity = Vector3.ZERO
-		return
 
 func set_initial_patrol_point():
 	# Set the initial patrol point to the first one in the list
@@ -96,12 +79,10 @@ func set_initial_patrol_point():
 		return
 
 func show_no_patrol_message():
-	print("No patrol points set for GlobrcSmall. Please set patrol points in the inspector. ", name)
+	push_warning("No patrol points set for GlobrcSmall: %s" % name)
 
 func look_at_current_direction(delta: float):
-	if velocity.length() > 0:
-		var targetAngle := Vector3.BACK.signed_angle_to(velocity, Vector3.UP)
-		_rig.global_rotation.y = lerp_angle(_rig.rotation.y, targetAngle, ROTATION_SENSIVITY * delta)
+	super.rotate_rig_to_velocity(_rig, delta)
 
 
 func patrol_point_reached():
@@ -118,7 +99,7 @@ func patrol_point_reached():
 	get_next_patrol_point()
 	_change_state(EnemyState.PATROLLING)
 
-# TODO: Pasarlo a un prefab que gestion los puntos de control
+# Patrol points should be managed by a dedicated patrol manager/prefab.
 func get_next_patrol_point():
 	var indexOfCurrentPatrolPoint := patrolPoints.find(currentPatrolPoint)
 	if indexOfCurrentPatrolPoint != -1:
@@ -140,18 +121,36 @@ func attack():
 
 func _on_player_search_area_body_entered(body:Node3D) -> void:
 	if body.is_in_group("MainPlayer"):
-		player_out_of_bounds_timer.stop()
+		_stop_out_of_bounds_timer_if_possible()
 		targetToFollow = body
 		_change_state(EnemyState.FOLLOWING)
 
 func _on_player_out_of_bounds_timer_timeout() -> void:
 		targetToFollow = null
 		_change_state(EnemyState.PATROLLING)
-		player_out_of_bounds_timer.stop()
+		_stop_out_of_bounds_timer_if_possible()
 
 func _on_player_search_area_body_exited(body: Node3D) -> void:
 	if body.is_in_group("MainPlayer"):
-		player_out_of_bounds_timer.start()
+		_start_out_of_bounds_timer_if_possible()
+
+func _start_out_of_bounds_timer_if_possible() -> void:
+	if is_dead():
+		return
+	if not is_inside_tree():
+		return
+	if player_out_of_bounds_timer == null:
+		return
+	if not player_out_of_bounds_timer.is_inside_tree():
+		return
+	player_out_of_bounds_timer.start()
+
+func _stop_out_of_bounds_timer_if_possible() -> void:
+	if player_out_of_bounds_timer == null:
+		return
+	if not player_out_of_bounds_timer.is_inside_tree():
+		return
+	player_out_of_bounds_timer.stop()
 
 
 func _on_hitable_area_body_entered(body:Node3D) -> void:

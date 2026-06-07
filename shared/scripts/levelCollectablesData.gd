@@ -9,7 +9,7 @@ func addCoin(levelName: String, coinId: String) -> void:
 	if not file or file.get_length() == 0:
 		return;
 	var data = JSON.parse_string(file.get_as_text())
-	print(data)
+	GameLog.debug("Collectables data loaded for level %s" % levelName)
 	if data == null:
 		data = {};
 	

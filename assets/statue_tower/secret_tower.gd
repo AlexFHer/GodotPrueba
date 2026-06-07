@@ -12,7 +12,7 @@ func activate_secret_tower() -> void:
 	secret_tower.visible = true
 	activated = true
 	tower_moving_audio_stream_player.play()
-	print("Secret tower activated")
+	GameLog.info("Secret tower activated")
 
 func _process(delta: float) -> void:
 	if activated:

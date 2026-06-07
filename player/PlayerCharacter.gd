@@ -16,6 +16,8 @@ const NORMAL_SPEED := 15;
 const IMPROVED_SPEED := 20;
 const ACCELERATION := 20.0;
 const ORIGINAL_GRAVITY := -30;
+const DRINK_MOVE_LOCK_SECONDS := 2.1
+const DEATH_RESTART_DELAY_SECONDS := 0.5
 
 # life system
 
@@ -164,13 +166,11 @@ func _on_potion_used(potionType: PotionTypes.PotionType) -> void:
 	
 	disable_can_move_due_drink_potion();
 
-
-# TODO: Implementarlo con la animacion correspondiente
 func disable_can_move_due_drink_potion() -> void:
 	canMove = false;
 	canJump = false;
 
-	await get_tree().create_timer(2.1).timeout
+	await get_tree().create_timer(DRINK_MOVE_LOCK_SECONDS).timeout
 	canMove = true;
 	canJump = true
 
@@ -202,10 +202,11 @@ func dealDamage() -> void:
 func checkIfPlayerIsDead() -> void:
 	if life <= 0:
 		animation_tree.set("parameters/DieOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE);
-		await get_tree().create_timer(0.5).timeout
-		# restart_game();
-		get_tree().reload_current_scene()
-		# TODO: implement game over
+		await get_tree().create_timer(DEATH_RESTART_DELAY_SECONDS).timeout
+		_trigger_game_over()
+
+func _trigger_game_over() -> void:
+	get_tree().reload_current_scene()
 
 func _is_player_moving_on_ground() -> bool:
 	return is_on_floor() and (abs(velocity.x) > 0.1 or abs(velocity.z) > 0.1)

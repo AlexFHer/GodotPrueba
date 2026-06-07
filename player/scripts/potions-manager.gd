@@ -2,9 +2,9 @@ extends Node
 
 @onready var _animation_tree: AnimationTree = %PlayerAnimationTree
 @onready var potmaSounds: PotmaSounds = %PotmaSounds
+@onready var _active_potion_service = get_node("/root/ActivePotionEffectService")
 @export var _potion_particles_system: PotionsParticleSystem;
 
-var current_active_potion: PotionTypes.PotionType = PotionTypes.PotionType.None
 const MERGE_DECISION_WINDOW_SECONDS := 0.25
 
 var _pending_left_drink := false
@@ -13,8 +13,7 @@ var _is_waiting_merge_decision := false
 var _decision_window_id := 0
 
 func _ready() -> void:
-	PlayerPotions.potionEffectFinished.connect(_on_potion_effect_finished)
-	PlayerPotions.potionUsed.connect(_on_potion_used)
+	pass
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("toggleLeftPotion"):
@@ -82,7 +81,7 @@ func _resolve_pending_drink() -> void:
 func drinkLeftPotion() -> void:
 	if PlayerPotions.selectedLeftPotionType == PotionTypes.PotionType.None:
 		return
-	if current_active_potion != PotionTypes.PotionType.None:
+	if _active_potion_service.has_active_potion():
 		return
 	PlayerPotions.useLeftPotion()
 	_animation_tree.set("parameters/DrinkOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
@@ -90,7 +89,7 @@ func drinkLeftPotion() -> void:
 func drinkRightPotion() -> void:
 	if PlayerPotions.selectedRightPotionType == PotionTypes.PotionType.None:
 		return
-	if current_active_potion != PotionTypes.PotionType.None:
+	if _active_potion_service.has_active_potion():
 		return
 	PlayerPotions.useRightPotion()
 	_animation_tree.set("parameters/DrinkOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
@@ -115,13 +114,7 @@ func tryMergePotions() -> bool:
 
 func _on_drink_animation_finished() -> void:
 	potmaSounds.drinkSoundAudioStream.play()
-	_potion_particles_system._play_particles(current_active_potion)
+	_potion_particles_system._play_particles(_active_potion_service.current_active_potion)
 
 func play_drink_animation() -> void:
 	_animation_tree.set("parameters/DrinkOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-
-func _on_potion_used(potion_type: PotionTypes.PotionType) -> void:
-	current_active_potion = potion_type
-
-func _on_potion_effect_finished(_potion_type: PotionTypes.PotionType) -> void:
-	current_active_potion = PotionTypes.PotionType.None

@@ -12,6 +12,6 @@ func createSaveFolder():
 	if dir == null:
 		dir = DirAccess.make_dir_recursive_absolute(directoryPath)
 		if dir == OK:
-			print("Carpeta creada exitosamente: ", directoryPath)
+			GameLog.info("Save folder created: %s" % directoryPath)
 		else:
-			print("Error al crear la carpeta: ", directoryPath)
+			GameLog.error("Failed to create save folder: %s" % directoryPath)

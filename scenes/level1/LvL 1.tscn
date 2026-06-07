@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://bxascs40x5oel" path="res://materials/skybox/PjBUIr3.png" id="2_n1ihf"]
 [ext_resource type="PackedScene" uid="uid://cf47i2djfslyw" path="res://player/player.tscn" id="4_n1ihf"]
 [ext_resource type="PackedScene" uid="uid://muvhrgobkmv6" path="res://scenes/level1/LVL1_Blender.gltf" id="5_7idjg"]
-[ext_resource type="PackedScene" uid="uid://fox24sa5qc0d" path="res://dialoges/dialoge.tscn" id="6_glw7l"]
+[ext_resource type="PackedScene" uid="uid://fox24sa5qc0d" path="res://dialogues/dialogue.tscn" id="6_glw7l"]
 [ext_resource type="PackedScene" uid="uid://0kbp5ta03h5x" path="res://assets/death-area/death-area.tscn" id="6_jknnb"]
-[ext_resource type="Script" uid="uid://4ep5210jrhnh" path="res://assets/npcs/npc_dialoge.gd" id="6_qlgyj"]
+[ext_resource type="Script" uid="uid://4ep5210jrhnh" path="res://assets/npcs/npc_dialogue.gd" id="6_qlgyj"]
 [ext_resource type="PackedScene" uid="uid://bxsflo5m8ykws" path="res://assets/npcs/subnormales/Subnormales.tscn" id="7_glw7l"]
 [ext_resource type="PackedScene" uid="uid://b4khq8j6mf6b1" path="res://assets/chests/normal_chest/chest.tscn" id="8_dbnbf"]
 [ext_resource type="Script" uid="uid://cketnnkhw8nqs" path="res://assets/arc/arc_puzzle.gd" id="9_8lmy1"]
@@ -24,13 +24,13 @@
 [ext_resource type="Texture2D" uid="uid://cridxte7xg516" path="res://scenes/level1/scenes/terrain.png" id="14_gfmul"]
 [ext_resource type="PackedScene" uid="uid://bts618lxd2a61" path="res://assets/npcs/don pots potion seller/don_pots.tscn" id="14_nqwgu"]
 [ext_resource type="PackedScene" uid="uid://db13eu4sc8rt5" path="res://assets/elevator/elevator.tscn" id="14_uhwg3"]
-[ext_resource type="PackedScene" uid="uid://ontkeeyy4mk7" path="res://assets/potions/fire-potion/fire-potion.tscn" id="15_6iqwe"]
+[ext_resource type="PackedScene" uid="uid://ontkeeyy4mk7" path="res://assets/potions/fire_potion/fire_potion.tscn" id="15_6iqwe"]
 [ext_resource type="PackedScene" uid="uid://deo23lkuu8rao" path="res://assets/castle_lever/castle_lever.tscn" id="15_6wdta"]
 [ext_resource type="PackedScene" uid="uid://bp8ulxplapvk2" path="res://assets/collectable/book/book.tscn" id="16_m4385"]
 [ext_resource type="PackedScene" uid="uid://byu0b6177d1t6" path="res://assets/chests/magic_chest/magic_chest.tscn" id="16_uhwg3"]
 [ext_resource type="Script" uid="uid://cul11equ6lnw5" path="res://scripts/puzzles/fire-tower-all-active-puzzle.gd" id="17_pqsgx"]
-[ext_resource type="PackedScene" uid="uid://ex02udmugvjt" path="res://assets/potions/speed-potion/speed-potion.tscn" id="22_6grd1"]
-[ext_resource type="PackedScene" uid="uid://cyqqtvfimjbqb" path="res://assets/potions/jump-potion/jump-potion.tscn" id="23_glw7l"]
+[ext_resource type="PackedScene" uid="uid://ex02udmugvjt" path="res://assets/potions/speed_potion/speed_potion.tscn" id="22_6grd1"]
+[ext_resource type="PackedScene" uid="uid://cyqqtvfimjbqb" path="res://assets/potions/jump_potion/jump_potion.tscn" id="23_glw7l"]
 [ext_resource type="PackedScene" uid="uid://cu673ns5f7wxu" path="res://assets/fire_towers/Tower_Fire_Puzzle.tscn" id="23_m4385"]
 [ext_resource type="PackedScene" uid="uid://b0yy54800oirl" path="res://assets/statue_tower/secret_tower.tscn" id="24_ebask"]
 [ext_resource type="AudioStream" uid="uid://euih35j1weh0" path="res://media/Music/01-Blooming-Spring.ogg" id="27_87xxg"]
@@ -1917,7 +1917,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5994, -18.9571, 79.3553)
 transform = Transform3D(0.0738823, 0, -0.997267, 0, 1, 0, 0.997267, 0, 0.0738823, -67.1327, 0.65489, 11.3476)
 script = ExtResource("6_qlgyj")
 dialogue_scene = ExtResource("6_glw7l")
-dialogue_file = "res://dialoges/pocima_dialoge.json"
+dialogue_file = "res://dialogues/potion_dialogue.json"
 
 [node name="Don Pots Potion Seller" parent="NPCs" unique_id=944810814 instance=ExtResource("14_nqwgu")]
 transform = Transform3D(-0.311323, 0, -0.950304, 0, 1, 0, 0.950304, 0, -0.311323, 20.2032, 2.8677, 28.1188)

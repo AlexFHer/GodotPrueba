@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfan8sid4fn4e"
-path="res://.godot/imported/icon.png-42eecb177c550c2d08fecf70995b7dba.ctex"
+uid="uid://cu5f86nv0lscu"
+path="res://.godot/imported/paper-dialog.png-538ed807371b67183eac7b2dbe14840b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/blender_godot_pipeline/icon.png"
-dest_files=["res://.godot/imported/icon.png-42eecb177c550c2d08fecf70995b7dba.ctex"]
+source_file="res://dialogues/paper-dialog.png"
+dest_files=["res://.godot/imported/paper-dialog.png-538ed807371b67183eac7b2dbe14840b.ctex"]
 
 [params]
 
