@@ -23,6 +23,10 @@
 margin = 0.025
 height = 1.33974
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ability_damage"]
+radius = 0.65
+height = 1.55
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_hg6s5"]
 size = Vector3(0.92488, 0.882263, 0.869873)
 
@@ -196,6 +200,18 @@ script = ExtResource("1_43pha")
 [node name="CharacterCollision" type="CollisionShape3D" parent="." unique_id=1043848217]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.600911, 0)
 shape = SubResource("CapsuleShape3D_itxij")
+
+[node name="AbilityDamageArea" type="Area3D" parent="." unique_id=627985431]
+unique_name_in_owner = true
+monitoring = false
+monitorable = false
+
+[node name="AbilityDamageCollision" type="CollisionShape3D" parent="AbilityDamageArea" unique_id=1129814265]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.650911, 0)
+shape = SubResource("CapsuleShape3D_ability_damage")
+disabled = true
+debug_color = Color(1, 0.392157, 0, 0.42)
 
 [node name="Rig" type="Node3D" parent="." unique_id=16098918]
 unique_name_in_owner = true
@@ -463,5 +479,7 @@ vertical_alignment = 2
 
 [connection signal="area_entered" from="Rig/StaffArea3D" to="CombatSystem" method="_on_staff_area_3d_area_entered"]
 [connection signal="body_entered" from="Rig/StaffArea3D" to="CombatSystem" method="_on_staff_area_3d_body_entered"]
+[connection signal="area_entered" from="AbilityDamageArea" to="." method="_on_ability_damage_area_area_entered"]
+[connection signal="body_entered" from="AbilityDamageArea" to="." method="_on_ability_damage_area_body_entered"]
 
 [editable path="Rig/Armature/Potma"]

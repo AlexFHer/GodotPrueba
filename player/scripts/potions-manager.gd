@@ -95,6 +95,9 @@ func drinkRightPotion() -> void:
 	_animation_tree.set("parameters/DrinkOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 func tryMergePotions() -> bool:
+	if _active_potion_service.has_active_potion():
+		return false
+
 	var leftType = PlayerPotions.selectedLeftPotionType
 	var rightType = PlayerPotions.selectedRightPotionType
 
@@ -107,9 +110,10 @@ func tryMergePotions() -> bool:
 	if mergedType == PotionTypes.PotionType.None:
 		return false
 
-	PlayerPotions.removeOnePotionByType(leftType)
-	PlayerPotions.removeOnePotionByType(rightType)
-	PlayerPotions.addPotion(mergedType)
+	if not PlayerPotions.useMergedPotion(mergedType, [leftType, rightType]):
+		return false
+
+	play_drink_animation()
 	return true
 
 func _on_drink_animation_finished() -> void:

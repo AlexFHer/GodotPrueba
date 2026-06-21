@@ -40,12 +40,15 @@ func _on_fireball_animation_fire() -> void:
 	_fire_projectile()
 
 func attack() -> void:
-	if _active_potion_service.current_active_potion == PotionTypes.PotionType.Fire:
+	if _is_fire_potion_active():
 		_play_staff_fire_animation()
 	else:
 		_play_staff_hit_animation()
 	
 	_disable_attack()
+
+func _is_fire_potion_active() -> bool:
+	return _active_potion_service.current_active_potion == PotionTypes.PotionType.Fire
 	
 func _disable_attack() -> void:
 	_can_attack = false

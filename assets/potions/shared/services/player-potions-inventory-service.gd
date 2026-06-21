@@ -87,6 +87,18 @@ func useLeftPotion() -> void:
 func useRightPotion() -> void:
 	_usePotionByType(selectedRightPotionType);
 
+func useMergedPotion(potionType: PotionTypes.PotionType, ingredientTypes: Array) -> bool:
+	if potionType == PotionTypes.PotionType.None:
+		return false
+	if not _arePotionTypesAvailable(ingredientTypes):
+		return false
+
+	potionUsed.emit(potionType);
+	emitWhenPotionFinish(potionType);
+	for ingredientType in ingredientTypes:
+		removeOnePotionByType(ingredientType);
+	return true
+
 func _usePotionByType(potionType: PotionTypes.PotionType) -> void:
 	if not isThereAnyPotionOfType(potionType):
 		return
@@ -145,6 +157,19 @@ func _getNextPotionType(currentType: PotionTypes.PotionType) -> PotionTypes.Poti
 
 func _emitPotions() -> void:
 	potionsChanged.emit(potionsDictionary);
+
+func _arePotionTypesAvailable(potionTypes: Array) -> bool:
+	var requiredPotions: Dictionary[PotionTypes.PotionType, int] = {}
+	for potionType in potionTypes:
+		if potionType == PotionTypes.PotionType.None:
+			return false
+		requiredPotions[potionType] = requiredPotions.get(potionType, 0) + 1
+
+	for potionType in requiredPotions.keys():
+		if potionsDictionary.get(potionType, 0) < requiredPotions[potionType]:
+			return false
+
+	return true
 
 
 func _checkIfPotionShouldBeSelectedOnPickUp(pickedUpPotion: PotionTypes.PotionType) -> void:

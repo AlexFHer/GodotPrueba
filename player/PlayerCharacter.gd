@@ -6,11 +6,17 @@ class_name MainPlayer extends CharacterBody3D
 @onready var animation_player: AnimationPlayer = $Rig/Armature/Potma/AnimationPlayer
 @onready var animation_tree: AnimationTree = $Rig/PlayerAnimationTree
 @onready var potmaSounds: PotmaSounds = %PotmaSounds
+@onready var _ability_damage_area: Area3D = %AbilityDamageArea
+@onready var _ability_damage_collision: CollisionShape3D = %AbilityDamageCollision
 
 @export var checkpoint: Vector3 = Vector3.ZERO
 
 const JUMP_FORCE := 13.0;
 const MEGA_JUMP_MULTIPLIER := 2.5;
+const DOUBLE_JUMP_FORCE := 14.0;
+const DASH_SPEED := 35.0;
+const DASH_DURATION_SECONDS := 0.22;
+const DASH_COOLDOWN_SECONDS := 0.55;
 const ROTATION_SENSIVITY := 10;
 const NORMAL_SPEED := 15;
 const IMPROVED_SPEED := 20;
@@ -38,12 +44,20 @@ var jumpBuffer := false;
 var jumpBufferTimer := 0.2;
 var canJump := true;
 var canMegaJump := false;
+var canDoubleJump := false;
+var hasDoubleJumpAvailable := false;
+var isSecondJumpDamageActive := false;
+var canDash := false;
+var isDashing := false;
+var dashReady := true;
+var dashDirection := Vector3.FORWARD;
+var damagedByAbility: Array[Node] = [];
 
 func _init() -> void:
 	PlayerPotions.potionUsed.connect(_on_potion_used);
 
 func _ready() -> void:
-	pass
+	_set_ability_damage_enabled(false)
 
 func jump() -> void:
 	potmaSounds.jumpSoundAudioStream.play();
@@ -61,6 +75,25 @@ func activateMegaJump() -> void:
 func deactivateMegaJump() -> void:
 	canMegaJump = false;
 
+func activateDoubleJump() -> void:
+	canDoubleJump = true;
+	hasDoubleJumpAvailable = true;
+
+func deactivateDoubleJump() -> void:
+	canDoubleJump = false;
+	hasDoubleJumpAvailable = false;
+	_stop_second_jump_damage();
+
+func activateDash() -> void:
+	canDash = true;
+	dashReady = true;
+
+func deactivateDash() -> void:
+	canDash = false;
+	isDashing = false;
+	dashReady = true;
+	_set_ability_damage_enabled(false);
+
 func enableJump() -> void:
 	canJump = true;
 
@@ -69,6 +102,7 @@ func disableJump() -> void:
 
 func _physics_process(delta: float) -> void:
 	process_jump();
+	process_dash();
 	process_movement(delta);
 	_process_moving_sound();
 	
@@ -98,19 +132,35 @@ func _play_walk_sound() -> void:
 
 
 func process_jump() -> void:
+	if not canMove:
+		return
+
 	if is_on_floor():
 		enableJump();
+		hasDoubleJumpAvailable = canDoubleJump;
+		if isSecondJumpDamageActive:
+			_stop_second_jump_damage();
 		if jumpBuffer == true:
 			determineJump()
 		# Handle jump.
 	if Input.is_action_just_pressed("jump"):
 		if canJump:
 			determineJump();
+		elif canDoubleJump and hasDoubleJumpAvailable:
+			doubleJump();
 		else:
 			jumpBuffer = true;
 			get_tree().create_timer(jumpBufferTimer).timeout.connect(on_jump_buffer_timer_ends)
 
+func process_dash() -> void:
+	if Input.is_action_just_pressed("dash") and canMove and canDash and dashReady and not isDashing:
+		_start_dash();
+
 func process_movement(delta) -> void:
+	if isDashing:
+		velocity = dashDirection * DASH_SPEED;
+		return
+
 	var rawInput := Input.get_vector("move-left", "move-right", "move-forward", "move-backwards");
 	if !canMove:
 		rawInput = Vector2.ZERO;
@@ -163,6 +213,10 @@ func _on_potion_used(potionType: PotionTypes.PotionType) -> void:
 		speedPotionUsed(potionType);
 	if potionType == PotionTypes.PotionType.JumpAndSpeed:
 		_activate_jump_speed_potion(potionType);
+	if potionType == PotionTypes.PotionType.JumpAndFire:
+		_activate_jump_fire_potion(potionType);
+	if potionType == PotionTypes.PotionType.SpeedAndFire:
+		_activate_speed_fire_potion(potionType);
 	
 	disable_can_move_due_drink_potion();
 
@@ -182,6 +236,18 @@ func _activate_jump_speed_potion(potionType: PotionTypes.PotionType) -> void:
 	deactivateMegaJump();
 	_deactivate_improved_speed();
 
+func _activate_jump_fire_potion(potionType: PotionTypes.PotionType) -> void:
+	activateDoubleJump();
+	var lifeTime = PotionsConfig.get_potion_properties(potionType).lifeTime
+	await get_tree().create_timer(lifeTime).timeout
+	deactivateDoubleJump();
+
+func _activate_speed_fire_potion(potionType: PotionTypes.PotionType) -> void:
+	activateDash();
+	var lifeTime = PotionsConfig.get_potion_properties(potionType).lifeTime
+	await get_tree().create_timer(lifeTime).timeout
+	deactivateDash();
+
 func on_jump_buffer_timer_ends() -> void:
 	jumpBuffer = false;
 
@@ -190,6 +256,82 @@ func determineJump() -> void:
 		megaJump();
 	else:
 		jump()
+
+func doubleJump() -> void:
+	hasDoubleJumpAvailable = false;
+	potmaSounds.megaJumpSoundAudioStream.play();
+	velocity.y = DOUBLE_JUMP_FORCE;
+	disableJump();
+	_start_second_jump_damage();
+
+func _start_dash() -> void:
+	dashDirection = _get_dash_direction();
+	isDashing = true;
+	dashReady = false;
+	_set_ability_damage_enabled(true);
+
+	await get_tree().create_timer(DASH_DURATION_SECONDS).timeout
+	isDashing = false;
+	_set_ability_damage_enabled(false);
+
+	await get_tree().create_timer(DASH_COOLDOWN_SECONDS).timeout
+	dashReady = true;
+
+func _get_dash_direction() -> Vector3:
+	var rawInput := Input.get_vector("move-left", "move-right", "move-forward", "move-backwards");
+	if rawInput.length() > 0.1:
+		var forward := _camera.global_basis.z
+		var right := _camera.global_basis.x
+		var inputDirection := forward * rawInput.y + right * rawInput.x
+		inputDirection.y = 0.0
+		return inputDirection.normalized()
+
+	return lastMovementDirection.normalized()
+
+func _start_second_jump_damage() -> void:
+	isSecondJumpDamageActive = true;
+	_set_ability_damage_enabled(true);
+
+func _stop_second_jump_damage() -> void:
+	isSecondJumpDamageActive = false;
+	if not isDashing:
+		_set_ability_damage_enabled(false);
+
+func _set_ability_damage_enabled(enabled: bool) -> void:
+	if enabled:
+		damagedByAbility.clear()
+	_ability_damage_collision.disabled = not enabled
+	_ability_damage_area.monitoring = enabled
+	_ability_damage_area.monitorable = enabled
+	if enabled:
+		call_deferred("_damage_current_ability_overlaps")
+
+func _damage_current_ability_overlaps() -> void:
+	if not isDashing and not isSecondJumpDamageActive:
+		return
+	for body in _ability_damage_area.get_overlapping_bodies():
+		_damage_node_with_ability(body)
+	for area in _ability_damage_area.get_overlapping_areas():
+		_damage_node_with_ability(area)
+
+func _on_ability_damage_area_body_entered(body: Node3D) -> void:
+	_damage_node_with_ability(body)
+
+func _on_ability_damage_area_area_entered(area: Area3D) -> void:
+	_damage_node_with_ability(area)
+
+func _damage_node_with_ability(node: Node) -> void:
+	if not isDashing and not isSecondJumpDamageActive:
+		return
+	if node == self or damagedByAbility.has(node):
+		return
+	if not node.is_in_group("CanGetHit"):
+		return
+	if not node.has_method("get_hit"):
+		return
+
+	damagedByAbility.append(node)
+	node.get_hit()
 
 
 func dealDamage() -> void:
