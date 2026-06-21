@@ -37,4 +37,4 @@ Dither Strength - Higher number mean bigger dots
 If you have any transparent objects in your scene (meshes, sprites, etc) this shader won't "see" them as the render mode doesn't allow alpha transparency. In order to have transparent objects been seen you must change the "Render Priority" of each object to a number higher than "0". Everything in the editor is set to "0" for a new project, so in most cases setting this to "1" for **Each** transparent object will be adequete.
 
 ## License
-MIT. I hope this helps somebody in their Godot journey!
+Proprietary. All rights reserved by Potma. No use, copying, modification, distribution, sublicensing, sale, or derivative work is permitted without prior written authorization from the owners.
