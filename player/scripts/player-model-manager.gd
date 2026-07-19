@@ -1,14 +1,15 @@
 extends Node3D
 
-var bodyBaseColorBlue: CompressedTexture2D = load("res://player/materials/PotmaGradient_Base_color-blue.png");
-var bodyBaseColorRed: CompressedTexture2D = load("res://player/materials/PotmaGradient_Base_color-red.png");
-var bodyBaseColorGreen: CompressedTexture2D = load("res://player/materials/PotmaGradient_Base_color-green.png");
 var bodyBaseColor: CompressedTexture2D = load("res://player/materials/PotmaGradient_Base_color.png");
+var potionDurationShader: Shader = preload("res://player/materials/shaders/potion_duration_body.gdshader");
 
-var potionTypeToTextureLookUp: Dictionary[PotionTypes.PotionType, CompressedTexture2D] = {
-	PotionTypes.PotionType.Speed: bodyBaseColorGreen,
-	PotionTypes.PotionType.Fire: bodyBaseColorRed,
-	PotionTypes.PotionType.Jump: bodyBaseColorBlue
+var potionTypeToColorLookUp: Dictionary[PotionTypes.PotionType, Color] = {
+	PotionTypes.PotionType.Fire: Color(1.0, 0.12, 0.05),
+	PotionTypes.PotionType.Jump: Color(0.2, 0.45, 1.0),
+	PotionTypes.PotionType.Speed: Color(0.15, 1.0, 0.25),
+	PotionTypes.PotionType.JumpAndFire: Color(0.85, 0.18, 1.0),
+	PotionTypes.PotionType.JumpAndSpeed: Color(0.0, 0.95, 1.0),
+	PotionTypes.PotionType.SpeedAndFire: Color(1.0, 0.55, 0.0)
 }
 
 @onready var bodyMeshNode: MeshInstance3D = $Armature/Potma/Armature_Potma/Skeleton3D/MainBody;
@@ -16,38 +17,73 @@ var potionTypeToTextureLookUp: Dictionary[PotionTypes.PotionType, CompressedText
 @onready var potionPlaceHolder: MeshInstance3D = $Armature/Potma/Armature_Potma/Skeleton3D/Poti_placeHolder
 
 var currentPotion: PotionTypes.PotionType = PotionTypes.PotionType.None
+var potionEffectMaterial: ShaderMaterial;
+var effectTimeLeft := 0.0;
+var effectDuration := 0.0;
 
 func _ready() -> void:
 	PlayerPotions.potionUsed.connect(_on_potion_used);
 	PlayerPotions.potionEffectFinished.connect(_on_potion_effect_finished);
-	change_body_mesh_albedo_texture(bodyBaseColor)
+	_setup_potion_effect_material()
+
+func _process(delta: float) -> void:
+	if currentPotion == PotionTypes.PotionType.None:
+		return
+
+	effectTimeLeft = max(effectTimeLeft - delta, 0.0)
+	_update_potion_progress()
+	if effectTimeLeft == 0.0:
+		_clear_potion_effect()
 
 
 # This callback is used when drink animation events are wired from the animation player.
 func on_potion_drink_animation_finished() -> void:
-	if currentPotion != PotionTypes.PotionType.None:
-		change_body_mesh_albedo_based_on_potion_type(currentPotion)
+	pass
 
 func _on_potion_used(potionType: PotionTypes.PotionType) -> void:
 	currentPotion = potionType
-	await get_tree().create_timer(2.1).timeout
-	change_body_mesh_albedo_based_on_potion_type(potionType)
+	var potionProperties = PotionsConfig.get_potion_properties(potionType)
+	if potionProperties == null:
+		_clear_potion_effect()
+		return
+
+	effectDuration = potionProperties.lifeTime
+	effectTimeLeft = effectDuration
+	potionEffectMaterial.set_shader_parameter("potion_color", potionTypeToColorLookUp.get(potionType, Color.WHITE))
+	potionEffectMaterial.set_shader_parameter("potion_strength", 0.75)
+	_update_potion_progress()
 
 
 func _on_player_selected_potion_changed(potionType: PotionTypes.PotionType):
-	change_body_mesh_albedo_based_on_potion_type(potionType)
+	if currentPotion == PotionTypes.PotionType.None:
+		potionEffectMaterial.set_shader_parameter("potion_color", potionTypeToColorLookUp.get(potionType, Color.WHITE))
 	
-func change_body_mesh_albedo_based_on_potion_type(potionType: PotionTypes.PotionType) -> void:
-	var texture = potionTypeToTextureLookUp.get(potionType)
-	if texture:
-		change_body_mesh_albedo_texture(texture)
-	else:
-		change_body_mesh_albedo_texture(bodyBaseColor)
+func _setup_potion_effect_material() -> void:
+	potionEffectMaterial = ShaderMaterial.new()
+	potionEffectMaterial.shader = potionDurationShader
+	potionEffectMaterial.set_shader_parameter("albedo", bodyBaseColor)
+	potionEffectMaterial.set_shader_parameter("potion_color", Color.WHITE)
+	potionEffectMaterial.set_shader_parameter("potion_progress", 0.0)
+	potionEffectMaterial.set_shader_parameter("potion_strength", 0.0)
+	var bodyBounds := bodyMeshNode.get_aabb()
+	potionEffectMaterial.set_shader_parameter("effect_bottom_y", bodyBounds.position.y)
+	potionEffectMaterial.set_shader_parameter("effect_top_y", bodyBounds.position.y + bodyBounds.size.y)
+	bodyMeshNode.set_surface_override_material(0, potionEffectMaterial)
 
-func change_body_mesh_albedo_texture(texture: CompressedTexture2D) -> void:
-	bodyMeshNode.get_active_material(0).set_texture(Decal.TEXTURE_ALBEDO, texture)
+func _update_potion_progress() -> void:
+	if effectDuration <= 0.0:
+		potionEffectMaterial.set_shader_parameter("potion_progress", 0.0)
+		return
 
-func _on_potion_effect_finished(_potionType: PotionTypes.PotionType) -> void:
-	change_body_mesh_albedo_texture(bodyBaseColor)
+	potionEffectMaterial.set_shader_parameter("potion_progress", effectTimeLeft / effectDuration)
+
+func _clear_potion_effect() -> void:
+	effectTimeLeft = 0.0
+	effectDuration = 0.0
+	potionEffectMaterial.set_shader_parameter("potion_progress", 0.0)
+	potionEffectMaterial.set_shader_parameter("potion_strength", 0.0)
 	currentPotion = PotionTypes.PotionType.None
 
+func _on_potion_effect_finished(potionType: PotionTypes.PotionType) -> void:
+	if currentPotion == potionType:
+		_clear_potion_effect()

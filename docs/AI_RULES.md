@@ -1,5 +1,9 @@
 # AI RULES
 
+## Living Project Memory
+- Read `docs/POTMA_PROJECT_CONTEXT.md` before making gameplay, code, or design decisions.
+- Update `docs/POTMA_PROJECT_CONTEXT.md` whenever a new important project decision, mechanic, convention, or open question appears.
+
 ## Project Context
 - This project belongs to Potma.
 - Treat Potma as a Godot 4.6 project.
