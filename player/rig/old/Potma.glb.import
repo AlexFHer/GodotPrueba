@@ -41,7 +41,7 @@ _subresources={
 "animations": {
 "PotmaFireBall": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://player/animations/PotmaFireBall.res",
+"save_to_file/fallback_path": "res://player/animations/old/PotmaFireBall.res",
 "save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://ddit78ntko2q4",
 "settings/loop_mode": 0,
@@ -4153,7 +4153,7 @@ _subresources={
 },
 "PotmaStaff_Hit": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://player/animations/PotmaStaff_Hit.res",
+"save_to_file/fallback_path": "res://player/animations/old/PotmaStaff_Hit.res",
 "save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://dy2o87nyjsp1y",
 "settings/loop_mode": 0,
@@ -8265,7 +8265,7 @@ _subresources={
 },
 "Potma_Drink": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://player/animations/Potma_Drink.res",
+"save_to_file/fallback_path": "res://player/animations/old/Potma_Drink.res",
 "save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://c026i4fbfmpri",
 "settings/loop_mode": 0,
