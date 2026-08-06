@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dknaa78iwawii"
-path="res://.godot/imported/Potma.glb-00fae3a48deea748e9eba75fd8f6a6e2.scn"
+path="res://.godot/imported/Potma.glb-df9c9482a6a5726358ffa9d4dd3e96f6.scn"
 
 [deps]
 
-source_file="res://player/rig/Potma.glb"
-dest_files=["res://.godot/imported/Potma.glb-00fae3a48deea748e9eba75fd8f6a6e2.scn"]
+source_file="res://player/rig/old/Potma.glb"
+dest_files=["res://.godot/imported/Potma.glb-df9c9482a6a5726358ffa9d4dd3e96f6.scn"]
 
 [params]
 

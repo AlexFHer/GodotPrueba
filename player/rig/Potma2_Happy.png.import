@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6r5rwuimw2gx"
-path.s3tc="res://.godot/imported/Potma_EYESpixel.png-0e0869aba288411a3329f4be55934988.s3tc.ctex"
+uid="uid://bwp3vw1tjbagh"
+path.s3tc="res://.godot/imported/Potma2_Happy.png-0b47f130483856fd755cc3601032c8bd.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "e8e16210a55946122e30e0aac526dec8"
+"md5": "b5e6c9eba2860a99784f9ceec91f6173"
 }
 
 [deps]
 
-source_file="res://player/rig/Potma_EYESpixel.png"
-dest_files=["res://.godot/imported/Potma_EYESpixel.png-0e0869aba288411a3329f4be55934988.s3tc.ctex"]
+source_file="res://player/rig/Potma2_Happy.png"
+dest_files=["res://.godot/imported/Potma2_Happy.png-0b47f130483856fd755cc3601032c8bd.s3tc.ctex"]
 
 [params]
 
