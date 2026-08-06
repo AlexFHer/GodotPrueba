@@ -92,7 +92,7 @@ func patrol_point_reached():
 	
 	_change_state(EnemyState.IDLE)
 	var random = randi() % 3 + 3
-	await get_tree().create_timer(random).timeout
+	await get_tree().create_timer(random, false).timeout
 	if enemyState == EnemyState.FOLLOWING:
 		return
 
@@ -188,7 +188,7 @@ func get_hit():
 func die():
 	_change_state(EnemyState.DEAD)
 	_animation_tree.set("parameters/DieOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(3.0, false).timeout
 	queue_free()
 
 func is_dead() -> bool:

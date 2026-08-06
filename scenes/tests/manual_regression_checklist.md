@@ -31,12 +31,36 @@ Validate gameplay after naming migrations, potion-state unification, logger adop
 1. Elevator moves through points and continues cycles without stopping.
 2. Chest warns/blocks open when player has no key.
 3. Secret tower activation still animates and audio plays.
-4. NPC dialogue starts and loads dialogue file correctly.
+4. Approaching and leaving Pocima shows and hides one dialogue prompt.
+5. `E`, PlayStation Cross, and Xbox A open, reveal, advance, and close dialogue.
+6. Starting or closing dialogue does not also jump or consume a potion.
+7. Dialogue does not pause enemies, physics, potion duration, or gameplay timers.
+8. Start does not open the pause menu over an active conversation.
+9. Closing restores gameplay, shows the nearby prompt, and permits reopening.
+10. Overlapping NPC interaction zones select only the nearest valid NPC.
+11. The prompt badge follows the last-used device and updates safely when a
+    controller is connected or disconnected (`E`, PlayStation `X`, Xbox `A`, or
+    `A/X` for an unknown controller).
+12. Deleting an NPC while its interaction zone is registered produces no error
+    and removes it from candidate selection.
+13. Empty, missing, or incomplete dialogue data logs a warning, skips invalid
+    entries, and never opens an empty UI.
+14. Dialogue layout wraps long text and shows Pocima's localized Spanish and
+    English text, not raw translation keys, at 1280x720 and 1920x1080.
+15. Each Pocima line plays one blip when it appears; completing the typewriter
+    text does not restart or stop that clip.
+16. Advancing or closing while a clip plays stops it, and the next line never
+    overlaps the previous clip.
+17. Closing and reopening starts the first line's audio again from the beginning.
+18. A dialogue line with no `voice_stream` is silent and still displays normally.
 
 ## Naming Migration Validation
-1. Confirm dialogue scene loads from [dialogues/dialogue.tscn](dialogues/dialogue.tscn).
-2. Confirm NPC script path resolves to [assets/npcs/npc_dialogue.gd](assets/npcs/npc_dialogue.gd).
-3. Confirm potion scene paths resolve in level scene and test scenes:
+1. Confirm the shared dialogue system loads from
+   [dialogues/system/dialogue_system.tscn](../../dialogues/system/dialogue_system.tscn).
+2. Confirm the reusable NPC component resolves from
+   [dialogues/components/dialogue_interactable.tscn](../../dialogues/components/dialogue_interactable.tscn).
+3. Confirm Pocima references a typed `DialogueData` resource and no legacy JSON.
+4. Confirm potion scene paths resolve in level scene and test scenes:
    - [assets/potions/fire_potion/fire_potion.tscn](assets/potions/fire_potion/fire_potion.tscn)
    - [assets/potions/jump_potion/jump_potion.tscn](assets/potions/jump_potion/jump_potion.tscn)
    - [assets/potions/speed_potion/speed_potion.tscn](assets/potions/speed_potion/speed_potion.tscn)

@@ -22,6 +22,9 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("toggleRightPotion"):
 		PlayerPotions.toggleRightPotion()
 
+	if _is_dialogue_consuming_gameplay_input():
+		return
+
 	var l2_just := Input.is_action_just_pressed("drinkPotionLeft")
 	var r2_just := Input.is_action_just_pressed("drinkPotionRight")
 
@@ -50,7 +53,7 @@ func _start_merge_decision_window() -> void:
 	_is_waiting_merge_decision = true
 	_decision_window_id += 1
 	var current_window_id = _decision_window_id
-	await get_tree().create_timer(MERGE_DECISION_WINDOW_SECONDS).timeout
+	await get_tree().create_timer(MERGE_DECISION_WINDOW_SECONDS, false).timeout
 
 	if current_window_id != _decision_window_id:
 		return
@@ -122,3 +125,9 @@ func _on_drink_animation_finished() -> void:
 
 func play_drink_animation() -> void:
 	_animation_tree.set("parameters/DrinkOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+
+func _is_dialogue_consuming_gameplay_input() -> bool:
+	var dialogue_controller := get_tree().get_first_node_in_group("dialogue_controller")
+	if dialogue_controller == null or not dialogue_controller.has_method("is_consuming_gameplay_input"):
+		return false
+	return dialogue_controller.call("is_consuming_gameplay_input")

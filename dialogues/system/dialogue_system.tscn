@@ -1,0 +1,217 @@
+[gd_scene format=3 uid="uid://bayxd3ho16yh4"]
+
+[ext_resource type="Script" uid="uid://d0q1arnhos0o4" path="res://dialogues/system/dialogue_controller.gd" id="1_controller"]
+[ext_resource type="Script" uid="uid://btsdh5tu6548t" path="res://dialogues/system/dialogue_ui.gd" id="2_ui"]
+[ext_resource type="Texture2D" uid="uid://cu5f86nv0lscu" path="res://dialogues/paper-dialog.png" id="3_dialogue_paper"]
+[ext_resource type="Texture2D" uid="uid://doyrrfw3i5jla" path="res://dialogues/paper-button-off.png" id="4_button_paper"]
+[ext_resource type="FontFile" uid="uid://obxjt54cgu5v" path="res://shared/ui/fonts/Magical Neverland.ttf" id="5_font"]
+
+[node name="DialogueSystem" type="Node" unique_id=1700277086 groups=["dialogue_controller"]]
+process_mode = 3
+script = ExtResource("1_controller")
+
+[node name="LineAudioPlayer" type="AudioStreamPlayer" parent="." unique_id=995419830]
+unique_name_in_owner = true
+process_mode = 3
+volume_db = -4.0
+
+[node name="DialogueCanvas" type="CanvasLayer" parent="." unique_id=119822376]
+layer = 100
+
+[node name="DialogueUI" type="Control" parent="DialogueCanvas" unique_id=1079043803]
+unique_name_in_owner = true
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_ui")
+
+[node name="PromptRoot" type="MarginContainer" parent="DialogueCanvas/DialogueUI" unique_id=642178846]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -260.0
+offset_top = -104.0
+offset_right = 260.0
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="PromptRow" type="HBoxContainer" parent="DialogueCanvas/DialogueUI/PromptRoot" unique_id=869404514]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="PromptPrefix" type="Label" parent="DialogueCanvas/DialogueUI/PromptRoot/PromptRow" unique_id=469567714]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.956863, 0.784314, 1)
+theme_override_colors/font_outline_color = Color(0.133333, 0.0705882, 0.0470588, 0.95)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 28
+text = "Pulsa"
+vertical_alignment = 1
+
+[node name="PromptButton" type="AspectRatioContainer" parent="DialogueCanvas/DialogueUI/PromptRoot/PromptRow" unique_id=988636136]
+custom_minimum_size = Vector2(90, 40)
+layout_mode = 2
+mouse_filter = 2
+ratio = 2.38095
+
+[node name="Paper" type="TextureRect" parent="DialogueCanvas/DialogueUI/PromptRoot/PromptRow/PromptButton" unique_id=2056637322]
+texture_filter = 1
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_button_paper")
+expand_mode = 1
+
+[node name="PromptBadge" type="Label" parent="DialogueCanvas/DialogueUI/PromptRoot/PromptRow/PromptButton" unique_id=1505860884]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.211765, 0.117647, 0.0823529, 1)
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 25
+text = "?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PromptSuffix" type="Label" parent="DialogueCanvas/DialogueUI/PromptRoot/PromptRow" unique_id=1822691497]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.956863, 0.784314, 1)
+theme_override_colors/font_outline_color = Color(0.133333, 0.0705882, 0.0470588, 0.95)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 28
+text = "para hablar"
+vertical_alignment = 1
+
+[node name="DialogueRoot" type="Control" parent="DialogueCanvas/DialogueUI" unique_id=388577656]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.06
+anchor_top = 0.62
+anchor_right = 0.94
+anchor_bottom = 0.96
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Paper" type="NinePatchRect" parent="DialogueCanvas/DialogueUI/DialogueRoot" unique_id=354685550]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_dialogue_paper")
+patch_margin_left = 48
+patch_margin_top = 42
+patch_margin_right = 48
+patch_margin_bottom = 42
+
+[node name="ContentMargin" type="MarginContainer" parent="DialogueCanvas/DialogueUI/DialogueRoot" unique_id=14448486]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 62
+theme_override_constants/margin_top = 34
+theme_override_constants/margin_right = 62
+theme_override_constants/margin_bottom = 30
+
+[node name="Content" type="VBoxContainer" parent="DialogueCanvas/DialogueUI/DialogueRoot/ContentMargin" unique_id=2121237273]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 7
+
+[node name="SpeakerLabel" type="Label" parent="DialogueCanvas/DialogueUI/DialogueRoot/ContentMargin/Content" unique_id=1655918871]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.278431, 0.137255, 0.0862745, 1)
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 31
+text = "Speaker"
+vertical_alignment = 1
+
+[node name="Separator" type="ColorRect" parent="DialogueCanvas/DialogueUI/DialogueRoot/ContentMargin/Content" unique_id=52186472]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.443137, 0.25098, 0.164706, 0.55)
+
+[node name="DialogueText" type="RichTextLabel" parent="DialogueCanvas/DialogueUI/DialogueRoot/ContentMargin/Content" unique_id=1565091482]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.196078, 0.101961, 0.0705882, 1)
+theme_override_fonts/normal_font = ExtResource("5_font")
+theme_override_font_sizes/normal_font_size = 25
+text = "Dialogue"
+scroll_active = false
+
+[node name="ContinueRoot" type="HBoxContainer" parent="DialogueCanvas/DialogueUI/DialogueRoot/ContentMargin/Content" unique_id=1224035548]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 9
+alignment = 2
+
+[node name="ContinuePrefix" type="Label" parent="DialogueCanvas/DialogueUI/DialogueRoot/ContentMargin/Content/ContinueRoot" unique_id=622706187]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.278431, 0.137255, 0.0862745, 1)
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 21
+text = "Pulsa"
+vertical_alignment = 1
+
+[node name="ContinueButton" type="AspectRatioContainer" parent="DialogueCanvas/DialogueUI/DialogueRoot/ContentMargin/Content/ContinueRoot" unique_id=1609313499]
+custom_minimum_size = Vector2(76, 32)
+layout_mode = 2
+mouse_filter = 2
+ratio = 2.38095
+
+[node name="Paper" type="TextureRect" parent="DialogueCanvas/DialogueUI/DialogueRoot/ContentMargin/Content/ContinueRoot/ContinueButton" unique_id=419800336]
+texture_filter = 1
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_button_paper")
+expand_mode = 1
+
+[node name="ContinueBadge" type="Label" parent="DialogueCanvas/DialogueUI/DialogueRoot/ContentMargin/Content/ContinueRoot/ContinueButton" unique_id=1579202471]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.211765, 0.117647, 0.0823529, 1)
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 21
+text = "?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContinueSuffix" type="Label" parent="DialogueCanvas/DialogueUI/DialogueRoot/ContentMargin/Content/ContinueRoot" unique_id=453915885]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.278431, 0.137255, 0.0862745, 1)
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 21
+text = "para continuar"
+vertical_alignment = 1

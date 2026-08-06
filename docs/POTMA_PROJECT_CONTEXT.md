@@ -73,10 +73,45 @@ Current durations:
 - Jump action: `jump`.
 - Attack action: `attack`.
 - Dash action: `dash`.
+- Contextual interaction/dialogue action: `interact` (`E` on keyboard and the
+  bottom controller face button: PlayStation Cross / Xbox A).
 - Drink left potion: `drinkPotionLeft`.
 - Drink right potion: `drinkPotionRight`.
 - Toggle left potion: `toggleLeftPotion`.
 - Toggle right potion: `toggleRightPotion`.
+
+## NPC Dialogue System
+- Dialogue is linear in v1: no choices, branches, gameplay commands, or
+  persistence of already-read conversations.
+- Content uses typed `DialogueData` and `DialogueLine` Resources, not JSON.
+- Dialogue resources should store translation keys for localized NPC text; Pocima
+  uses `npc_pocima_*` keys in `i18n/translations.csv`.
+- Each `DialogueLine` may reference an optional, language-neutral
+  `voice_stream`. One non-positional player in `DialogueSystem` plays it once
+  when the line appears and stops it on advance, replacement, or close.
+- Revealing the complete typewriter text does not restart or stop line audio.
+  Lines without a stream are valid and silent.
+- NPCs gain dialogue by composing one `DialogueInteractable` Area3D and assigning
+  a dialogue resource; NPC scripts must not instantiate or control dialogue UI.
+- One `DialogueSystem` is provided by `assets/levels/levelManager.tscn` and owns
+  candidate selection, contextual input, typewriter progression, and HUD UI.
+- If interaction zones overlap, the nearest valid NPC is selected.
+- Dialogue does not pause the world; enemies, physics, potion durations, and
+  other gameplay timers continue while the conversation UI is open.
+- Dialogue can be replayed from the first line after close.
+- `interact` intentionally overlaps the keyboard right-potion key and controller
+  jump button. It has priority only while a valid prompt/dialogue is active.
+- During active or closing dialogue, player jump and potion drinking ignore the
+  shared interaction press so advancing text does not leak into gameplay.
+- Gameplay `SceneTreeTimer` instances should use `process_always = false` so
+  pause screens freeze their remaining time. Dialogue no longer uses tree pause.
+- Pocima is the canonical implementation example.
+- Exact setup instructions are in the [NPC dialogue guide](DIALOGUE_SYSTEM.md).
+
+Important files:
+- `dialogues/system/dialogue_system.tscn`
+- `dialogues/components/dialogue_interactable.tscn`
+- [Dialogue setup guide](DIALOGUE_SYSTEM.md)
 
 ## Ability Combat Rules
 - Normal staff hit damages `CanGetHit` targets.
@@ -159,3 +194,11 @@ Important files:
 ## Update Log
 - 2026-07-19: Created living context file for Potma.
 - 2026-07-19: Documented direct potion combination, combination abilities, dash, double jump damage, and potion visual drain effect.
+- 2026-07-19: Documented the reusable Resource-based NPC dialogue system,
+  contextual interaction input, and pause-aware gameplay timer convention.
+- 2026-07-19: Changed NPC dialogue to keep world time running while conversations
+  are open; shared jump/potion inputs are still consumed contextually.
+- 2026-07-19: Converted Pocima dialogue content to translation keys backed by
+  `i18n/translations.csv`.
+- 2026-07-25: Added optional non-positional audio per dialogue line; Pocima uses
+  a temporary shared PCM blip for both lines.

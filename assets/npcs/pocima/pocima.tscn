@@ -1,56 +1,44 @@
-[gd_scene load_steps=7 format=3 uid="uid://8o6mtcl0idi8"]
+[gd_scene format=3 uid="uid://8o6mtcl0idi8"]
 
-[ext_resource type="Script" uid="uid://4ep5210jrhnh" path="res://assets/npcs/npc_dialogue.gd" id="1_0pp4a"]
 [ext_resource type="PackedScene" uid="uid://drk3t1ixoax3c" path="res://assets/npcs/pocima/rig/Pocima.glb" id="1_shwg8"]
-[ext_resource type="PackedScene" uid="uid://fox24sa5qc0d" path="res://dialogues/dialogue.tscn" id="3_lrc1j"]
+[ext_resource type="PackedScene" path="res://dialogues/components/dialogue_interactable.tscn" id="2_interactable"]
+[ext_resource type="Resource" uid="uid://bc3n5bvmphhbi" path="res://assets/npcs/pocima/pocima_dialogue.tres" id="3_dialogue"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0pp4a"]
 radius = 0.619731
 height = 1.33066
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_lrc1j"]
-size = Vector3(1.28833, 1.28857, 1.78339)
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0pp4a"]
 animation = &"Pocima_Idle"
 
-[node name="Pocima" type="Area3D"]
+[node name="Pocima" type="Node3D" unique_id=1444927658]
 
-[node name="rig" type="StaticBody3D" parent="."]
+[node name="rig" type="StaticBody3D" parent="." unique_id=185525656]
 
-[node name="Pocima" parent="rig" instance=ExtResource("1_shwg8")]
+[node name="Pocima" parent="rig" unique_id=1986962308 instance=ExtResource("1_shwg8")]
 
 [node name="Skeleton3D" parent="rig/Pocima/Pocima_Armature" index="0"]
-bones/0/scale = Vector3(1, 0.902785, 1)
-bones/1/rotation = Quaternion(1.79292e-15, 1.76754e-14, 0.08411, 0.996457)
-bones/5/rotation = Quaternion(-0.0635413, 0.00813124, 0.131274, 0.989274)
-bones/6/rotation = Quaternion(-4.23739e-07, -1.11078e-07, 0.88462, -0.466313)
-bones/7/rotation = Quaternion(1.58742e-07, -4.40845e-08, -0.353639, 0.935382)
-bones/8/rotation = Quaternion(-0.0635668, 0.00818078, -0.37735, 0.92385)
-bones/9/rotation = Quaternion(0.0950239, -0.0488436, 0.959123, 0.262044)
-bones/11/rotation = Quaternion(-0.0937845, -0.0511836, 0.952336, -0.28573)
-bones/12/rotation = Quaternion(-0.0547872, 0.00463237, 0.335775, 0.940336)
+bones/0/scale = Vector3(1, 0.8712488, 0.99999994)
+bones/1/rotation = Quaternion(-1.870096e-15, 1.7737746e-14, 0.045290865, 0.99897385)
+bones/5/rotation = Quaternion(-0.0639802, 0.0031120603, 0.20849288, 0.97592396)
+bones/6/rotation = Quaternion(-4.2373918e-07, -1.1107825e-07, 0.88461983, -0.466313)
+bones/7/rotation = Quaternion(1.5823176e-07, -4.5883148e-08, -0.34300134, 0.939335)
+bones/8/rotation = Quaternion(-0.0639933, 0.0031309691, -0.30268568, 0.9509346)
+bones/9/rotation = Quaternion(0.095023915, -0.04884363, 0.95912343, 0.262044)
+bones/11/rotation = Quaternion(-0.093782015, -0.05118821, 0.9523218, -0.28577587)
+bones/12/rotation = Quaternion(-0.054787222, 0.0046323733, 0.33577466, 0.9403363)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rig"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rig" unique_id=1059992174]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0292918, 0.440924, -0.0458679)
 shape = SubResource("CapsuleShape3D_0pp4a")
 
-[node name="chat_detection_area" type="Area3D" parent="rig"]
-script = ExtResource("1_0pp4a")
-dialogue_scene = ExtResource("3_lrc1j")
-dialogue_file = "res://dialogues/potion_dialogue.json"
+[node name="DialogueInteractable" parent="." unique_id=618335185 instance=ExtResource("2_interactable")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+dialogue_data = ExtResource("3_dialogue")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rig/chat_detection_area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0633545, 0.586657, 0.391693)
-shape = SubResource("BoxShape3D_lrc1j")
-debug_color = Color(0.961248, 0, 0.511433, 0.42)
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=25768220]
 root_node = NodePath("../rig/Pocima")
 tree_root = SubResource("AnimationNodeAnimation_0pp4a")
 anim_player = NodePath("../rig/Pocima/AnimationPlayer")
-
-[connection signal="body_entered" from="rig/chat_detection_area" to="rig/chat_detection_area" method="_on_body_entered"]
-[connection signal="body_exited" from="rig/chat_detection_area" to="rig/chat_detection_area" method="_on_body_exited"]
 
 [editable path="rig/Pocima"]

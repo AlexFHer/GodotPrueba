@@ -186,6 +186,6 @@ func _syncLegacySelectedPotionType() -> void:
 func emitWhenPotionFinish(potionType: PotionTypes.PotionType) -> void:
 	canDrinkPotion = false;
 	var lifeTime = PotionsConfig.get_potion_properties(potionType).lifeTime;
-	await get_tree().create_timer(lifeTime).timeout
+	await get_tree().create_timer(lifeTime, false).timeout
 	potionEffectFinished.emit(potionType);
 	canDrinkPotion = true;

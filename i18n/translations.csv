@@ -8,3 +8,8 @@ ui_quit_button;Salir;Quit
 ui_main_menu_button;Menu principal;Main menu
 es;Español;Spanish
 en;Ingles;English
+dialogue_prompt_talk;Pulsa {input} para hablar;Press {input} to talk
+dialogue_prompt_continue;Pulsa {input} para continuar;Press {input} to continue
+npc_pocima_name;Pócima;Potion
+npc_pocima_intro_1;You stoopid;Hey, buddy
+npc_pocima_intro_2;La caja de arriba parece estar cubierta por un escudo mágico. Busca alguna forma de abrirla.;The box above seems to be covered by a magic shield. Look for a way to open it.

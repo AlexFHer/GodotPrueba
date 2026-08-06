@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b44tybnu31y1k" path="res://assets/levels/level.gd" id="1_h5bql"]
 [ext_resource type="PackedScene" uid="uid://c7s1p2f2f6huh" path="res://scenes/shared/main-menus/pause-menu/pause-menu.tscn" id="2_bge5n"]
 [ext_resource type="PackedScene" uid="uid://bcugk5tgimuv4" path="res://assets/in-game-collectables-ui/in-game-collectables-ui.tscn" id="3_swvh1"]
+[ext_resource type="PackedScene" path="res://dialogues/system/dialogue_system.tscn" id="4_dialogue"]
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_h5bql")
@@ -13,3 +14,5 @@ script = ExtResource("1_h5bql")
 unique_name_in_owner = true
 
 [node name="Pause menu" parent="CanvasLayer" instance=ExtResource("2_bge5n")]
+
+[node name="DialogueSystem" parent="." instance=ExtResource("4_dialogue")]

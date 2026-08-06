@@ -26,7 +26,7 @@ func _on_book_picked_up(amount: int) -> void:
 
 func _show_collectables_ui() -> void:
 	inGameCollectablesUiControl.visible = true
-	get_tree().create_timer(3).timeout.connect(_hide_collectables_ui)
+	get_tree().create_timer(3, false).timeout.connect(_hide_collectables_ui)
 
 func _hide_collectables_ui() -> void:
 	inGameCollectablesUiControl.visible = false

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DialogueData" format=3 uid="uid://bc3n5bvmphhbi"]
+
+[ext_resource type="Script" uid="uid://dmx6jddwnsrlj" path="res://dialogues/resources/dialogue_data.gd" id="1_data"]
+[ext_resource type="AudioStream" uid="uid://wd85a2qtedst" path="res://assets/npcs/pocima/youstoopidnoaimnat.mp3" id="2_jhpa4"]
+[ext_resource type="Script" uid="uid://deaeui7q0v2na" path="res://dialogues/resources/dialogue_line.gd" id="2_line"]
+[ext_resource type="AudioStream" uid="uid://nx75r3fasiny" path="res://assets/npcs/pocima/fart.mp3" id="3_1us6x"]
+
+[sub_resource type="Resource" id="Resource_line_1"]
+script = ExtResource("2_line")
+speaker = "npc_pocima_name"
+text = "npc_pocima_intro_1"
+voice_stream = ExtResource("2_jhpa4")
+
+[sub_resource type="Resource" id="Resource_line_2"]
+script = ExtResource("2_line")
+speaker = "npc_pocima_name"
+text = "npc_pocima_intro_2"
+voice_stream = ExtResource("3_1us6x")
+
+[resource]
+script = ExtResource("1_data")
+lines = Array[ExtResource("2_line")]([SubResource("Resource_line_1"), SubResource("Resource_line_2")])

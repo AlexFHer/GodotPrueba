@@ -134,6 +134,8 @@ func _play_walk_sound() -> void:
 func process_jump() -> void:
 	if not canMove:
 		return
+	if _is_dialogue_consuming_gameplay_input():
+		return
 
 	if is_on_floor():
 		enableJump();
@@ -150,7 +152,7 @@ func process_jump() -> void:
 			doubleJump();
 		else:
 			jumpBuffer = true;
-			get_tree().create_timer(jumpBufferTimer).timeout.connect(on_jump_buffer_timer_ends)
+			get_tree().create_timer(jumpBufferTimer, false).timeout.connect(on_jump_buffer_timer_ends)
 
 func process_dash() -> void:
 	if Input.is_action_just_pressed("dash") and canMove and canDash and dashReady and not isDashing:
@@ -189,13 +191,13 @@ func process_movement(delta) -> void:
 func jumpPotionUsed(potionType: PotionTypes.PotionType) -> void:
 	activateMegaJump()
 	var lifeTime = PotionsConfig.get_potion_properties(potionType).lifeTime
-	await get_tree().create_timer(lifeTime).timeout
+	await get_tree().create_timer(lifeTime, false).timeout
 	deactivateMegaJump()
 
 func speedPotionUsed(potionType: PotionTypes.PotionType) -> void:
 	_activate_improved_speed();
 	var lifeTime = PotionsConfig.get_potion_properties(potionType).lifeTime
-	await get_tree().create_timer(lifeTime).timeout
+	await get_tree().create_timer(lifeTime, false).timeout
 	_deactivate_improved_speed();
 
 func _activate_improved_speed() -> void:
@@ -224,7 +226,7 @@ func disable_can_move_due_drink_potion() -> void:
 	canMove = false;
 	canJump = false;
 
-	await get_tree().create_timer(DRINK_MOVE_LOCK_SECONDS).timeout
+	await get_tree().create_timer(DRINK_MOVE_LOCK_SECONDS, false).timeout
 	canMove = true;
 	canJump = true
 
@@ -232,20 +234,20 @@ func _activate_jump_speed_potion(potionType: PotionTypes.PotionType) -> void:
 	activateMegaJump()
 	_activate_improved_speed();
 	var lifeTime = PotionsConfig.get_potion_properties(potionType).lifeTime
-	await get_tree().create_timer(lifeTime).timeout
+	await get_tree().create_timer(lifeTime, false).timeout
 	deactivateMegaJump();
 	_deactivate_improved_speed();
 
 func _activate_jump_fire_potion(potionType: PotionTypes.PotionType) -> void:
 	activateDoubleJump();
 	var lifeTime = PotionsConfig.get_potion_properties(potionType).lifeTime
-	await get_tree().create_timer(lifeTime).timeout
+	await get_tree().create_timer(lifeTime, false).timeout
 	deactivateDoubleJump();
 
 func _activate_speed_fire_potion(potionType: PotionTypes.PotionType) -> void:
 	activateDash();
 	var lifeTime = PotionsConfig.get_potion_properties(potionType).lifeTime
-	await get_tree().create_timer(lifeTime).timeout
+	await get_tree().create_timer(lifeTime, false).timeout
 	deactivateDash();
 
 func on_jump_buffer_timer_ends() -> void:
@@ -270,11 +272,11 @@ func _start_dash() -> void:
 	dashReady = false;
 	_set_ability_damage_enabled(true);
 
-	await get_tree().create_timer(DASH_DURATION_SECONDS).timeout
+	await get_tree().create_timer(DASH_DURATION_SECONDS, false).timeout
 	isDashing = false;
 	_set_ability_damage_enabled(false);
 
-	await get_tree().create_timer(DASH_COOLDOWN_SECONDS).timeout
+	await get_tree().create_timer(DASH_COOLDOWN_SECONDS, false).timeout
 	dashReady = true;
 
 func _get_dash_direction() -> Vector3:
@@ -339,12 +341,13 @@ func dealDamage() -> void:
 	potmaSounds.getHitSoundAudioStream.play();
 	lifeChanged.emit(life)
 	animation_tree.set("parameters/HitOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE);
+	Input.start_joy_vibration(0, 0.5, 0.2, 0.4)
 	checkIfPlayerIsDead();
 
 func checkIfPlayerIsDead() -> void:
 	if life <= 0:
 		animation_tree.set("parameters/DieOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE);
-		await get_tree().create_timer(DEATH_RESTART_DELAY_SECONDS).timeout
+		await get_tree().create_timer(DEATH_RESTART_DELAY_SECONDS, false).timeout
 		_trigger_game_over()
 
 func _trigger_game_over() -> void:
@@ -361,3 +364,9 @@ func is_moving() -> bool:
 
 func get_to_checkpoint() -> void:
 	position = checkpoint
+
+func _is_dialogue_consuming_gameplay_input() -> bool:
+	var dialogue_controller := get_tree().get_first_node_in_group("dialogue_controller")
+	if dialogue_controller == null or not dialogue_controller.has_method("is_consuming_gameplay_input"):
+		return false
+	return dialogue_controller.call("is_consuming_gameplay_input")

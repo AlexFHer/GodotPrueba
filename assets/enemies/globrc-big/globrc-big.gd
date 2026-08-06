@@ -46,7 +46,7 @@ func disable_attack_collision() -> void:
 	attack_collider.disabled = true
 
 func on_die_animation_finished() -> void:
-	await get_tree().create_timer(DIE_DELAY_TIME).timeout
+	await get_tree().create_timer(DIE_DELAY_TIME, false).timeout
 	_hide_mesh();
 	if death_particles:
 		death_particles.emitting = true

@@ -11,7 +11,7 @@ func _ready() -> void:
 	_audioStream.play();
 
 func _enter_tree() -> void:
-	await get_tree().create_timer(projectileStats.lifeTime).timeout
+	await get_tree().create_timer(projectileStats.lifeTime, false).timeout
 	queue_free();
 
 func _process(delta: float) -> void:
