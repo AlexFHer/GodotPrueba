@@ -18,12 +18,17 @@ const DASH_SPEED := 35.0;
 const DASH_DURATION_SECONDS := 0.22;
 const DASH_COOLDOWN_SECONDS := 0.55;
 const ROTATION_SENSIVITY := 10;
-const NORMAL_SPEED := 15;
-const IMPROVED_SPEED := 20;
+const NORMAL_SPEED := 10.0;
+const IMPROVED_SPEED := 20.0;
 const ACCELERATION := 20.0;
 const ORIGINAL_GRAVITY := -30;
 const DRINK_MOVE_LOCK_SECONDS := 2.1
 const DEATH_RESTART_DELAY_SECONDS := 0.5
+const LOCOMOTION_BLEND_POSITION := &"parameters/Locomotion/WalkBlend/blend_position"
+const LOCOMOTION_IDLE_BLEND := 0.0
+const LOCOMOTION_WALK_BLEND := 1.0
+const LOCOMOTION_RUN_BLEND := 2.0
+const LOCOMOTION_BLEND_SPEED := 8.0
 
 # life system
 
@@ -32,10 +37,12 @@ signal lifeChanged(newLife: int);
 
 # Movement
 
-var speed := 10.0;
+var speed := NORMAL_SPEED;
 var isSprinting := false;
 var lastMovementDirection := Vector3.FORWARD
 var gravity := -25;
+var _movement_input_strength := 0.0
+var _locomotion_blend_position := LOCOMOTION_IDLE_BLEND
 
 var canMove := true;
 
@@ -104,6 +111,7 @@ func _physics_process(delta: float) -> void:
 	process_jump();
 	process_dash();
 	process_movement(delta);
+	_update_locomotion_animation(delta)
 	_process_moving_sound();
 	
 	print("Velocity: ", velocity)
@@ -161,12 +169,14 @@ func process_dash() -> void:
 
 func process_movement(delta) -> void:
 	if isDashing:
+		_movement_input_strength = 1.0
 		velocity = dashDirection * DASH_SPEED;
 		return
 
 	var rawInput := Input.get_vector("move-left", "move-right", "move-forward", "move-backwards");
 	if !canMove:
 		rawInput = Vector2.ZERO;
+	_movement_input_strength = rawInput.length()
 	var forward := _camera.global_basis.z
 	var right := _camera.global_basis.x
 	
@@ -177,16 +187,30 @@ func process_movement(delta) -> void:
 	var yVelocity := velocity.y;
 	velocity.y = 0;
 	# Cambia move_toward por interpolación directa para quitar el patinado
-	if moveDirection.length() > 0.1:
-		velocity = moveDirection * speed
+	if _movement_input_strength > 0.0:
+		velocity = moveDirection * speed * _movement_input_strength
 	else:
 		velocity = Vector3.ZERO
 	velocity.y = yVelocity + gravity * delta
 	# manages rig rotation based on input
-	if moveDirection.length() > 0.2:
+	if _movement_input_strength > 0.0:
 		lastMovementDirection = moveDirection
 	var targetAngle := Vector3.FORWARD.signed_angle_to(lastMovementDirection, Vector3.UP)
 	_rig.global_rotation.y = lerp_angle(_rig.rotation.y, targetAngle, ROTATION_SENSIVITY * delta)
+
+
+func _update_locomotion_animation(delta: float) -> void:
+	var target_blend_position := LOCOMOTION_RUN_BLEND
+	if not isDashing:
+		var maximum_blend_position := LOCOMOTION_RUN_BLEND if isSprinting else LOCOMOTION_WALK_BLEND
+		target_blend_position = _movement_input_strength * maximum_blend_position
+
+	_locomotion_blend_position = move_toward(
+		_locomotion_blend_position,
+		target_blend_position,
+		LOCOMOTION_BLEND_SPEED * delta
+	)
+	animation_tree.set(LOCOMOTION_BLEND_POSITION, _locomotion_blend_position)
 
 
 func jumpPotionUsed(potionType: PotionTypes.PotionType) -> void:
@@ -282,7 +306,7 @@ func _start_dash() -> void:
 
 func _get_dash_direction() -> Vector3:
 	var rawInput := Input.get_vector("move-left", "move-right", "move-forward", "move-backwards");
-	if rawInput.length() > 0.1:
+	if not rawInput.is_zero_approx():
 		var forward := _camera.global_basis.z
 		var right := _camera.global_basis.x
 		var inputDirection := forward * rawInput.y + right * rawInput.x

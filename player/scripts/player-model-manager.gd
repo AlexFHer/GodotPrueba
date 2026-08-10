@@ -1,6 +1,6 @@
 extends Node3D
 
-var bodyBaseColor: CompressedTexture2D = load("res://player/materials/PotmaGradient_Base_color.png");
+var bodyBaseColor: CompressedTexture2D = load("res://player/materials/Potma2_PotmaMat_Base_color.png");
 var potionDurationShader: Shader = preload("res://player/materials/shaders/potion_duration_body.gdshader");
 
 var potionTypeToColorLookUp: Dictionary[PotionTypes.PotionType, Color] = {
