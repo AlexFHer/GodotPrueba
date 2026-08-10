@@ -43,6 +43,8 @@ a new decision, mechanic, constraint, naming convention, or open question appear
 - Combined potions are consumed immediately: both ingredient potions are removed and the combined ability is activated directly.
 - Active potion state is tracked by `ActivePotionEffectService`.
 - Only one potion effect should be active at a time.
+- Drink animation mapping: left uses `Potma_DrinkLeft`, right uses
+  `Potma_DrinkRight`, and a successful combination uses `Potma_DrinkBoth`.
 
 Important files:
 - `player/scripts/potions-manager.gd`
@@ -202,3 +204,5 @@ Important files:
   `i18n/translations.csv`.
 - 2026-07-25: Added optional non-positional audio per dialogue line; Pocima uses
   a temporary shared PCM blip for both lines.
+- 2026-08-10: Mapped left, right, and combined potion drinking to their matching
+  player animations.

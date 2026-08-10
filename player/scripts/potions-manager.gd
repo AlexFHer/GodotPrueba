@@ -1,11 +1,18 @@
 extends Node
 
 @onready var _animation_tree: AnimationTree = %PlayerAnimationTree
+@onready var _drink_animation_node := (
+	(_animation_tree.tree_root as AnimationNodeBlendTree).get_node(&"drink")
+	as AnimationNodeAnimation
+)
 @onready var potmaSounds: PotmaSounds = %PotmaSounds
 @onready var _active_potion_service = get_node("/root/ActivePotionEffectService")
 @export var _potion_particles_system: PotionsParticleSystem;
 
 const MERGE_DECISION_WINDOW_SECONDS := 0.25
+const DRINK_LEFT_ANIMATION := &"Potma_DrinkLeft"
+const DRINK_RIGHT_ANIMATION := &"Potma_DrinkRight"
+const DRINK_BOTH_ANIMATION := &"Potma_DrinkBoth"
 
 var _pending_left_drink := false
 var _pending_right_drink := false
@@ -87,7 +94,7 @@ func drinkLeftPotion() -> void:
 	if _active_potion_service.has_active_potion():
 		return
 	PlayerPotions.useLeftPotion()
-	_animation_tree.set("parameters/DrinkOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	play_drink_animation(DRINK_LEFT_ANIMATION)
 
 func drinkRightPotion() -> void:
 	if PlayerPotions.selectedRightPotionType == PotionTypes.PotionType.None:
@@ -95,7 +102,7 @@ func drinkRightPotion() -> void:
 	if _active_potion_service.has_active_potion():
 		return
 	PlayerPotions.useRightPotion()
-	_animation_tree.set("parameters/DrinkOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	play_drink_animation(DRINK_RIGHT_ANIMATION)
 
 func tryMergePotions() -> bool:
 	if _active_potion_service.has_active_potion():
@@ -116,14 +123,15 @@ func tryMergePotions() -> bool:
 	if not PlayerPotions.useMergedPotion(mergedType, [leftType, rightType]):
 		return false
 
-	play_drink_animation()
+	play_drink_animation(DRINK_BOTH_ANIMATION)
 	return true
 
 func _on_drink_animation_finished() -> void:
 	potmaSounds.drinkSoundAudioStream.play()
 	_potion_particles_system._play_particles(_active_potion_service.current_active_potion)
 
-func play_drink_animation() -> void:
+func play_drink_animation(animation_name: StringName) -> void:
+	_drink_animation_node.animation = animation_name
 	_animation_tree.set("parameters/DrinkOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 func _is_dialogue_consuming_gameplay_input() -> bool:
