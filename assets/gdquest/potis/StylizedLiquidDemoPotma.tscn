@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://icygjgbnd82j"]
+
+[ext_resource type="Material" uid="uid://bmh8b3mi0y00v" path="res://assets/gdquest/potis/Glass_Poti.material" id="2_8agym"]
+[ext_resource type="PackedScene" uid="uid://bpux0fe0guwiw" path="res://assets/gdquest/potis/PotiBase.glb" id="7_lbk2p"]
+[ext_resource type="Shader" uid="uid://b4fb1onaapql5" path="res://assets/gdquest/potis/stylized_liquid_Potma.gdshader" id="9_2grqd"]
+[ext_resource type="Script" uid="uid://bwukxnfmnemyv" path="res://assets/gdquest/potis/LiquidWobble_Potma.gd" id="10_j7p0m"]
+
+[sub_resource type="Gradient" id="Gradient_olpp1"]
+colors = PackedColorArray(0.3718171, 5.6252816e-07, 9.62615e-08, 1, 0.77019453, 0, 0.23056975, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2t058"]
+gradient = SubResource("Gradient_olpp1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6boxp"]
+render_priority = 0
+shader = ExtResource("9_2grqd")
+shader_parameter/liquid_height = 0.134
+shader_parameter/liquid_surface_color = Color(0.9871481, 0.39053586, 0.5374938, 1)
+shader_parameter/liquid_rim_gradient = SubResource("GradientTexture1D_2t058")
+shader_parameter/rim_emission_intensity = 0.81600003876
+shader_parameter/rim_exponent = 2.1130000528675
+shader_parameter/emission_intensity = 0.886000042085
+shader_parameter/liquid_surface_gradient_size = 0.1750000083125
+shader_parameter/wobble = Vector2(-0.00047163182, 6.142918e-05)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_37now"]
+
+[node name="StylizedLiquidDemo" type="CanvasLayer" unique_id=1361487515]
+
+[node name="PotiFireBackPack" parent="." unique_id=1834298408 instance=ExtResource("7_lbk2p")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0.28510535, 0, -0.08831036)
+
+[node name="BottlePotion" parent="PotiFireBackPack" index="0" unique_id=958514732]
+material_override = ExtResource("2_8agym")
+
+[node name="BottleLiquid" parent="PotiFireBackPack/BottlePotion" index="0" unique_id=1577525362]
+material_override = SubResource("ShaderMaterial_6boxp")
+script = ExtResource("10_j7p0m")
+
+[node name="BottleCap" parent="PotiFireBackPack" index="1" unique_id=2080349330]
+surface_material_override/0 = SubResource("ORMMaterial3D_37now")
+
+[node name="PotiJumpBackPack" parent="." unique_id=664353126 instance=ExtResource("7_lbk2p")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 1.5994495, 0, -0.08831036)
+
+[node name="BottlePotion" parent="PotiJumpBackPack" index="0" unique_id=958514732]
+material_override = ExtResource("2_8agym")
+
+[node name="BottleLiquid" parent="PotiJumpBackPack/BottlePotion" index="0" unique_id=1577525362]
+material_override = SubResource("ShaderMaterial_6boxp")
+script = ExtResource("10_j7p0m")
+
+[node name="BottleCap" parent="PotiJumpBackPack" index="1" unique_id=2080349330]
+surface_material_override/0 = SubResource("ORMMaterial3D_37now")
+
+[node name="PotiRunBackPack" parent="." unique_id=1892660544 instance=ExtResource("7_lbk2p")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -0.9795562, 0, -0.08831036)
+
+[node name="BottlePotion" parent="PotiRunBackPack" index="0" unique_id=958514732]
+material_override = ExtResource("2_8agym")
+
+[node name="BottleLiquid" parent="PotiRunBackPack/BottlePotion" index="0" unique_id=1577525362]
+material_override = SubResource("ShaderMaterial_6boxp")
+script = ExtResource("10_j7p0m")
+
+[node name="BottleCap" parent="PotiRunBackPack" index="1" unique_id=2080349330]
+surface_material_override/0 = SubResource("ORMMaterial3D_37now")
+
+[editable path="PotiFireBackPack"]
+[editable path="PotiJumpBackPack"]
+[editable path="PotiRunBackPack"]

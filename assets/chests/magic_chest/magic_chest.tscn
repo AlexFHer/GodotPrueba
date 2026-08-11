@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://byu0b6177d1t6"]
+[gd_scene format=3 uid="uid://byu0b6177d1t6"]
 
 [ext_resource type="Script" uid="uid://cxyexulxavcbm" path="res://assets/chests/magic_chest/magic_chest.gd" id="1_gdjlj"]
 [ext_resource type="PackedScene" uid="uid://csfa612aq70i3" path="res://assets/chests/magic_chest/model/Magic_Chest.glb" id="2_5yrk7"]
@@ -34,40 +34,39 @@ radius = 3.52051
 [sub_resource type="BoxShape3D" id="BoxShape3D_j8qs2"]
 size = Vector3(7.67911, 4.38116, 6.76508)
 
-[node name="MagicChest" type="StaticBody3D"]
+[node name="MagicChest" type="StaticBody3D" unique_id=1047929292]
 script = ExtResource("1_gdjlj")
 
-[node name="MagicChestModel" type="Node3D" parent="."]
+[node name="MagicChestModel" type="Node3D" parent="." unique_id=821845463]
 
-[node name="Magic_Chest" parent="MagicChestModel" instance=ExtResource("2_5yrk7")]
+[node name="Magic_Chest" parent="MagicChestModel" unique_id=1801691154 instance=ExtResource("2_5yrk7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.965674, 0)
 
-[node name="Skeleton3D" parent="MagicChestModel/Magic_Chest/Armature" index="0"]
-bones/0/position = Vector3(0, 3.2919, 0)
-bones/1/scale = Vector3(0, 0, 0)
+[node name="ForceField" parent="MagicChestModel/Magic_Chest" index="1"]
+"blend_shapes/Key 1" = 0.46165758
 
-[node name="MagicChestAnimationTree" type="AnimationTree" parent="MagicChestModel"]
+[node name="MagicChestAnimationTree" type="AnimationTree" parent="MagicChestModel" unique_id=1121786845]
 root_node = NodePath("../Magic_Chest")
 tree_root = SubResource("AnimationNodeStateMachine_j8qs2")
 advance_expression_base_node = NodePath("../..")
 anim_player = NodePath("../Magic_Chest/AnimationPlayer")
 
-[node name="MagicChestCollider" type="CollisionShape3D" parent="."]
+[node name="MagicChestCollider" type="CollisionShape3D" parent="." unique_id=1149222813]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0495412, 1.71323, -0.035553)
 shape = SubResource("BoxShape3D_qvrp6")
 
-[node name="ForceFieldCollisionShape" type="CollisionShape3D" parent="."]
+[node name="ForceFieldCollisionShape" type="CollisionShape3D" parent="." unique_id=587995877]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35052, 0)
 shape = SubResource("CylinderShape3D_gdjlj")
 
-[node name="PickupArea" type="Area3D" parent="."]
+[node name="PickupArea" type="Area3D" parent="." unique_id=1970693580]
 
-[node name="PickupCollisionShape" type="CollisionShape3D" parent="PickupArea"]
+[node name="PickupCollisionShape" type="CollisionShape3D" parent="PickupArea" unique_id=785926110]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.268082, 2.24966, -0.0384216)
 shape = SubResource("BoxShape3D_j8qs2")
 debug_color = Color(0.982068, 0, 0.365495, 0.42)
 
-[node name="OpenAudioStreamPlayer" type="AudioStreamPlayer3D" parent="."]
+[node name="OpenAudioStreamPlayer" type="AudioStreamPlayer3D" parent="." unique_id=187994916]
 unique_name_in_owner = true
 stream = ExtResource("3_gdjlj")
 

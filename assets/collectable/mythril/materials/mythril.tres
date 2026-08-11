@@ -14,3 +14,6 @@ shader_parameter/shine_width = 3.0
 [resource]
 next_pass = SubResource("ShaderMaterial_b035a")
 albedo_texture = ExtResource("1_6wq1n")
+rim_enabled = true
+rim = 0.5
+rim_tint = 0.3

@@ -6,16 +6,23 @@
 [ext_resource type="Script" uid="uid://c42kqovjlaehm" path="res://player/scripts/playerCamera.gd" id="3_pe30o"]
 [ext_resource type="PackedScene" uid="uid://dknaa78iwawii" path="res://player/rig/old/Potma.glb" id="3_rgyib"]
 [ext_resource type="PackedScene" uid="uid://b6jo14614s5l3" path="res://player/rig/Potma2.0.glb" id="4_c35mf"]
+[ext_resource type="Shader" uid="uid://dbj14jieea1if" path="res://assets/gdquest/fire/stylized_fire_Potma.gdshader" id="5_bjvpn"]
 [ext_resource type="Material" uid="uid://drjpxm3s112ob" path="res://shared/shaders/ps1/post_process/ps1_shader_post_process_material.tres" id="5_e7oew"]
 [ext_resource type="Script" uid="uid://csrohhn61kmsp" path="res://player/scripts/potions-UI-manager.gd" id="5_hdq68"]
+[ext_resource type="Texture2D" uid="uid://8wcxdw1ubotp" path="res://assets/gdquest/fire/StylizedFirePotma/HoleNoise.png" id="6_s7qer"]
 [ext_resource type="Script" uid="uid://ddpfgdsydcw0q" path="res://player/scripts/potions-particles-system.gd" id="6_tqiix"]
+[ext_resource type="Texture2D" uid="uid://dnf4dk8ref773" path="res://assets/gdquest/fire/StylizedFirePotma/FireMask.png" id="7_g4c7l"]
+[ext_resource type="PackedScene" uid="uid://bpux0fe0guwiw" path="res://assets/gdquest/potis/PotiBase.glb" id="8_7pqkx"]
 [ext_resource type="AudioStream" uid="uid://dil0kvwdclvji" path="res://player/sfx/walk.ogg" id="9_32hag"]
 [ext_resource type="Script" uid="uid://c7lupi603g5fs" path="res://player/scripts/potma-sounds.gd" id="9_hg6s5"]
+[ext_resource type="Material" uid="uid://bmh8b3mi0y00v" path="res://assets/gdquest/potis/Glass_Poti.material" id="9_uw77l"]
 [ext_resource type="Script" uid="uid://cradpudh6rasp" path="res://player/scripts/main-player-combat-system.gd" id="10_2ieo8"]
 [ext_resource type="PackedScene" uid="uid://bcugk5tgimuv4" path="res://assets/in-game-collectables-ui/in-game-collectables-ui.tscn" id="10_8t03j"]
+[ext_resource type="Shader" uid="uid://b4fb1onaapql5" path="res://assets/gdquest/potis/stylized_liquid_Potma.gdshader" id="10_rptt4"]
 [ext_resource type="AudioStream" uid="uid://dqjjoyb2nkclu" path="res://player/sfx/FastWalk.ogg" id="10_tqiix"]
 [ext_resource type="AudioStream" uid="uid://dlpvxiqe8gci7" path="res://player/sfx/Hit.ogg" id="10_yllr7"]
 [ext_resource type="AudioStream" uid="uid://dcbopcwp4jk72" path="res://player/sfx/Jump.ogg" id="11_e7oew"]
+[ext_resource type="Script" uid="uid://bwukxnfmnemyv" path="res://assets/gdquest/potis/LiquidWobble_Potma.gd" id="11_r7pn3"]
 [ext_resource type="AudioStream" uid="uid://b3o11owhrsjrw" path="res://player/sfx/SuperJump.ogg" id="12_c35mf"]
 [ext_resource type="AudioStream" uid="uid://cuaihw2sw2ono" path="res://player/sfx/StaffHit.ogg" id="15_32hag"]
 [ext_resource type="AudioStream" uid="uid://dmjjxtn60qsik" path="res://player/sfx/DrinkPotion.ogg" id="15_bjvpn"]
@@ -30,6 +37,67 @@ height = 1.55
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hg6s5"]
 size = Vector3(0.92488, 0.882263, 0.869873)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bjvpn"]
+render_priority = 1
+shader = ExtResource("5_bjvpn")
+shader_parameter/noise_texture = ExtResource("6_s7qer")
+shader_parameter/texture_mask = ExtResource("7_g4c7l")
+shader_parameter/emission_intensity = 1.0
+shader_parameter/time_scale = 1.0
+shader_parameter/texture_scale = Vector2(2, 1)
+shader_parameter/edge_softness = 0.2
+
+[sub_resource type="Gradient" id="2"]
+offsets = PackedFloat32Array(0, 0.57438016, 1)
+colors = PackedColorArray(0.98039216, 0.24705882, 0, 1, 0.82, 0.17219998, 0.17219998, 0.50980395, 0.2166667, 0, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_52anq"]
+gradient = SubResource("2")
+
+[sub_resource type="Curve" id="4"]
+_data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8j2kr"]
+width = 128
+curve = SubResource("4")
+
+[sub_resource type="ParticleProcessMaterial" id="6"]
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 3.9999976
+linear_accel_max = 3.9999976
+damping_min = 3.2680001
+damping_max = 3.2680001
+scale_curve = SubResource("CurveTexture_8j2kr")
+color_ramp = SubResource("GradientTexture2D_52anq")
+
+[sub_resource type="QuadMesh" id="QuadMesh_s7qer"]
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_b8hi5"]
+colors = PackedColorArray(0.3718171, 5.6252816e-07, 9.62615e-08, 1, 0.77019453, 0, 0.23056975, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_iwup1"]
+gradient = SubResource("Gradient_b8hi5")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2uvqg"]
+render_priority = 0
+shader = ExtResource("10_rptt4")
+shader_parameter/liquid_height = 0.014
+shader_parameter/liquid_surface_color = Color(0.99, 0.14849998, 0.35887495, 1)
+shader_parameter/liquid_rim_gradient = SubResource("GradientTexture1D_iwup1")
+shader_parameter/rim_emission_intensity = 0.2
+shader_parameter/rim_exponent = 3.0
+shader_parameter/emission_intensity = 0.2990000142025
+shader_parameter/liquid_surface_gradient_size = 0.1750000083125
+shader_parameter/wobble = Vector2(-0.0069382614, -0.016844243)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_1s1yo"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_32hag"]
 animation = &"Potma_FireAttack"
@@ -155,7 +223,7 @@ states/Start/position = Vector2(30, 51)
 states/Walk/node = SubResource("AnimationNodeAnimation_2ieo8")
 states/Walk/position = Vector2(334, 166)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ebec5"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_kb6p2"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_wodsf"), "Walk", "Run", SubResource("AnimationNodeStateMachineTransition_32hag"), "Run", "Walk", SubResource("AnimationNodeStateMachineTransition_e7oew"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_c35mf"), "Walk", "Fall", SubResource("AnimationNodeStateMachineTransition_hg6s5"), "Fall", "Walk", SubResource("AnimationNodeStateMachineTransition_8t03j"), "Fall", "Idle", SubResource("AnimationNodeStateMachineTransition_2ieo8"), "Run", "Fall", SubResource("AnimationNodeStateMachineTransition_tqiix"), "Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_yllr7"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_65viv"), "Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_x7c3f"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_bjvpn"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_s7qer"), "Jump", "End", SubResource("AnimationNodeStateMachineTransition_g4c7l"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_knn7v")]
-graph_offset = Vector2(188, -205)
+graph_offset = Vector2(188, -110.70713)
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_hg6s5"]
 
@@ -165,7 +233,7 @@ graph_offset = Vector2(188, -205)
 animation = &"Potma_DrinkLeft"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_2ieo8"]
-graph_offset = Vector2(-400.99536, -61.28208)
+graph_offset = Vector2(-629.65784, 3.1752014)
 nodes/output/position = Vector2(1700, -80)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_32hag")
 nodes/Animation/position = Vector2(1180, 300)
@@ -242,11 +310,11 @@ visible = false
 [node name="Potma2_0" parent="Rig/Armature" unique_id=1669524714 instance=ExtResource("4_c35mf")]
 transform = Transform3D(1, 0, 1.748456e-07, 0, 1, 0, -1.748456e-07, 0, 1, 0, 0, 0)
 
-[node name="Skeleton3D" parent="Rig/Armature/Potma2_0/ArmaturePotma" parent_id_path=PackedInt32Array(1669524714, 2133438426) index="0" unique_id=1600066458]
+[node name="Skeleton3D" parent="Rig/Armature/Potma2_0/ArmaturePotma" parent_id_path=PackedInt32Array(1669524714, 375372987) index="0" unique_id=861349211]
 bones/0/position = Vector3(0, 0.30720976, 0)
 bones/3/rotation = Quaternion(0.6954081, 0.13132246, -0.6831123, 0.18033203)
 bones/4/rotation = Quaternion(0.015565306, -0.0023143326, -0.024552187, 0.99957466)
-bones/5/position = Vector3(0, -1.1368498, -2.6253004)
+bones/5/position = Vector3(0, -1.1389674, -2.6275883)
 bones/6/position = Vector3(1.6094748, 1.0249076, 0.20911448)
 bones/6/rotation = Quaternion(0.019852312, -0.0021463034, 0.04982524, 0.99855834)
 bones/7/position = Vector3(-1.6094748, 1.0249076, 0.20911448)
@@ -254,26 +322,26 @@ bones/7/rotation = Quaternion(0.019852312, 0.0021463034, -0.04982524, 0.99855834
 bones/9/rotation = Quaternion(0.69336545, -0.13947599, 0.68252623, 0.18425201)
 bones/10/rotation = Quaternion(0.029575616, 0.0019681905, 0.02446349, 0.9992612)
 bones/12/position = Vector3(-0.8914467, -0.64130926, 2.1723444)
-bones/12/rotation = Quaternion(0.9011581, -0.15176296, -0.011654181, 0.40588957)
+bones/12/rotation = Quaternion(0.9027183, -0.15171686, -0.012240002, 0.40240738)
 bones/13/position = Vector3(-1.6438879, -0.39953628, 0.8984441)
-bones/13/rotation = Quaternion(-4.4134356e-07, 5.178643e-07, 0.91346884, 0.40690872)
+bones/13/rotation = Quaternion(-4.412268e-07, 5.1910274e-07, 0.91428, 0.40508282)
 bones/14/position = Vector3(8.718742e-08, -0.55355155, -0.36569032)
-bones/14/rotation = Quaternion(0.6252948, 0.33016154, -0.62529445, -0.33016163)
+bones/14/rotation = Quaternion(0.6260973, 0.32863718, -0.62609696, -0.32863727)
 bones/15/position = Vector3(0.8914458, -0.6413094, 2.172345)
-bones/15/rotation = Quaternion(0.9050435, 0.15164307, 0.0131225595, 0.39715034)
+bones/15/rotation = Quaternion(0.9068819, 0.15158038, 0.013828081, 0.39293453)
 bones/16/position = Vector3(1.6438876, -0.3995361, 0.89844495)
-bones/16/rotation = Quaternion(2.5062434e-07, 5.946658e-07, 0.92496055, -0.3800633)
-bones/19/rotation = Quaternion(-0.014720331, 0, 0, 0.9998917)
+bones/16/rotation = Quaternion(2.5163857e-07, 5.907876e-07, 0.927502, -0.3738184)
+bones/19/rotation = Quaternion(-0.015433747, 0, 0, 0.99988097)
 bones/20/rotation = Quaternion(-9.191352e-08, -7.3583685e-08, 0.7835034, -0.6213874)
 bones/21/rotation = Quaternion(-3.1912897e-08, 1.7353311e-07, 0.07769496, 0.99697727)
 bones/22/position = Vector3(5.187093e-09, 2.0976605, -0.40249485)
 bones/22/rotation = Quaternion(7.248583e-09, -3.7317884e-07, 0.019420223, 0.9998114)
 bones/23/rotation = Quaternion(1.1838807e-07, 1.16212775e-07, 0.18845753, 0.98208135)
 bones/24/rotation = Quaternion(1.4923643e-07, -8.533039e-08, 0.24887267, 0.96853626)
-bones/25/rotation = Quaternion(0.0011244625, -0.0011748509, 0.23919737, 0.9709697)
+bones/25/rotation = Quaternion(0.00087145966, -0.00091043854, 0.24002087, 0.97076696)
 bones/25/scale = Vector3(0.9999999, 0.99999994, 0.9999999)
 bones/26/rotation = Quaternion(-0.01564731, 0.0016142036, 0.26119497, 0.96515787)
-bones/27/rotation = Quaternion(-0.016545909, 0.70280474, 0.0399837, 0.71006554)
+bones/27/rotation = Quaternion(-0.019948348, 0.702463, 0.042670146, 0.7101599)
 bones/28/rotation = Quaternion(0.7071068, -1.4542509e-09, -0.7071067, 1.3878227e-08)
 bones/29/position = Vector3(-0.012723544, -0.32743496, 1.8661076)
 bones/29/rotation = Quaternion(0.73942894, -0.014362178, -0.013071313, 0.6729545)
@@ -285,35 +353,97 @@ bones/32/position = Vector3(-1.4548619, -0.03225057, 0.5702269)
 bones/32/rotation = Quaternion(0.74678254, -0.65709937, -0.06367316, -0.08051122)
 bones/33/rotation = Quaternion(9.5665555e-08, -7.087754e-08, 0.802876, 0.59614605)
 bones/34/rotation = Quaternion(-3.2069863e-08, -1.7251715e-07, -0.077694945, 0.99697727)
-bones/36/position = Vector3(4.2489243, 3.7325327, -3.091587)
-bones/36/rotation = Quaternion(-0.12262643, -0.107054874, -0.5967382, 0.7857516)
-bones/37/position = Vector3(-0.21575728, 2.1412172, -0.47871208)
-bones/37/rotation = Quaternion(-0.099023, 0.054750536, -0.07748635, 0.9905517)
-bones/38/rotation = Quaternion(0.02609388, 0.062974855, -0.28461912, 0.95621413)
-bones/39/position = Vector3(-0.06580008, 2.1389887, -0.001260159)
-bones/39/rotation = Quaternion(0.0024756328, 0.044926696, -0.15508214, 0.98687637)
-bones/40/rotation = Quaternion(0.00016224355, 0.015365787, -0.25657246, 0.9664028)
-bones/41/position = Vector3(0.17449972, 1.9542339, 0.44757655)
-bones/41/rotation = Quaternion(0.14221705, 0.016994601, -0.1105662, 0.9834941)
-bones/42/rotation = Quaternion(-0.061227296, -0.040238548, -0.32662123, 0.94231135)
-bones/43/rotation = Quaternion(0.38839749, 0.10892651, -0.3673973, 0.83803445)
-bones/44/rotation = Quaternion(-0.12477616, -0.23917626, -0.049340285, 0.9616607)
-bones/45/position = Vector3(-3.5873358, 3.8682008, -3.042025)
-bones/45/rotation = Quaternion(-0.15713099, 0.1304057, 0.6351802, 0.7448828)
-bones/46/position = Vector3(0.21575658, 2.141218, -0.4787123)
-bones/46/rotation = Quaternion(-0.099023, -0.05475054, 0.07748635, 0.9905517)
-bones/47/rotation = Quaternion(0.02609389, -0.062974855, 0.2846191, 0.95621413)
-bones/48/position = Vector3(0.06579968, 2.1389887, -0.0012600067)
-bones/48/rotation = Quaternion(0.0024756247, -0.04492671, 0.15508214, 0.98687637)
-bones/49/rotation = Quaternion(0.00016223594, -0.015365779, 0.25657248, 0.9664028)
-bones/50/position = Vector3(-0.17449991, 1.9542346, 0.4475769)
-bones/50/rotation = Quaternion(0.14221705, -0.016994622, 0.1105662, 0.9834941)
-bones/51/rotation = Quaternion(-0.061227296, 0.04023856, 0.32662126, 0.94231135)
-bones/51/scale = Vector3(1.0000001, 0.9999999, 1)
-bones/52/rotation = Quaternion(0.38839749, -0.10892653, 0.36739734, 0.83803445)
-bones/53/rotation = Quaternion(-0.12477618, 0.23917624, 0.049340285, 0.9616607)
-bones/54/position = Vector3(-0.7176522, 1.948987, -4.461936)
+bones/36/position = Vector3(4.248925, 3.5892236, -0.6342883)
+bones/36/rotation = Quaternion(0.063823156, -0.59827363, -0.46350983, 0.6505029)
+bones/37/position = Vector3(-0.21575715, 2.1412177, -0.47871307)
+bones/37/rotation = Quaternion(-0.099023, 0.05475052, -0.07748634, 0.9905517)
+bones/38/rotation = Quaternion(0.02609386, 0.06297485, -0.2846191, 0.95621413)
+bones/39/position = Vector3(-0.06580062, 2.138989, -0.001259887)
+bones/39/rotation = Quaternion(0.0024756172, 0.044926688, -0.15508214, 0.98687637)
+bones/40/rotation = Quaternion(0.00016223463, 0.015365787, -0.25657248, 0.9664028)
+bones/41/position = Vector3(0.1745002, 1.9542346, 0.44757706)
+bones/41/rotation = Quaternion(0.14221707, 0.016994588, -0.1105662, 0.9834941)
+bones/42/rotation = Quaternion(-0.06122728, -0.04023855, -0.32662126, 0.94231135)
+bones/43/rotation = Quaternion(0.38839749, 0.1089265, -0.36739734, 0.83803445)
+bones/44/rotation = Quaternion(-0.12477617, -0.23917624, -0.049340293, 0.9616607)
+bones/45/position = Vector3(-3.587336, 3.8486683, -0.381397)
+bones/45/rotation = Quaternion(0.12385121, 0.6505767, 0.4857925, 0.5704528)
+bones/46/position = Vector3(0.21575743, 2.1412182, -0.47871247)
+bones/46/rotation = Quaternion(-0.09902299, -0.05475053, 0.07748634, 0.9905517)
+bones/47/rotation = Quaternion(0.026093865, -0.06297487, 0.2846191, 0.95621413)
+bones/48/position = Vector3(0.06579935, 2.1389887, -0.0012596444)
+bones/48/rotation = Quaternion(0.0024756226, -0.044926696, 0.15508218, 0.98687637)
+bones/49/rotation = Quaternion(0.000162242, -0.01536578, 0.25657248, 0.9664028)
+bones/50/position = Vector3(-0.1745002, 1.9542351, 0.44757712)
+bones/50/rotation = Quaternion(0.14221707, -0.016994588, 0.110566184, 0.9834941)
+bones/51/rotation = Quaternion(-0.061227277, 0.040238556, 0.32662126, 0.94231135)
+bones/51/scale = Vector3(1.0000001, 0.99999994, 1)
+bones/52/rotation = Quaternion(0.3883975, -0.10892653, 0.3673973, 0.8380344)
+bones/53/rotation = Quaternion(-0.12477617, 0.23917624, 0.049340293, 0.9616607)
+bones/54/position = Vector3(-0.71765214, 1.9368507, -4.461936)
 bones/54/rotation = Quaternion(-0.016824426, 0.008009206, -0.42974794, 0.90275663)
+
+[node name="PotionlaceHolderL" parent="Rig/Armature/Potma2_0/ArmaturePotma/Skeleton3D" index="0" unique_id=2064800397]
+visible = false
+
+[node name="PotionPlaceHolderR" parent="Rig/Armature/Potma2_0/ArmaturePotma/Skeleton3D" index="1" unique_id=1374326938]
+visible = false
+
+[node name="BoneAttachment3D_Fire" type="BoneAttachment3D" parent="Rig/Armature/Potma2_0/ArmaturePotma/Skeleton3D" index="4" unique_id=1791868414]
+transform = Transform3D(0.43692574, 0.89949155, 0.003233441, -0.89909786, 0.4366217, 0.03136455, 0.02680033, -0.01661114, 0.99950236, -6.1355133, 8.241472, -3.4105914)
+bone_name = "LampFire"
+bone_idx = 28
+
+[node name="FirePotma" type="GPUParticles3D" parent="Rig/Armature/Potma2_0/ArmaturePotma/Skeleton3D/BoneAttachment3D_Fire" unique_id=1183974159]
+transform = Transform3D(4.799805, -0.83016837, -0.17432822, 1.3798946, 2.88271, -0.089468144, 0.24033797, 0.028331261, 3.9951968, 0.029838562, 0.3048352, -0.002963245)
+material_override = SubResource("ShaderMaterial_bjvpn")
+cast_shadow = 0
+amount = 50
+lifetime = 0.7
+randomness = 0.74
+local_coords = true
+process_material = SubResource("6")
+draw_pass_1 = SubResource("QuadMesh_s7qer")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Rig/Armature/Potma2_0/ArmaturePotma/Skeleton3D/BoneAttachment3D_Fire/FirePotma" unique_id=668380276]
+light_color = Color(1, 0.75686276, 0.56078434, 1)
+light_energy = 0.776
+
+[node name="BoneAttachment3D3_Potion_R" type="BoneAttachment3D" parent="Rig/Armature/Potma2_0/ArmaturePotma/Skeleton3D" index="5" unique_id=397179609]
+transform = Transform3D(0.9950257, 0.09959204, 0.0023081256, -0.095817894, 0.95046526, 0.295693, 0.027254874, -0.2944433, 0.95528, -1.6094748, 2.1659532, -5.6410203)
+bone_name = "Potion.R"
+bone_idx = 7
+
+[node name="PotiBase" parent="Rig/Armature/Potma2_0/ArmaturePotma/Skeleton3D/BoneAttachment3D3_Potion_R" unique_id=664353126 instance=ExtResource("8_7pqkx")]
+transform = Transform3D(5.998299, 0.14023007, -0.02723068, -0.14272553, 5.930829, -0.8971531, 0.0059487373, 0.89754677, 5.9324837, -0.3285092, -0.10706353, -0.22156262)
+
+[node name="BottlePotion" parent="Rig/Armature/Potma2_0/ArmaturePotma/Skeleton3D/BoneAttachment3D3_Potion_R/PotiBase" index="0" unique_id=958514732]
+material_override = ExtResource("9_uw77l")
+
+[node name="BottleLiquid" parent="Rig/Armature/Potma2_0/ArmaturePotma/Skeleton3D/BoneAttachment3D3_Potion_R/PotiBase/BottlePotion" index="0" unique_id=1577525362]
+material_override = SubResource("ShaderMaterial_2uvqg")
+script = ExtResource("11_r7pn3")
+
+[node name="BottleCap" parent="Rig/Armature/Potma2_0/ArmaturePotma/Skeleton3D/BoneAttachment3D3_Potion_R/PotiBase" index="1" unique_id=2080349330]
+surface_material_override/0 = SubResource("ORMMaterial3D_1s1yo")
+
+[node name="BoneAttachment3D2_Potion_L" type="BoneAttachment3D" parent="Rig/Armature/Potma2_0/ArmaturePotma/Skeleton3D" index="6" unique_id=1120441080]
+transform = Transform3D(0.9950257, -0.09959204, -0.0023081256, 0.095817894, 0.95046526, 0.295693, -0.027254874, -0.2944433, 0.95528, 1.6094748, 2.1659532, -5.6410203)
+bone_name = "Potion.L"
+bone_idx = 6
+
+[node name="PotiBase" parent="Rig/Armature/Potma2_0/ArmaturePotma/Skeleton3D/BoneAttachment3D2_Potion_L" unique_id=234654432 instance=ExtResource("8_7pqkx")]
+transform = Transform3D(5.9632573, -0.63590807, -0.18754904, 0.611136, 5.930373, -0.6761477, 0.25703403, 0.65290415, 5.958829, 0.33745706, -0.083263636, -0.1453023)
+
+[node name="BottlePotion" parent="Rig/Armature/Potma2_0/ArmaturePotma/Skeleton3D/BoneAttachment3D2_Potion_L/PotiBase" index="0" unique_id=958514732]
+material_override = ExtResource("9_uw77l")
+
+[node name="BottleLiquid" parent="Rig/Armature/Potma2_0/ArmaturePotma/Skeleton3D/BoneAttachment3D2_Potion_L/PotiBase/BottlePotion" index="0" unique_id=1577525362]
+material_override = SubResource("ShaderMaterial_2uvqg")
+script = ExtResource("11_r7pn3")
+
+[node name="BottleCap" parent="Rig/Armature/Potma2_0/ArmaturePotma/Skeleton3D/BoneAttachment3D2_Potion_L/PotiBase" index="1" unique_id=2080349330]
+surface_material_override/0 = SubResource("ORMMaterial3D_1s1yo")
 
 [node name="PlayerAnimationTree" type="AnimationTree" parent="Rig" unique_id=1884237260]
 unique_name_in_owner = true
@@ -521,3 +651,5 @@ vertical_alignment = 2
 
 [editable path="Rig/Armature/Potma"]
 [editable path="Rig/Armature/Potma2_0"]
+[editable path="Rig/Armature/Potma2_0/ArmaturePotma/Skeleton3D/BoneAttachment3D3_Potion_R/PotiBase"]
+[editable path="Rig/Armature/Potma2_0/ArmaturePotma/Skeleton3D/BoneAttachment3D2_Potion_L/PotiBase"]
