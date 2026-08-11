@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxascs40x5oel"
-path.s3tc="res://.godot/imported/PjBUIr3.png-2cf5ad9977540a70a018d2ed47c80600.s3tc.ctex"
+uid="uid://o2nqtcqwuug8"
+path.s3tc="res://.godot/imported/PotiOverworld_BottleLabel.png-c7dba9457095a9ffb4d1155bf562cd61.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "ae5ecd89b6422b20ec8e40e20022702c"
+}
 
 [deps]
 
-source_file="res://Materials/Skybox/PjBUIr3.png"
-dest_files=["res://.godot/imported/PjBUIr3.png-2cf5ad9977540a70a018d2ed47c80600.s3tc.ctex"]
+source_file="res://assets/gdquest/potis/PotiOverworld_BottleLabel.png"
+dest_files=["res://.godot/imported/PotiOverworld_BottleLabel.png-c7dba9457095a9ffb4d1155bf562cd61.s3tc.ctex"]
 
 [params]
 
