@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bqo66gvs5uhef"]
+
+[ext_resource type="Shader" uid="uid://disqrsyuyfftd" path="res://assets/collectable/magic_fragment/magic_fragment.gdshader" id="1_jqqql"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jqqql"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j5btm"]
+noise = SubResource("FastNoiseLite_jqqql")
+invert = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j5btm"]
+render_priority = 0
+shader = ExtResource("1_jqqql")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_j5btm")
+shader_parameter/smoothness = 0.20000000298024
+
+[sub_resource type="SphereMesh" id="SphereMesh_6jtrj"]
+
+[node name="MagicFragment" type="Node3D" unique_id=207826757]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1077223631]
+material_override = SubResource("ShaderMaterial_j5btm")
+mesh = SubResource("SphereMesh_6jtrj")

@@ -1,9 +1,53 @@
-[gd_scene load_steps=8 format=3 uid="uid://cu673ns5f7wxu"]
+[gd_scene format=3 uid="uid://cu673ns5f7wxu"]
 
 [ext_resource type="Script" uid="uid://dbqyexmvtbw0l" path="res://assets/fire_towers/tower_fire_puzzle.gd" id="1_gje8v"]
 [ext_resource type="PackedScene" uid="uid://bqtvadcvrnqj7" path="res://assets/fire_towers/model/TowerFirePlace.glb" id="1_xt7tj"]
 [ext_resource type="PackedScene" uid="uid://frq00p7ashc5" path="res://assets/fire_towers/model/Fire_Tower.glb" id="2_gje8v"]
 [ext_resource type="AudioStream" uid="uid://dmwp33tq6noif" path="res://assets/fire_towers/sfx/Fire_Tower.ogg" id="4_og63g"]
+[ext_resource type="Shader" uid="uid://dbj14jieea1if" path="res://assets/gdquest/fire/stylized_fire_Potma.gdshader" id="4_xpo78"]
+[ext_resource type="Texture2D" uid="uid://8wcxdw1ubotp" path="res://assets/gdquest/fire/StylizedFirePotma/HoleNoise.png" id="5_4txbc"]
+[ext_resource type="Texture2D" uid="uid://dnf4dk8ref773" path="res://assets/gdquest/fire/StylizedFirePotma/FireMask.png" id="6_3ctu5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cgnex"]
+render_priority = 0
+shader = ExtResource("4_xpo78")
+shader_parameter/noise_texture = ExtResource("5_4txbc")
+shader_parameter/texture_mask = ExtResource("6_3ctu5")
+shader_parameter/emission_intensity = 0.69
+shader_parameter/time_scale = 1.0
+shader_parameter/texture_scale = Vector2(2, 1)
+shader_parameter/edge_softness = 0.1
+
+[sub_resource type="Gradient" id="Gradient_gd5qn"]
+offsets = PackedFloat32Array(0, 0.71487606, 1)
+colors = PackedColorArray(0.82, 0.51004, 0.1558, 1, 0.82, 0.17219998, 0.17219998, 0.50980395, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_52anq"]
+gradient = SubResource("Gradient_gd5qn")
+
+[sub_resource type="Curve" id="Curve_08jo1"]
+_data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8j2kr"]
+width = 128
+curve = SubResource("Curve_08jo1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i6p0k"]
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 3.9999976
+linear_accel_max = 3.9999976
+damping_min = 3.2680001
+damping_max = 3.2680001
+scale_curve = SubResource("CurveTexture_8j2kr")
+color_ramp = SubResource("GradientTexture2D_52anq")
+
+[sub_resource type="QuadMesh" id="QuadMesh_d7mkq"]
+size = Vector2(0.5, 0.5)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_flmx6"]
 animation = &"IcosphereAction"
@@ -15,34 +59,54 @@ size = Vector3(6.90672, 4.7981, 6.1781)
 height = 8.52026
 radius = 2.4707
 
-[node name="Fire_Tower_Puzzle" type="Area3D" node_paths=PackedStringArray("towerFireAudio")]
+[node name="Fire_Tower_Puzzle" type="Area3D" unique_id=1569335167 node_paths=PackedStringArray("towerFireAudio")]
 script = ExtResource("1_gje8v")
 towerFireAudio = NodePath("AudioStreamPlayer3D")
 
-[node name="TowerFirePlace2" parent="." instance=ExtResource("1_xt7tj")]
+[node name="TowerFirePlace2" parent="." unique_id=1032640206 instance=ExtResource("1_xt7tj")]
 
-[node name="Fire_Tower_Model" type="Node3D" parent="."]
+[node name="Fire_Tower_Model" type="Node3D" parent="." unique_id=2012874102]
 
-[node name="Fire_Tower" parent="Fire_Tower_Model" instance=ExtResource("2_gje8v")]
+[node name="Fire_Tower" parent="Fire_Tower_Model" unique_id=1936777003 instance=ExtResource("2_gje8v")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -1.935, 0)
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="Icosphere" parent="Fire_Tower_Model/Fire_Tower" index="0"]
+visible = false
+"blend_shapes/Key 1" = 0.8976451
+"blend_shapes/Key 2" = 0.503808
+
+[node name="FireTower" type="GPUParticles3D" parent="Fire_Tower_Model/Fire_Tower" unique_id=1337449822]
+transform = Transform3D(8, 0, 0, 0, 4, 0, 0, 0, 5, -0.1456249, 0.089723825, -0.11454701)
+material_override = SubResource("ShaderMaterial_cgnex")
+cast_shadow = 0
+amount = 50
+lifetime = 1.48
+randomness = 0.74
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_i6p0k")
+draw_pass_1 = SubResource("QuadMesh_d7mkq")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Fire_Tower_Model/Fire_Tower/FireTower" unique_id=2011481500]
+light_color = Color(1, 0.75686276, 0.56078434, 1)
+light_energy = 0.776
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1578644351]
 root_node = NodePath("../Fire_Tower_Model/Fire_Tower")
 tree_root = SubResource("AnimationNodeAnimation_flmx6")
 anim_player = NodePath("../Fire_Tower_Model/Fire_Tower/AnimationPlayer")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1967245446]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0161976, 0.294313, 0.225769)
 shape = SubResource("BoxShape3D_ueix5")
 debug_color = Color(0.981259, 0, 0.37262, 0.42)
 
-[node name="StaticBody" type="StaticBody3D" parent="."]
+[node name="StaticBody" type="StaticBody3D" parent="." unique_id=1561389464]
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody" unique_id=954579420]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.40247, 0)
 shape = SubResource("CylinderShape3D_flmx6")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=810406898]
 stream = ExtResource("4_og63g")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -32,14 +32,14 @@ shader_parameter/edge_softness = 0.1
 offsets = PackedFloat32Array(0, 0.71487606, 1)
 colors = PackedColorArray(0.82, 0.51004, 0.1558, 1, 0.82, 0.17219998, 0.17219998, 0.50980395, 1, 0, 0, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_52anq"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_de4wt"]
 gradient = SubResource("Gradient_ol747")
 
 [sub_resource type="Curve" id="Curve_rs0at"]
 _data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_8j2kr"]
+[sub_resource type="CurveTexture" id="CurveTexture_nnxmp"]
 width = 128
 curve = SubResource("Curve_rs0at")
 
@@ -53,8 +53,8 @@ linear_accel_min = 3.9999976
 linear_accel_max = 3.9999976
 damping_min = 3.2680001
 damping_max = 3.2680001
-scale_curve = SubResource("CurveTexture_8j2kr")
-color_ramp = SubResource("GradientTexture2D_52anq")
+scale_curve = SubResource("CurveTexture_nnxmp")
+color_ramp = SubResource("GradientTexture2D_de4wt")
 
 [sub_resource type="QuadMesh" id="QuadMesh_ueel7"]
 size = Vector2(0.5, 0.5)
@@ -73,7 +73,7 @@ transform = Transform3D(0.415, 0, 0, 0, 0.415, 0, 0, 0, 0.415, 0.357163, 0, -0.1
 visible = false
 
 [node name="Icosphere" parent="Fireball" index="0"]
-transform = Transform3D(-4.9221395e-08, 0, -1, 0, 1.043939, 0, 1.1260543, 0, -4.371139e-08, -1.0409, 0, 0)
+transform = Transform3D(-5.606104e-08, 0, -1, 0, 1.1666921, 0, 1.2825271, 0, -4.371139e-08, -1.0409, 0, 0)
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=734909412]
 root_node = NodePath("../Fireball")
@@ -83,7 +83,7 @@ anim_player = NodePath("../Fireball/AnimationPlayer")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer3D" parent="." unique_id=850350205]
 stream = ExtResource("4_qh01r")
 
-[node name="FirePotma" type="GPUParticles3D" parent="." unique_id=74533331]
+[node name="FireProyectile" type="GPUParticles3D" parent="." unique_id=74533331]
 transform = Transform3D(3.495, 0, 0, 0, -8.261453e-08, -1.12, 0, 1.89, -4.8956753e-08, -0.1456249, -0.017491817, -1.2073678)
 material_override = SubResource("ShaderMaterial_bwfaf")
 cast_shadow = 0
@@ -94,7 +94,7 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_ubsmy")
 draw_pass_1 = SubResource("QuadMesh_ueel7")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="FirePotma" unique_id=1123055779]
+[node name="OmniLight3D" type="OmniLight3D" parent="FireProyectile" unique_id=1123055779]
 light_color = Color(1, 0.75686276, 0.56078434, 1)
 light_energy = 0.776
 
