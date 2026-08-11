@@ -3,15 +3,6 @@ extends Node3D
 var bodyBaseColor: CompressedTexture2D = load("res://player/materials/Potma2_PotmaMat_Base_color.png");
 var potionDurationShader: Shader = preload("res://player/materials/shaders/potion_duration_body.gdshader");
 
-var potionTypeToColorLookUp: Dictionary[PotionTypes.PotionType, Color] = {
-	PotionTypes.PotionType.Fire: Color(1.0, 0.12, 0.05),
-	PotionTypes.PotionType.Jump: Color(0.2, 0.45, 1.0),
-	PotionTypes.PotionType.Speed: Color(0.15, 1.0, 0.25),
-	PotionTypes.PotionType.JumpAndFire: Color(0.85, 0.18, 1.0),
-	PotionTypes.PotionType.JumpAndSpeed: Color(0.0, 0.95, 1.0),
-	PotionTypes.PotionType.SpeedAndFire: Color(1.0, 0.55, 0.0)
-}
-
 @onready var bodyMeshNode: MeshInstance3D = $Armature/Potma/Armature_Potma/Skeleton3D/MainBody;
 
 @onready var potionPlaceHolder: MeshInstance3D = $Armature/Potma/Armature_Potma/Skeleton3D/Poti_placeHolder
@@ -49,14 +40,14 @@ func _on_potion_used(potionType: PotionTypes.PotionType) -> void:
 
 	effectDuration = potionProperties.lifeTime
 	effectTimeLeft = effectDuration
-	potionEffectMaterial.set_shader_parameter("potion_color", potionTypeToColorLookUp.get(potionType, Color.WHITE))
+	potionEffectMaterial.set_shader_parameter("potion_color", PotionsConfig.get_potion_color(potionType))
 	potionEffectMaterial.set_shader_parameter("potion_strength", 0.75)
 	_update_potion_progress()
 
 
 func _on_player_selected_potion_changed(potionType: PotionTypes.PotionType):
 	if currentPotion == PotionTypes.PotionType.None:
-		potionEffectMaterial.set_shader_parameter("potion_color", potionTypeToColorLookUp.get(potionType, Color.WHITE))
+		potionEffectMaterial.set_shader_parameter("potion_color", PotionsConfig.get_potion_color(potionType))
 	
 func _setup_potion_effect_material() -> void:
 	potionEffectMaterial = ShaderMaterial.new()

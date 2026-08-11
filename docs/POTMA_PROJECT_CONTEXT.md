@@ -37,6 +37,12 @@ a new decision, mechanic, constraint, naming convention, or open question appear
 ## Current Potion System
 - The player has left and right potion slots.
 - Left and right selected potion types are managed by `PlayerPotions`.
+- Each selected slot is represented by a generic bottle attached to the
+  corresponding `Potion.L` or `Potion.R` character bone.
+- Belt bottles are hidden for `None` and identify potion types by liquid color:
+  Fire is red, Jump is blue, and Speed is green.
+- A consumed belt bottle keeps its current appearance until its drinking
+  animation finishes, then synchronizes with the latest slot selection.
 - Drinking one potion consumes one selected potion and emits `potionUsed`.
 - Drinking both potions at nearly the same time combines the selected potion types.
 - Combined potions are not added to inventory.
@@ -48,6 +54,7 @@ a new decision, mechanic, constraint, naming convention, or open question appear
 
 Important files:
 - `player/scripts/potions-manager.gd`
+- `player/scripts/Belt_potions_system.gd`
 - `assets/potions/shared/services/player-potions-inventory-service.gd`
 - `assets/potions/shared/services/potion-merger-service.gd`
 - `assets/potions/shared/services/active-potion-effect-service.gd`
@@ -136,6 +143,9 @@ Potion effect colors:
 - `JumpAndSpeed`: cyan.
 - `SpeedAndFire`: orange.
 
+The shared potion color palette is provided by `PotionsConfig` and is used by
+both active body feedback and the belt bottle liquids.
+
 Important files:
 - `player/scripts/player-model-manager.gd`
 - `player/materials/shaders/potion_duration_body.gdshader`
@@ -216,3 +226,5 @@ Important files:
   movement and speed-potion sprint state.
 - 2026-08-10: Made joystick movement analog; stick magnitude now scales both
   horizontal speed and the locomotion blend position.
+- 2026-08-11: Added independent left/right belt bottle visuals driven by potion
+  selection, including per-slot liquid materials and drink-animation retention.

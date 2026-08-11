@@ -14,12 +14,22 @@ Validate gameplay after naming migrations, potion-state unification, logger adop
 3. Verify movement lock during potion drink lasts briefly and returns control.
 
 ## Potions
-1. Cycle left and right potion slots.
-2. Drink left slot only and confirm effect activates and expires.
-3. Drink right slot only and confirm effect activates and expires.
-4. Press both drink buttons within merge window and verify merge result is added.
-5. Confirm no drink action is allowed while another potion effect is active.
-6. Confirm fire potion changes attack behavior to projectile throw.
+1. Start with an empty inventory and confirm both belt bottles are hidden.
+2. Pick up the first potion and confirm both automatically selected belt slots
+   appear with the correct liquid color.
+3. Cycle left and right potion slots independently; confirm each bottle updates
+   without changing the other bottle's color or liquid wobble.
+4. Drink the last potion from the left slot and confirm its bottle remains
+   visible through `Potma_DrinkLeft`, then updates or hides when it finishes.
+5. Repeat the previous check for the right slot and `Potma_DrinkRight`.
+6. Press both drink buttons within the merge window and confirm both ingredient
+   bottles remain visible through `Potma_DrinkBoth`, are consumed directly, and
+   update afterward without displaying the combined potion on the belt.
+7. Reload the player scene while `PlayerPotions` retains selections and confirm
+   both belt visuals synchronize immediately.
+8. Confirm the potion effect activates and expires after drinking either slot.
+9. Confirm no drink action is allowed while another potion effect is active.
+10. Confirm fire potion changes attack behavior to projectile throw.
 
 ## Enemies
 1. GlobrcSmall patrols between points and idles at waypoints.

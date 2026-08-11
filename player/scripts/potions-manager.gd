@@ -1,5 +1,8 @@
 extends Node
 
+signal potion_drink_started(uses_left_slot: bool, uses_right_slot: bool)
+signal potion_drink_finished
+
 @onready var _animation_tree: AnimationTree = %PlayerAnimationTree
 @onready var _drink_animation_node := (
 	(_animation_tree.tree_root as AnimationNodeBlendTree).get_node(&"drink")
@@ -13,16 +16,22 @@ const MERGE_DECISION_WINDOW_SECONDS := 0.25
 const DRINK_LEFT_ANIMATION := &"Potma_DrinkLeft"
 const DRINK_RIGHT_ANIMATION := &"Potma_DrinkRight"
 const DRINK_BOTH_ANIMATION := &"Potma_DrinkBoth"
+const DRINK_ANIMATION_START_GRACE_FRAMES := 3
 
 var _pending_left_drink := false
 var _pending_right_drink := false
 var _is_waiting_merge_decision := false
 var _decision_window_id := 0
+var _active_drink_animation: StringName = &""
+var _drink_one_shot_was_active := false
+var _drink_animation_start_grace_frames := 0
 
 func _ready() -> void:
-	pass
+	_animation_tree.animation_finished.connect(_on_animation_tree_animation_finished)
 
 func _process(_delta: float) -> void:
+	_update_drink_animation_state()
+
 	if Input.is_action_just_pressed("toggleLeftPotion"):
 		PlayerPotions.toggleLeftPotion()
 
@@ -89,18 +98,26 @@ func _resolve_pending_drink() -> void:
 		drinkRightPotion()
 
 func drinkLeftPotion() -> void:
-	if PlayerPotions.selectedLeftPotionType == PotionTypes.PotionType.None:
+	var potion_type := PlayerPotions.selectedLeftPotionType
+	if potion_type == PotionTypes.PotionType.None:
+		return
+	if not PlayerPotions.isThereAnyPotionOfType(potion_type):
 		return
 	if _active_potion_service.has_active_potion():
 		return
+	potion_drink_started.emit(true, false)
 	PlayerPotions.useLeftPotion()
 	play_drink_animation(DRINK_LEFT_ANIMATION)
 
 func drinkRightPotion() -> void:
-	if PlayerPotions.selectedRightPotionType == PotionTypes.PotionType.None:
+	var potion_type := PlayerPotions.selectedRightPotionType
+	if potion_type == PotionTypes.PotionType.None:
+		return
+	if not PlayerPotions.isThereAnyPotionOfType(potion_type):
 		return
 	if _active_potion_service.has_active_potion():
 		return
+	potion_drink_started.emit(false, true)
 	PlayerPotions.useRightPotion()
 	play_drink_animation(DRINK_RIGHT_ANIMATION)
 
@@ -120,7 +137,9 @@ func tryMergePotions() -> bool:
 	if mergedType == PotionTypes.PotionType.None:
 		return false
 
+	potion_drink_started.emit(true, true)
 	if not PlayerPotions.useMergedPotion(mergedType, [leftType, rightType]):
+		potion_drink_finished.emit()
 		return false
 
 	play_drink_animation(DRINK_BOTH_ANIMATION)
@@ -131,8 +150,51 @@ func _on_drink_animation_finished() -> void:
 	_potion_particles_system._play_particles(_active_potion_service.current_active_potion)
 
 func play_drink_animation(animation_name: StringName) -> void:
+	_active_drink_animation = animation_name
+	_drink_one_shot_was_active = false
+	_drink_animation_start_grace_frames = DRINK_ANIMATION_START_GRACE_FRAMES
 	_drink_animation_node.animation = animation_name
 	_animation_tree.set("parameters/DrinkOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+
+func _on_animation_tree_animation_finished(animation_name: StringName) -> void:
+	if animation_name != _active_drink_animation:
+		return
+
+	_finish_active_drink_animation(true)
+
+func _update_drink_animation_state() -> void:
+	if _active_drink_animation.is_empty():
+		return
+
+	var is_one_shot_active := bool(_animation_tree.get("parameters/DrinkOneShot/active"))
+	if is_one_shot_active:
+		_drink_one_shot_was_active = true
+		return
+
+	if _drink_one_shot_was_active:
+		_finish_active_drink_animation(true)
+		return
+
+	_drink_animation_start_grace_frames -= 1
+	if _drink_animation_start_grace_frames <= 0:
+		_finish_active_drink_animation(false)
+
+func _finish_active_drink_animation(play_feedback: bool) -> void:
+	if _active_drink_animation.is_empty():
+		return
+
+	if not play_feedback:
+		_animation_tree.set(
+			"parameters/DrinkOneShot/request",
+			AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT
+		)
+
+	_active_drink_animation = &""
+	_drink_one_shot_was_active = false
+	_drink_animation_start_grace_frames = 0
+	potion_drink_finished.emit()
+	if play_feedback:
+		_on_drink_animation_finished()
 
 func _is_dialogue_consuming_gameplay_input() -> bool:
 	var dialogue_controller := get_tree().get_first_node_in_group("dialogue_controller")
