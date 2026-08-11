@@ -149,6 +149,12 @@ Important files:
 - Keep scripts small and maintainable.
 - Do not rewrite full files unnecessarily.
 - Preserve existing architecture and variable names unless there is a clear reason to change them.
+- Ground locomotion uses `Locomotion/WalkBlend`, a 1D blend space driven at
+  runtime with `0 = Potma_Idle`, `1 = Potma_Walk`, and
+  `2 = Potma_RunPotion`. Analog stick magnitude scales movement speed and the
+  blend position: normal movement covers 0-1, while active speed sprinting
+  covers 0-2. Keyboard movement uses full input strength, and damage dashes
+  target the run point directly.
 
 ## Current Main Autoloads
 - `SavesManager`
@@ -206,3 +212,7 @@ Important files:
   a temporary shared PCM blip for both lines.
 - 2026-08-10: Mapped left, right, and combined potion drinking to their matching
   player animations.
+- 2026-08-10: Connected the player's Idle/Walk/Run 1D locomotion blend space to
+  movement and speed-potion sprint state.
+- 2026-08-10: Made joystick movement analog; stick magnitude now scales both
+  horizontal speed and the locomotion blend position.

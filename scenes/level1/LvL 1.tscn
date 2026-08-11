@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://bd31y7odxeu3"]
 
 [ext_resource type="PackedScene" uid="uid://mxcenmnbnh8" path="res://shared/shaders/ps1/post_process/ps1_post_process.tscn" id="1_ubpg7"]
-[ext_resource type="Texture2D" uid="uid://bxascs40x5oel" path="res://Materials/Skybox/PjBUIr3.png" id="2_n1ihf"]
+[ext_resource type="Texture2D" uid="uid://bxascs40x5oel" path="res://materials/skybox/PjBUIr3.png" id="2_n1ihf"]
 [ext_resource type="PackedScene" uid="uid://cf47i2djfslyw" path="res://player/player.tscn" id="4_n1ihf"]
 [ext_resource type="PackedScene" uid="uid://muvhrgobkmv6" path="res://scenes/level1/LVL1_Blender.gltf" id="5_7idjg"]
 [ext_resource type="PackedScene" uid="uid://0kbp5ta03h5x" path="res://assets/death-area/death-area.tscn" id="6_jknnb"]
