@@ -31,12 +31,14 @@ func _play_staff_fire_animation() -> void:
 	_animation_tree.set("parameters/StaffThrowOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 func _fire_projectile() -> void:
+	print("FIRE PROJECTILE")
 	var instance = FireProjectile.new_fire_projectile();
 	instance.position = _shoot_position.global_position;
 	instance.rotation = _rig.rotation
 	get_tree().root.add_child(instance)
 
 func _on_fireball_animation_fire() -> void:
+	print("FIREBALL ANIMATION FIRE")
 	_fire_projectile()
 
 func attack() -> void:

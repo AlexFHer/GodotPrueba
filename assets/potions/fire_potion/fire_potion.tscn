@@ -169,22 +169,22 @@ script = ExtResource("1_cy8qw")
 potionPickupAudio = NodePath("AudioStreamPlayer3D")
 potionType = 3
 
-[node name="PotiOverworldFire" parent="." unique_id=700607690 instance=ExtResource("2_rd0h4")]
-transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)
-
-[node name="BottlePotion" parent="PotiOverworldFire" index="0" unique_id=140445110]
-material_override = ExtResource("3_uhoqw")
-
-[node name="BottleLiquid" parent="PotiOverworldFire/BottlePotion" index="0" unique_id=138785807]
-material_override = SubResource("ShaderMaterial_xstrx")
-mesh = SubResource("ArrayMesh_gbtbq")
-script = ExtResource("4_k43lo")
-
 [node name="Model" type="Node3D" parent="." unique_id=1733878722]
-visible = false
 
 [node name="FirePotion" parent="Model" unique_id=446988216 instance=ExtResource("2_odxmc")]
 transform = Transform3D(5.125, 0, 0, 0, 5.125, 0, 0, 0, 5.125, 0, 0, 0)
+visible = false
+
+[node name="PotiOverworldFire" parent="Model" unique_id=700607690 instance=ExtResource("2_rd0h4")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)
+
+[node name="BottlePotion" parent="Model/PotiOverworldFire" index="0" unique_id=1794950453]
+material_override = ExtResource("3_uhoqw")
+
+[node name="BottleLiquid" parent="Model/PotiOverworldFire/BottlePotion" index="0" unique_id=202898637]
+material_override = SubResource("ShaderMaterial_xstrx")
+mesh = SubResource("ArrayMesh_gbtbq")
+script = ExtResource("4_k43lo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2044196631]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.187327, 0)
@@ -195,4 +195,4 @@ stream = ExtResource("3_l2t7a")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 
-[editable path="PotiOverworldFire"]
+[editable path="Model/PotiOverworldFire"]

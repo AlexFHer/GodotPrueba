@@ -11,6 +11,7 @@ func _ready() -> void:
 	_audioStream.play();
 
 func _enter_tree() -> void:
+	print("WOWOWOOW")
 	await get_tree().create_timer(projectileStats.lifeTime, false).timeout
 	queue_free();
 

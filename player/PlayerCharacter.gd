@@ -114,7 +114,6 @@ func _physics_process(delta: float) -> void:
 	_update_locomotion_animation(delta)
 	_process_moving_sound();
 	
-	print("Velocity: ", velocity)
 	move_and_slide();
 
 func _process_moving_sound() -> void:

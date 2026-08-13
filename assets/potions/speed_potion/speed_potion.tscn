@@ -24,7 +24,7 @@ shader_parameter/rim_emission_intensity = 0.81600003876
 shader_parameter/rim_exponent = 2.1130000528675
 shader_parameter/emission_intensity = 0.886000042085
 shader_parameter/liquid_surface_gradient_size = 0.1750000083125
-shader_parameter/wobble = Vector2(0.0029527028, 0.0030242905)
+shader_parameter/wobble = Vector2(4.657741e-18, 1.90879e-18)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8euhn"]
 resource_name = "Poti_Mat"
@@ -77,7 +77,6 @@ potionType = 2
 
 [node name="Model" type="Node3D" parent="." unique_id=1064899438]
 unique_name_in_owner = true
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 
 [node name="SpeedPotion" parent="Model" unique_id=635041962 instance=ExtResource("2_12w7m")]
 transform = Transform3D(3.33333, 0, 0, 0, 3.33333, 0, 0, 0, 3.33333, 0, 0, 0)
@@ -86,10 +85,10 @@ visible = false
 [node name="PotiOverworldRun" parent="Model" unique_id=700607690 instance=ExtResource("3_6nvei")]
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0.80228066, 0)
 
-[node name="BottlePotion" parent="Model/PotiOverworldRun" index="0" unique_id=140445110]
+[node name="BottlePotion" parent="Model/PotiOverworldRun" index="0" unique_id=1794950453]
 material_override = ExtResource("4_vv2yq")
 
-[node name="BottleLiquid" parent="Model/PotiOverworldRun/BottlePotion" index="0" unique_id=138785807]
+[node name="BottleLiquid" parent="Model/PotiOverworldRun/BottlePotion" index="0" unique_id=202898637]
 material_override = SubResource("ShaderMaterial_b6s7r")
 mesh = SubResource("ArrayMesh_l6hfc")
 script = ExtResource("6_xm7mr")
