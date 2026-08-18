@@ -1,10 +1,137 @@
-[gd_scene load_steps=8 format=3 uid="uid://bpc2mh50b30o6"]
+[gd_scene format=4 uid="uid://bpc2mh50b30o6"]
 
 [ext_resource type="Script" uid="uid://crdiafxoaxufc" path="res://assets/collectable/mythril/mythril.gd" id="1_vnii7"]
 [ext_resource type="PackedScene" uid="uid://xh8iypkup47o" path="res://assets/numbers/10/number_10.tscn" id="2_1todp"]
 [ext_resource type="PackedScene" uid="uid://d0nbodfskuygt" path="res://assets/collectable/mythril/mythril10/mesh/Mythill_10.glb" id="2_seemo"]
 [ext_resource type="AudioStream" uid="uid://drf15e030ekbo" path="res://assets/collectable/mythril/sfx/Mythrill.ogg" id="3_sfd0a"]
+[ext_resource type="Texture2D" uid="uid://hxa0uhtx0prx" path="res://assets/collectable/mythril/mythrill_stylized/Mythrill_Base_color.png" id="4_cy78h"]
+[ext_resource type="Texture2D" uid="uid://bxdnowd1cwgrj" path="res://assets/collectable/mythril/mythrill_stylized/Mythrill_Emissive.png" id="5_0vm28"]
 [ext_resource type="PackedScene" uid="uid://c5gxf5fsemlpb" path="res://assets/particles/mythrill_particles.tscn" id="5_lrchn"]
+
+[sub_resource type="Shader" id="Shader_t586n"]
+code = "shader_type spatial;
+
+group_uniforms BasicPBRValues;
+/** Metallic amount. Controls how metallic the material looks. */
+uniform float metallic: hint_range(0.0,1.0) = 1.0;
+/** Roughness amount. The lower the roughness, the shinier the material. As you increase the roughness, the specular highlights scatter.  */
+uniform float roughness : hint_range(0.0,1.0) = 0.1;
+/** Albedo texture. Base color. */
+uniform sampler2D texture_albedo : source_color, repeat_enable, filter_linear_mipmap;
+/** Normal texture. */
+uniform sampler2D texture_normal : hint_normal, repeat_enable, filter_linear_mipmap;
+group_uniforms;
+
+group_uniforms Emission;
+/** Color of light emission. This light is emitted from the core of the crystal. */
+uniform vec4 emission : source_color = vec4(1.0, 0.6, 0.1, 1.0); // Light orange.
+/** Energy of emission.
+* Values over [code]1.0[/code] will glow, if you have Glow enabled in your environment resource.
+*/
+uniform float emission_energy: hint_range(0.0, 10.0) = 6.0;
+/** Emission texture. Controls the strength of the effect across the mesh. */
+uniform sampler2D texture_emission : hint_default_black, repeat_enable, filter_linear_mipmap;
+/** Speed of the pulsing emission effect. Higher values mean pulsing more often.
+* If this matches the fresnel pulse speed, the effects will sync.
+*/
+uniform float emission_pulse_speed: hint_range(0.0, 2.0) = .75;
+group_uniforms;
+
+group_uniforms Fresnel;
+/** Color of fresnel effect. */
+uniform vec4 fresnel_color : source_color = vec4(0.0, 0.9, 0.9, 1.0); // Near cyan.
+/** Fresnel intensity.
+* Values over [code]1.0[/code] will glow, if you have Glow enabled in your environment resource.
+*/
+uniform float fresnel_color_intensity: hint_range(0.0, 10.0) = 1.0;
+/** The power of the fresnel effect.
+* High values mean the effect only appears on the very edges, at glancing angles.
+*/
+uniform float fresnel_power: hint_range(0.5,8.0) = 6.0;
+/** Speed of the pulsing fresnel effect. Higher values mean pulsing more often.
+* If this matches the emission pulse speed, the effects will sync.
+*/
+uniform float fresnel_pulse_speed: hint_range(0.0,2.0) = 0.75;
+group_uniforms;
+
+void fragment() {
+	// Set the PBR values from textures and sliders.
+	ALBEDO = texture(texture_albedo, UV).rgb;
+	NORMAL_MAP = texture(texture_normal, UV).rgb;
+	METALLIC = metallic;
+	ROUGHNESS = roughness;
+
+	// Emission.
+	vec3 emission_texture = texture(texture_emission, UV).rgb;
+	float emission_time_factor = clamp(sin(TIME * emission_pulse_speed) + 0.33, 0.33, 1);
+	EMISSION = ((emission.rgb * emission_texture) * emission_energy * emission_time_factor);
+
+	float fresnel = 1.0 - dot(NORMAL, VIEW);
+	// Raise the fresnel to a power to control the thickness of the edge effect.
+	fresnel = pow(fresnel, fresnel_power);
+	float fresnel_time_factor = clamp(sin(TIME * fresnel_pulse_speed), 0.15, 1);
+	EMISSION += (fresnel * fresnel_color.rgb * fresnel_color_intensity * fresnel_time_factor);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y3xvi"]
+render_priority = 0
+shader = SubResource("Shader_t586n")
+shader_parameter/metallic = 0.50000002375
+shader_parameter/roughness = 0.2430000115425
+shader_parameter/texture_albedo = ExtResource("4_cy78h")
+shader_parameter/emission = Color(0.117684044, 0.48570812, 0.52345467, 1)
+shader_parameter/emission_energy = 6.0
+shader_parameter/texture_emission = ExtResource("5_0vm28")
+shader_parameter/emission_pulse_speed = 1.0000000475
+shader_parameter/fresnel_color = Color(0, 0.9, 0.9, 1)
+shader_parameter/fresnel_color_intensity = 1.5
+shader_parameter/fresnel_power = 6.0
+shader_parameter/fresnel_pulse_speed = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_eefd6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tuidu"]
+albedo_texture = SubResource("CompressedTexture2D_eefd6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6i5xw"]
+resource_name = "Mythrill"
+cull_mode = 2
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_jdeyj"]
+_surfaces = [{
+"aabb": AABB(-0.2784339, 0.0048590116, -0.2927733, 0.5567198, 0.38337877, 0.5306432),
+"format": 34896613377,
+"index_count": 90,
+"index_data": PackedByteArray("AgAJAAoACQAAAAoACwACAAoAAAALAAoAAgAHAAkACQAEAAAABwAEAAkAAgAIAAcAAgALAAgABwAGAAQACAAGAAcACwADAAgACAADAAYAAAABAAsACwABAAMABAAMAAAADAABAAAABgANAAQABAANAAwAAwAOAAYABgAOAA0AAQAPAAMAAwAPAA4ADAAQAAEAAQAQAA8ADQAFAAwADgAFAA0ADAAFABAADwAFAA4AEAAFAA8A"),
+"lods": [0.0644672, PackedByteArray("AAABAAIAAAAFAAEABAAAAAIABAAFAAAAAgAHAAQAAQAFAAMAAgABAAgAAQADAAgAAgAIAAcAAwAFAAYABgAFAAQACAADAAYABwAGAAQACAAGAAcA"), 0.0967008, PackedByteArray("AAABAAIAAgABAAMABAAAAAIAAAAFAAEABAAFAAAAAQAFAAMAAgAGAAQABgAFAAQAAwAGAAIAAwAFAAYA")],
+"name": "Mythrill",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 17,
+"vertex_data": PackedByteArray("K9Ahmgf/AAD//06ZqWAAAEWAAAAXjQAAoX8PmQAAAAB+MWSa//8AAEWA//8XjQAAAAC5mfZhAACDOJU92HQAAPJ/Yjx7PgAA9FPLPqvNAAAurVE++swAAIbH1Dw1dAAA1rJez1XVAABoTl7P39UAAOIuXs/UcQAA1X9ez3YzAABi0V7P9XAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_pcfcf"]
+resource_name = "Mythrill_Stylized_Icosphere_005"
+_surfaces = [{
+"aabb": AABB(-0.2784339, 0.0048590116, -0.2927733, 0.5567198, 0.38337877, 0.5306432),
+"attribute_data": PackedByteArray("uHr1stldsotUkiSDWDhUZtldsovDL4aauHr1slNRLLPZXbKLtl0t2lNRLLO4evWydS/yylNRLLO2XS3awy+GmlNRLLN1L/LK2V2yi1NRLLPDL4aawy+GmnUv8sqOAE2yqTdw/3Uv8sq2XS3atl0t2rh69bJUkrHi4jGC5SwXAKU1FwbAcDLpf593COAAiAfK/HexhfCH0ZvpS9ztIky5d/dnqLO+WMed/FcfyPdnqLMbP5zA/FcfyLE+f6UbP5zAvljHnbE+f6X3Z6iz/FcfyPx3sYXwh9Gb/FcfyBs/nMAbP5zAsT5/pbE+f6W+WMedIky5d3Ay6X8sFwClNRcGwOIxguXpS9ztn3cI4ACIB8r3Z6izvljHnQ=="),
+"format": 34896613399,
+"index_count": 90,
+"index_data": PackedByteArray("HQAiACMAAAAkACUAAAABACQAGAAeACYAFwAfACAAAwAnACEAKAAHACkAKgAKACsALAANAC0ALgAQAC8AMAATADEACQAyAAsACQAzADIANAACADUADAA2AA4ADAA3ADYADwA4ABEADwA5ADgAEgA6ABQAEgA7ADoAPAAFAD0APAAEAAUAPgAWAD8APgAVABYAQAAaAEEAQAAZABoAQgAcAEMAQgAbABwARAAIAAYARABFAAgA"),
+"lods": [0.0644672, PackedByteArray("AAABAAIAGAAeABoAHgAZABoAFwAfACAAHwAWACAAHwAVABYAAwAEACEABAAFACEABgAHAAgACQAKAAsADAANAA4ADwAQABEAEgATABQAGwAcAB0A"), 0.0967008, PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACQAKAAsADAANAA4ADwAQABEAEgATABQAFQAWABcAGAAZABoAGwAcAB0A")],
+"material": SubResource("StandardMaterial3D_6i5xw"),
+"name": "Mythrill",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 70,
+"vertex_data": PackedByteArray("K9Ahmgf/iPH//06ZqWCI8UWAAAAXjab5RYAAABeNLNf//06ZqWBh46F/D5kAAGHjK9Ahmgf/Ws5FgP//F436yv//TpmpYJ7SfjFkmv//YbBFgP//F43duivQIZoH/5e3AAC5mfZhcLhFgP//F42SvX4xZJr//164oX8PmQAA99dFgP//F40i0QAAuZn2YYrY//9OmalgW+RFgP//F41W2aF/D5kAAEjloX8PmQAAc/8AALmZ9mFz/0WAAAAXjVL2RYAAABeNb8QAALmZ9mF2vX4xZJr//3a9fjFkmv//260r0CGaB//brUWAAAAXjZC1gziVPdh0b8Tyf2I8ez5S9oM4lT3YdFL28n9iPHs+LNf0U8s+q82QtS6tUT76zJC1hsfUPDV0iPEurVE++syI8fRTyz6rzW/EhsfUPDV0LNfWsl7PVdX6ymLRXs/1cPrKaE5ez9/V3brWsl7PVdXduuIuXs/UcZK9aE5ez9/Vkr3Vf17PdjMi0eIuXs/UcSLRYtFez/VwVtnVf17PdjNW2dayXs9V1Vy1aE5ez9/VnKyGx9Q8NXSm+S6tUT76zKb5aE5ez9/VY7jiLl7P1HF6uOIuXs/UcVPY1X9ez3Yz0dfVf17PdjP/5GLRXs/1cNTjhsfUPDV0YePyf2I8ez5h4/J/Yjx7PnP/gziVPdh0c/+DOJU92HR2vfRTyz6rzXa99FPLPqvN260urVE++szbrdayXs9V1aDPYtFez/VwLNUVnlFaFZ5RWlmXYFMsATaZwgRtYcIEbWE6xTiBbsPgjea/QIbAsmeXQrZTnDqqC5oktD+9jLkAsJ60M73tycmxWcMfrJjB+7XOy06WbMahmpXJNZj5VONK+VTjSp5asEvzOnXi/0YD7P9GA+ywVT5qsFU+aoRMy2XzOnXinlqwS55asEssATaZhEzLZYRMy2UVnlFaFZ5RWvM6deIsATaZbsPgjW7D4I1CtlOcQrZTnIy5ALCMuQCwWcMfrFnDH6xsxqGabMahmpKsUZnJuImVWZdgU1mXYFN5tDe93bNGvQvEwLQqzyavQcqilyTNKZXCBG1hwgRtYflU40r5VONK/0YD7P9GA+ywVT5qsFU+aobD1IIkvduI")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_jdeyj")
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_seemo"]
 animation = &"Mythrill10Action"
@@ -12,7 +139,7 @@ animation = &"Mythrill10Action"
 [sub_resource type="SphereShape3D" id="SphereShape3D_6jq5k"]
 radius = 1.46148
 
-[node name="Mythril10" type="Area3D" node_paths=PackedStringArray("coinPickupAudio", "mesh", "collision", "mythrillParticles")]
+[node name="Mythril10" type="Area3D" unique_id=563846778 node_paths=PackedStringArray("coinPickupAudio", "mesh", "collision", "mythrillParticles")]
 script = ExtResource("1_vnii7")
 value = 10
 coinPickupAudio = NodePath("CoinPickupAudio")
@@ -21,28 +148,31 @@ collision = NodePath("GrabCollisionShape")
 numberPackedScene = ExtResource("2_1todp")
 mythrillParticles = NodePath("GPUParticles3D")
 
-[node name="Mesh" type="Node3D" parent="."]
+[node name="Mesh" type="Node3D" parent="." unique_id=8818213]
 
-[node name="Mythill_10" parent="Mesh" instance=ExtResource("2_seemo")]
+[node name="Mythill_10" parent="Mesh" unique_id=1849527351 instance=ExtResource("2_seemo")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 
-[node name="Mythrill10" parent="Mesh/Mythill_10" index="0"]
-transform = Transform3D(-0.636612, -0.258782, 0.726468, -1.49012e-08, 0.942017, 0.335564, -0.771184, 0.213624, -0.599699, 0, 0, 0)
+[node name="Mythrill10" parent="Mesh/Mythill_10" index="0" unique_id=2049410769]
+transform = Transform3D(-0.7317793, 0.22870106, -0.64202404, -2.2351742e-08, 0.9420173, 0.33556432, 0.6815417, 0.24555902, -0.68934876, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_y3xvi")
+material_overlay = SubResource("StandardMaterial3D_tuidu")
+mesh = SubResource("ArrayMesh_pcfcf")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1731794259]
 root_node = NodePath("../Mesh/Mythill_10")
 tree_root = SubResource("AnimationNodeAnimation_seemo")
 anim_player = NodePath("../Mesh/Mythill_10/AnimationPlayer")
 
-[node name="GrabCollisionShape" type="CollisionShape3D" parent="."]
+[node name="GrabCollisionShape" type="CollisionShape3D" parent="." unique_id=787794579]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20294, 0)
 shape = SubResource("SphereShape3D_6jq5k")
 
-[node name="CoinPickupAudio" type="AudioStreamPlayer3D" parent="."]
+[node name="CoinPickupAudio" type="AudioStreamPlayer3D" parent="." unique_id=160738365]
 stream = ExtResource("3_sfd0a")
 volume_db = -15.0
 
-[node name="GPUParticles3D" parent="." instance=ExtResource("5_lrchn")]
+[node name="GPUParticles3D" parent="." unique_id=205112512 instance=ExtResource("5_lrchn")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 
