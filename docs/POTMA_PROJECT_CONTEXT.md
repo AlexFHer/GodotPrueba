@@ -132,7 +132,10 @@ Important files:
 ## Potion Visual Feedback
 - Active potions should be visually readable on the protagonist.
 - Current visual direction: apply a potion color to the protagonist mesh and drain it from top to bottom over the potion lifetime, like an hourglass.
-- Current implementation targets `MainBody` because the imported model does not expose a separate cape mesh by name.
+- The potion color is limited by `player/materials/PotmaMat_Mask.png`: white UV regions receive the effect, black regions keep the original body color, and grayscale values blend between them.
+- Current implementation targets the visible `Potma` mesh because the imported model exposes the body as one surface rather than a separate cape mesh.
+- The original body material remains active while no potion is running. Active potions temporarily use an opaque, lit PBR surface override and restore the original override when they finish.
+- The potion shader does not snap or move vertices. Its top-to-bottom drain uses a rest-pose height baked into `UV2.x` on an instance-exclusive copy of the visible body mesh, normalized between local Y `-0.025` and `1.04`. This keeps the cutoff stable when animation skinning changes the pose. The UV mask independently limits which clothing regions receive color, and potion activation explicitly renders the entire white mask once at full color strength before the timed vertical drain begins.
 - If the cape becomes a separate mesh later, move the same visual effect to the cape.
 
 Potion effect colors:
@@ -228,3 +231,9 @@ Important files:
   horizontal speed and the locomotion blend position.
 - 2026-08-11: Added independent left/right belt bottle visuals driven by potion
   selection, including per-slot liquid materials and drink-animation retention.
+- 2026-08-24: Limited the active potion body-color drain to the UV regions selected
+  by `PotmaMat_Mask.png`; made it an active-only opaque PBR override that restores
+  the original material. Baked a normalized rest-pose height into the instance
+  mesh's free UV2 channel so animation skinning cannot move the vertical cutoff;
+  the complete mask begins colored before draining, including one guaranteed
+  full-strength rendered frame at activation.
