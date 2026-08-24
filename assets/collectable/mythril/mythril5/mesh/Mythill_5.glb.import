@@ -2098,7 +2098,7 @@ _subresources={
 },
 "materials": {
 "Mythrill": {
-"use_external/enabled": true,
+"use_external/enabled": false,
 "use_external/fallback_path": "res://assets/collectable/mythril/materials/mythril.tres",
 "use_external/path": "uid://b41squ27sdk7u"
 }
