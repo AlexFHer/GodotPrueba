@@ -43,26 +43,35 @@ Validate gameplay after naming migrations, potion-state unification, logger adop
 3. Secret tower activation still animates and audio plays.
 4. Approaching and leaving Pocima shows and hides one dialogue prompt.
 5. `E`, PlayStation Cross, and Xbox A open, reveal, advance, and close dialogue.
-6. Starting or closing dialogue does not also jump or consume a potion.
-7. Dialogue does not pause enemies, physics, potion duration, or gameplay timers.
-8. Start does not open the pause menu over an active conversation.
-9. Closing restores gameplay, shows the nearby prompt, and permits reopening.
-10. Overlapping NPC interaction zones select only the nearest valid NPC.
-11. The prompt badge follows the last-used device and updates safely when a
+6. During active and closing dialogue, movement, jump, dash, attack, fire,
+   drinking, and left/right potion selection do nothing; camera rotation works.
+7. Opening while moving stops horizontal movement and blends locomotion to idle.
+8. Opening during dash, damaging second jump, staff attack, or fire attack
+   cancels the offensive action, disables its hitbox, and spawns no projectile.
+9. Opening during the 0.25-second merge window discards pending drink intents.
+10. A potion already consumed finishes its animation, audio, particles, and belt
+    synchronization without unlocking controls during the dialogue.
+11. An airborne player keeps falling and can receive damage or die; enemies,
+    physics, potion duration, and gameplay timers continue normally.
+12. Start does not open the pause menu over an active conversation.
+13. Holding `E` or A/Cross through the final line triggers no gameplay action;
+    releasing it restores controls, shows the nearby prompt, and permits reopening.
+14. Overlapping NPC interaction zones select only the nearest valid NPC.
+15. The prompt badge follows the last-used device and updates safely when a
     controller is connected or disconnected (`E`, PlayStation `X`, Xbox `A`, or
     `A/X` for an unknown controller).
-12. Deleting an NPC while its interaction zone is registered produces no error
+16. Deleting an NPC while its interaction zone is registered produces no error
     and removes it from candidate selection.
-13. Empty, missing, or incomplete dialogue data logs a warning, skips invalid
+17. Empty, missing, or incomplete dialogue data logs a warning, skips invalid
     entries, and never opens an empty UI.
-14. Dialogue layout wraps long text and shows Pocima's localized Spanish and
+18. Dialogue layout wraps long text and shows Pocima's localized Spanish and
     English text, not raw translation keys, at 1280x720 and 1920x1080.
-15. Each Pocima line plays one blip when it appears; completing the typewriter
+19. Each Pocima line plays one blip when it appears; completing the typewriter
     text does not restart or stop that clip.
-16. Advancing or closing while a clip plays stops it, and the next line never
+20. Advancing or closing while a clip plays stops it, and the next line never
     overlaps the previous clip.
-17. Closing and reopening starts the first line's audio again from the beginning.
-18. A dialogue line with no `voice_stream` is silent and still displays normally.
+21. Closing and reopening starts the first line's audio again from the beginning.
+22. A dialogue line with no `voice_stream` is silent and still displays normally.
 
 ## Naming Migration Validation
 1. Confirm the shared dialogue system loads from

@@ -110,8 +110,16 @@ Current durations:
 - Dialogue can be replayed from the first line after close.
 - `interact` intentionally overlaps the keyboard right-potion key and controller
   jump button. It has priority only while a valid prompt/dialogue is active.
-- During active or closing dialogue, player jump and potion drinking ignore the
-  shared interaction press so advancing text does not leak into gameplay.
+- During active or closing dialogue, all character actions are locked: movement,
+  jump, dash, combat, potion drinking, and potion selection. Camera rotation
+  remains available and `interact` continues to control the dialogue.
+- Dialogue control lock is independent from `MainPlayer.canMove`. Physics,
+  gravity, collisions, damage, enemies, and gameplay timers remain active.
+- `MainPlayer.is_gameplay_input_locked()` is the shared player-side facade;
+  future character input handlers and delayed offensive callbacks must honor it.
+- Starting dialogue cancels active attacks, dash, and ability damage. A potion
+  already consumed finishes its feedback, while pending drink/merge intents are
+  discarded so they cannot resolve during the conversation.
 - Gameplay `SceneTreeTimer` instances should use `process_always = false` so
   pause screens freeze their remaining time. Dialogue no longer uses tree pause.
 - Pocima is the canonical implementation example.
@@ -237,3 +245,6 @@ Important files:
   mesh's free UV2 channel so animation skinning cannot move the vertical cutoff;
   the complete mask begins colored before draining, including one guaranteed
   full-strength rendered frame at activation.
+- 2026-08-26: Locked player movement, combat, dash, potion use, and potion
+  selection during active/closing dialogue while keeping camera and world
+  simulation active.

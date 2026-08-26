@@ -43,6 +43,8 @@ var lastMovementDirection := Vector3.FORWARD
 var gravity := -25;
 var _movement_input_strength := 0.0
 var _locomotion_blend_position := LOCOMOTION_IDLE_BLEND
+var _dialogue_controller: Node
+var _was_gameplay_input_locked := false
 
 var canMove := true;
 
@@ -108,9 +110,14 @@ func disableJump() -> void:
 	canJump = false;
 
 func _physics_process(delta: float) -> void:
-	process_jump();
-	process_dash();
-	process_movement(delta);
+	var gameplay_input_locked := is_gameplay_input_locked()
+	if gameplay_input_locked and not _was_gameplay_input_locked:
+		_cancel_dialogue_incompatible_actions()
+	_was_gameplay_input_locked = gameplay_input_locked
+
+	process_jump(gameplay_input_locked);
+	process_dash(gameplay_input_locked);
+	process_movement(delta, gameplay_input_locked);
 	_update_locomotion_animation(delta)
 	_process_moving_sound();
 	
@@ -139,10 +146,10 @@ func _play_walk_sound() -> void:
 		potmaSounds.walkSoundAudioStream.stop();
 
 
-func process_jump() -> void:
+func process_jump(gameplay_input_locked: bool) -> void:
 	if not canMove:
 		return
-	if _is_dialogue_consuming_gameplay_input():
+	if gameplay_input_locked:
 		return
 
 	if is_on_floor():
@@ -162,19 +169,21 @@ func process_jump() -> void:
 			jumpBuffer = true;
 			get_tree().create_timer(jumpBufferTimer, false).timeout.connect(on_jump_buffer_timer_ends)
 
-func process_dash() -> void:
+func process_dash(gameplay_input_locked: bool) -> void:
+	if gameplay_input_locked:
+		return
 	if Input.is_action_just_pressed("dash") and canMove and canDash and dashReady and not isDashing:
 		_start_dash();
 
-func process_movement(delta) -> void:
-	if isDashing:
+func process_movement(delta: float, gameplay_input_locked: bool) -> void:
+	if isDashing and not gameplay_input_locked:
 		_movement_input_strength = 1.0
 		velocity = dashDirection * DASH_SPEED;
 		return
 
-	var rawInput := Input.get_vector("move-left", "move-right", "move-forward", "move-backwards");
-	if !canMove:
-		rawInput = Vector2.ZERO;
+	var rawInput := Vector2.ZERO
+	if canMove and not gameplay_input_locked:
+		rawInput = Input.get_vector("move-left", "move-right", "move-forward", "move-backwards");
 	_movement_input_strength = rawInput.length()
 	var forward := _camera.global_basis.z
 	var right := _camera.global_basis.x
@@ -291,6 +300,8 @@ func doubleJump() -> void:
 	_start_second_jump_damage();
 
 func _start_dash() -> void:
+	if is_gameplay_input_locked():
+		return
 	dashDirection = _get_dash_direction();
 	isDashing = true;
 	dashReady = false;
@@ -315,6 +326,8 @@ func _get_dash_direction() -> Vector3:
 	return lastMovementDirection.normalized()
 
 func _start_second_jump_damage() -> void:
+	if is_gameplay_input_locked():
+		return
 	isSecondJumpDamageActive = true;
 	_set_ability_damage_enabled(true);
 
@@ -347,6 +360,8 @@ func _on_ability_damage_area_area_entered(area: Area3D) -> void:
 	_damage_node_with_ability(area)
 
 func _damage_node_with_ability(node: Node) -> void:
+	if is_gameplay_input_locked():
+		return
 	if not isDashing and not isSecondJumpDamageActive:
 		return
 	if node == self or damagedByAbility.has(node):
@@ -389,8 +404,22 @@ func is_moving() -> bool:
 func get_to_checkpoint() -> void:
 	position = checkpoint
 
-func _is_dialogue_consuming_gameplay_input() -> bool:
-	var dialogue_controller := get_tree().get_first_node_in_group("dialogue_controller")
-	if dialogue_controller == null or not dialogue_controller.has_method("is_consuming_gameplay_input"):
+
+func is_gameplay_input_locked() -> bool:
+	if not is_instance_valid(_dialogue_controller):
+		_dialogue_controller = get_tree().get_first_node_in_group(&"dialogue_controller")
+	if _dialogue_controller == null or not _dialogue_controller.has_method(&"is_consuming_gameplay_input"):
 		return false
-	return dialogue_controller.call("is_consuming_gameplay_input")
+	return bool(_dialogue_controller.call(&"is_consuming_gameplay_input"))
+
+
+func _cancel_dialogue_incompatible_actions() -> void:
+	jumpBuffer = false
+	isDashing = false
+	isSecondJumpDamageActive = false
+	_movement_input_strength = 0.0
+	velocity.x = 0.0
+	velocity.z = 0.0
+	_locomotion_blend_position = LOCOMOTION_IDLE_BLEND
+	animation_tree.set(LOCOMOTION_BLEND_POSITION, LOCOMOTION_IDLE_BLEND)
+	_set_ability_damage_enabled(false)

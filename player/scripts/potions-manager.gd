@@ -10,6 +10,7 @@ signal potion_drink_finished
 )
 @onready var potmaSounds: PotmaSounds = %PotmaSounds
 @onready var _active_potion_service = get_node("/root/ActivePotionEffectService")
+@onready var _player := owner as MainPlayer
 @export var _potion_particles_system: PotionsParticleSystem;
 
 const MERGE_DECISION_WINDOW_SECONDS := 0.25
@@ -32,14 +33,15 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	_update_drink_animation_state()
 
+	if _is_gameplay_input_locked():
+		_cancel_pending_drink_intents()
+		return
+
 	if Input.is_action_just_pressed("toggleLeftPotion"):
 		PlayerPotions.toggleLeftPotion()
 
 	if Input.is_action_just_pressed("toggleRightPotion"):
 		PlayerPotions.toggleRightPotion()
-
-	if _is_dialogue_consuming_gameplay_input():
-		return
 
 	var l2_just := Input.is_action_just_pressed("drinkPotionLeft")
 	var r2_just := Input.is_action_just_pressed("drinkPotionRight")
@@ -51,6 +53,8 @@ func _process(_delta: float) -> void:
 		_register_drink_intent(false)
 
 func _register_drink_intent(isLeft: bool) -> void:
+	if _is_gameplay_input_locked():
+		return
 	if isLeft:
 		_pending_left_drink = true
 	else:
@@ -73,11 +77,17 @@ func _start_merge_decision_window() -> void:
 
 	if current_window_id != _decision_window_id:
 		return
+	if _is_gameplay_input_locked():
+		_cancel_pending_drink_intents()
+		return
 
 	_is_waiting_merge_decision = false
 	_resolve_pending_drink()
 
 func _resolve_as_merge() -> void:
+	if _is_gameplay_input_locked():
+		_cancel_pending_drink_intents()
+		return
 	_pending_left_drink = false
 	_pending_right_drink = false
 	_is_waiting_merge_decision = false
@@ -85,6 +95,9 @@ func _resolve_as_merge() -> void:
 	tryMergePotions()
 
 func _resolve_pending_drink() -> void:
+	if _is_gameplay_input_locked():
+		_cancel_pending_drink_intents()
+		return
 	if _pending_left_drink and _pending_right_drink:
 		_resolve_as_merge()
 		return
@@ -98,6 +111,8 @@ func _resolve_pending_drink() -> void:
 		drinkRightPotion()
 
 func drinkLeftPotion() -> void:
+	if _is_gameplay_input_locked():
+		return
 	var potion_type := PlayerPotions.selectedLeftPotionType
 	if potion_type == PotionTypes.PotionType.None:
 		return
@@ -110,6 +125,8 @@ func drinkLeftPotion() -> void:
 	play_drink_animation(DRINK_LEFT_ANIMATION)
 
 func drinkRightPotion() -> void:
+	if _is_gameplay_input_locked():
+		return
 	var potion_type := PlayerPotions.selectedRightPotionType
 	if potion_type == PotionTypes.PotionType.None:
 		return
@@ -122,6 +139,8 @@ func drinkRightPotion() -> void:
 	play_drink_animation(DRINK_RIGHT_ANIMATION)
 
 func tryMergePotions() -> bool:
+	if _is_gameplay_input_locked():
+		return false
 	if _active_potion_service.has_active_potion():
 		return false
 
@@ -196,8 +215,15 @@ func _finish_active_drink_animation(play_feedback: bool) -> void:
 	if play_feedback:
 		_on_drink_animation_finished()
 
-func _is_dialogue_consuming_gameplay_input() -> bool:
-	var dialogue_controller := get_tree().get_first_node_in_group("dialogue_controller")
-	if dialogue_controller == null or not dialogue_controller.has_method("is_consuming_gameplay_input"):
-		return false
-	return dialogue_controller.call("is_consuming_gameplay_input")
+func _cancel_pending_drink_intents() -> void:
+	if not _pending_left_drink and not _pending_right_drink and not _is_waiting_merge_decision:
+		return
+
+	_pending_left_drink = false
+	_pending_right_drink = false
+	_is_waiting_merge_decision = false
+	_decision_window_id += 1
+
+
+func _is_gameplay_input_locked() -> bool:
+	return _player != null and _player.is_gameplay_input_locked()

@@ -53,6 +53,17 @@ in `speaker` or `text` and add that key to `i18n/translations.csv`; the UI calls
   instance ID as a deterministic tie-breaker.
 - A conversation does not pause the world. The first press during typewriter
   reveal completes the current line; the next advances; the final advance closes it.
+- While dialogue is active or waiting for the final interaction release, the
+  player cannot move, jump, dash, attack, fire, drink, or change selected
+  potions. Camera rotation remains available.
+- Player physics stays active: an airborne player keeps falling, collisions and
+  incoming damage still apply, and enemies and gameplay timers keep running.
+- Starting dialogue cancels active attacks, dash, and ability contact damage.
+  A potion already consumed still completes its animation, audio, particles,
+  and belt synchronization; pending, uncommitted drink intents are discarded.
+- `MainPlayer.is_gameplay_input_locked()` is the player-side gate. Any future
+  character input component or delayed action callback must check it before
+  starting or applying gameplay effects.
 - A line's `voice_stream` plays once, non-positionally, when that line appears.
   Completing the typewriter reveal does not restart or stop it. Advancing,
   closing, or replacing the line stops the previous stream before continuing.
@@ -70,10 +81,13 @@ in `speaker` or `text` and add that key to `i18n/translations.csv`; the UI calls
 - Missing or empty dialogue data does not show a prompt and reports a warning.
 - Entering and leaving the area shows and hides one prompt.
 - Keyboard, PlayStation, and Xbox labels follow the last-used device.
-- Starting/closing never also jumps, attacks, or consumes a potion.
+- Starting/closing never also moves, jumps, dashes, attacks, fires, consumes, or
+  changes a potion selection.
 - Start cannot open the pause menu over an active conversation.
 - Player, enemies, physics, potion durations, and gameplay timers keep running
   while dialogue is open.
+- The player can rotate the camera and can still fall, receive damage, and die
+  while character controls are locked.
 - Pocima plays one blip per line; completing the visible text does not replay it.
 - Advancing or closing quickly cuts the old clip without overlapping the next.
 - A line with no `voice_stream` remains silent and otherwise behaves normally.
