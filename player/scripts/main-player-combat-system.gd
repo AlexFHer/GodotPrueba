@@ -8,6 +8,7 @@ extends Node
 @onready var _potmaSounds: PotmaSounds = %PotmaSounds
 @onready var _active_potion_service = get_node("/root/ActivePotionEffectService")
 @onready var _player := owner as MainPlayer
+@onready var _staff_trail_particle: GPUParticles3D = %StaffTrailParticle
 
 var _can_attack := true
 var _was_gameplay_input_locked := false
@@ -15,6 +16,7 @@ var _was_gameplay_input_locked := false
 func _ready() -> void:
 	_attack_reset_timer.timeout.connect(_enable_attack)
 	_set_staff_collision(false)
+	_disable_staff_trail_particle()
 
 func _process(_delta: float) -> void:
 	var gameplay_input_locked := _is_gameplay_input_locked()
@@ -63,6 +65,12 @@ func attack() -> void:
 	
 	_disable_attack()
 
+func attack_animation_started() -> void:
+	_enable_staff_trail_particle()
+
+func attack_animation_ended() -> void:
+	_disable_staff_trail_particle()
+
 func _is_fire_potion_active() -> bool:
 	return _active_potion_service.current_active_potion == PotionTypes.PotionType.Fire
 	
@@ -107,3 +115,10 @@ func _cancel_active_attack() -> void:
 
 func _is_gameplay_input_locked() -> bool:
 	return _player != null and _player.is_gameplay_input_locked()
+
+func _enable_staff_trail_particle() -> void:
+	_staff_trail_particle.emitting = true
+
+func _disable_staff_trail_particle() -> void:
+	_staff_trail_particle.restart()
+	_staff_trail_particle.emitting = false
