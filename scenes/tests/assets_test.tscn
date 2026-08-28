@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://btsrth5llm6nf" path="res://assets/enemies/globrc-big/globrc-big.tscn" id="26_68yrm"]
 [ext_resource type="PackedScene" uid="uid://0kbp5ta03h5x" path="res://assets/death-area/death-area.tscn" id="26_ouso1"]
 [ext_resource type="PackedScene" uid="uid://b8ruujys6hpsv" path="res://assets/enemies/mimic/mimic.tscn" id="27_68yrm"]
+[ext_resource type="PackedScene" path="res://scenes/tests/combo_hit_counter_targets.tscn" id="28_combo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3onbp"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -268,6 +269,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4803, 0, 7.83197)
 
 [node name="MainCharacter" parent="." unique_id=1180872510 instance=ExtResource("11_3onbp")]
 transform = Transform3D(1, -0.000168775, -6.33838e-05, 0.000168802, 1, 0.000491578, 6.33117e-05, -0.000491587, 1, 5.922993, 0.202615, 10.346638)
+
+[node name="ComboHitCounterTargets" parent="." unique_id=2071015906 instance=ExtResource("28_combo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.923, 0, 7.8)
 
 [node name="Castle_Lever" parent="." unique_id=1167176156 instance=ExtResource("22_e1my4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.6926, 0.0592519, -12.6781)

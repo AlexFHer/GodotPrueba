@@ -130,6 +130,29 @@ Important files:
 - `dialogues/components/dialogue_interactable.tscn`
 - [Dialogue setup guide](DIALOGUE_SYSTEM.md)
 
+## Normal Attack Combo
+- The normal staff attack is a three-hit combo using `Potma_Attack`,
+  `Potma_Attack2`, and `Potma_Attack3` in that order.
+- Each hit requires one separate `attack` press; one press never plays the full
+  combo automatically.
+- While a hit is active, at most one press may be buffered for the next hit.
+- After either of the first two hits finishes, the player has a 0.40-second grace
+  window to request the next hit before the combo resets to hit one.
+- The third hit never buffers another normal attack and always ends the combo.
+- All three hits deal the same normal-attack damage.
+- Each normal hit restarts and shows the staff trail for that hit; the combo
+  code owns trail start/end so legacy animation callbacks cannot cut later
+  stages short.
+- Normal attacks remain available while moving and while airborne; locomotion or
+  leaving the ground does not reset the chain.
+- Dialogue, potion drinking, dash, taking damage, and death are strong
+  interruptions: they cancel the active combo, close its damage window, clear
+  buffered input, and reset the next normal attack to hit one. Attacking remains
+  blocked until the interrupting action or reaction finishes.
+- Plain `Fire` remains a separate single-projectile attack and does not enter the
+  normal combo. Fire-containing combined abilities continue to use the normal
+  three-hit combo rather than inheriting plain `Fire` behavior.
+
 ## Ability Combat Rules
 - Normal staff hit damages `CanGetHit` targets.
 - Fire potion uses the fireball projectile.
@@ -248,3 +271,6 @@ Important files:
 - 2026-08-26: Locked player movement, combat, dash, potion use, and potion
   selection during active/closing dialogue while keeping camera and world
   simulation active.
+- 2026-08-28: Defined the three-hit normal attack combo, including its animation
+  order, one-input buffer, 0.40-second continuation grace, interruption rules,
+  movement freedom, equal damage, and separation from the plain Fire attack.

@@ -13,6 +13,60 @@ Validate gameplay after naming migrations, potion-state unification, logger adop
 2. Receive damage and verify life decreases and death flow restarts scene.
 3. Verify movement lock during potion drink lasts briefly and returns control.
 
+## Three-Hit Normal Attack Combo
+Use [combo_hit_counter_targets.tscn](combo_hit_counter_targets.tscn), already
+placed beside the player spawn in [assets_test.tscn](assets_test.tscn). The blue
+column exercises the `Body3D` damage path and the orange column exercises the
+`Area3D` path. Reload the scene between cases to reset both visible counters.
+
+1. With no potion active, stand within staff range of the blue `BODY` column and
+   tap Square once. Confirm only attack 1 plays and the display changes exactly
+   once from `0 / 3 READY` to `1 / 3 KEEP COMBO`.
+2. Let the combo continuation window expire, then tap Square again. Confirm the
+   animation restarts at attack 1 rather than advancing to attack 2; each swing
+   still adds exactly one visible hit.
+3. Reload, then press Square once per valid continuation window. Confirm attacks
+   1, 2, and 3 play in order, each attack shows the staff trail, and the blue
+   display finishes at exactly `3 / 3 OK`.
+4. Repeat the complete chain against the orange `AREA` column. Confirm its display
+   also finishes at exactly `3 / 3 OK`, proving both damage callbacks work.
+5. Stay overlapped with each target throughout a complete chain. Confirm closing
+   and reopening each strike window produces one hit per attack: no missed second
+   or third hit and no `EXTRA HIT` result.
+6. Press Square repeatedly during one attack. Confirm input buffering advances at
+   most one stage, never skips an animation, and never produces two hits from one
+   strike window.
+7. Queue one Square press near the end of attack 1. Confirm attack 2 starts once;
+   do not press again and confirm the chain then expires instead of auto-playing 3.
+8. Complete attack 3, wait through recovery, and press Square once. Confirm a new
+   chain starts at attack 1 rather than attempting a fourth combo stage.
+9. Start a combo near Pocima in the main level and open dialogue during startup,
+   the active hit window, and recovery in separate runs. Each time confirm the
+   animation, staff collision, sound, trail, queued input, and combo state clear;
+   no delayed hit occurs and the first post-dialogue Square starts attack 1.
+10. Let an enemy damage the player during attacks 1, 2, and 3 in separate runs.
+    Confirm the hit reaction cancels the current chain and its hitbox, and the next
+    accepted Square starts attack 1.
+11. Begin drinking a potion during a normal combo. Confirm drinking cancels the
+    chain without a delayed staff hit; normal attacking remains blocked until the
+    drink finishes, then restarts from attack 1.
+12. Start and continue combos while jumping or falling. Confirm airborne Square
+    presses remain valid, leaving the floor does not reset the current chain, and
+    the same continuation timing applies before and after landing.
+13. With the damage-dash potion active, start a combo and then dash. Confirm dash
+    cancels the staff chain and only ability contact damage remains active; after
+    dash recovery the next normal attack starts at 1. In a separate run, take
+    damage during the dash and confirm attacking stays blocked until both the dash
+    and hit reaction finish, then restarts at attack 1.
+14. With plain Fire active, press Square three times. Confirm every accepted press
+    uses the projectile attack, never enables the staff hitbox, and does not retain
+    a hidden normal-combo stage. When Fire expires, the next Square starts attack 1.
+15. Pause during the continuation window and wait longer than its normal duration.
+    Resume and confirm the remaining window was frozen rather than expiring while
+    paused.
+16. During every normal stage, verify one matching sound and trail window, that the
+    trail stops on completion/cancellation, and that locomotion resumes cleanly.
+
 ## Potions
 1. Start with an empty inventory and confirm both belt bottles are hidden.
 2. Pick up the first potion and confirm both automatically selected belt slots

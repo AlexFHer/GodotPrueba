@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scenes/tests/combo_hit_counter_target.gd" id="1_counter"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_body"]
+resource_local_to_scene = true
+albedo_color = Color(0.2, 0.55, 1, 1)
+metallic = 0.15
+roughness = 0.35
+
+[sub_resource type="BoxMesh" id="BoxMesh_body"]
+size = Vector3(0.9, 1.5, 0.65)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_body"]
+size = Vector3(0.9, 1.5, 0.65)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_area"]
+resource_local_to_scene = true
+albedo_color = Color(1, 0.45, 0.15, 1)
+metallic = 0.15
+roughness = 0.35
+
+[sub_resource type="BoxMesh" id="BoxMesh_area"]
+size = Vector3(0.9, 1.5, 0.65)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_area"]
+size = Vector3(0.9, 1.5, 0.65)
+
+[node name="ComboHitCounterTargets" type="Node3D"]
+
+[node name="FixtureTitle" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8, 0)
+billboard = 1
+no_depth_test = true
+fixed_size = true
+text = "COMBO QA: SQUARE x3"
+font_size = 48
+outline_size = 12
+
+[node name="BodyTarget" type="StaticBody3D" parent="." groups=["CanGetHit"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 0)
+script = ExtResource("1_counter")
+target_name = "BODY"
+base_color = Color(0.2, 0.55, 1, 1)
+
+[node name="TargetMesh" type="MeshInstance3D" parent="BodyTarget"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+material_override = SubResource("StandardMaterial3D_body")
+mesh = SubResource("BoxMesh_body")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BodyTarget"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("BoxShape3D_body")
+
+[node name="HitCountLabel" type="Label3D" parent="BodyTarget"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0)
+billboard = 1
+no_depth_test = true
+fixed_size = true
+text = "BODY HITS: 0 / 3\nREADY"
+font_size = 36
+outline_size = 10
+
+[node name="AreaTarget" type="Area3D" parent="." groups=["CanGetHit"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, 0)
+monitoring = false
+script = ExtResource("1_counter")
+target_name = "AREA"
+base_color = Color(1, 0.45, 0.15, 1)
+
+[node name="TargetMesh" type="MeshInstance3D" parent="AreaTarget"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+material_override = SubResource("StandardMaterial3D_area")
+mesh = SubResource("BoxMesh_area")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaTarget"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("BoxShape3D_area")
+
+[node name="HitCountLabel" type="Label3D" parent="AreaTarget"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0)
+billboard = 1
+no_depth_test = true
+fixed_size = true
+text = "AREA HITS: 0 / 3\nREADY"
+font_size = 36
+outline_size = 10

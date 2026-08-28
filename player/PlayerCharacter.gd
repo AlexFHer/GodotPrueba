@@ -1,5 +1,10 @@
 class_name MainPlayer extends CharacterBody3D
 
+enum AttackInterruptionReason {
+	DASH,
+	DAMAGE,
+}
+
 @onready var _rig: Node3D = $Rig;
 @onready var _camera: Camera3D = %MainCharacterCamera;
 
@@ -34,6 +39,7 @@ const LOCOMOTION_BLEND_SPEED := 8.0
 
 var life: int = 3;
 signal lifeChanged(newLife: int);
+signal attack_interruption_requested(reason: int)
 
 # Movement
 
@@ -304,6 +310,7 @@ func _start_dash() -> void:
 		return
 	dashDirection = _get_dash_direction();
 	isDashing = true;
+	attack_interruption_requested.emit(AttackInterruptionReason.DASH)
 	dashReady = false;
 	_set_ability_damage_enabled(true);
 
@@ -376,6 +383,7 @@ func _damage_node_with_ability(node: Node) -> void:
 
 
 func dealDamage() -> void:
+	attack_interruption_requested.emit(AttackInterruptionReason.DAMAGE)
 	life -= 1;
 	potmaSounds.getHitSoundAudioStream.play();
 	lifeChanged.emit(life)
