@@ -21,6 +21,9 @@ enum State {
 
 @export var number_of_mythril: int = DEFAULT_MITHRIL
 
+var shockwave_scene: PackedScene = preload("res://assets/enemies/globrc-big/assets/shockwave/globrc_shockwave.tscn")
+@onready var shockwave_spawn_point: Node3D = %ShockwaveSpawnPoint
+@onready var dust_particles: GPUParticles3D = %DustBurstParticles
 
 var state := State.Idle
 
@@ -44,6 +47,16 @@ func enable_attack_collision() -> void:
 
 func disable_attack_collision() -> void:
 	attack_collider.disabled = true
+
+func _spawn_shockwave() -> void:
+	var shockwave_instance: Node3D = shockwave_scene.instantiate()
+	get_tree().current_scene.add_child(shockwave_instance)
+	shockwave_instance.global_position = shockwave_spawn_point.global_position
+	print("SPAWN SHOCKWAVE EN: ", shockwave_spawn_point.global_position)
+	_spawn_dust_particles()
+
+func _spawn_dust_particles() -> void:
+	dust_particles.emitting = true
 
 func on_die_animation_finished() -> void:
 	await get_tree().create_timer(DIE_DELAY_TIME, false).timeout
@@ -110,7 +123,8 @@ func _on_attack_animation_finished() -> void:
 
 func _on_attack_collision_area_3d_body_entered(body:Node3D) -> void:
 	if body is MainPlayer:
-		body.dealDamage()
+		if body.has_method("take_damage"):
+			body.take_damage()
 		disable_attack_collision()
 
 func _on_death_particles_finished() -> void:

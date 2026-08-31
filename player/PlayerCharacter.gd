@@ -382,7 +382,7 @@ func _damage_node_with_ability(node: Node) -> void:
 	node.get_hit()
 
 
-func dealDamage() -> void:
+func take_damage() -> void:
 	attack_interruption_requested.emit(AttackInterruptionReason.DAMAGE)
 	life -= 1;
 	potmaSounds.getHitSoundAudioStream.play();

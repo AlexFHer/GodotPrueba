@@ -110,8 +110,8 @@ func _on_melee_attack_animation_end() -> void:
 
 func _on_weapon_hit_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("MainPlayer"):
-		if body.has_method("dealDamage"):
-			body.dealDamage()
+		if body.has_method("take_damage"):
+			body.take_damage()
 
 func _on_can_attack_timer_timeout() -> void:
 	canAttack = true

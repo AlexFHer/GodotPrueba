@@ -265,7 +265,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.704, 6.06641, -4.1293)
 patrolPoints = [NodePath("../Patrol point marker"), NodePath("../Patrol point marker2"), NodePath("../Patrol point marker3"), NodePath("../Patrol point marker4"), NodePath("../Patrol point marker5"), NodePath("../Patrol point marker6")]
 
 [node name="Globrc-big" parent="Assets/Enemies" unique_id=1939251381 instance=ExtResource("26_68yrm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4803, 0, 7.83197)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.606642, -9.536743e-07, 2.8967724)
 
 [node name="MainCharacter" parent="." unique_id=1180872510 instance=ExtResource("11_3onbp")]
 transform = Transform3D(1, -0.000168775, -6.33838e-05, 0.000168802, 1, 0.000491578, 6.33117e-05, -0.000491587, 1, 5.922993, 0.202615, 10.346638)
