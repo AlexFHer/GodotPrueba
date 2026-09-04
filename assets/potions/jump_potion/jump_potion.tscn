@@ -118,7 +118,7 @@ shader_parameter/rim_emission_intensity = 0.81600003876
 shader_parameter/rim_exponent = 2.1130000528675
 shader_parameter/emission_intensity = 0.886000042085
 shader_parameter/liquid_surface_gradient_size = 0.1750000083125
-shader_parameter/wobble = Vector2(-0.0021078251, 0.012661312)
+shader_parameter/wobble = Vector2(0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8euhn"]
 resource_name = "Poti_Mat"
@@ -164,6 +164,7 @@ shadow_mesh = SubResource("ArrayMesh_68quy")
 size = Vector3(2.02118, 1.96102, 1.74645)
 
 [node name="Jump-potion" type="Area3D" unique_id=926078349 node_paths=PackedStringArray("potionPickupAudio")]
+collision_mask = 2
 script = ExtResource("1_tjabp")
 potionPickupAudio = NodePath("AudioStreamPlayer3D")
 potionType = 1
@@ -179,10 +180,10 @@ visible = false
 [node name="PotiOverworldJump" parent="Model" unique_id=700607690 instance=ExtResource("3_sny8o")]
 transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 1.8359864, 0)
 
-[node name="BottlePotion" parent="Model/PotiOverworldJump" index="0" unique_id=140445110]
+[node name="BottlePotion" parent="Model/PotiOverworldJump" index="0" unique_id=1794950453]
 material_override = ExtResource("4_k5fhg")
 
-[node name="BottleLiquid" parent="Model/PotiOverworldJump/BottlePotion" index="0" unique_id=138785807]
+[node name="BottleLiquid" parent="Model/PotiOverworldJump/BottlePotion" index="0" unique_id=202898637]
 material_override = SubResource("ShaderMaterial_2gn0l")
 mesh = SubResource("ArrayMesh_pqd0a")
 script = ExtResource("5_0pfie")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://mykeuox7c8sn"]
+[gd_scene format=3 uid="uid://mykeuox7c8sn"]
 
 [ext_resource type="Script" uid="uid://kxv4kyx1hf4c" path="res://assets/key/key.gd" id="1_hvvbr"]
 [ext_resource type="PackedScene" uid="uid://bxs6pilknhd4m" path="res://assets/key/model/Key_Collectable.glb" id="1_nlauf"]
@@ -18,28 +18,29 @@ transitions = ["Start", "KeyAction_001", SubResource("AnimationNodeStateMachineT
 [sub_resource type="BoxShape3D" id="BoxShape3D_hvvbr"]
 size = Vector3(1, 0.97522, 0.841309)
 
-[node name="Key" type="Area3D" node_paths=PackedStringArray("KeyPickupAudio")]
+[node name="Key" type="Area3D" unique_id=661128954 node_paths=PackedStringArray("KeyPickupAudio")]
+collision_mask = 2
 script = ExtResource("1_hvvbr")
 KeyPickupAudio = NodePath("AudioStreamPlayer3D")
 
-[node name="Model" type="Node3D" parent="."]
+[node name="Model" type="Node3D" parent="." unique_id=36253187]
 
-[node name="Key_Collectable" parent="Model" instance=ExtResource("1_nlauf")]
+[node name="Key_Collectable" parent="Model" unique_id=1789806431 instance=ExtResource("1_nlauf")]
 
 [node name="Key" parent="Model/Key_Collectable" index="0"]
-transform = Transform3D(-0.977657, 0, -0.210201, 0, 1, 0, 0.210201, 0, -0.977657, 0, -0.155933, 0)
+transform = Transform3D(0.4485288, 0, -0.89376706, 0, 1, 0, 0.89376706, 0, 0.4485288, 0, 0.16937229, 0)
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1705562888]
 root_node = NodePath("../Model/Key_Collectable")
 tree_root = SubResource("AnimationNodeStateMachine_sy52k")
 anim_player = NodePath("../Model/Key_Collectable/AnimationPlayer")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1340440573]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.476868, 0.0793457)
 shape = SubResource("BoxShape3D_hvvbr")
 debug_color = Color(0.948938, 0.17862, 0.36123, 0.42)
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1573469051]
 stream = ExtResource("3_0f75p")
 volume_db = 9.195
 

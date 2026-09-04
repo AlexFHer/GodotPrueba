@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bgp44hgj2ny5j"]
+[gd_scene format=3 uid="uid://bgp44hgj2ny5j"]
 
 [ext_resource type="Script" uid="uid://d1ecirgocrr65" path="res://assets/arc/arc.gd" id="1_3stq6"]
 [ext_resource type="PackedScene" uid="uid://bp1eqguoel6r6" path="res://assets/arc/model/Arc_On.glb" id="2_5xixg"]
@@ -8,29 +8,30 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_5xixg"]
 size = Vector3(3.21375, 2.46614, 0.35498)
 
-[node name="Arc" type="Area3D" node_paths=PackedStringArray("arcActivated")]
+[node name="Arc" type="Area3D" unique_id=2126081852 node_paths=PackedStringArray("arcActivated")]
+collision_mask = 2
 script = ExtResource("1_3stq6")
 arcActivated = NodePath("AudioStreamPlayer3D")
 
-[node name="DeactivationTimer" type="Timer" parent="."]
+[node name="DeactivationTimer" type="Timer" parent="." unique_id=1830743905]
 wait_time = 15.0
 one_shot = true
 
-[node name="ActivationCollider" type="CollisionShape3D" parent="."]
+[node name="ActivationCollider" type="CollisionShape3D" parent="." unique_id=457852853]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0904665, 1.35275, 0.0280762)
 shape = SubResource("BoxShape3D_5xixg")
 
-[node name="ArcOn" type="Node3D" parent="."]
+[node name="ArcOn" type="Node3D" parent="." unique_id=1327268189]
 unique_name_in_owner = true
 
-[node name="Arc_On" parent="ArcOn" instance=ExtResource("2_5xixg")]
+[node name="Arc_On" parent="ArcOn" unique_id=806539525 instance=ExtResource("2_5xixg")]
 
-[node name="ArcOff" type="Node3D" parent="."]
+[node name="ArcOff" type="Node3D" parent="." unique_id=468039263]
 unique_name_in_owner = true
 
-[node name="Arc_Off" parent="ArcOff" instance=ExtResource("2_r32ve")]
+[node name="Arc_Off" parent="ArcOff" unique_id=1589646377 instance=ExtResource("2_r32ve")]
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1113765319]
 stream = ExtResource("4_xt5kk")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

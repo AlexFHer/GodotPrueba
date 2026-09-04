@@ -165,6 +165,7 @@ radius = 0.635118
 height = 2.43322
 
 [node name="Fire-potion" type="Area3D" unique_id=1103179316 node_paths=PackedStringArray("potionPickupAudio")]
+collision_mask = 2
 script = ExtResource("1_cy8qw")
 potionPickupAudio = NodePath("AudioStreamPlayer3D")
 potionType = 3

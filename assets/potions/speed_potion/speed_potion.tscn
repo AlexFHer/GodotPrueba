@@ -24,7 +24,7 @@ shader_parameter/rim_emission_intensity = 0.81600003876
 shader_parameter/rim_exponent = 2.1130000528675
 shader_parameter/emission_intensity = 0.886000042085
 shader_parameter/liquid_surface_gradient_size = 0.1750000083125
-shader_parameter/wobble = Vector2(4.657741e-18, 1.90879e-18)
+shader_parameter/wobble = Vector2(0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8euhn"]
 resource_name = "Poti_Mat"
@@ -71,6 +71,7 @@ radius = 0.490874
 height = 0.981748
 
 [node name="Speed-potion" type="Area3D" unique_id=347981343 node_paths=PackedStringArray("potionPickupAudio")]
+collision_mask = 2
 script = ExtResource("1_kst2q")
 potionPickupAudio = NodePath("AudioStreamPlayer3D")
 potionType = 2
