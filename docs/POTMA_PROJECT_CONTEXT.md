@@ -97,6 +97,20 @@ Current durations:
 - Toggle left potion: `toggleLeftPotion`.
 - Toggle right potion: `toggleRightPotion`.
 
+## Player Camera
+- The third-person camera normally sits 3 metres from `CameraPivot`.
+- `SpringArm3D` is a collision probe rather than the camera's direct parent. It
+  casts 0.55 metres beyond the desired camera distance so nearby obstacles are
+  detected before they reach the camera.
+- `playerCamera.gd` interpolates the actual camera distance independently: it
+  retracts with responsiveness 18 and recovers with responsiveness 6. This
+  keeps obstacle avoidance quick and makes the return to the normal distance
+  visibly softer.
+- The smoothed distance is always capped by the current collision distance, so
+  an obstacle that appears suddenly cannot leave the camera behind the wall.
+- `preferredDistance`, `collisionLookAhead`, `collisionApproachSpeed`, and
+  `collisionRecoverySpeed` are exported tuning values on `CameraPivot`.
+
 ## NPC Dialogue System
 - Dialogue is linear in v1: no choices, branches, gameplay commands, or
   persistence of already-read conversations.
@@ -318,3 +332,5 @@ Important files:
 - 2026-09-04: Made the potion movement lock follow the actual drink-animation
   one-shot instead of a fixed 2.1-second timer, and anchored completion
   particles to the player's local particle marker.
+- 2026-09-04: Decoupled the third-person camera from the `SpringArm3D` endpoint
+  and added predictive, asymmetric distance smoothing for obstacle avoidance.

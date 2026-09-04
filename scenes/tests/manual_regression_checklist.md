@@ -13,6 +13,12 @@ Validate gameplay after naming migrations, potion-state unification, logger adop
 2. Receive damage and verify life decreases and death flow restarts scene.
 3. Verify movement and jumping stay locked during a potion drink and return on
    the same frame that the visible drink animation ends, with no extra pause.
+4. Walk and rotate beside walls, pillars, corners, and low ceilings. Confirm the
+   camera retracts without crossing the obstacle, changes distance smoothly,
+   and returns more gently to its normal three-metre distance afterward.
+5. Repeat the obstacle check while sprinting and dashing. Confirm a sudden close
+   collision may retract faster for safety but never leaves the camera behind
+   the wall or changes the player's movement direction unexpectedly.
 
 ## Three-Hit Normal Attack Combo
 Use [combo_hit_counter_targets.tscn](combo_hit_counter_targets.tscn), already

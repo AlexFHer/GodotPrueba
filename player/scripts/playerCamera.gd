@@ -2,13 +2,26 @@ extends Node3D
 
 @export_group("Camera")
 @export_range(0.0, 1.0) var mouse_sensivity := 0.25
+@export_range(0.5, 10.0, 0.1) var preferredDistance := 3.0
+@export_range(0.0, 1.5, 0.05) var collisionLookAhead := 0.55
+@export_range(1.0, 30.0, 0.5) var collisionApproachSpeed := 18.0
+@export_range(1.0, 30.0, 0.5) var collisionRecoverySpeed := 6.0
+
+@onready var springArm: SpringArm3D = $SpringArm3D
+@onready var playerCamera: Camera3D = %MainCharacterCamera
 
 const MULTIPLIER = 10;
 
 var cameraInputDirection := Vector2.ZERO
+var currentCameraDistance := 3.0
 
 func _init() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func _ready() -> void:
+	springArm.spring_length = preferredDistance + collisionLookAhead
+	currentCameraDistance = preferredDistance
+	_updateCameraTransform()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -30,6 +43,7 @@ func manageInputJoypadMotion(event: InputEventJoypadMotion) -> void:
 
 func _process(delta: float) -> void:
 	manageSelfRotation(delta);
+	_updateCameraCollision(delta)
 
 
 func manageSelfRotation(delta: float) -> void:
@@ -46,3 +60,35 @@ func manageSelfRotation(delta: float) -> void:
 
 func resetMotion() -> void:
 	cameraInputDirection = Vector2.ZERO
+
+func _updateCameraCollision(delta: float) -> void:
+	var hitLength: float = springArm.get_hit_length()
+	var targetDistance: float = clampf(
+		hitLength - collisionLookAhead,
+		0.0,
+		preferredDistance
+	)
+	var smoothingSpeed := (
+		collisionApproachSpeed
+		if targetDistance < currentCameraDistance
+		else collisionRecoverySpeed
+	)
+	var smoothingWeight := 1.0 - exp(-smoothingSpeed * delta)
+
+	currentCameraDistance = lerpf(
+		currentCameraDistance,
+		targetDistance,
+		smoothingWeight
+	)
+	# Never leave the camera behind the collision point if an obstacle appears
+	# suddenly. The extra probe distance normally makes this clamp unnecessary.
+	currentCameraDistance = minf(currentCameraDistance, hitLength)
+	_updateCameraTransform()
+
+func _updateCameraTransform() -> void:
+	var armTransform := springArm.transform
+	var cameraOrigin := (
+		armTransform.origin
+		+ armTransform.basis.z.normalized() * currentCameraDistance
+	)
+	playerCamera.transform = Transform3D(armTransform.basis, cameraOrigin)
