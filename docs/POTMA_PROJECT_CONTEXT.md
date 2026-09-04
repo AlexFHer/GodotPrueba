@@ -43,6 +43,14 @@ a new decision, mechanic, constraint, naming convention, or open question appear
   Fire is red, Jump is blue, and Speed is green.
 - A consumed belt bottle keeps its current appearance until its drinking
   animation finishes, then synchronizes with the latest slot selection.
+- Drinking blocks movement and jumping only while the drink `AnimationTree`
+  one-shot is active. `PotionsManager` start/finish signals own that lock, so
+  control returns on the same frame that the drink animation completes rather
+  than after a separate fixed-duration timer.
+- Drink-completion particles are instantiated at the local origin of the
+  `PotionsParticlesSystem` marker above the player and simulate in local
+  coordinates, keeping the burst attached to the character instead of an
+  unrelated world position.
 - Drinking one potion consumes one selected potion and emits `potionUsed`.
 - Drinking both potions at nearly the same time combines the selected potion types.
 - Combined potions are not added to inventory.
@@ -307,3 +315,6 @@ Important files:
   from the animated staff bone. The weapon-attached trail is a short, narrow,
   smoothly tapered 48%-opacity accent so it does not compete with the launched
   arc.
+- 2026-09-04: Made the potion movement lock follow the actual drink-animation
+  one-shot instead of a fixed 2.1-second timer, and anchored completion
+  particles to the player's local particle marker.

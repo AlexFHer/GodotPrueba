@@ -1,4 +1,4 @@
-class_name PotionsParticleSystem extends Node
+class_name PotionsParticleSystem extends Node3D
 
 var fire_particle: PackedScene = preload("res://player/particles/FirePotion_Particles.tscn");
 var jump_particle: PackedScene = preload("res://player/particles/JumpPotion_Particles.tscn");
@@ -16,7 +16,13 @@ var particles: Dictionary = {
 func _play_particles(potionType: PotionTypes.PotionType) -> void:
 	if potionType in particles:
 		for particle_scene in particles[potionType]:
-			var particle_instance = particle_scene.instantiate()
+			var particle_instance := particle_scene.instantiate() as GPUParticles3D
+			if particle_instance == null:
+				push_error("Potion particle scenes must have a GPUParticles3D root.")
+				continue
+
+			particle_instance.transform = Transform3D.IDENTITY
+			particle_instance.local_coords = true
 			add_child(particle_instance)
 	else:
 		push_error("No particles found for potion type: " + str(potionType))

@@ -27,7 +27,6 @@ const NORMAL_SPEED := 10.0;
 const IMPROVED_SPEED := 20.0;
 const ACCELERATION := 20.0;
 const ORIGINAL_GRAVITY := -30;
-const DRINK_MOVE_LOCK_SECONDS := 2.1
 const DEATH_RESTART_DELAY_SECONDS := 0.5
 const LOCOMOTION_BLEND_POSITION := &"parameters/Locomotion/WalkBlend/blend_position"
 const LOCOMOTION_IDLE_BLEND := 0.0
@@ -258,14 +257,14 @@ func _on_potion_used(potionType: PotionTypes.PotionType) -> void:
 		_activate_jump_fire_potion(potionType);
 	if potionType == PotionTypes.PotionType.SpeedAndFire:
 		_activate_speed_fire_potion(potionType);
-	
-	disable_can_move_due_drink_potion();
 
-func disable_can_move_due_drink_potion() -> void:
+
+func _on_potion_drink_started(_uses_left_slot: bool, _uses_right_slot: bool) -> void:
 	canMove = false;
 	canJump = false;
 
-	await get_tree().create_timer(DRINK_MOVE_LOCK_SECONDS, false).timeout
+
+func _on_potion_drink_finished() -> void:
 	canMove = true;
 	canJump = true
 

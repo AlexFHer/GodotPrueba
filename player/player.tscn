@@ -664,9 +664,9 @@ one_shot = true
 
 [node name="PotionsManager" type="Node3D" parent="Managers" unique_id=1233766524 node_paths=PackedStringArray("_potion_particles_system")]
 script = ExtResource("2_86mlk")
-_potion_particles_system = NodePath("PotionsParticlesSystem")
+_potion_particles_system = NodePath("../../PotionsParticlesSystem")
 
-[node name="PotionsParticlesSystem" type="Node3D" parent="Managers/PotionsManager" unique_id=1952334961]
+[node name="PotionsParticlesSystem" type="Node3D" parent="." unique_id=1952334961]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03907, 0)
 script = ExtResource("6_tqiix")
 
@@ -686,8 +686,10 @@ script = ExtResource("27_uw77l")
 [connection signal="body_entered" from="AbilityDamageArea" to="." method="_on_ability_damage_area_body_entered"]
 [connection signal="area_entered" from="Rig/StaffArea3D" to="Managers/CombatSystem" method="_on_staff_area_3d_area_entered"]
 [connection signal="body_entered" from="Rig/StaffArea3D" to="Managers/CombatSystem" method="_on_staff_area_3d_body_entered"]
+[connection signal="potion_drink_finished" from="Managers/PotionsManager" to="." method="_on_potion_drink_finished"]
 [connection signal="potion_drink_finished" from="Managers/PotionsManager" to="Managers/CombatSystem" method="_on_potion_drink_finished"]
 [connection signal="potion_drink_finished" from="Managers/PotionsManager" to="Managers/BeltPotionsSystem" method="_on_potion_drink_finished"]
+[connection signal="potion_drink_started" from="Managers/PotionsManager" to="." method="_on_potion_drink_started"]
 [connection signal="potion_drink_started" from="Managers/PotionsManager" to="Managers/CombatSystem" method="_on_potion_drink_started"]
 [connection signal="potion_drink_started" from="Managers/PotionsManager" to="Managers/BeltPotionsSystem" method="_on_potion_drink_started"]
 

@@ -11,7 +11,8 @@ Validate gameplay after naming migrations, potion-state unification, logger adop
 ## Player Core
 1. Move, jump, and attack with no potion active.
 2. Receive damage and verify life decreases and death flow restarts scene.
-3. Verify movement lock during potion drink lasts briefly and returns control.
+3. Verify movement and jumping stay locked during a potion drink and return on
+   the same frame that the visible drink animation ends, with no extra pause.
 
 ## Three-Hit Normal Attack Combo
 Use [combo_hit_counter_targets.tscn](combo_hit_counter_targets.tscn), already
@@ -108,6 +109,11 @@ column exercises the `Body3D` damage path and the orange column exercises the
 10. Confirm plain Fire changes each stage of the normal combo into a fire-colored
     staff swing with one additional fireball and one independent fire arc;
     combined Fire potions retain their own existing abilities.
+11. Finish drinking while standing still and while the player is at several
+    different world positions. Confirm the completion burst always appears over
+    the player, never at the map origin or another unrelated location; begin
+    moving immediately and confirm the short burst remains attached to the
+    character.
 
 ## Enemies
 1. GlobrcSmall patrols between points and idles at waypoints.
