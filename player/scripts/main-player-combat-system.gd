@@ -1,22 +1,25 @@
 extends Node
 
+const FIRE_ARC_PROJECTILE_SCENE := preload("res://player/scenes/fire_arc_projectile.tscn")
 const NORMAL_ATTACK_ANIMATIONS := [
 	&"Potma_Attack",
 	&"Potma_Attack2",
 	&"Potma_Attack3",
 ]
 const ANIMATION_START_GRACE_FRAMES := 3
+const FIRE_STAFF_TRAIL_COLOR := Color(1.0, 0.18, 0.02, 1.0)
+const FIRE_STAFF_TRAIL_EMISSION_ENERGY := 2.0
+const FIRE_PROJECTILE_SPAWN_HEIGHT := 1.05
+const FIRE_PROJECTILE_FORWARD_OFFSET := 1.25
 const STAFF_HIT_REQUEST := &"parameters/StaffHitOneShot/request"
 const STAFF_HIT_ACTIVE := &"parameters/StaffHitOneShot/active"
 const STAFF_THROW_REQUEST := &"parameters/StaffThrowOneShot/request"
-const STAFF_THROW_ACTIVE := &"parameters/StaffThrowOneShot/active"
 const HIT_REACTION_ACTIVE := &"parameters/HitOneShot/active"
 const DEATH_REACTION_ACTIVE := &"parameters/DieOneShot/active"
 
 @onready var _animation_tree: AnimationTree = %PlayerAnimationTree
 @onready var _attack_reset_timer: Timer = %AttackResetTimer
 @onready var _combo_reset_timer: Timer = %ComboResetTimer
-@onready var _shoot_position: Node3D = %ShootPosition
 @onready var _rig: Node3D = %Rig
 @onready var _staff_collision: CollisionShape3D = %StaffCollision
 @onready var _staff_area := _staff_collision.get_parent() as Area3D
@@ -46,15 +49,15 @@ var _queued_next_attack := false
 var _pending_next_attack := false
 var _attack_generation := 0
 var _damaged_targets_this_swing: Array[Node] = []
-
-var _fire_attack_active := false
-var _fire_attack_one_shot_was_active := false
-var _fire_attack_start_grace_frames := 0
+var _fire_combo_active := false
+var _staff_trail_material: StandardMaterial3D
+var _normal_staff_trail_color := Color.WHITE
 
 
 func _ready() -> void:
 	_attack_reset_timer.timeout.connect(_enable_fire_attack)
 	_combo_reset_timer.timeout.connect(_on_combo_reset_timer_timeout)
+	_prepare_staff_trail_material()
 	_set_staff_collision(false)
 	_disable_staff_trail_particle()
 
@@ -78,7 +81,6 @@ func _process(_delta: float) -> void:
 
 	_was_attack_recovery_blocked = false
 	_update_normal_attack_animation_state()
-	_update_fire_attack_animation_state()
 	_try_start_pending_normal_attack()
 
 	if Input.is_action_just_pressed("attack"):
@@ -89,16 +91,16 @@ func attack() -> void:
 	if _is_gameplay_input_locked() or _is_attack_recovery_blocked():
 		return
 
-	if _is_fire_potion_active():
-		if not _can_fire_attack or _fire_attack_active:
-			return
-		_cancel_normal_attack()
-		_play_staff_fire_animation()
-		_disable_fire_attack()
+	if _has_combo_in_progress():
+		_handle_normal_attack_input()
 		return
 
-	if _fire_attack_active:
-		return
+	_fire_combo_active = _is_fire_potion_active()
+	if _fire_combo_active:
+		if not _can_fire_attack:
+			_fire_combo_active = false
+			return
+		_disable_fire_attack()
 
 	_handle_normal_attack_input()
 
@@ -142,9 +144,13 @@ func _start_normal_attack(step: int) -> void:
 
 	_normal_attack_animation_node.animation = NORMAL_ATTACK_ANIMATIONS[_combo_step]
 	_potmaSounds.staffHitSoundAudioStream.play()
+	_set_staff_trail_fire_visual(_fire_combo_active)
 	_enable_staff_trail_particle()
 	_set_staff_collision(true)
 	_animation_tree.set(STAFF_HIT_REQUEST, AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	if _fire_combo_active:
+		_fire_projectile()
+		_fire_arc_projectile()
 	_damage_current_staff_overlaps_after_physics(_attack_generation)
 
 
@@ -177,6 +183,7 @@ func _finish_normal_attack() -> void:
 
 	if _combo_step >= NORMAL_ATTACK_ANIMATIONS.size() - 1:
 		_reset_combo_progress()
+		_fire_combo_active = false
 		return
 
 	if _queued_next_attack:
@@ -203,6 +210,7 @@ func _on_combo_reset_timer_timeout() -> void:
 	if _normal_attack_active or _pending_next_attack:
 		return
 	_reset_combo_progress()
+	_fire_combo_active = false
 
 
 func _reset_combo_progress() -> void:
@@ -212,52 +220,48 @@ func _reset_combo_progress() -> void:
 	_pending_next_attack = false
 
 
-func _play_staff_fire_animation() -> void:
-	_fire_attack_active = true
-	_fire_attack_one_shot_was_active = false
-	_fire_attack_start_grace_frames = ANIMATION_START_GRACE_FRAMES
-	_animation_tree.set(STAFF_THROW_REQUEST, AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-
-
-func _update_fire_attack_animation_state() -> void:
-	if not _fire_attack_active:
-		return
-
-	var one_shot_active := bool(_animation_tree.get(STAFF_THROW_ACTIVE))
-	if one_shot_active:
-		_fire_attack_one_shot_was_active = true
-		return
-
-	if _fire_attack_one_shot_was_active:
-		_clear_fire_attack_state()
-		return
-
-	_fire_attack_start_grace_frames -= 1
-	if _fire_attack_start_grace_frames <= 0:
-		GameLog.warn("Fire attack animation failed to start")
-		_clear_fire_attack_state()
-
-
-func _clear_fire_attack_state() -> void:
-	_fire_attack_active = false
-	_fire_attack_one_shot_was_active = false
-	_fire_attack_start_grace_frames = 0
-
-
 func _fire_projectile() -> void:
-	if not _fire_attack_active:
+	if not _normal_attack_active or not _fire_combo_active:
 		return
 	if _is_gameplay_input_locked() or _is_attack_recovery_blocked():
 		return
 
-	var instance = FireProjectile.new_fire_projectile()
-	instance.position = _shoot_position.global_position
-	instance.rotation = _rig.rotation
+	var instance := FireProjectile.new_fire_projectile()
 	get_tree().root.add_child(instance)
+	instance.global_transform = _get_fire_projectile_spawn_transform()
+
+
+func _fire_arc_projectile() -> void:
+	if not _normal_attack_active or not _fire_combo_active:
+		return
+	if _is_gameplay_input_locked() or _is_attack_recovery_blocked():
+		return
+
+	var instance := FIRE_ARC_PROJECTILE_SCENE.instantiate() as FireArcProjectile
+	if instance == null:
+		GameLog.error("Fire arc projectile scene could not be instantiated")
+		return
+
+	get_tree().root.add_child(instance)
+	instance.global_transform = _get_fire_projectile_spawn_transform()
+	instance.configure_for_combo_step(_combo_step)
+
+
+func _get_fire_projectile_spawn_transform() -> Transform3D:
+	var rig_basis := _rig.global_transform.basis.orthonormalized()
+	var forward := -rig_basis.z.normalized()
+	var spawn_origin := (
+		_player.global_position
+		+ Vector3.UP * FIRE_PROJECTILE_SPAWN_HEIGHT
+		+ forward * FIRE_PROJECTILE_FORWARD_OFFSET
+	)
+	return Transform3D(rig_basis, spawn_origin)
 
 
 func _on_fireball_animation_fire() -> void:
-	_fire_projectile()
+	# Kept for the legacy Potma_FireAttack call track. Fire projectiles are now
+	# emitted by each normal-combo stage, so this callback must not duplicate one.
+	pass
 
 
 func attack_animation_started() -> void:
@@ -334,6 +338,7 @@ func _cancel_normal_attack() -> void:
 	_normal_attack_start_grace_frames = 0
 	_damaged_targets_this_swing.clear()
 	_reset_combo_progress()
+	_fire_combo_active = false
 	_set_staff_collision(false)
 	_disable_staff_trail_particle()
 	if _potmaSounds.staffHitSoundAudioStream.is_playing():
@@ -343,7 +348,6 @@ func _cancel_normal_attack() -> void:
 func _cancel_active_attack() -> void:
 	_cancel_normal_attack()
 	_animation_tree.set(STAFF_THROW_REQUEST, AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
-	_clear_fire_attack_state()
 
 
 func _on_attack_interruption_requested(reason: int) -> void:
@@ -422,6 +426,48 @@ func _enable_staff_trail_particle(should_restart: bool = true) -> void:
 	if should_restart:
 		_staff_trail_particle.restart()
 	_staff_trail_particle.emitting = true
+
+
+func _has_combo_in_progress() -> bool:
+	return (
+		_normal_attack_active
+		or _pending_next_attack
+		or (
+			not _combo_reset_timer.is_stopped()
+			and _combo_step < NORMAL_ATTACK_ANIMATIONS.size() - 1
+		)
+	)
+
+
+func _prepare_staff_trail_material() -> void:
+	var trail_mesh := _staff_trail_particle.draw_pass_1 as RibbonTrailMesh
+	if trail_mesh == null:
+		GameLog.warn("Staff trail RibbonTrailMesh is missing")
+		return
+
+	var unique_trail_mesh := trail_mesh.duplicate() as RibbonTrailMesh
+	var trail_material := unique_trail_mesh.material as StandardMaterial3D
+	if trail_material == null:
+		GameLog.warn("Staff trail StandardMaterial3D is missing")
+		return
+
+	_staff_trail_material = trail_material.duplicate() as StandardMaterial3D
+	_normal_staff_trail_color = _staff_trail_material.albedo_color
+	unique_trail_mesh.material = _staff_trail_material
+	_staff_trail_particle.draw_pass_1 = unique_trail_mesh
+
+
+func _set_staff_trail_fire_visual(is_fire: bool) -> void:
+	if _staff_trail_material == null:
+		return
+
+	_staff_trail_material.albedo_color = (
+		FIRE_STAFF_TRAIL_COLOR if is_fire else _normal_staff_trail_color
+	)
+	_staff_trail_material.emission_enabled = is_fire
+	if is_fire:
+		_staff_trail_material.emission = FIRE_STAFF_TRAIL_COLOR
+		_staff_trail_material.emission_energy_multiplier = FIRE_STAFF_TRAIL_EMISSION_ENERGY
 
 
 func _disable_staff_trail_particle() -> void:

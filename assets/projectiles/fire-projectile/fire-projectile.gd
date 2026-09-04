@@ -5,7 +5,7 @@ const fireProjectile := preload("res://assets/projectiles/fire-projectile/fire-p
 @export var projectileStats: ProjectileStats;
 @export var _audioStream: AudioStreamPlayer3D;
 
-var speed = 10
+@export_range(0.0, 30.0, 0.1) var speed := 16.0
 
 func _ready() -> void:
 	_audioStream.play();

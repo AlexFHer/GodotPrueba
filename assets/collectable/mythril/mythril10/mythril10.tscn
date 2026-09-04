@@ -140,6 +140,7 @@ animation = &"Mythrill10Action"
 radius = 1.46148
 
 [node name="Mythril10" type="Area3D" unique_id=563846778 node_paths=PackedStringArray("coinPickupAudio", "mesh", "collision", "mythrillParticles")]
+collision_mask = 2
 script = ExtResource("1_vnii7")
 value = 10
 coinPickupAudio = NodePath("CoinPickupAudio")
@@ -153,8 +154,8 @@ mythrillParticles = NodePath("GPUParticles3D")
 [node name="Mythill_10" parent="Mesh" unique_id=1849527351 instance=ExtResource("2_seemo")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 
-[node name="Mythrill10" parent="Mesh/Mythill_10" index="0" unique_id=2049410769]
-transform = Transform3D(-0.7317793, 0.22870106, -0.64202404, -2.2351742e-08, 0.9420173, 0.33556432, 0.6815417, 0.24555902, -0.68934876, 0, 0, 0)
+[node name="Mythrill10" parent="Mesh/Mythill_10" index="0" unique_id=1793193290]
+transform = Transform3D(-0.3285774, 0.3169327, -0.8897137, -5.9604638e-08, 0.9420173, 0.33556426, 0.94447696, 0.11025889, -0.3095256, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_y3xvi")
 material_overlay = SubResource("StandardMaterial3D_tuidu")
 mesh = SubResource("ArrayMesh_pcfcf")

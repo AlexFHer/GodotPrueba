@@ -149,13 +149,30 @@ Important files:
   interruptions: they cancel the active combo, close its damage window, clear
   buffered input, and reset the next normal attack to hit one. Attacking remains
   blocked until the interrupting action or reaction finishes.
-- Plain `Fire` remains a separate single-projectile attack and does not enter the
-  normal combo. Fire-containing combined abilities continue to use the normal
-  three-hit combo rather than inheriting plain `Fire` behavior.
+- Plain `Fire` reuses the normal three-hit animations instead of
+  `Potma_FireAttack`. Every requested stage keeps its normal staff hit, changes
+  the staff ribbon into an emissive orange-red trail, and launches both one
+  fireball and one wide fire arc. The arc is the reusable
+  `player/scenes/fire_arc_projectile.tscn` Area3D: it travels forward for 0.8
+  seconds, passes through targets, and damages each compatible body or area at
+  most once. Its curved, tapered fire cut has a bright core, animated noisy
+  edges, a broad flame body, and dense trailing sparks. Both the fireball and
+  fire arc travel at 16 units per second; their unchanged lifetimes also give
+  them more range than the earlier 10-units-per-second version. The arc's roll
+  matches each swing: hit 1 slopes 35
+  degrees down from the left, hit 2 uses the opposite 35-degree diagonal, and
+  hit 3 is vertical. Both projectiles share a centered spawn transform 1.05
+  units above and 1.25 units directly ahead of the player; their origin is not
+  attached to the animated staff bone. The existing 2-second Fire cooldown
+  gates the start of a new chain but never blocks stages two or three of a chain
+  already in progress.
+- Fire-containing combined abilities continue to use the normal three-hit combo
+  without the plain `Fire` projectile or fire-arc behavior.
 
 ## Ability Combat Rules
 - Normal staff hit damages `CanGetHit` targets.
-- Fire potion uses the fireball projectile.
+- Fire potion adds one fireball, one independent forward-moving fire arc, and a
+  fire-colored staff trail to every stage of the normal three-hit combo.
 - Combined abilities that include fire should not automatically behave like plain `Fire`.
 - Damage dash and damaging second jump use the player's `AbilityDamageArea`.
 - Ability contact damage should only be active during the intended ability window.
@@ -274,3 +291,10 @@ Important files:
 - 2026-08-28: Defined the three-hit normal attack combo, including its animation
   order, one-input buffer, 0.40-second continuation grace, interruption rules,
   movement freedom, equal damage, and separation from the plain Fire attack.
+- 2026-09-04: Replaced plain Fire's standalone throw animation with the normal
+  three-hit combo; every stage now adds an emissive staff trail, one fireball,
+  and one independent forward-moving fire arc, while the existing cooldown
+  gates only the start of a new Fire chain. The fireball and arc travel at 16
+  units per second, the arc uses an enlarged, thicker high-emission visual, and
+  both spawn from one centered point directly ahead of the player rather than
+  from the animated staff bone.

@@ -58,14 +58,34 @@ column exercises the `Body3D` damage path and the orange column exercises the
     dash recovery the next normal attack starts at 1. In a separate run, take
     damage during the dash and confirm attacking stays blocked until both the dash
     and hit reaction finish, then restarts at attack 1.
-14. With plain Fire active, press Square three times. Confirm every accepted press
-    uses the projectile attack, never enables the staff hitbox, and does not retain
-    a hidden normal-combo stage. When Fire expires, the next Square starts attack 1.
+14. With plain Fire active, complete attacks 1, 2, and 3. Confirm the three normal
+    attack animations play in order, the staff hitbox still deals one hit per
+    stage, and each stage shows an emissive orange-red staff trail and launches
+    exactly one fireball plus one separate forward-moving fire arc. Confirm arc 1
+    slopes down from the left, arc 2 uses the opposite diagonal, and arc 3 is a
+    vertical top-to-bottom cut.
 15. Pause during the continuation window and wait longer than its normal duration.
     Resume and confirm the remaining window was frozen rather than expiring while
     paused.
 16. During every normal stage, verify one matching sound and trail window, that the
     trail stops on completion/cancellation, and that locomotion resumes cleanly.
+17. Start a plain Fire chain and press Square for stages 2 and 3 before the
+    two-second projectile cooldown expires. Confirm both continuation inputs are
+    accepted, but a new Fire chain cannot start until the cooldown finishes.
+18. Let a plain Fire chain expire after attack 1 or 2. Confirm the next accepted
+    Square starts again at attack 1, the staff trail returns to its normal color
+    after Fire expires, and any previously launched arc finishes naturally.
+19. Aim a Fire attack at multiple aligned targets. Confirm its wide fire arc
+    passes through them and damages each compatible body or area exactly once;
+    confirm the tapered bright core, animated red-orange edge, and sparks are
+    visible before the arc disappears after its short forward travel.
+20. Compare the fireball and fire arc in motion. Confirm both travel at the same
+    faster speed, the enlarged arc remains clearly readable, and its thicker
+    body, stronger glow, denser sparks, and larger collision remain aligned.
+21. Attack while each of the three Fire animations moves the staff to a different
+    side. Confirm the fireball and arc always appear together at chest height,
+    centered directly ahead of the player, and travel along the facing direction
+    without inheriting the staff bone's lateral offset.
 
 ## Potions
 1. Start with an empty inventory and confirm both belt bottles are hidden.
@@ -83,7 +103,9 @@ column exercises the `Body3D` damage path and the orange column exercises the
    both belt visuals synchronize immediately.
 8. Confirm the potion effect activates and expires after drinking either slot.
 9. Confirm no drink action is allowed while another potion effect is active.
-10. Confirm fire potion changes attack behavior to projectile throw.
+10. Confirm plain Fire changes each stage of the normal combo into a fire-colored
+    staff swing with one additional fireball and one independent fire arc;
+    combined Fire potions retain their own existing abilities.
 
 ## Enemies
 1. GlobrcSmall patrols between points and idles at waypoints.

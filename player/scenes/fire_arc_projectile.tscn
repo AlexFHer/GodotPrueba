@@ -1,0 +1,96 @@
+[gd_scene load_steps=14 format=3]
+
+[ext_resource type="Script" path="res://player/scenes/fire_arc_projectile.gd" id="1_script"]
+[ext_resource type="Shader" path="res://player/scenes/fire_arc_projectile.gdshader" id="2_shader"]
+[ext_resource type="Texture2D" path="res://assets/particles/kenney_particles/circle_03.png" id="3_spark_texture"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fire_arc"]
+resource_local_to_scene = true
+shader = ExtResource("2_shader")
+shader_parameter/core_color = Color(1, 0.96, 0.62, 1)
+shader_parameter/body_color = Color(1, 0.38, 0.035, 1)
+shader_parameter/edge_color = Color(0.9, 0.025, 0.002, 1)
+shader_parameter/emission_energy = 5.5
+shader_parameter/life_progress = 0.0
+shader_parameter/sweep_direction = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_fire_arc"]
+material = SubResource("ShaderMaterial_fire_arc")
+size = Vector2(3.7, 2.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fire_arc"]
+size = Vector3(3.5, 1.25, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_sparks"]
+offsets = PackedFloat32Array(0, 0.38, 1)
+colors = PackedColorArray(1, 0.95, 0.48, 1, 1, 0.22, 0.015, 0.9, 0.7, 0.015, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture_sparks"]
+gradient = SubResource("Gradient_sparks")
+
+[sub_resource type="Curve" id="Curve_spark_scale"]
+_data = [Vector2(0, 0.25), 0.0, 4.5, 0, 0, Vector2(0.18, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.15, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_spark_scale"]
+curve = SubResource("Curve_spark_scale")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sparks"]
+emission_shape = 3
+emission_box_extents = Vector3(1.65, 0.42, 0.1)
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 0.35
+initial_velocity_max = 1.6
+gravity = Vector3(0, -1.4, 0)
+scale_min = 0.5
+scale_max = 1.25
+scale_curve = SubResource("CurveTexture_spark_scale")
+color_ramp = SubResource("GradientTexture_sparks")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sparks"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.38, 0.03, 1)
+albedo_texture = ExtResource("3_spark_texture")
+emission_enabled = true
+emission = Color(1, 0.12, 0.01, 1)
+emission_energy_multiplier = 3.5
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_sparks"]
+material = SubResource("StandardMaterial3D_sparks")
+size = Vector2(0.11, 0.11)
+
+[node name="FireArcProjectile" type="Area3D" groups=["FireArc"]]
+process_mode = 1
+collision_layer = 0
+collision_mask = 1
+monitorable = false
+script = ExtResource("1_script")
+
+[node name="Visual" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+cast_shadow = 0
+mesh = SubResource("QuadMesh_fire_arc")
+
+[node name="Sparks" type="GPUParticles3D" parent="."]
+position = Vector3(0, 0, 0.04)
+cast_shadow = 0
+amount = 60
+lifetime = 0.45
+randomness = 0.42
+visibility_aabb = AABB(-2, -1, -1, 4, 2, 6)
+local_coords = false
+process_material = SubResource("ParticleProcessMaterial_sparks")
+draw_pass_1 = SubResource("QuadMesh_sparks")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_fire_arc")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+position = Vector3(0, 0.35, 0)
+light_color = Color(1, 0.3, 0.05, 1)
+light_energy = 1.4
+omni_range = 4.5
