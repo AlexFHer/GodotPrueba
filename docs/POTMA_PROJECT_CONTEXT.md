@@ -142,7 +142,14 @@ Important files:
 - All three hits deal the same normal-attack damage.
 - Each normal hit restarts and shows the staff trail for that hit; the combo
   code owns trail start/end so legacy animation callbacks cannot cut later
-  stages short.
+  stages short. The weapon trail is intentionally subtle: 48% opacity, a narrow
+  ribbon profile, and a short 0.26-second trail lifetime. Its four-point width
+  curve begins and ends almost at zero and uses extra ribbon subdivisions so it
+  grows and tapers smoothly. The ribbon also uses
+  `player/particles/staff_trail_soft.gdshader`, which fades alpha independently
+  across both sides and both ends so the underlying rectangular mesh is never
+  visible as a hard square. Fire changes its color and emission through shader
+  parameters but keeps the same compact translucent shape.
 - Normal attacks remain available while moving and while airborne; locomotion or
   leaving the ground does not reset the chain.
 - Dialogue, potion drinking, dash, taking damage, and death are strong
@@ -297,4 +304,6 @@ Important files:
   gates only the start of a new Fire chain. The fireball and arc travel at 16
   units per second, the arc uses an enlarged, thicker high-emission visual, and
   both spawn from one centered point directly ahead of the player rather than
-  from the animated staff bone.
+  from the animated staff bone. The weapon-attached trail is a short, narrow,
+  smoothly tapered 48%-opacity accent so it does not compete with the launched
+  arc.

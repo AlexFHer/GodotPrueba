@@ -7,7 +7,7 @@ const NORMAL_ATTACK_ANIMATIONS := [
 	&"Potma_Attack3",
 ]
 const ANIMATION_START_GRACE_FRAMES := 3
-const FIRE_STAFF_TRAIL_COLOR := Color(1.0, 0.18, 0.02, 1.0)
+const FIRE_STAFF_TRAIL_COLOR := Color(1.0, 0.18, 0.02, 0.48)
 const FIRE_STAFF_TRAIL_EMISSION_ENERGY := 2.0
 const FIRE_PROJECTILE_SPAWN_HEIGHT := 1.05
 const FIRE_PROJECTILE_FORWARD_OFFSET := 1.25
@@ -50,7 +50,7 @@ var _pending_next_attack := false
 var _attack_generation := 0
 var _damaged_targets_this_swing: Array[Node] = []
 var _fire_combo_active := false
-var _staff_trail_material: StandardMaterial3D
+var _staff_trail_material: ShaderMaterial
 var _normal_staff_trail_color := Color.WHITE
 
 
@@ -446,13 +446,15 @@ func _prepare_staff_trail_material() -> void:
 		return
 
 	var unique_trail_mesh := trail_mesh.duplicate() as RibbonTrailMesh
-	var trail_material := unique_trail_mesh.material as StandardMaterial3D
+	var trail_material := unique_trail_mesh.material as ShaderMaterial
 	if trail_material == null:
-		GameLog.warn("Staff trail StandardMaterial3D is missing")
+		GameLog.warn("Staff trail ShaderMaterial is missing")
 		return
 
-	_staff_trail_material = trail_material.duplicate() as StandardMaterial3D
-	_normal_staff_trail_color = _staff_trail_material.albedo_color
+	_staff_trail_material = trail_material.duplicate() as ShaderMaterial
+	var configured_color = _staff_trail_material.get_shader_parameter(&"trail_color")
+	if configured_color is Color:
+		_normal_staff_trail_color = configured_color
 	unique_trail_mesh.material = _staff_trail_material
 	_staff_trail_particle.draw_pass_1 = unique_trail_mesh
 
@@ -461,13 +463,14 @@ func _set_staff_trail_fire_visual(is_fire: bool) -> void:
 	if _staff_trail_material == null:
 		return
 
-	_staff_trail_material.albedo_color = (
+	_staff_trail_material.set_shader_parameter(
+		&"trail_color",
 		FIRE_STAFF_TRAIL_COLOR if is_fire else _normal_staff_trail_color
 	)
-	_staff_trail_material.emission_enabled = is_fire
-	if is_fire:
-		_staff_trail_material.emission = FIRE_STAFF_TRAIL_COLOR
-		_staff_trail_material.emission_energy_multiplier = FIRE_STAFF_TRAIL_EMISSION_ENERGY
+	_staff_trail_material.set_shader_parameter(
+		&"emission_energy",
+		FIRE_STAFF_TRAIL_EMISSION_ENERGY if is_fire else 0.0
+	)
 
 
 func _disable_staff_trail_particle() -> void:

@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://bqvrkqermy1qr"]
 
+[ext_resource type="Shader" path="res://player/particles/staff_trail_soft.gdshader" id="1_staff_trail_shader"]
+
 [sub_resource type="Shader" id="Shader_7axli"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.6.1.stable's ParticleProcessMaterial.
 
@@ -395,27 +397,28 @@ shader_parameter/color_value = Color(1, 1, 1, 1)
 shader_parameter/gravity = Vector3(0, 0, 0)
 
 [sub_resource type="Curve" id="Curve_7axli"]
-_data = [Vector2(0, 0.72763306), 0.0, 0.0, 0, 0, Vector2(1, 0.1387316), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 0.01), 0.0, 0.0, 0, 0, Vector2(0.12, 0.39), 0.0, 0.0, 0, 0, Vector2(0.68, 0.18), 0.0, 0.0, 0, 0, Vector2(1, 0.01), 0.0, 0.0, 0, 0]
+point_count = 4
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jnaaj"]
-cull_mode = 2
-shading_mode = 0
-albedo_color = Color(0, 0.6423487, 0.6429791, 1)
-use_particle_trails = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_staff_ribbon"]
+shader = ExtResource("1_staff_trail_shader")
+shader_parameter/trail_color = Color(0, 0.6423487, 0.6429791, 0.48)
+shader_parameter/emission_energy = 0.0
+shader_parameter/side_softness = 0.24
+shader_parameter/tip_softness = 0.18
 
 [sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_roev2"]
-material = SubResource("StandardMaterial3D_jnaaj")
+material = SubResource("ShaderMaterial_staff_ribbon")
 shape = 0
-sections = 10
+sections = 16
 section_length = 0.75
-section_segments = 5
+section_segments = 8
 curve = SubResource("Curve_7axli")
 
 [node name="GPUParticles3D" type="GPUParticles3D" unique_id=795817847]
 amount = 1
 transform_align = 1
 trail_enabled = true
-trail_lifetime = 0.4
+trail_lifetime = 0.26
 process_material = SubResource("ShaderMaterial_jnaaj")
 draw_pass_1 = SubResource("RibbonTrailMesh_roev2")

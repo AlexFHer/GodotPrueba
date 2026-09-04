@@ -68,7 +68,9 @@ column exercises the `Body3D` damage path and the orange column exercises the
     Resume and confirm the remaining window was frozen rather than expiring while
     paused.
 16. During every normal stage, verify one matching sound and trail window, that the
-    trail stops on completion/cancellation, and that locomotion resumes cleanly.
+    weapon trail is short, thin, and lightly translucent; confirm it grows from
+    and returns to a point with softly faded sides and no visible rectangular
+    edge, stops on completion or cancellation, and that locomotion resumes cleanly.
 17. Start a plain Fire chain and press Square for stages 2 and 3 before the
     two-second projectile cooldown expires. Confirm both continuation inputs are
     accepted, but a new Fire chain cannot start until the cooldown finishes.
