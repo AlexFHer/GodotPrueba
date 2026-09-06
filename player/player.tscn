@@ -26,7 +26,7 @@
 [ext_resource type="AudioStream" uid="uid://b3o11owhrsjrw" path="res://player/sfx/SuperJump.ogg" id="12_c35mf"]
 [ext_resource type="PackedScene" uid="uid://bqvrkqermy1qr" path="res://player/particles/StaffTrailParticle.tscn" id="12_r7pn3"]
 [ext_resource type="AudioStream" uid="uid://cuaihw2sw2ono" path="res://player/sfx/StaffHit.ogg" id="15_32hag"]
-[ext_resource type="AudioStream" uid="uid://dmjjxtn60qsik" path="res://player/sfx/DrinkPotion.ogg" id="15_bjvpn"]
+[ext_resource type="AudioStream" path="res://player/sfx/DrinkPotionMagic.wav" id="15_bjvpn"]
 [ext_resource type="Script" uid="uid://ccrt6j6c234pw" path="res://player/scripts/life_system.gd" id="27_uw77l"]
 [ext_resource type="Script" uid="uid://dk2m5hkn7q3jh" path="res://player/scripts/Belt_potions_system.gd" id="28_belt"]
 
@@ -296,6 +296,7 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 
 script = ExtResource("2_hg6s5")
 
 [node name="StaffArea3D" type="Area3D" parent="Rig" unique_id=179753287]
+collision_mask = 5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.654711, 0.722715, -2.04243)
 
 [node name="StaffCollision" type="CollisionShape3D" parent="Rig/StaffArea3D" unique_id=1101134789]

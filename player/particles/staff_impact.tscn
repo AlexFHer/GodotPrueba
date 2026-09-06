@@ -1,0 +1,91 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://player/particles/staff_impact.gd" id="1"]
+[ext_resource type="Shader" path="res://player/particles/staff_impact_stars.gdshader" id="2"]
+[ext_resource type="Shader" path="res://player/particles/staff_impact_wave.gdshader" id="3"]
+
+[sub_resource type="ShaderMaterial" id="StarMaterial"]
+shader = ExtResource("2")
+
+[sub_resource type="QuadMesh" id="StarMesh"]
+material = SubResource("StarMaterial")
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="Gradient" id="FadeGradient"]
+offsets = PackedFloat32Array(0, 0.55, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="FadeTexture"]
+gradient = SubResource("FadeGradient")
+
+[sub_resource type="ParticleProcessMaterial" id="BlueProcess"]
+emission_shape = 1
+emission_sphere_radius = 0.07
+direction = Vector3(0, 1, 0)
+spread = 160.0
+initial_velocity_min = 1.2
+initial_velocity_max = 2.4
+gravity = Vector3(0, -2, 0)
+damping_min = 1.5
+damping_max = 2.5
+angle_min = -180.0
+angle_max = 180.0
+angular_velocity_min = -240.0
+angular_velocity_max = 240.0
+scale_min = 0.65
+scale_max = 1.15
+color = Color(0.08, 0.4, 1, 1)
+color_ramp = SubResource("FadeTexture")
+
+[sub_resource type="ParticleProcessMaterial" id="YellowProcess"]
+emission_shape = 1
+emission_sphere_radius = 0.07
+direction = Vector3(0, 1, 0)
+spread = 160.0
+initial_velocity_min = 1.2
+initial_velocity_max = 2.4
+gravity = Vector3(0, -2, 0)
+damping_min = 1.5
+damping_max = 2.5
+angle_min = -180.0
+angle_max = 180.0
+angular_velocity_min = -240.0
+angular_velocity_max = 240.0
+scale_min = 0.65
+scale_max = 1.15
+color = Color(1, 0.72, 0.04, 1)
+color_ramp = SubResource("FadeTexture")
+
+[sub_resource type="ShaderMaterial" id="WaveMaterial"]
+shader = ExtResource("3")
+
+[sub_resource type="QuadMesh" id="WaveMesh"]
+size = Vector2(1.2, 1.2)
+
+[node name="StaffImpact" type="Node3D"]
+script = ExtResource("1")
+
+[node name="BlueStars" type="GPUParticles3D" parent="."]
+cast_shadow = 0
+amount = 6
+lifetime = 0.55
+one_shot = true
+explosiveness = 1.0
+visibility_aabb = AABB(-2, -2, -2, 4, 4, 4)
+process_material = SubResource("BlueProcess")
+draw_pass_1 = SubResource("StarMesh")
+
+[node name="YellowStars" type="GPUParticles3D" parent="."]
+cast_shadow = 0
+amount = 6
+lifetime = 0.55
+one_shot = true
+explosiveness = 1.0
+visibility_aabb = AABB(-2, -2, -2, 4, 4, 4)
+process_material = SubResource("YellowProcess")
+draw_pass_1 = SubResource("StarMesh")
+
+[node name="Wave" type="MeshInstance3D" parent="."]
+cast_shadow = 0
+material_override = SubResource("WaveMaterial")
+mesh = SubResource("WaveMesh")

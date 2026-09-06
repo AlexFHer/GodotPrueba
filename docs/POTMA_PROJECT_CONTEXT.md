@@ -59,6 +59,11 @@ a new decision, mechanic, constraint, naming convention, or open question appear
 - Only one potion effect should be active at a time.
 - Drink animation mapping: left uses `Potma_DrinkLeft`, right uses
   `Potma_DrinkRight`, and a successful combination uses `Potma_DrinkBoth`.
+- Drinking feedback uses `player/sfx/DrinkPotionMagic.wav`, derived from the
+  user's `06-09-2026 17.01(2).m4a`: only the bottle-opening transient
+  (0.48-0.76 seconds of the source), with pitched sparkle and a short echo.
+  The 0.95-second result excludes the later falling-cap sounds and drinking.
+  It reuses the existing drink-completion sound cue on the `SFX` bus.
 
 Important files:
 - `player/scripts/potions-manager.gd`
@@ -182,6 +187,14 @@ Important files:
   window to request the next hit before the combo resets to hit one.
 - The third hit never buffers another normal attack and always ends the combo.
 - All three hits deal the same normal-attack damage.
+- Staff contacts with solid World/Enemy colliders or `CanGetHit` areas emit
+  `player/particles/staff_impact.tscn`: six blue and six yellow spinning stars
+  plus a small expanding cyan wave. Feedback runs once per collider per swing,
+  including non-damageable scenery, and uses physics contact points when available.
+  Player-owned colliders and detection-only trigger areas are excluded. Damage
+  still requires `CanGetHit` and `get_hit()`. Effects expire after 0.7 seconds.
+  `scenes/tests/staff_impact_test.gd` checks real physics contacts, repeat-hit
+  prevention, subsequent swings, filtering, and cleanup with the player scene.
 - Each normal hit restarts and shows the staff trail for that hit; the combo
   code owns trail start/end so legacy animation callbacks cannot cut later
   stages short. The weapon trail is intentionally subtle: 48% opacity, a narrow

@@ -1,6 +1,7 @@
 extends Node
 
 const FIRE_ARC_PROJECTILE_SCENE := preload("res://player/scenes/fire_arc_projectile.tscn")
+const STAFF_IMPACT_SCENE := preload("res://player/particles/staff_impact.tscn")
 const NORMAL_ATTACK_ANIMATIONS := [
 	&"Potma_Attack",
 	&"Potma_Attack2",
@@ -49,6 +50,7 @@ var _queued_next_attack := false
 var _pending_next_attack := false
 var _attack_generation := 0
 var _damaged_targets_this_swing: Array[Node] = []
+var _impact_targets_this_swing: Array[int] = []
 var _fire_combo_active := false
 var _staff_trail_material: ShaderMaterial
 var _normal_staff_trail_color := Color.WHITE
@@ -141,6 +143,7 @@ func _start_normal_attack(step: int) -> void:
 	_normal_attack_start_grace_frames = ANIMATION_START_GRACE_FRAMES
 	_attack_generation += 1
 	_damaged_targets_this_swing.clear()
+	_impact_targets_this_swing.clear()
 
 	_normal_attack_animation_node.animation = NORMAL_ATTACK_ANIMATIONS[_combo_step]
 	_potmaSounds.staffHitSoundAudioStream.play()
@@ -321,13 +324,56 @@ func _damage_node_with_staff(node: Node) -> void:
 		or _is_attack_recovery_blocked()
 	):
 		return
-	if node == _player or _damaged_targets_this_swing.has(node):
+	if node == _player or (_player != null and _player.is_ancestor_of(node)):
+		return
+	_show_staff_impact(node)
+	if _damaged_targets_this_swing.has(node):
 		return
 	if not node.is_in_group("CanGetHit") or not node.has_method("get_hit"):
 		return
 
 	_damaged_targets_this_swing.append(node)
 	node.get_hit()
+
+
+func _show_staff_impact(node: Node) -> void:
+	if _staff_collision.disabled or not node is CollisionObject3D:
+		return
+	# Solid scenery can be struck; detection-only trigger areas are not surfaces.
+	if not node is PhysicsBody3D and not node.is_in_group("CanGetHit"):
+		return
+	var target := node as CollisionObject3D
+	var target_id := target.get_instance_id()
+	if _impact_targets_this_swing.has(target_id):
+		return
+	_impact_targets_this_swing.append(target_id)
+	var impact_position := _get_staff_contact_position(target)
+	var instance := STAFF_IMPACT_SCENE.instantiate() as Node3D
+	get_tree().current_scene.add_child(instance)
+	instance.global_position = impact_position
+
+
+func _get_staff_contact_position(target: CollisionObject3D) -> Vector3:
+	var query := PhysicsShapeQueryParameters3D.new()
+	query.shape = _staff_collision.shape
+	query.transform = _staff_collision.global_transform
+	query.collision_mask = target.collision_layer
+	query.collide_with_areas = target is Area3D
+	query.collide_with_bodies = target is PhysicsBody3D
+	var excluded: Array[RID] = [_staff_area.get_rid()]
+	if _player != null:
+		excluded.append(_player.get_rid())
+	var space := _staff_area.get_world_3d().direct_space_state
+	# Resolve the actual contact, even when several colliders overlap the staff.
+	for index in range(16):
+		query.exclude = excluded
+		var contact := space.get_rest_info(query)
+		if contact.is_empty():
+			break
+		if contact["rid"] == target.get_rid():
+			return contact["point"] + contact["normal"] * 0.04
+		excluded.append(contact["rid"])
+	return _staff_collision.global_position
 
 
 func _cancel_normal_attack() -> void:
