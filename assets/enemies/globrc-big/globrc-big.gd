@@ -20,6 +20,7 @@ enum State {
 @onready var attack_collider: CollisionShape3D = %MeleeAttackCollider
 
 @export var number_of_mythril: int = DEFAULT_MITHRIL
+@export var collectableId := ""
 
 var shockwave_scene: PackedScene = preload("res://assets/enemies/globrc-big/assets/shockwave/globrc_shockwave.tscn")
 @onready var shockwave_spawn_point: Node3D = %ShockwaveSpawnPoint
@@ -101,7 +102,7 @@ func _on_leave_ready_timer_timeout() -> void:
 	_leave_ready_state()
 
 func die() -> void:
-	CollectablesEmitterService.emitMithrilPickedUp(number_of_mythril)
+	CollectablesEmitterService.emitMithrilPickedUp(number_of_mythril, self)
 	_set_state(State.Dead)
 
 func _on_player_in_range_area_3d_body_exited(body:Node3D) -> void:

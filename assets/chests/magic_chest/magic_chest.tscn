@@ -69,6 +69,7 @@ debug_color = Color(0.982068, 0, 0.365495, 0.42)
 [node name="OpenAudioStreamPlayer" type="AudioStreamPlayer3D" parent="." unique_id=187994916]
 unique_name_in_owner = true
 stream = ExtResource("3_gdjlj")
+bus = &"SFX"
 
 [connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]
 

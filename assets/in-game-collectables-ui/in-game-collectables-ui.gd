@@ -6,12 +6,12 @@ class_name inGameCollectablesUI extends Control
 
 func _ready() -> void:
 	PlayerInventory.numberOfKeysChanged.connect(_update_key_icon)
-	CollectablesEmitterService.bookPickedUp.connect(_on_book_picked_up)
-	_update_key_icon(0)
+	_update_key_icon(PlayerInventory.keys)
 	_on_book_picked_up(0)
 
 func update_current_collectables(levelCollectables: LevelCollectables) -> void:
 	update_mithril_count(levelCollectables)
+	_on_book_picked_up(levelCollectables.currentBooks)
 
 func update_mithril_count(levelCollectables: LevelCollectables) -> void:
 	mithril_count_label.text = str(levelCollectables.currentMithrils)

@@ -101,6 +101,7 @@ shape = SubResource("CapsuleShape3D_rfo5y")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=127325095]
 stream = ExtResource("3_bhbop")
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 

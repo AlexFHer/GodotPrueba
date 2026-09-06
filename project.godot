@@ -31,6 +31,7 @@ ActivePotionEffectService="*res://assets/potions/shared/services/active-potion-e
 CollectablesEmitterService="*res://shared/scripts/collectables-emitter.gd"
 PlayerInventory="*res://player/inventory/player-inventory.gd"
 GameLog="*res://shared/scripts/game_log.gd"
+GameSettings="*res://shared/scripts/settings_manager.gd"
 
 [display]
 

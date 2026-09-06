@@ -121,6 +121,28 @@ column exercises the `Body3D` damage path and the orange column exercises the
     moving immediately and confirm the short burst remains attached to the
     character.
 
+## Pause Menu And Settings
+1. Open pause and enter Settings with keyboard, mouse, and controller. Confirm
+   focus begins on Master volume and every slider, toggle, language button, and
+   Back button is reachable without a mouse.
+2. Change Master volume and confirm both level music and gameplay effects change.
+   Set it to 0% and confirm all game audio is silent, then restore it.
+3. Change Music volume and confirm menu/level music changes while player and
+   collectible sounds keep their current level.
+4. Change Effects volume and confirm movement, attack, potion, dialogue,
+   collectible, chest, projectile, and puzzle sounds change while music does not.
+5. Toggle fullscreen on and off and confirm the checkbox follows the current
+   saved state without unpausing the game.
+6. Switch between Spanish and English. Confirm pause/settings labels update
+   immediately and the chosen language is kept after changing scene.
+7. Return with the visible button, `Esc`, and controller Circle/B in separate
+   runs. Confirm focus returns to Resume and gameplay remains paused.
+8. Reopen settings, return to the main menu, and restart the game. Confirm all
+   three volume values, fullscreen, and language persist and the main-menu master
+   volume/fullscreen controls show the same state.
+9. Pause while potion, combo, and ability timers are active. Spend time changing
+   settings, resume, and confirm the gameplay timers did not advance.
+
 ## Enemies
 1. GlobrcSmall patrols between points and idles at waypoints.
 2. GlobrcSmall follows player on detection and returns to patrol after timeout.

@@ -14,6 +14,7 @@ script = ExtResource("1_controller")
 unique_name_in_owner = true
 process_mode = 3
 volume_db = -4.0
+bus = &"SFX"
 
 [node name="DialogueCanvas" type="CanvasLayer" parent="." unique_id=119822376]
 layer = 100

@@ -5,10 +5,17 @@ var elapsed = 0.0;
 
 var value = 1;
 
-var coinId: String;
+@export var collectableId := ""
+var _collected := false
 
-func _init() -> void:
-	coinId = name;
+func _ready() -> void:
+	_restore_progress.call_deferred()
+
+func _restore_progress() -> void:
+	if CollectablesEmitterService.is_collected(self):
+		_collected = true
+		hide()
+		queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -23,8 +30,10 @@ func checkTarget(delta: float) -> void:
 	elapsed += delta
 
 func _on_object_area_body_entered(body: Node3D) -> void:
-	if body.is_in_group("MainPlayer"):
-		CollectablesEmitterService.mithrilPickedUp.emit(1);
+	if body.is_in_group("MainPlayer") and not _collected:
+		if not CollectablesEmitterService.emitMithrilPickedUp(value, self):
+			return
+		_collected = true
 		queue_free();
 
 

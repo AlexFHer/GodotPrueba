@@ -166,6 +166,7 @@ color = Color(0.712926, 0.463987, 0.700082, 1)
 stream = ExtResource("6_gsqen")
 volume_db = -7.154
 autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="CenterContainer/MainButtons/PlayButton" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="CenterContainer/MainButtons/SettingsButton" to="." method="_on_settings_pressed"]

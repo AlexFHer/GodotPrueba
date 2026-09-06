@@ -530,26 +530,33 @@ script = ExtResource("9_hg6s5")
 [node name="PotmaWalkAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds" unique_id=1443826663]
 stream = ExtResource("9_32hag")
 volume_db = -8.312
+bus = &"SFX"
 
 [node name="PotmaGetHitAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds" unique_id=1511518771]
 stream = ExtResource("10_yllr7")
+bus = &"SFX"
 
 [node name="PotmaDrinkAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds" unique_id=961015786]
 stream = ExtResource("15_bjvpn")
+bus = &"SFX"
 
 [node name="PotmaRunAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds" unique_id=158058342]
 stream = ExtResource("10_tqiix")
+bus = &"SFX"
 
 [node name="PotmaJumpAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds" unique_id=1049365347]
 stream = ExtResource("11_e7oew")
 volume_db = -22.857
+bus = &"SFX"
 
 [node name="PotmaMegaJumpAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds" unique_id=775421422]
 stream = ExtResource("12_c35mf")
+bus = &"SFX"
 
 [node name="PotmaStaffHitAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds" unique_id=56039993]
 stream = ExtResource("15_32hag")
 volume_db = -13.506
+bus = &"SFX"
 
 [node name="PotionUI Canvas layer" type="CanvasLayer" parent="." unique_id=517424625]
 

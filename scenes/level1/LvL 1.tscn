@@ -1905,6 +1905,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -77.54362, 0.043307245, 16.22
 
 [node name="Level" parent="." unique_id=97350656 instance=ExtResource("29_afy8w")]
 levelCollectables = SubResource("Resource_glw7l")
+levelName = "level_1"
+
 
 [node name="Death-area" parent="Level" unique_id=1022755762 instance=ExtResource("6_jknnb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5994, -18.9571, 79.3553)
@@ -2053,9 +2055,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.0031, 44.9397, -62.7325)
 
 [node name="magic_chest" parent="Collectables" unique_id=1133284286 instance=ExtResource("16_uhwg3")]
 transform = Transform3D(0.825, 0, 0, 0, 0.825, 0, 0, 0, 0.825, -53.4332, 4.64057, 12.1053)
+collectableId = "90f7ebff91c94a518f0262c9be8ebc7b"
+
 
 [node name="Chest" parent="Collectables" unique_id=1175139398 instance=ExtResource("8_dbnbf")]
 transform = Transform3D(0.331354, 0, -0.943506, 0, 1, 0, 0.943506, 0, 0.331354, 38.0009, 3.99104, -4.83747)
+collectableId = "cdcbf5266fdc4b079b996b8e2550e001"
+
 
 [node name="Key" parent="Collectables" unique_id=1787400527 instance=ExtResource("9_gfmul")]
 transform = Transform3D(1.95, 0, 0, 0, 1.95, 0, 0, 0, 1.95, -14.6151, -14.2432, 78.7651)
@@ -2103,267 +2109,443 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.798, 0.137118, 16.0822)
 
 [node name="Mythril1" parent="Collectables/Mthrill" unique_id=109606134 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+collectableId = "4ce70e78eb18427cbb6d86260f614d36"
+
 
 [node name="Mythril2" parent="Collectables/Mthrill" unique_id=2106527964 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 7.11209, -0.157018, 5.85981)
+collectableId = "62816ccd41d047518d2f6f86da04078c"
+
 
 [node name="Mythril3" parent="Collectables/Mthrill" unique_id=1374631878 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -19.5741, -3.2129, 0)
+collectableId = "071cfcf70d7c4d109eb2fa278598dc0a"
+
 
 [node name="Mythril4" parent="Collectables/Mthrill" unique_id=123990524 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16.8179, 2.64333, 7.13681)
+collectableId = "33bcb127609f416ca78c5d1d40e8720d"
+
 
 [node name="Mythril5" parent="Collectables/Mthrill" unique_id=1959857042 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20.8964, 4.62868, -4.32665)
+collectableId = "4ffe256c99da4440b5a51448ac19484d"
+
 
 [node name="Mythril6" parent="Collectables/Mthrill" unique_id=593072788 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 31.3044, 4.62868, -4.32665)
+collectableId = "487dc78699654c1195a7a02f25415c7a"
+
 
 [node name="Mythril7" parent="Collectables/Mthrill" unique_id=759259496 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 26.7481, 4.62868, 1.6072)
+collectableId = "4a5d49c633474bf4b14192742c00d9c1"
+
 
 [node name="Mythril8" parent="Collectables/Mthrill" unique_id=1729844155 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 26.7481, 4.62868, -8.7689)
+collectableId = "3c035a9a0a01462f84e5af36d6b50810"
+
 
 [node name="Mythril9" parent="Collectables/Mthrill" unique_id=333661495 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 29.1025, -0.157018, 19.2085)
+collectableId = "f2bcb6553026402cbeb42c7eff3970d3"
+
 
 [node name="Mythril10" parent="Collectables/Mthrill" unique_id=1462746182 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 41.6396, -1.05977, -14.4716)
+collectableId = "43c3f47e321d40dbb7ff347c6c1bc93c"
+
 
 [node name="Mythril11" parent="Collectables/Mthrill" unique_id=1204541988 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 59.4272, -0.0484272, -9.94672)
+collectableId = "c6766a1afa05471eaeb4dce12eebf938"
+
 
 [node name="Mythril12" parent="Collectables/Mthrill" unique_id=580024581 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 69.995, -0.407342, 10.7956)
+collectableId = "142a91749edd484c95cec9d7d0308794"
+
 
 [node name="Mythril13" parent="Collectables/Mthrill" unique_id=407142291 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 65.2683, 0.552648, 26.89)
+collectableId = "be5fa8eabe1d41e1b40cf85723096e65"
+
 
 [node name="Mythril14" parent="Collectables/Mthrill" unique_id=934623847 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 57.863, 0.552648, 48.4786)
+collectableId = "12c389f36da141d29ea587d5461dec06"
+
 
 [node name="Mythril15" parent="Collectables/Mthrill" unique_id=1436036456 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32.5315, 0.552648, 38.2534)
+collectableId = "42510cbe328040d6b04a584dc7bbad85"
+
 
 [node name="Mythril16" parent="Collectables/Mthrill" unique_id=1352096586 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 57.8532, -0.677918, -28.4846)
+collectableId = "749efc199a814b73bae8a9c52013d1db"
+
 
 [node name="Mythril17" parent="Collectables/Mthrill" unique_id=1944163446 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 79.2851, 0.738718, -27.3626)
+collectableId = "0657c82eb9d34ae58b56bc9dee4ea11a"
+
 
 [node name="Mythril18" parent="Collectables/Mthrill" unique_id=1918636819 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 89.663, 2.74338, -22.6734)
+collectableId = "2fc974fdd687436c9d1d71fdff3fced8"
+
 
 [node name="Mythril19" parent="Collectables/Mthrill" unique_id=56521779 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 89.663, 2.74338, -18.5568)
+collectableId = "8a59760dd3234155a550e769ea6a012c"
+
 
 [node name="Mythril20" parent="Collectables/Mthrill" unique_id=1063278149 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 91.6195, 2.74338, -20.5378)
+collectableId = "bbc2ea4ca8234432ac7d673427b1454c"
+
 
 [node name="Mythril21" parent="Collectables/Mthrill" unique_id=313221636 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 87.4413, 2.74338, -20.5378)
+collectableId = "7feb495ca1c94b28a6532fc00fd16491"
+
 
 [node name="Mythril22" parent="Collectables/Mthrill" unique_id=1256014636 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 100.223, 3.86299, -13.1237)
+collectableId = "acb654b8e72a4afe946bf306980a4859"
+
 
 [node name="Mythril23" parent="Collectables/Mthrill" unique_id=845622160 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 108.22, 4.54596, -17.8024)
+collectableId = "dc5f380db83345d4b07019f5318b14f5"
+
 
 [node name="Mythril24" parent="Collectables/Mthrill" unique_id=25334993 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 113.259, 4.15586, -23.5865)
+collectableId = "70df1fc70c8e43d5a27986b8fdb4ca52"
+
 
 [node name="Mythril25" parent="Collectables/Mthrill" unique_id=860333060 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 113.259, 4.15586, -16.2463)
+collectableId = "d82a8a9cb8b9418c9ab10695d4d7ccca"
+
 
 [node name="Mythril26" parent="Collectables/Mthrill" unique_id=589615185 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 118.065, 4.15586, -17.8727)
+collectableId = "d8e9f00fd72c45bb90f678f166762cf1"
+
 
 [node name="Mythril27" parent="Collectables/Mthrill" unique_id=458350388 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 110.097, 4.15586, -20.5941)
+collectableId = "a5db35eaaa524cc59e6c78e709bbc4ac"
+
 
 [node name="Mythril28" parent="Collectables/Mthrill" unique_id=1381391601 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 117.365, 13.3801, -12.3754)
+collectableId = "5b8b68b30c1d4182ba4f27694a533f08"
+
 
 [node name="Mythril29" parent="Collectables/Mthrill" unique_id=615070127 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 102.037, 15.2775, 37.752)
+collectableId = "fc640aa00793479fa22373c32004883c"
+
 
 [node name="Mythril30" parent="Collectables/Mthrill" unique_id=727873097 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 135.736, 13.4358, 94.4327)
+collectableId = "c916ab99949546248f8574a917822ecc"
+
 
 [node name="Mythril31" parent="Collectables/Mthrill" unique_id=952241323 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 90.7849, 13.4358, 108.857)
+collectableId = "cdd369db0ff24257b90f02278358fb33"
+
 
 [node name="Mythril32" parent="Collectables/Mthrill" unique_id=309478225 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 67.8992, 13.4358, 66.9922)
+collectableId = "ada4ee6dd35f402495fe9a84c7afb1cc"
+
 
 [node name="Mythril33" parent="Collectables/Mthrill" unique_id=1669004777 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 34.2414, 13.4358, 66.9922)
+collectableId = "c755b02361fb4cfd8f71fc59f289dda9"
+
 
 [node name="Mythril70" parent="Collectables/Mthrill" unique_id=2062435250 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 28.7882, 13.7154, 83.8095)
+collectableId = "d1a547d11164428b8a691dca4f60a2b2"
+
 
 [node name="Mythril71" parent="Collectables/Mthrill" unique_id=857516425 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.73167, 13.7154, 104.393)
+collectableId = "6a1725f7f6214b9c8ce56c5a0b69c0dc"
+
 
 [node name="Mythril72" parent="Collectables/Mthrill" unique_id=1311002589 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -5.56778, 13.7154, 122.905)
+collectableId = "04a659ffa821485e8360abe8ed6527b0"
+
 
 [node name="Mythril73" parent="Collectables/Mthrill" unique_id=453285291 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.67784, 13.7154, 150.133)
+collectableId = "52915c65f397404685abf04b51a9e0f4"
+
 
 [node name="Mythril74" parent="Collectables/Mthrill" unique_id=211833553 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16.6181, 13.7154, 160.585)
+collectableId = "d9ee396a513d482d88bfa46be5d18d04"
+
 
 [node name="Mythril75" parent="Collectables/Mthrill" unique_id=440173033 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 33.9643, 13.7154, 163.807)
+collectableId = "83fc3fc10e734914a034656ef116fbdb"
+
 
 [node name="Mythril76" parent="Collectables/Mthrill" unique_id=1997790336 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 52.2967, 13.7154, 162.041)
+collectableId = "3538a4aec62740aa91e6584b440528bf"
+
 
 [node name="Mythril77" parent="Collectables/Mthrill" unique_id=2147043712 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 69.3807, 13.7154, 157.664)
+collectableId = "39021e89dff84b90baaf30575f139632"
+
 
 [node name="Mythril78" parent="Collectables/Mthrill" unique_id=1554777494 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 84.7118, 13.7154, 138.314)
+collectableId = "c3d2c60faf7c46a1b68f80354a88f23f"
+
 
 [node name="Mythril79" parent="Collectables/Mthrill" unique_id=562453207 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 87.1442, 13.7154, 119.196)
+collectableId = "e18a35499f1648e8b385a477afb1a1e4"
+
 
 [node name="Mythril34" parent="Collectables/Mthrill" unique_id=934362725 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 18.1978, 13.4358, 42.8137)
+collectableId = "5fc93aeaa623411f8084b8235d73f70a"
+
 
 [node name="Mythril80" parent="Collectables/Mthrill" unique_id=1575922072 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0.00429344, 0, -0.00429344, 2, -9.58675, 13.5087, 26.2142)
+collectableId = "5b723a375ea44be79ca4f16d4b21e11a"
+
 
 [node name="Mythril35" parent="Collectables/Mthrill" unique_id=1447158121 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -34.8812, 13.4358, -18.5712)
+collectableId = "ae0f3ecae4d1434e9c3b138d55289278"
+
 
 [node name="Mythril36" parent="Collectables/Mthrill" unique_id=879055298 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -8.45728, 13.4358, -28.3134)
+collectableId = "3aef0abf39cf4cfeb6aa9301b689d4a8"
+
 
 [node name="Mythril37" parent="Collectables/Mthrill" unique_id=1708610868 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 68.1662, 13.4358, -50.0363)
+collectableId = "abb551bb74124a5583ab2aa995afeb94"
+
 
 [node name="Mythril38" parent="Collectables/Mthrill" unique_id=506138784 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 29.1867, 13.4358, -45.4903)
+collectableId = "0d2f8781199447398380ffd8a86311d2"
+
 
 [node name="Mythril39" parent="Collectables/Mthrill" unique_id=768490195 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 29.1867, 18.5203, -53.9959)
+collectableId = "69bffe2e53b94a1dbd6bc38cb1c263c2"
+
 
 [node name="Mythril40" parent="Collectables/Mthrill" unique_id=753667605 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 29.1867, 21.5296, -64.6023)
+collectableId = "59b989f3ebdf4f5f91b29f7eeb10cf18"
+
 
 [node name="Mythril86" parent="Collectables/Mthrill" unique_id=133749484 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 21.0572, 22.7285, -85.1165)
+collectableId = "7e3734294a00403aa3415da686453ebe"
+
 
 [node name="Mythril87" parent="Collectables/Mthrill" unique_id=1182466166 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 35.0611, 22.7285, -82.0906)
+collectableId = "95ec35aef93848acb5fb4e66edb17579"
+
 
 [node name="Mythril41" parent="Collectables/Mthrill" unique_id=396993048 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 101.2, 13.6166, -43.2385)
+collectableId = "62c77e1b391a447a8a9d1b02d29e759e"
+
 
 [node name="Mythril42" parent="Collectables/Mthrill" unique_id=1655471219 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 140.207, 13.6166, 61.407)
+collectableId = "90a2ad1bb7b64a868c794040bfbb3c30"
+
 
 [node name="Mythril43" parent="Collectables/Mthrill" unique_id=642963845 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 102.691, -2.58226, 53.7486)
+collectableId = "e88b02ee3d78475eade33e3facc6ecf6"
+
 
 [node name="Mythril44" parent="Collectables/Mthrill" unique_id=230656882 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 99.6111, -2.58226, 53.7486)
+collectableId = "dce98d8286ef459fa1438040a7998971"
+
 
 [node name="Mythril45" parent="Collectables/Mthrill" unique_id=1394776640 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 96.1563, -2.58226, 53.7486)
+collectableId = "8b9b3c01066c4c9aa075827ec5525c66"
+
 
 [node name="Mythril46" parent="Collectables/Mthrill" unique_id=770634986 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 86.5054, -5.03705, 84.8325)
+collectableId = "84f751b8330e424fa62fa6ceb72477d2"
+
 
 [node name="Mythril47" parent="Collectables/Mthrill" unique_id=1741954938 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 102.157, -3.45273, 84.8325)
+collectableId = "8715d38a04944121b505bd9a454ab09c"
+
 
 [node name="Mythril48" parent="Collectables/Mthrill" unique_id=267238752 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 118.233, -5.79738, 77.623)
+collectableId = "82c9dc8bafa34b388f048c738442c54a"
+
 
 [node name="Mythril49" parent="Collectables/Mthrill" unique_id=1208088139 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 120.631, -7.60592, 69.5165)
+collectableId = "12820b40af5e46808495ec6abdfb9469"
+
 
 [node name="Mythril50" parent="Collectables/Mthrill" unique_id=1801415830 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 111.582, -9.99301, 70.8055)
+collectableId = "a652240f8eef4ae08c9b9c3759905dfa"
+
 
 [node name="Mythril51" parent="Collectables/Mthrill" unique_id=507827942 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 108.619, -11.5048, 64.3999)
+collectableId = "cd6c9ccae70348d8a92e6820dea5ca2c"
+
 
 [node name="Mythril52" parent="Collectables/Mthrill" unique_id=1017882576 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 101.109, -13.5461, 63.0335)
+collectableId = "dc89f4b3d4c04072b747a9048f198e81"
+
 
 [node name="Mythril53" parent="Collectables/Mthrill" unique_id=470319356 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 95.1557, -15.1888, 62.6838)
+collectableId = "40edc59dabe44fb798b16d4f0223fbb1"
+
 
 [node name="Mythril54" parent="Collectables/Mthrill" unique_id=28398327 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 81.4525, -15.1888, 62.6838)
+collectableId = "5eebc634dd8c4087886b55d93fee749d"
+
 
 [node name="Mythril55" parent="Collectables/Mthrill" unique_id=431521954 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 51.3046, -14.7773, 63.7484)
+collectableId = "c6fac2e842da456abbabc53b5e2cd855"
+
 
 [node name="Mythril56" parent="Collectables/Mthrill" unique_id=324275264 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 34.7572, -14.7773, 63.7484)
+collectableId = "a60df8eefbbf49d9910e82578265c524"
+
 
 [node name="Mythril57" parent="Collectables/Mthrill" unique_id=1478467175 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 24.7593, -14.7773, 69.2433)
+collectableId = "a5b52db6fd6c4dfca1a5afb3d4c263ba"
+
 
 [node name="Mythril58" parent="Collectables/Mthrill" unique_id=73515408 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 27.7115, -14.7773, 69.2433)
+collectableId = "231b53132f0845f8ba470ab813a0447c"
+
 
 [node name="Mythril59" parent="Collectables/Mthrill" unique_id=79618586 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 30.256, -14.7773, 68.823)
+collectableId = "bf5ef4ce540f44b0b83c89f788ac4a61"
+
 
 [node name="Mythril60" parent="Collectables/Mthrill" unique_id=588122944 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 22.8049, 0.526377, 65.4812)
+collectableId = "66b9f5eeb1e948fe897e479f7855c10d"
+
 
 [node name="Mythril61" parent="Collectables/Mthrill" unique_id=84303582 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 40.4554, 0.526377, 71.0256)
+collectableId = "0f25d25c8f4344ea96cb2a557839a634"
+
 
 [node name="Mythril62" parent="Collectables/Mthrill" unique_id=1636739082 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 43.5846, 0.526377, 85.347)
+collectableId = "14d5799f72554964837be663103d637f"
+
 
 [node name="Mythril66" parent="Collectables/Mthrill" unique_id=2032361411 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 49.6433, 0.526377, 90.9895)
+collectableId = "9143329ed3c84128899b80e5c897394a"
+
 
 [node name="Mythril67" parent="Collectables/Mthrill" unique_id=1127271546 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 54.2165, 0.526377, 87.1362)
+collectableId = "8c21c4f1f32c493d96437d0064765b33"
+
 
 [node name="Mythril68" parent="Collectables/Mthrill" unique_id=1002850438 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 57.9153, 0.526377, 94.6667)
+collectableId = "c99488be4de942de9e9b1f69543dc963"
+
 
 [node name="Mythril69" parent="Collectables/Mthrill" unique_id=1065749049 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 39.0736, 0.526377, 90.5756)
+collectableId = "eb6af09a8b21473f9db1ed372638331f"
+
 
 [node name="Mythril63" parent="Collectables/Mthrill" unique_id=905577146 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 49.6433, 0.526377, 59.7501)
+collectableId = "a8e275230a0e41c28739992338ea9291"
+
 
 [node name="Mythril64" parent="Collectables/Mthrill" unique_id=524109914 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 49.6433, 0.526377, 80.977)
+collectableId = "847f646f18a34258bee89f7aad26322b"
+
 
 [node name="Mythril65" parent="Collectables/Mthrill" unique_id=1398102525 instance=ExtResource("12_qlgyj")]
 transform = Transform3D(1.99921, -0.0560875, 0, 0.0560875, 1.99921, 0, 0, 0, 2, 49.6433, 0.526377, 69.5326)
+collectableId = "4134e5102de1474991ce16c237bbc849"
+
 
 [node name="Book2" parent="Collectables/Mthrill" unique_id=887144989 instance=ExtResource("16_m4385")]
 transform = Transform3D(-2.44929, 0, 0.0590894, 0, 2.45, 0, -0.0590894, 0, -2.44929, 32.1855, 13.8885, 170.626)
+collectableId = "8450d40aa0cb4b318dc36c88c25c7927"
+
 
 [node name="Mythril81" parent="Collectables/Mthrill" unique_id=1993242055 instance=ExtResource("30_0o4qt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.0223, 13.7739, 173.753)
+collectableId = "37b4539f143c45358442419b7b5253c9"
+
 
 [node name="Mythril82" parent="Collectables/Mthrill" unique_id=1036390909 instance=ExtResource("30_0o4qt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.0766, 13.7739, 171.508)
+collectableId = "ff6c36efa8a543b899899c74da87604b"
+
 
 [node name="Mythril83" parent="Collectables/Mthrill" unique_id=189656981 instance=ExtResource("30_0o4qt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.7255, -14.6388, 63.865)
+collectableId = "5b09bca5fc03481395cacebf68784524"
+
 
 [node name="Mythril84" parent="Collectables/Mthrill" unique_id=1001320998 instance=ExtResource("30_0o4qt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.7255, 44.9135, -91.5489)
+collectableId = "722b022f6d494ea381f92fbbb43556dc"
+
 
 [node name="Mythril85" parent="Collectables/Mthrill" unique_id=1637689345 instance=ExtResource("30_0o4qt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.9051, 22.8768, -92.2026)
+collectableId = "ab2e8c20b7084e2ca7b4a6118feb16c2"
+
 
 [node name="LVL1_Blender" parent="." unique_id=1764737711 instance=ExtResource("5_7idjg")]
 visible = false

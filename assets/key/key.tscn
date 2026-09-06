@@ -43,6 +43,7 @@ debug_color = Color(0.948938, 0.17862, 0.36123, 0.42)
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1573469051]
 stream = ExtResource("3_0f75p")
 volume_db = 9.195
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 

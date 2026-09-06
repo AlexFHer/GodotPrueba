@@ -164,6 +164,7 @@ shape = SubResource("SphereShape3D_6jq5k")
 [node name="CoinPickupAudio" type="AudioStreamPlayer3D" parent="." unique_id=1397245030]
 stream = ExtResource("3_6ou1a")
 volume_db = -15.0
+bus = &"SFX"
 
 [node name="GPUParticles3D" parent="." unique_id=1574032226 instance=ExtResource("5_7buom")]
 

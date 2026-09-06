@@ -22,6 +22,8 @@ func _ready():
 	back_button.focus_mode = Control.FOCUS_ALL
 	fullscreen_check.focus_mode = Control.FOCUS_ALL
 	volume_slider.focus_mode = Control.FOCUS_ALL
+	fullscreen_check.set_pressed_no_signal(GameSettings.fullscreen)
+	volume_slider.set_value_no_signal(GameSettings.master_volume)
 
 func _on_play_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/level1/LvL 1.tscn")
@@ -42,13 +44,10 @@ func _on_back_pressed() -> void:
 	play_button.grab_focus()
 
 func _on_full_screen_toggled(toggled_on: bool) -> void:
-	if toggled_on:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
+	GameSettings.set_fullscreen(toggled_on)
 
 func _on_main_vol_slider_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("Master"), value)
+	GameSettings.set_master_volume(value)
 
 func _on_start_button_down() -> void:
 	start_button.disabled = true

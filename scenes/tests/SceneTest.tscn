@@ -99,6 +99,8 @@ visible = false
 [node name="Chest" parent="." instance=ExtResource("16_2fkf1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.1674, 1.51754, -20.0904)
 visible = false
+collectableId = "ace0502f46384aacb69b87a80ceed23b"
+
 
 [node name="LvL1" parent="." instance=ExtResource("20_ow8r8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.7291, 1.08237, -2.59654)
@@ -142,6 +144,8 @@ arc_puzzle = NodePath("ArcPuzzle")
 [node name="MagicChest" parent="ArcMagicChestPuzzle1" instance=ExtResource("17_l7cy2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -125.236, -2.08446, 15.3535)
 visible = false
+collectableId = "8055f424e269422fb67b7af0297b8137"
+
 
 [node name="ArcPuzzle" type="Node3D" parent="ArcMagicChestPuzzle1" node_paths=PackedStringArray("arcs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -122.911, -3.75727, -5.15296)

@@ -111,6 +111,26 @@ Current durations:
 - `preferredDistance`, `collisionLookAhead`, `collisionApproachSpeed`, and
   `collisionRecoverySpeed` are exported tuning values on `CameraPivot`.
 
+## Pause Menu And Settings
+- The pause settings screen provides separate linear sliders for `Master`,
+  `Music`, and `SFX`, plus fullscreen and Spanish/English language controls.
+- `default_bus_layout.tres` defines `Music` and `SFX` buses routed through
+  `Master`. Menu and level tracks use `Music`; player, dialogue, combat,
+  collectible, potion, puzzle, and prop sounds use `SFX`.
+- `GameSettings` is the shared settings autoload. It applies settings at startup
+  and saves them to `user://saves/settings.cfg` after a short debounce so slider
+  movement does not write on every step.
+- The main menu's existing master-volume and fullscreen controls use the same
+  service, so their values remain synchronized with the pause menu.
+- The settings screen remains interactive while the scene tree is paused,
+  supports keyboard, mouse, and controller focus navigation, and can return via
+  its visible button, `ui_cancel`, or the `circle` action.
+
+Important files:
+- `shared/scripts/settings_manager.gd`
+- `default_bus_layout.tres`
+- `scenes/shared/main-menus/settings-menu/settings-menu.tscn`
+
 ## NPC Dialogue System
 - Dialogue is linear in v1: no choices, branches, gameplay commands, or
   persistence of already-read conversations.
@@ -257,10 +277,33 @@ Important files:
 - `CollectablesEmitterService`
 - `PlayerInventory`
 - `GameLog`
+- `GameSettings`
 
 ## Collectibles And World Objects
 - The project includes mythril collectibles, coins, books, keys, chests, fire towers, arcs, elevators, doors, levers, NPC dialogue, and enemies.
 - Collectibles and progression should support the 3D collectathon fantasy.
+- Collectible progress persists per level when leaving or closing the game.
+  `LevelCollectablesData` saves a versioned reward ledger immediately to
+  `user://saves/collectables_v1.json`; totals are derived from recorded rewards.
+  Failed writes reject the pickup, and invalid saves are not overwritten.
+- `levelName` is the stable level ID. Existing levels have explicit IDs. Each
+  placed mithril, coin, book, chest, and reward-bearing enemy exposes
+  `collectableId`, unique within its level. Keep both IDs unchanged when moving
+  or renaming content; assign a NEW collectible ID when duplicating an object.
+  Existing placed rewards have IDs. Empty IDs fall back to a level-relative
+  node path for prototypes only; such saves depend on the scene hierarchy.
+- The emitter requires the source node, resolves its level manager, records the
+  reward once, then emits a level-qualified signal. Level manager scope is its
+  owning scene (or itself when run standalone); keep one manager per level.
+- Collected loose items disappear on reentry. Chests restore their opened state
+  without consuming another key; magic chests also remove their force field.
+  Enemies still respawn, but their mithril reward is granted only once per level.
+- `LevelCollectables` remains authored configuration; each manager duplicates it
+  into a HUD snapshot and restores both mithril and book state from the ledger.
+  Keys, potions, enemy death, and puzzle completion are not persisted here.
+- Persistence regression coverage is in
+  `scenes/tests/collectable_persistence_test.tscn` (separate write/read runs with
+  isolated APPDATA containing `.collectable-test-user`, never real player saves).
 - Fire-based interactions exist through fireballs and fire puzzle objects.
 
 ## Enemies And Damage
@@ -334,3 +377,6 @@ Important files:
   particles to the player's local particle marker.
 - 2026-09-04: Decoupled the third-person camera from the `SpringArm3D` endpoint
   and added predictive, asymmetric distance smoothing for obstacle avoidance.
+- 2026-09-04: Expanded pause settings with persistent Master/Music/SFX volumes,
+  fullscreen, language selection, controller navigation, and shared main-menu
+  state through the new `GameSettings` autoload.

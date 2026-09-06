@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 		return
 
-	global_position += -global_transform.basis.z.normalized() * speed * delta
+	# global_position += -global_transform.basis.z.normalized() * speed * delta
 	if _material != null:
 		_material.set_shader_parameter(&"life_progress", _age / lifetime)
 

@@ -82,6 +82,7 @@ anim_player = NodePath("../Fireball/AnimationPlayer")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer3D" parent="." unique_id=850350205]
 stream = ExtResource("4_qh01r")
+bus = &"SFX"
 
 [node name="FireProyectile" type="GPUParticles3D" parent="." unique_id=74533331]
 transform = Transform3D(3.495, 0, 0, 0, -8.261453e-08, -1.12, 0, 1.89, -4.8956753e-08, -0.1456249, -0.017491817, -1.2073678)
