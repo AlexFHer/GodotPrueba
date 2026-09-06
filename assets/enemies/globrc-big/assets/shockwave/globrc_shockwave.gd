@@ -6,7 +6,6 @@ extends Node3D
 
 @export var ring_width: float = 0.8
 @export var hit_height: float = 0.6
-@export var torus_thickness: float = 0.35
 
 @export var damage: float = 20.0
 
@@ -18,28 +17,45 @@ var current_radius: float = 0.0
 
 var damaged_bodies: Array[Node3D] = []
 
+var electric_material: ShaderMaterial
+var age: float = 0.0
+var arc_materials: Array[ShaderMaterial] = []
+
+func _create_electric_arcs() -> void:
+	for index in range(2):
+		var arc := MeshInstance3D.new()
+		var torus := TorusMesh.new()
+		torus.inner_radius = 0.975
+		torus.outer_radius = 1.025
+		torus.rings = 256
+		torus.ring_segments = 6
+		arc.mesh = torus
+		arc.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		# Shader expansion exceeds the original unit torus bounds.
+		arc.extra_cull_margin = max_radius + 1.0
+		var material := ShaderMaterial.new()
+		material.shader = preload("res://assets/enemies/globrc-big/assets/shockwave/electric_arcs.gdshader")
+		material.set_shader_parameter("phase", float(index) * 0.47)
+		arc.material_override = material
+		arc_materials.append(material)
+		add_child(arc)
+
 func _ready() -> void:
+	# Each simultaneous discharge owns its shader parameters and plane size.
+	electric_material = ring.material_override.duplicate() as ShaderMaterial
+	ring.material_override = electric_material
+	var plane := ring.mesh.duplicate() as PlaneMesh
+	var extent: float = max_radius + ring_width
+	plane.size = Vector2.ONE * extent * 2.0
+	ring.mesh = plane
+	electric_material.set_shader_parameter("extent", extent)
+	electric_material.set_shader_parameter("wave_width", ring_width)
+	_create_electric_arcs()
 	_update_visual()
 
-	var collision: CollisionShape3D = $DetectionArea/CollisionShape3D
 
-	print("=== SHOCKWAVE RUNTIME ===")
-	print("Area existe: ", detection_area != null)
-	print("Collision existe: ", collision != null)
-	print("Shape: ", collision.shape)
-	print("Disabled: ", collision.disabled)
-	print("Area monitoring: ", detection_area.monitoring)
-	print("Area mask: ", detection_area.collision_mask)
-
-	if collision.shape is CylinderShape3D:
-		var cylinder: CylinderShape3D = collision.shape as CylinderShape3D
-		print("Radius: ", cylinder.radius)
-		print("Height: ", cylinder.height)
-
-	print("=========================")
-
-
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
+	age += delta
 	current_radius += speed * delta
 
 	_update_visual()
@@ -50,33 +66,25 @@ func _physics_process(delta):
 
 
 func _update_visual() -> void:
-	var torus: TorusMesh = ring.mesh as TorusMesh
-
-	if torus == null:
-		return
-
-	var half_thickness: float = torus_thickness / 2.0
-
-	torus.inner_radius = maxf(
-		0.01,
-		current_radius - half_thickness
-	)
-
-	torus.outer_radius = current_radius + half_thickness
+	electric_material.set_shader_parameter("radius", current_radius)
+	electric_material.set_shader_parameter("age", age)
+	var fade: float = 1.0 - smoothstep(max_radius * 0.85, max_radius, current_radius)
+	electric_material.set_shader_parameter("fade", fade)
+	for material in arc_materials:
+		material.set_shader_parameter("radius", current_radius)
+		material.set_shader_parameter("age", age)
+		material.set_shader_parameter("fade", fade)
 
 func _on_detection_area_body_entered(body: Node) -> void:
 	if body is MainPlayer:
 		_check_damage()
 
 func _check_damage() -> void:
-	print("ENTRO EN CHECK DAMAGE")
 
 	var bodies: Array[Node3D] = detection_area.get_overlapping_bodies()
 
-	print("CUERPOS DETECTADOS: ", bodies.size())
 
 	for body: Node3D in bodies:
-		print("CUERPO: ", body.name)
 
 		if body in damaged_bodies:
 			continue
@@ -103,10 +111,6 @@ func _check_damage() -> void:
 
 		var touching_ground_wave: bool = height_difference <= hit_height
 
-		print(
-			"Ring: ", touching_ring,
-			" | Ground: ", touching_ground_wave
-		)
 
 		if touching_ring and touching_ground_wave:
 			body.take_damage()

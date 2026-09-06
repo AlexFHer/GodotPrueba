@@ -1,23 +1,148 @@
 [gd_scene format=3 uid="uid://bqo66gvs5uhef"]
 
 [ext_resource type="Shader" uid="uid://disqrsyuyfftd" path="res://assets/collectable/magic_fragment/magic_fragment.gdshader" id="1_jqqql"]
+[ext_resource type="Shader" uid="uid://v03myetgcsme" path="res://assets/collectable/magic_fragment/inner_motes.gdshader" id="2_motes"]
+[ext_resource type="Shader" uid="uid://comrcejbk3p8p" path="res://assets/collectable/magic_fragment/star_mote.gdshader" id="3_stars"]
+[ext_resource type="Shader" uid="uid://cdoq1h76qji5k" path="res://assets/collectable/magic_fragment/red_core.gdshader" id="4_red_core"]
+[ext_resource type="Script" uid="uid://cthf5etxptt2s" path="res://assets/collectable/magic_fragment/magic_fragment.gd" id="5_pop"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_jqqql"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j5btm"]
-noise = SubResource("FastNoiseLite_jqqql")
-invert = true
+[sub_resource type="SphereShape3D" id="SphereShape3D_pickup"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j5btm"]
 render_priority = 0
 shader = ExtResource("1_jqqql")
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_j5btm")
-shader_parameter/smoothness = 0.20000000298024
+shader_parameter/water_color = Color(0.14, 0.65, 0.9, 1)
+shader_parameter/ripple_strength = 0.01200000057
+shader_parameter/rim_color = Color(0.35, 0.85, 1, 1)
+shader_parameter/rim_energy = 4.5
+shader_parameter/rim_power = 1.8
 
 [sub_resource type="SphereMesh" id="SphereMesh_6jtrj"]
 
-[node name="MagicFragment" type="Node3D" unique_id=207826757]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_motes"]
+shader = ExtResource("2_motes")
+shader_parameter/seed_offset = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_motes"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.65, 0.95, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_motes"]
+material = SubResource("StandardMaterial3D_motes")
+radius = 0.016
+height = 0.032
+radial_segments = 8
+rings = 4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_star_motion"]
+shader = ExtResource("2_motes")
+shader_parameter/seed_offset = 71.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_stars"]
+render_priority = 0
+shader = ExtResource("3_stars")
+shader_parameter/star_color = Color(0.65, 0.9, 1, 1)
+shader_parameter/energy = 7.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_stars"]
+material = SubResource("ShaderMaterial_stars")
+size = Vector2(0.15, 0.15)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_red_core"]
+render_priority = 0
+shader = ExtResource("4_red_core")
+shader_parameter/glow_color = Color(0.3735197, 0.60780966, 0.30480978, 1)
+shader_parameter/energy = 6.0
+shader_parameter/morph_speed = 2.45000011311512
+
+[sub_resource type="QuadMesh" id="QuadMesh_red_core"]
+material = SubResource("ShaderMaterial_red_core")
+size = Vector2(0.48, 0.48)
+
+[sub_resource type="Gradient" id="Gradient_burst"]
+colors = PackedColorArray(0.55, 0.9, 1, 1, 0.2, 0.65, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_burst"]
+gradient = SubResource("Gradient_burst")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_burst"]
+emission_shape = 1
+emission_sphere_radius = 0.35
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 1.2
+initial_velocity_max = 2.5
+gravity = Vector3(0, -0.8, 0)
+scale_min = 0.5
+scale_max = 1.5
+color_ramp = SubResource("GradientTexture1D_burst")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_burst"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_burst"]
+material = SubResource("StandardMaterial3D_burst")
+radius = 0.025
+height = 0.05
+radial_segments = 8
+rings = 4
+
+[node name="MagicFragment" type="Area3D" unique_id=242875622]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+collision_mask = 2
+script = ExtResource("5_pop")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=119718694]
+shape = SubResource("SphereShape3D_pickup")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1077223631]
+transform = Transform3D(0.95827395, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_j5btm")
 mesh = SubResource("SphereMesh_6jtrj")
+
+[node name="InnerMotes" type="GPUParticles3D" parent="." unique_id=2043713333]
+cast_shadow = 0
+amount = 28
+lifetime = 8.0
+preprocess = 0.1
+visibility_aabb = AABB(-0.5, -0.5, -0.5, 1, 1, 1)
+local_coords = true
+process_material = SubResource("ShaderMaterial_motes")
+draw_pass_1 = SubResource("SphereMesh_motes")
+
+[node name="InnerStars" type="GPUParticles3D" parent="." unique_id=670926114]
+cast_shadow = 0
+amount = 12
+lifetime = 8.0
+preprocess = 0.1
+visibility_aabb = AABB(-0.5, -0.5, -0.5, 1, 1, 1)
+local_coords = true
+process_material = SubResource("ShaderMaterial_star_motion")
+draw_pass_1 = SubResource("QuadMesh_stars")
+
+[node name="MagicLight" type="OmniLight3D" parent="." unique_id=447669199]
+light_color = Color(0.4, 0.75, 1, 1)
+light_energy = 3.5
+omni_range = 3.0
+omni_attenuation = 1.5
+
+[node name="RedCore" type="MeshInstance3D" parent="." unique_id=983291189]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_red_core")
+
+[node name="PopBurst" type="GPUParticles3D" parent="." unique_id=569032449]
+cast_shadow = 0
+emitting = false
+amount = 48
+lifetime = 0.7
+one_shot = true
+explosiveness = 1.0
+visibility_aabb = AABB(-3, -3, -3, 6, 6, 6)
+process_material = SubResource("ParticleProcessMaterial_burst")
+draw_pass_1 = SubResource("SphereMesh_burst")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -5,7 +5,7 @@ const COMBO_INCLINATION_DEGREES := [-35.0, 35.0, 90.0]
 const COMBO_SWEEP_DIRECTIONS := [1.0, -1.0, 1.0]
 
 @export_range(0.0, 30.0, 0.1) var speed := 16.0
-@export_range(0.1, 5.0, 0.05) var lifetime := 0.8
+@export_range(0.1, 5.0, 0.05) var lifetime := 0.2
 
 @onready var _visual: MeshInstance3D = %Visual
 

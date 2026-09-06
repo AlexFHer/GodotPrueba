@@ -280,6 +280,35 @@ Important files:
 - `GameSettings`
 
 ## Collectibles And World Objects
+- `assets/collectable/magic_fragment/magic_fragment.tscn` is a round water-like
+  magic fragment: a translucent glossy blue shell with subtle ripples and 28
+  luminous motes plus 12 bright five-pointed star particles orbiting within its
+  volume. Stars face the camera, slowly rotate, and pulse with emission energy 7.
+  The bubble has a strong cyan Fresnel rim (energy 4.5, power 1.8), which broadens
+  and brightens between 4 and 18 metres from the camera for distance readability
+  while keeping its center transparent. Rim color, energy, and power are tunable.
+  A shadowless cyan OmniLight (energy 3.5, range 3 metres) lights nearby surfaces.
+  One red amalgam-like glow sits at the exact center: five smoothly merged lobes
+  grow and retract independently around a connected core, while irregular spikes
+  emerge and recede. Shader parameter `morph_speed` controls the deformation rate.
+  It uses a single billboard mesh
+  with a soft halo and gentle pulse, separate from stars.
+  Particle motion stays local
+	and bounded inside the sphere. Touching it with a `MainPlayer` triggers a
+  one-shot pickup: 0.3-second squash/stretch, a flash, and 48 outward droplets.
+  The fragment emits `collected` once, then `popped` before freeing itself after
+  the burst. No inventory reward or persistence is assigned yet. `pop()` also
+  allows scripted activation; `preview_pop_loop` is an optional visual preview.
+  The whole fragment floats vertically by ±0.1 units on a 2.4-second cycle,
+  pausing during pop. `float_height` and `float_period` are exported controls.
+  Floating uses one delta-driven sine wave per rendered frame, preserving speed
+  through the center instead of chaining eased tweens that stop mid-cycle.
+  Placed instances must inherit their script; `script = null` disables pickup.
+  Pop audio uses `magic_pop_echo.wav`, processed from the user-provided
+  `soundreality-pop-423717.mp3` with pitched shimmer, crystalline accents and
+  fading stereo echoes. A positional SFX player starts at the burst and lives
+  as a sibling until playback finishes so removing the fragment keeps its tail.
+  `pop_sound` and `pop_volume_db` are inspector controls.
 - The project includes mythril collectibles, coins, books, keys, chests, fire towers, arcs, elevators, doors, levers, NPC dialogue, and enemies.
 - Collectibles and progression should support the 3D collectathon fantasy.
 - Collectible progress persists per level when leaving or closing the game.
@@ -307,6 +336,13 @@ Important files:
 - Fire-based interactions exist through fireballs and fire puzzle objects.
 
 ## Enemies And Damage
+- Globrc Big's ground slam emits an expanding blue-white electrical discharge,
+  with jagged flickering arcs and branches instead of a solid torus. Its shader
+  follows the damage radius, fades at the outer limit, and uses per-instance
+  materials so overlapping waves remain independent. Two emissive 3D lightning
+  filaments arch above the ground wave, with shader-driven jagged deformation.
+  Expansion speed is 6.5 units/second (previously 5); range, jump avoidance,
+  and once-per-wave damage behavior are preserved.
 - Damageable entities use the `CanGetHit` group.
 - Some enemies expose `get_hit()` directly.
 - Some enemy hit areas are `Area3D` nodes that forward hits to the enemy.
