@@ -357,6 +357,7 @@ vertical_alignment = 2
 
 [node name="MagicFragment" parent="." unique_id=242875622 instance=ExtResource("24_75uik")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 11.965116, 1.6948152, 16.30515)
+collectableId = "5a5719d2150e45b9a0946e4ae6b97cc4"
 
 [connection signal="all_arcs_active" from="Assets/ArcsPuzzles/ArcMagicChestPuzzle/ArcPuzzle" to="Assets/ArcsPuzzles/ArcMagicChestPuzzle/MagicChest" method="deactivate_force_field"]
 [connection signal="all_fire_towers_active" from="Assets/FireTowers/Puzzle" to="Assets/FireTowers/secret_tower" method="activate_secret_tower"]

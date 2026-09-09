@@ -1,5 +1,7 @@
 extends Node3D
 
+@export var collectableId := ""
+
 signal popped
 signal collected
 
@@ -36,6 +38,17 @@ func _ready() -> void:
 	_float_center = position.y
 	if preview_pop_loop:
 		_run_preview()
+	else:
+		_restore_progress.call_deferred()
+
+func _restore_progress() -> void:
+	# Standalone VFX previews have no level manager and do not use saves.
+	if get_tree().get_nodes_in_group("collectable_levels").is_empty():
+		return
+	if CollectablesEmitterService.is_collected(self):
+		_popping = true
+		hide()
+		queue_free()
 
 func pop() -> void:
 	if _popping:
@@ -93,5 +106,8 @@ func _run_preview() -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if _popping or not body.is_in_group("MainPlayer"):
 		return
+	if not preview_pop_loop and not get_tree().get_nodes_in_group("collectable_levels").is_empty():
+		if not CollectablesEmitterService.emitShardPickedUp(1, self):
+			return
 	pop()
 	collected.emit()

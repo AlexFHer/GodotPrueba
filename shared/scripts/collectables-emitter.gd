@@ -2,6 +2,8 @@ class_name CollectablesEmitter extends Node
 
 signal mithrilPickedUp(levelName: String, amount: int)
 signal bookPickedUp(levelName: String, amount: int)
+signal babyPickedUp(levelName: String, amount: int)
+signal shardPickedUp(levelName: String, amount: int)
 
 func _get_level(source: Node) -> Node:
 	for level: Node in get_tree().get_nodes_in_group("collectable_levels"):
@@ -27,12 +29,22 @@ func emitMithrilPickedUp(amount: int, source: Node) -> bool:
 func emitBooksPickedUp(amount: int, source: Node) -> bool:
 	return _collect("book", amount, source)
 
+func emitBabyPickedUp(amount: int, source: Node) -> bool:
+	return _collect("baby", amount, source)
+
+func emitShardPickedUp(amount: int, source: Node) -> bool:
+	return _collect("shard", amount, source)
+
 func _collect(kind: String, amount: int, source: Node) -> bool:
 	var level := _get_level(source)
 	if level == null or not LevelCollectablesData.collect(level.levelName, _get_id(source, level), kind, amount):
 		return false
 	if kind == "mithril":
 		mithrilPickedUp.emit(level.levelName, amount)
-	else:
+	elif kind == "book":
 		bookPickedUp.emit(level.levelName, amount)
+	elif kind == "baby":
+		babyPickedUp.emit(level.levelName, amount)
+	elif kind == "shard":
+		shardPickedUp.emit(level.levelName, amount)
 	return true
