@@ -59,6 +59,12 @@ CanGetHit="Entities which can get damaged"
 
 theme/custom_font="uid://obxjt54cgu5v"
 
+[importer_defaults]
+
+scene={
+&"import_script/path": "uid://c1g47d4spxskc"
+}
+
 [input]
 
 ui_accept={
