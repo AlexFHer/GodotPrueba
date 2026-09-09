@@ -103,6 +103,9 @@ Current durations:
 - Toggle right potion: `toggleRightPotion`.
 
 ## Player Camera
+- `MainCharacterCamera` explicitly starts as `current = true`. This prevents
+  earlier-instantiated teleport cameras from becoming the gameplay camera;
+  wells take control only during travel and restore the prior camera afterward.
 - The third-person camera normally sits 3 metres from `CameraPivot`.
 - `SpringArm3D` is a collision probe rather than the camera's direct parent. It
   casts 0.55 metres beyond the desired camera distance so nearby obstacles are
@@ -293,6 +296,18 @@ Important files:
 - `GameSettings`
 
 ## Collectibles And World Objects
+- Well teleports use `assets/teleports/teleport.tscn`, with a directional
+  `destination` reference to another instance in the same level. `EntryPoint`,
+  `InsidePoint`, `ExitPoint`, `TeleportCamera`, and `CameraFocus` configure staging.
+  Entry centers/sinks the player, holds the origin camera for 2 seconds, cuts to
+  the destination camera, then launches a directed parabolic jump to `ExitPoint`.
+  Destination hold, jump duration/height and landing hold are exported. The travel
+  session restores the previous camera and suppresses immediate arrival reentry.
+  `MainPlayer.begin_teleport/end_teleport` own the input/physics/collision lock and
+  jump/fall pose playback; travel cancels attacks and rejects damage/checkpoint
+  warps and new dialogue. Pause freezes travel, while normal world/potion time
+  continues. Removing an endpoint aborts safely back to the entry transform.
+  Setup and playable/automated tests are documented in `docs/TELEPORTS.md`.
 - `assets/collectable/magic_fragment/magic_fragment.tscn` is a round water-like
   magic fragment: a translucent glossy blue shell with subtle ripples and 28
   luminous motes plus 12 bright five-pointed star particles orbiting within its

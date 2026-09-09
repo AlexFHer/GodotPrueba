@@ -3,6 +3,7 @@ class_name MainPlayer extends CharacterBody3D
 enum AttackInterruptionReason {
 	DASH,
 	DAMAGE,
+	TELEPORT,
 }
 
 @onready var _rig: Node3D = $Rig;
@@ -50,6 +51,11 @@ var _movement_input_strength := 0.0
 var _locomotion_blend_position := LOCOMOTION_IDLE_BLEND
 var _dialogue_controller: Node
 var _was_gameplay_input_locked := false
+var _teleport_controller: Node
+var _teleport_collision_layer: int
+var _teleport_collision_mask: int
+var _teleport_tree_active: bool
+var _teleport_animation_player: AnimationPlayer
 
 var canMove := true;
 
@@ -115,6 +121,8 @@ func disableJump() -> void:
 	canJump = false;
 
 func _physics_process(delta: float) -> void:
+	if is_teleporting():
+		return
 	var gameplay_input_locked := is_gameplay_input_locked()
 	if gameplay_input_locked and not _was_gameplay_input_locked:
 		_cancel_dialogue_incompatible_actions()
@@ -382,6 +390,8 @@ func _damage_node_with_ability(node: Node) -> void:
 
 
 func take_damage() -> void:
+	if is_teleporting():
+		return
 	attack_interruption_requested.emit(AttackInterruptionReason.DAMAGE)
 	life -= 1;
 	potmaSounds.getHitSoundAudioStream.play();
@@ -409,15 +419,66 @@ func is_moving() -> bool:
 	return abs(velocity.x) > 0.1 or abs(velocity.z) > 0.1
 
 func get_to_checkpoint() -> void:
+	if is_teleporting():
+		return
 	position = checkpoint
 
 
 func is_gameplay_input_locked() -> bool:
+	if is_teleporting():
+		return true
 	if not is_instance_valid(_dialogue_controller):
 		_dialogue_controller = get_tree().get_first_node_in_group(&"dialogue_controller")
 	if _dialogue_controller == null or not _dialogue_controller.has_method(&"is_consuming_gameplay_input"):
 		return false
 	return bool(_dialogue_controller.call(&"is_consuming_gameplay_input"))
+
+
+func is_teleporting() -> bool:
+	return is_instance_valid(_teleport_controller)
+
+
+func begin_teleport(controller: Node) -> bool:
+	if life <= 0 or not canMove or is_gameplay_input_locked():
+		return false
+	_teleport_controller = controller
+	_cancel_dialogue_incompatible_actions()
+	velocity = Vector3.ZERO
+	attack_interruption_requested.emit(AttackInterruptionReason.TELEPORT)
+	potmaSounds.walkSoundAudioStream.stop()
+	potmaSounds.runSoundAudioStream.stop()
+	_teleport_collision_layer = collision_layer
+	_teleport_collision_mask = collision_mask
+	collision_layer = 0
+	collision_mask = 0
+	_teleport_tree_active = animation_tree.active
+	_teleport_animation_player = animation_tree.get_node(animation_tree.anim_player) as AnimationPlayer
+	animation_tree.active = false
+	return true
+
+
+func set_teleport_pose(animation_name: StringName) -> void:
+	if is_teleporting() and _teleport_animation_player.has_animation(animation_name):
+		_teleport_animation_player.play(animation_name, 0.1)
+
+
+func face_teleport_exit(direction: Vector3) -> void:
+	direction.y = 0.0
+	if not direction.is_zero_approx():
+		lastMovementDirection = direction.normalized()
+		_rig.global_rotation.y = Vector3.FORWARD.signed_angle_to(lastMovementDirection, Vector3.UP)
+
+
+func end_teleport(controller: Node) -> void:
+	if _teleport_controller != controller:
+		return
+	_teleport_animation_player.stop()
+	animation_tree.active = _teleport_tree_active
+	collision_layer = _teleport_collision_layer
+	collision_mask = _teleport_collision_mask
+	velocity = Vector3.ZERO
+	_teleport_controller = null
+	reset_physics_interpolation()
 
 
 func _cancel_dialogue_incompatible_actions() -> void:
