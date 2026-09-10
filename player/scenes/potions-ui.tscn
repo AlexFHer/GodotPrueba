@@ -1,13 +1,12 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://player/scripts/potions-UI-manager.gd" id="1"]
-[ext_resource type="FontFile" path="res://shared/ui/fonts/Magical Neverland.ttf" id="2"]
 
 [sub_resource type="StyleBoxFlat" id="Card"]
-content_margin_left = 12.0
-content_margin_top = 10.0
-content_margin_right = 16.0
-content_margin_bottom = 10.0
+content_margin_left = 6.0
+content_margin_top = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 6.0
 bg_color = Color(0.075, 0.045, 0.125, 0.88)
 border_width_left = 1
 border_width_top = 2
@@ -50,94 +49,33 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 16
 [node name="LeftPotionPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(196, 90)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("Card")
 
-[node name="Row" type="HBoxContainer" parent="MarginContainer/HBoxContainer/LeftPotionPanel"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/separation = 12
-
-[node name="LeftPotionIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftPotionPanel/Row"]
+[node name="LeftPotionIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftPotionPanel"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 68)
+custom_minimum_size = Vector2(52, 52)
 layout_mode = 2
 mouse_filter = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Details" type="VBoxContainer" parent="MarginContainer/HBoxContainer/LeftPotionPanel/Row"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-theme_override_constants/separation = 0
-alignment = 1
-
-[node name="LeftPotionName" type="Label" parent="MarginContainer/HBoxContainer/LeftPotionPanel/Row/Details"]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 2
-theme_override_colors/font_color = Color(0.94, 0.9, 0.81, 1)
-theme_override_fonts/font = ExtResource("2")
-theme_override_font_sizes/font_size = 20
-text = "—"
-
-[node name="LeftPotionCount" type="Label" parent="MarginContainer/HBoxContainer/LeftPotionPanel/Row/Details"]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 2
-theme_override_colors/font_color = Color(1, 0.88, 0.55, 1)
-theme_override_colors/font_outline_color = Color(0.08, 0.045, 0.12, 1)
-theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 26
-text = "—"
 [node name="Separator" type="Control" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 [node name="RightPotionPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(196, 90)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("Card")
 
-[node name="Row" type="HBoxContainer" parent="MarginContainer/HBoxContainer/RightPotionPanel"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/separation = 12
-
-[node name="RightPotionIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/RightPotionPanel/Row"]
+[node name="RightPotionIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/RightPotionPanel"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 68)
+custom_minimum_size = Vector2(52, 52)
 layout_mode = 2
 mouse_filter = 2
 expand_mode = 1
 stretch_mode = 5
-
-[node name="Details" type="VBoxContainer" parent="MarginContainer/HBoxContainer/RightPotionPanel/Row"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-theme_override_constants/separation = 0
-alignment = 1
-
-[node name="RightPotionName" type="Label" parent="MarginContainer/HBoxContainer/RightPotionPanel/Row/Details"]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 2
-theme_override_colors/font_color = Color(0.94, 0.9, 0.81, 1)
-theme_override_fonts/font = ExtResource("2")
-theme_override_font_sizes/font_size = 20
-text = "—"
-
-[node name="RightPotionCount" type="Label" parent="MarginContainer/HBoxContainer/RightPotionPanel/Row/Details"]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 2
-theme_override_colors/font_color = Color(1, 0.88, 0.55, 1)
-theme_override_colors/font_outline_color = Color(0.08, 0.045, 0.12, 1)
-theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 26
-text = "—"

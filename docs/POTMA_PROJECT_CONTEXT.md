@@ -36,10 +36,10 @@ a new decision, mechanic, constraint, naming convention, or open question appear
 - Simple, readable systems over overengineered abstractions.
 
 ## Current Potion System
-- Potion HUD slots use `player/scenes/potions-ui.tscn`: compact bottom-corner
-  aubergine translucent cards with cyan borders, cream localized potion names,
-  gold quantities, and aspect-preserving bottle icons. Both use the same spacing
-  and 24px screen margins. UI initializes from inventory when entering a level.
+- Potion HUD slots use `player/scenes/potions-ui.tscn`: two 64px bottom-corner
+  squares with aubergine translucent backgrounds, cyan borders and only the
+  selected bottle icons (no names or quantities). Icons preserve their aspect
+  ratio; screen margins are 24px. UI initializes from inventory on level entry.
 - The player has left and right potion slots.
 - Left and right selected potion types are managed by `PlayerPotions`.
 - Each selected slot is represented by a generic bottle attached to the
