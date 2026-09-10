@@ -1,8 +1,9 @@
-[gd_scene format=3 uid="uid://c7s1p2f2f6huh"]
+[gd_scene load_steps=5 format=3 uid="uid://c7s1p2f2f6huh"]
 
 [ext_resource type="Script" uid="uid://dohl2mga78ool" path="res://scenes/shared/main-menus/pause-menu/pause-menu.gd" id="1_eo0tu"]
 [ext_resource type="Script" uid="uid://bxfyw83gk5i1l" path="res://scenes/shared/main-menus/pause-menu/pause-menu-controls.gd" id="2_8hi7t"]
 [ext_resource type="PackedScene" uid="uid://b17h23m3urfpf" path="res://scenes/shared/main-menus/settings-menu/settings-menu.tscn" id="2_i7kre"]
+[ext_resource type="Theme" path="res://shared/ui/themes/Pause_Overlay.tres" id="4_theme"]
 
 [node name="Pause menu" type="Control"]
 process_mode = 3
@@ -18,31 +19,74 @@ script = ExtResource("1_eo0tu")
 unique_name_in_owner = true
 process_mode = 3
 visible = false
-anchors_preset = 0
-offset_right = 1154.0
-offset_bottom = 646.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_theme")
 script = ExtResource("2_8hi7t")
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Pause menu controls"]
-layout_mode = 0
-offset_left = 204.0
-offset_top = 116.0
-offset_right = 894.0
-offset_bottom = 494.0
+[node name="DimBackground" type="ColorRect" parent="Pause menu controls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.035, 0.012, 0.055, 0.66)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Pause menu controls/AspectRatioContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="Pause menu controls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Pause menu controls/CenterContainer"]
+custom_minimum_size = Vector2(520, 0)
 layout_mode = 2
 
-[node name="ResumeButton" type="Button" parent="Pause menu controls/AspectRatioContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Pause menu controls/CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 38
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 38
+theme_override_constants/margin_bottom = 34
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause menu controls/CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Pause menu controls/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.97, 0.8, 0.38, 1)
+theme_override_colors/font_shadow_color = Color(0.1, 0.025, 0.15, 0.85)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 38
+text = "ui_pause_title"
+horizontal_alignment = 1
+
+[node name="Separator" type="HSeparator" parent="Pause menu controls/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="Pause menu controls/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 text = "ui_resume_button"
 
-[node name="SettingsButton" type="Button" parent="Pause menu controls/AspectRatioContainer/VBoxContainer"]
+[node name="SettingsButton" type="Button" parent="Pause menu controls/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 text = "ui_settings_button"
 
-[node name="MainMenuButton" type="Button" parent="Pause menu controls/AspectRatioContainer/VBoxContainer"]
+[node name="MainMenuButton" type="Button" parent="Pause menu controls/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 text = "ui_main_menu_button"
 
@@ -52,7 +96,7 @@ process_mode = 3
 
 [connection signal="resumeButtonClicked" from="Pause menu controls" to="." method="_on_pause_menu_controls_resume_button_clicked"]
 [connection signal="visibility_changed" from="Pause menu controls" to="Pause menu controls" method="_on_visibility_changed"]
-[connection signal="pressed" from="Pause menu controls/AspectRatioContainer/VBoxContainer/ResumeButton" to="Pause menu controls" method="_on_resume_button_pressed"]
-[connection signal="pressed" from="Pause menu controls/AspectRatioContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="Pause menu controls/AspectRatioContainer/VBoxContainer/MainMenuButton" to="Pause menu controls" method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="Pause menu controls/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResumeButton" to="Pause menu controls" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Pause menu controls/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Pause menu controls/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MainMenuButton" to="Pause menu controls" method="_on_main_menu_button_pressed"]
 [connection signal="goBackDispatch" from="Settings menu" to="." method="_on_settings_menu_go_back_dispatch"]

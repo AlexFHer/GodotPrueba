@@ -98,17 +98,17 @@ texture = ExtResource("6_hrww0")
 layout_mode = 2
 theme = ExtResource("5_487xm")
 theme_override_font_sizes/font_size = 75
-text = "Play"
+text = "ui_play_button"
 
 [node name="SettingsButton" type="Button" parent="CenterContainer/MainButtons"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 75
-text = "Settings"
+text = "ui_settings_button"
 
 [node name="ExitButton" type="Button" parent="CenterContainer/MainButtons"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 75
-text = "Exit"
+text = "ui_quit_button"
 
 [node name="SettingsMenu" type="VBoxContainer" parent="CenterContainer"]
 visible = false
@@ -118,13 +118,12 @@ theme = ExtResource("5_487xm")
 [node name="BackButton" type="Button" parent="CenterContainer/SettingsMenu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 75
-text = "Back"
+text = "ui_back_button"
 
 [node name="FullScreenCheck" type="CheckBox" parent="CenterContainer/SettingsMenu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 75
-text = "FullScreen
-"
+text = "ui_fullscreen"
 
 [node name="MainVolSlider" type="HSlider" parent="CenterContainer/SettingsMenu"]
 layout_mode = 2
@@ -137,9 +136,14 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 40
-text = "Volume"
+text = "ui_master_volume"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="LanguageButton" type="Button" parent="CenterContainer/SettingsMenu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "eu"
 
 [node name="Start" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -151,7 +155,7 @@ theme = ExtResource("5_487xm")
 
 [node name="Start_Button" type="Button" parent="Start"]
 layout_mode = 2
-text = "PRESS START"
+text = "ui_press_start"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -174,4 +178,5 @@ bus = &"Music"
 [connection signal="pressed" from="CenterContainer/SettingsMenu/BackButton" to="." method="_on_back_pressed"]
 [connection signal="toggled" from="CenterContainer/SettingsMenu/FullScreenCheck" to="." method="_on_full_screen_toggled"]
 [connection signal="value_changed" from="CenterContainer/SettingsMenu/MainVolSlider" to="." method="_on_main_vol_slider_value_changed"]
+[connection signal="pressed" from="CenterContainer/SettingsMenu/LanguageButton" to="." method="_on_language_button_pressed"]
 [connection signal="button_down" from="Start/Start_Button" to="." method="_on_start_button_down"]

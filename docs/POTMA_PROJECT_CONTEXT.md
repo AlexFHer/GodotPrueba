@@ -121,15 +121,24 @@ Current durations:
   `collisionRecoverySpeed` are exported tuning values on `CameraPivot`.
 
 ## Pause Menu And Settings
+- The primary pause screen opened with `start` shares the settings screen's
+  responsive full-screen dimming layer and centered translucent panel, with a
+  localized title, separator, evenly spaced actions, and automatic focus on Resume.
+- Pause and settings use the shared `Pause_Overlay.tres` theme. Its palette comes
+  from the game art: deep aubergine surfaces, crystal-cyan borders and sliders,
+  warm gold focus/title accents, and soft cream text. Keep the treatment compact,
+  lightly rounded, and readable rather than visually heavy.
 - The pause settings screen provides separate linear sliders for `Master`,
-  `Music`, and `SFX`, plus fullscreen and Spanish/English language controls.
+  `Music`, and `SFX`, plus fullscreen and Euskara/Spanish/English language controls.
+- Euskara (`eu`) is the default language for new settings files. Existing saved
+  language choices remain unchanged.
 - `default_bus_layout.tres` defines `Music` and `SFX` buses routed through
   `Master`. Menu and level tracks use `Music`; player, dialogue, combat,
   collectible, potion, puzzle, and prop sounds use `SFX`.
 - `GameSettings` is the shared settings autoload. It applies settings at startup
   and saves them to `user://saves/settings.cfg` after a short debounce so slider
   movement does not write on every step.
-- The main menu's existing master-volume and fullscreen controls use the same
+- The main menu's master-volume, fullscreen, and language controls use the same
   service, so their values remain synchronized with the pause menu.
 - The settings screen remains interactive while the scene tree is paused,
   supports keyboard, mouse, and controller focus navigation, and can return via
@@ -464,3 +473,11 @@ Important files:
   state through the new `GameSettings` autoload.
 - 2026-09-10: Aligned project instructions with the intentional Godot 4.7
   migration and standardized development and asset imports on Godot 4.7.2 stable.
+- 2026-09-10: Added Euskara localization for gameplay UI, menus, settings, and
+  Pocima dialogue; Euskara is the default for new settings while saved choices
+  remain respected.
+- 2026-09-10: Restyled the primary pause screen to match the settings panel while
+  preserving its existing Resume, Settings, and Main Menu behavior.
+- 2026-09-10: Refined the shared pause/settings presentation around Potma's
+  aubergine, crystal-cyan, sky-lilac, and gold palette, including polished button
+  states and diamond-shaped slider handles.

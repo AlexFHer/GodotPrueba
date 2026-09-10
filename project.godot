@@ -214,7 +214,7 @@ drinkRightPotion={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://i18n/translations.en.translation", "res://i18n/translations.es.translation")
+locale/translations=PackedStringArray("res://i18n/translations.eu.translation", "res://i18n/translations.es.translation", "res://i18n/translations.en.translation")
 
 [layer_names]
 

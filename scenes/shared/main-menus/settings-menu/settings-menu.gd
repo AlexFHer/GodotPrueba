@@ -2,8 +2,6 @@ extends Control
 
 signal goBackDispatch
 
-const LANGUAGES := ["es", "en"]
-
 @onready var masterVolumeSlider: HSlider = %MasterVolumeSlider
 @onready var musicVolumeSlider: HSlider = %MusicVolumeSlider
 @onready var sfxVolumeSlider: HSlider = %SfxVolumeSlider
@@ -66,9 +64,9 @@ func _on_fullscreen_toggled(toggled_on: bool) -> void:
 
 
 func _on_language_button_pressed() -> void:
-	var current_index := LANGUAGES.find(GameSettings.language)
-	var next_index := (current_index + 1) % LANGUAGES.size()
-	GameSettings.set_language(LANGUAGES[next_index])
+	var current_index := GameSettings.SUPPORTED_LANGUAGES.find(GameSettings.language)
+	var next_index := (current_index + 1) % GameSettings.SUPPORTED_LANGUAGES.size()
+	GameSettings.set_language(GameSettings.SUPPORTED_LANGUAGES[next_index])
 	languageButton.text = tr(GameSettings.language)
 
 

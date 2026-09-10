@@ -7,14 +7,15 @@ const LANGUAGE_SECTION := "language"
 const MASTER_BUS := &"Master"
 const MUSIC_BUS := &"Music"
 const SFX_BUS := &"SFX"
-const SUPPORTED_LANGUAGES := ["es", "en"]
+const DEFAULT_LANGUAGE := "eu"
+const SUPPORTED_LANGUAGES := [DEFAULT_LANGUAGE, "es", "en"]
 const SAVE_DELAY_SECONDS := 0.25
 
 var master_volume := 1.0
 var music_volume := 1.0
 var sfx_volume := 1.0
 var fullscreen := false
-var language := "en"
+var language := DEFAULT_LANGUAGE
 
 var _save_timer: Timer
 
@@ -159,5 +160,4 @@ func _is_window_fullscreen() -> bool:
 
 
 func _get_default_language() -> String:
-	var locale := TranslationServer.get_locale().left(2).to_lower()
-	return locale if SUPPORTED_LANGUAGES.has(locale) else "en"
+	return DEFAULT_LANGUAGE
