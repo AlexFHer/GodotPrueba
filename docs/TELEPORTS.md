@@ -44,7 +44,7 @@ controles, visibilidad, animación, colisiones y cámara.
 
 - Abre `scenes/tests/teleport_test.tscn` y pulsa F6: contiene dos pozos enlazados,
   suelo y jugador. Acércate a cualquiera de los dos cilindros.
-- Regresión automática con Godot 4.6:
+- Regresión automática con Godot 4.7.2:
   `godot --headless --path . --script res://scenes/tests/teleport_sequence_test.gd`.
   Comprueba detección, cámaras, pausa, salto, aterrizaje y recuperación tras
   eliminar el destino durante el viaje.

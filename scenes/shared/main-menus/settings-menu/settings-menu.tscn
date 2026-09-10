@@ -1,18 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b17h23m3urfpf"]
 
 [ext_resource type="Script" uid="uid://c84jgqw5qtlla" path="res://scenes/shared/main-menus/settings-menu/settings-menu.gd" id="1_ad47p"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_settings_panel"]
-bg_color = Color(0.055, 0.035, 0.09, 0.94)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.58, 0.38, 0.76, 0.9)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+[ext_resource type="Theme" path="res://shared/ui/themes/Pause_Overlay.tres" id="2_theme"]
 
 [node name="Settings menu" type="Control"]
 layout_mode = 3
@@ -21,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_theme")
 script = ExtResource("1_ad47p")
 
 [node name="DimBackground" type="ColorRect" parent="."]
@@ -31,7 +21,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.01, 0.006, 0.02, 0.58)
+color = Color(0.035, 0.012, 0.055, 0.66)
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -42,24 +32,27 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
-custom_minimum_size = Vector2(640, 0)
+custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_settings_panel")
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 34
-theme_override_constants/margin_top = 28
-theme_override_constants/margin_right = 34
-theme_override_constants/margin_bottom = 28
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 34
 
 [node name="SettingsRows" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 14
+theme_override_constants/separation = 12
 
 [node name="Title" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/SettingsRows"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 34
+theme_override_colors/font_color = Color(0.97, 0.8, 0.38, 1)
+theme_override_colors/font_shadow_color = Color(0.1, 0.025, 0.15, 0.85)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 38
 text = "ui_settings_title"
 horizontal_alignment = 1
 
@@ -67,6 +60,7 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [node name="MasterRow" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/SettingsRows"]
+custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 theme_override_constants/separation = 14
 
@@ -74,10 +68,11 @@ theme_override_constants/separation = 14
 custom_minimum_size = Vector2(190, 0)
 layout_mode = 2
 text = "ui_master_volume"
+vertical_alignment = 1
 
 [node name="MasterVolumeSlider" type="HSlider" parent="CenterContainer/PanelContainer/MarginContainer/SettingsRows/MasterRow"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(270, 0)
+custom_minimum_size = Vector2(270, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 1.0
@@ -90,8 +85,10 @@ custom_minimum_size = Vector2(58, 0)
 layout_mode = 2
 text = "100%"
 horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="MusicRow" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/SettingsRows"]
+custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 theme_override_constants/separation = 14
 
@@ -99,10 +96,11 @@ theme_override_constants/separation = 14
 custom_minimum_size = Vector2(190, 0)
 layout_mode = 2
 text = "ui_music_volume"
+vertical_alignment = 1
 
 [node name="MusicVolumeSlider" type="HSlider" parent="CenterContainer/PanelContainer/MarginContainer/SettingsRows/MusicRow"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(270, 0)
+custom_minimum_size = Vector2(270, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 1.0
@@ -115,8 +113,10 @@ custom_minimum_size = Vector2(58, 0)
 layout_mode = 2
 text = "100%"
 horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="SfxRow" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/SettingsRows"]
+custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 theme_override_constants/separation = 14
 
@@ -124,10 +124,11 @@ theme_override_constants/separation = 14
 custom_minimum_size = Vector2(190, 0)
 layout_mode = 2
 text = "ui_sfx_volume"
+vertical_alignment = 1
 
 [node name="SfxVolumeSlider" type="HSlider" parent="CenterContainer/PanelContainer/MarginContainer/SettingsRows/SfxRow"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(270, 0)
+custom_minimum_size = Vector2(270, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 1.0
@@ -140,34 +141,44 @@ custom_minimum_size = Vector2(58, 0)
 layout_mode = 2
 text = "100%"
 horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="DisplaySeparator" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/SettingsRows"]
+layout_mode = 2
 
 [node name="FullscreenRow" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/SettingsRows"]
+custom_minimum_size = Vector2(0, 46)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/SettingsRows/FullscreenRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "ui_fullscreen"
+vertical_alignment = 1
 
 [node name="FullscreenCheck" type="CheckButton" parent="CenterContainer/PanelContainer/MarginContainer/SettingsRows/FullscreenRow"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 4
 
 [node name="LanguageRow" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/SettingsRows"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/SettingsRows/LanguageRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "ui_language"
+vertical_alignment = 1
 
 [node name="LanguageButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/SettingsRows/LanguageRow"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(160, 0)
+custom_minimum_size = Vector2(168, 44)
 layout_mode = 2
 
 [node name="BackButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/SettingsRows"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "ui_back_button"
 

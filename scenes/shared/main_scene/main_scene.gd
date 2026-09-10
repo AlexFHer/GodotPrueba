@@ -12,6 +12,7 @@ var level: int = 1
 @onready var back_button = $CenterContainer/SettingsMenu/BackButton
 @onready var fullscreen_check = $CenterContainer/SettingsMenu/FullScreenCheck
 @onready var volume_slider = $CenterContainer/SettingsMenu/MainVolSlider
+@onready var language_button = $CenterContainer/SettingsMenu/LanguageButton
 
 func _ready():
 	start_button.focus_mode = Control.FOCUS_ALL
@@ -22,8 +23,14 @@ func _ready():
 	back_button.focus_mode = Control.FOCUS_ALL
 	fullscreen_check.focus_mode = Control.FOCUS_ALL
 	volume_slider.focus_mode = Control.FOCUS_ALL
+	language_button.focus_mode = Control.FOCUS_ALL
 	fullscreen_check.set_pressed_no_signal(GameSettings.fullscreen)
 	volume_slider.set_value_no_signal(GameSettings.master_volume)
+	_update_language_button()
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_TRANSLATION_CHANGED and is_node_ready():
+		_update_language_button()
 
 func _on_play_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/level1/LvL 1.tscn")
@@ -48,6 +55,15 @@ func _on_full_screen_toggled(toggled_on: bool) -> void:
 
 func _on_main_vol_slider_value_changed(value: float) -> void:
 	GameSettings.set_master_volume(value)
+
+func _on_language_button_pressed() -> void:
+	var current_index := GameSettings.SUPPORTED_LANGUAGES.find(GameSettings.language)
+	var next_index := (current_index + 1) % GameSettings.SUPPORTED_LANGUAGES.size()
+	GameSettings.set_language(GameSettings.SUPPORTED_LANGUAGES[next_index])
+	_update_language_button()
+
+func _update_language_button() -> void:
+	language_button.text = tr(GameSettings.language)
 
 func _on_start_button_down() -> void:
 	start_button.disabled = true

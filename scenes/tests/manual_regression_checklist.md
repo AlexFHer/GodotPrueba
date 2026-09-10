@@ -133,8 +133,10 @@ column exercises the `Body3D` damage path and the orange column exercises the
    collectible, chest, projectile, and puzzle sounds change while music does not.
 5. Toggle fullscreen on and off and confirm the checkbox follows the current
    saved state without unpausing the game.
-6. Switch between Spanish and English. Confirm pause/settings labels update
-   immediately and the chosen language is kept after changing scene.
+6. On a fresh settings file, confirm Euskara is selected by default. Cycle through
+   Euskara, Spanish, and English from both the main menu and pause settings;
+   confirm labels update immediately and the chosen language is kept after
+   changing scene.
 7. Return with the visible button, `Esc`, and controller Circle/B in separate
    runs. Confirm focus returns to Resume and gameplay remains paused.
 8. Reopen settings, return to the main menu, and restart the game. Confirm all
@@ -176,8 +178,9 @@ column exercises the `Body3D` damage path and the orange column exercises the
     and removes it from candidate selection.
 17. Empty, missing, or incomplete dialogue data logs a warning, skips invalid
     entries, and never opens an empty UI.
-18. Dialogue layout wraps long text and shows Pocima's localized Spanish and
-    English text, not raw translation keys, at 1280x720 and 1920x1080.
+18. Dialogue layout wraps long text and shows Pocima's localized Euskara,
+    Spanish, and English text, not raw translation keys, at 1280x720 and
+    1920x1080.
 19. Each Pocima line plays one blip when it appears; completing the typewriter
     text does not restart or stop that clip.
 20. Advancing or closing while a clip plays stops it, and the next line never

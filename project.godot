@@ -21,6 +21,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+GameLog="*res://shared/scripts/game_log.gd"
 SavesManager="*res://shared/scripts/savesManager.gd"
 LevelCollectablesData="*res://shared/scripts/levelCollectablesData.gd"
 GlobalManager="*res://shared/scripts/GlobalManager.gd"
@@ -30,7 +31,6 @@ SelectedMergePotion="*res://assets/potions/shared/services/selected-potion-to-me
 ActivePotionEffectService="*res://assets/potions/shared/services/active-potion-effect-service.gd"
 CollectablesEmitterService="*res://shared/scripts/collectables-emitter.gd"
 PlayerInventory="*res://player/inventory/player-inventory.gd"
-GameLog="*res://shared/scripts/game_log.gd"
 GameSettings="*res://shared/scripts/settings_manager.gd"
 
 [display]
@@ -58,6 +58,12 @@ CanGetHit="Entities which can get damaged"
 [gui]
 
 theme/custom_font="uid://obxjt54cgu5v"
+
+[importer_defaults]
+
+scene={
+&"import_script/path": "uid://c1g47d4spxskc"
+}
 
 [input]
 
@@ -208,7 +214,7 @@ drinkRightPotion={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://i18n/translations.en.translation", "res://i18n/translations.es.translation")
+locale/translations=PackedStringArray("res://i18n/translations.eu.translation", "res://i18n/translations.es.translation", "res://i18n/translations.en.translation")
 
 [layer_names]
 

@@ -1,22 +1,26 @@
-﻿keys;es;en
-jump_potion_ui_text;Salto;Jump
-speed_potion_ui_text;Velocidad;Speed
-fire_potion_ui_text;Fuego;Fire
-ui_resume_button;Continuar;Resume
-ui_settings_button;Configuración;Settings
-ui_quit_button;Salir;Quit
-ui_main_menu_button;Menu principal;Main menu
-ui_settings_title;Ajustes;Settings
-ui_master_volume;Volumen general;Master volume
-ui_music_volume;Música;Music
-ui_sfx_volume;Efectos;Effects
-ui_fullscreen;Pantalla completa;Fullscreen
-ui_language;Idioma;Language
-ui_back_button;Volver;Back
-es;Español;Spanish
-en;Ingles;English
-dialogue_prompt_talk;Pulsa {input} para hablar;Press {input} to talk
-dialogue_prompt_continue;Pulsa {input} para continuar;Press {input} to continue
-npc_pocima_name;Pócima;Potion
-npc_pocima_intro_1;You stoopid;Hey, buddy
-npc_pocima_intro_2;La caja de arriba parece estar cubierta por un escudo mágico. Busca alguna forma de abrirla.;The box above seems to be covered by a magic shield. Look for a way to open it.
+﻿keys;es;en;eu
+jump_potion_ui_text;Salto;Jump;Jauzia
+speed_potion_ui_text;Velocidad;Speed;Abiadura
+fire_potion_ui_text;Fuego;Fire;Sua
+ui_play_button;Jugar;Play;Jokatu
+ui_resume_button;Continuar;Resume;Jarraitu
+ui_settings_button;Configuración;Settings;Ezarpenak
+ui_quit_button;Salir;Quit;Irten
+ui_main_menu_button;Menú principal;Main menu;Menu nagusia
+ui_pause_title;Pausa;Paused;Pausatuta
+ui_settings_title;Ajustes;Settings;Ezarpenak
+ui_master_volume;Volumen general;Master volume;Bolumen nagusia
+ui_music_volume;Música;Music;Musika
+ui_sfx_volume;Efectos;Effects;Efektuak
+ui_fullscreen;Pantalla completa;Fullscreen;Pantaila osoa
+ui_language;Idioma;Language;Hizkuntza
+ui_back_button;Volver;Back;Atzera
+ui_press_start;PULSA START;PRESS START;SAKATU START
+es;Español;Spanish;Gaztelania
+en;Inglés;English;Ingelesa
+eu;Euskera;Basque;Euskara
+dialogue_prompt_talk;Pulsa {input} para hablar;Press {input} to talk;Sakatu {input} hitz egiteko
+dialogue_prompt_continue;Pulsa {input} para continuar;Press {input} to continue;Sakatu {input} jarraitzeko
+npc_pocima_name;Pócima;Potion;Edabea
+npc_pocima_intro_1;You stoopid;Hey, buddy;Aizu, lagun
+npc_pocima_intro_2;La caja de arriba parece estar cubierta por un escudo mágico. Busca alguna forma de abrirla.;The box above seems to be covered by a magic shield. Look for a way to open it.;Goiko kutxa ezkutu magiko batez estalita dagoela dirudi. Bilatu hura irekitzeko moduren bat.
