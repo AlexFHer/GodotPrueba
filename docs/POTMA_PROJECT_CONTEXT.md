@@ -306,6 +306,13 @@ Important files:
 - `GameSettings`
 
 ## Collectibles And World Objects
+- Reaching all four authored `LevelCollectables.required*` targets shows a
+  localized 100% completion banner for 4 seconds without blocking gameplay.
+  Zero-target categories are optional; a level with all targets zero cannot
+  complete. Keep these targets aligned with each level's collectible content.
+  The level manager checks saved totals after pickups and announces once;
+  loading an already completed level does not replay the banner. The independent
+  UI banner fades in/out and freezes with gameplay pause.
 - Well teleports use `assets/teleports/teleport.tscn`, with a directional
   `destination` reference to another instance in the same level. `EntryPoint`,
   `InsidePoint`, `ExitPoint`, `TeleportCamera`, and `CameraFocus` configure staging.

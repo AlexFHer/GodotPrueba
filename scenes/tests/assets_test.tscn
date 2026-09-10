@@ -30,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://0kbp5ta03h5x" path="res://assets/death-area/death-area.tscn" id="26_ouso1"]
 [ext_resource type="PackedScene" uid="uid://b8ruujys6hpsv" path="res://assets/enemies/mimic/mimic.tscn" id="27_68yrm"]
 [ext_resource type="PackedScene" path="res://scenes/tests/combo_hit_counter_targets.tscn" id="28_combo"]
+[ext_resource type="PackedScene" uid="uid://duv2f0tvcut54" path="res://assets/collectable/babys/baby.tscn" id="31_yfmgk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3onbp"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -46,7 +47,10 @@ glow_enabled = true
 
 [sub_resource type="Resource" id="Resource_je5t0"]
 script = ExtResource("2_ecqs2")
-requiredMithrils = 10
+requiredMithrils = 38
+requiredBooks = 1
+requiredBabys = 1
+requiredShards = 1
 metadata/_custom_type_script = "uid://c4t2n0gbu5cvl"
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_tv8gj"]
@@ -358,6 +362,9 @@ vertical_alignment = 2
 
 [node name="MagicFragment2" parent="." unique_id=760646763 instance=ExtResource("24_75uik")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 10.243797, 2.0626707, 18.209173)
+
+[node name="Baby" parent="." unique_id=885636731 instance=ExtResource("31_yfmgk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5043678, 0.381958, 12.785538)
 
 [connection signal="all_arcs_active" from="Assets/ArcsPuzzles/ArcMagicChestPuzzle/ArcPuzzle" to="Assets/ArcsPuzzles/ArcMagicChestPuzzle/MagicChest" method="deactivate_force_field"]
 [connection signal="all_fire_towers_active" from="Assets/FireTowers/Puzzle" to="Assets/FireTowers/secret_tower" method="activate_secret_tower"]
