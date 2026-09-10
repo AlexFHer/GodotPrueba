@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2nqxpmtapbve"
+uid="uid://du6ugxwmfe7ii"
 path.s3tc="res://.godot/imported/Globrc_Fat_EYESpixel.png-965e2cf5177de2bae402be46977e984b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "e8e16210a55946122e30e0aac526dec8"
 }
 
 [deps]
