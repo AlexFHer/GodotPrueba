@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://tviku6rmj4ij"
-path="res://.godot/imported/Haurra.blend-a3798fe92d8166f32a0313a24dde4cbf.scn"
+path="res://.godot/imported/baby.blend-79d69ca64e56dcb963c40b41bb03c62d.scn"
 
 [deps]
 
-source_file="res://assets/baby/Haurra.blend"
-dest_files=["res://.godot/imported/Haurra.blend-a3798fe92d8166f32a0313a24dde4cbf.scn"]
+source_file="res://assets/collectable/babys/baby.blend"
+dest_files=["res://.godot/imported/baby.blend-79d69ca64e56dcb963c40b41bb03c62d.scn"]
 
 [params]
 
