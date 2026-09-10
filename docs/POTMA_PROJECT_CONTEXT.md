@@ -326,7 +326,7 @@ Important files:
   and brightens between 4 and 18 metres from the camera for distance readability
   while keeping its center transparent. Rim color, energy, and power are tunable.
   A shadowless cyan OmniLight (energy 3.5, range 3 metres) lights nearby surfaces.
-    One green amalgam-like glow sits at the exact center: five smoothly merged lobes
+	One green amalgam-like glow sits at the exact center: five smoothly merged lobes
   grow and retract independently around a connected core, while irregular spikes
   emerge and recede. Shader parameter `morph_speed` controls the deformation rate.
   It uses a single billboard mesh

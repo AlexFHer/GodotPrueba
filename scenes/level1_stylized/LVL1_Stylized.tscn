@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://bayoxoek2mdn4"]
 
 [ext_resource type="PackedScene" uid="uid://dsgaryugykq75" path="res://scenes/level1_stylized/LvL1_Stylized.gltf" id="1_1rakf"]
+[ext_resource type="Texture2D" uid="uid://bxascs40x5oel" path="res://materials/skybox/PjBUIr3.png" id="1_vlaig"]
 [ext_resource type="Texture2D" uid="uid://dgvpk68vdc8ar" path="res://scenes/level1_stylized/cliff_rocks_05__baseColor_4k_Red.png" id="2_vlaig"]
 [ext_resource type="Texture2D" uid="uid://boomc3jc0254y" path="res://scenes/level1_stylized/grass_01_color_2k.png" id="3_ncd2h"]
 [ext_resource type="Texture2D" uid="uid://dr8l08oudktx2" path="res://scenes/level1_stylized/ground_tiles_24_baseColo_2k.png" id="4_8vymm"]
@@ -20,11 +21,8 @@
 [ext_resource type="Texture2D" uid="uid://c1uj7yr1ukpjt" path="res://scenes/level1_stylized/grass_tile.png" id="18_m8jf2"]
 [ext_resource type="PackedScene" uid="uid://cf47i2djfslyw" path="res://player/player.tscn" id="19_1rakf"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vlaig"]
-load_path = "res://.godot/imported/sky_83_2k.png-4c874e5b9c32314898b146de506afe5a.s3tc.ctex"
-
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_diun6"]
-panorama = SubResource("CompressedTexture2D_vlaig")
+panorama = ExtResource("1_vlaig")
 energy_multiplier = 3.58
 
 [sub_resource type="Sky" id="Sky_k7dri"]
