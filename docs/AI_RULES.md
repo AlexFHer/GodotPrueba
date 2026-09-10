@@ -6,10 +6,11 @@
 
 ## Project Context
 - This project belongs to Potma.
-- Treat Potma as a Godot 4.6 project.
-- Always prefer the newest stable Godot 4.6 APIs and patterns available for this project.
+- Treat Potma as a Godot 4.7 project.
+- Standardize development and asset imports on Godot 4.7.2 stable.
+- Always prefer the newest stable Godot 4.7 APIs and patterns available for this project.
 - Use GDScript as the scripting language for gameplay, tools, and editor scripts unless the user explicitly requests otherwise.
-- When choosing between older examples and newer Godot 4.6 approaches, follow the Godot 4.6 approach.
+- When choosing between older examples and newer Godot 4.7 approaches, follow the Godot 4.7 approach.
 
 ## Game Concept
 - Potma is a 3D collectathon inspired by classic adventure platformers like Spyro.
@@ -19,7 +20,7 @@
 - The tone should support a colorful, whimsical, exploration-focused adventure with clear collectible goals and playful magical mechanics.
 
 ## General Rules
-- Always use Godot 4.6 syntax
+- Always use Godot 4.7 syntax
 - Never use Godot 3 APIs
 - Use GDScript only
 

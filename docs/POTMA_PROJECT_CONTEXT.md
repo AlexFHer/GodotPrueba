@@ -14,9 +14,10 @@ a new decision, mechanic, constraint, naming convention, or open question appear
 ## Project Identity
 - Project name: Potma.
 - Ownership: proprietary project owned by Potma. See `LICENSE.txt`.
-- Engine: Godot 4.6.
+- Engine: Godot 4.7, with Godot 4.7.2 stable as the team editor and asset-import baseline.
 - Language: GDScript.
-- Always prefer current Godot 4.6 APIs and patterns.
+- Always prefer current Godot 4.7 APIs and patterns.
+- Use Godot 4.7.2 stable for asset reimports to avoid generated metadata churn between team environments.
 - Do not use Godot 3 APIs.
 
 ## Game Concept
@@ -461,3 +462,5 @@ Important files:
 - 2026-09-04: Expanded pause settings with persistent Master/Music/SFX volumes,
   fullscreen, language selection, controller navigation, and shared main-menu
   state through the new `GameSettings` autoload.
+- 2026-09-10: Aligned project instructions with the intentional Godot 4.7
+  migration and standardized development and asset imports on Godot 4.7.2 stable.
