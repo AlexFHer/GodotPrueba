@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b6jo14614s5l3" path="res://player/rig/Potma2.0.glb" id="4_c35mf"]
 [ext_resource type="Shader" uid="uid://dbj14jieea1if" path="res://assets/gdquest/fire/stylized_fire_Potma.gdshader" id="5_bjvpn"]
 [ext_resource type="Material" uid="uid://drjpxm3s112ob" path="res://shared/shaders/ps1/post_process/ps1_shader_post_process_material.tres" id="5_e7oew"]
-[ext_resource type="Script" uid="uid://csrohhn61kmsp" path="res://player/scripts/potions-ui-manager.gd" id="5_hdq68"]
+[ext_resource type="PackedScene" path="res://player/scenes/potions-ui.tscn" id="5_hdq68"]
 [ext_resource type="Texture2D" uid="uid://8wcxdw1ubotp" path="res://assets/gdquest/fire/StylizedFirePotma/HoleNoise.png" id="6_s7qer"]
 [ext_resource type="Script" uid="uid://ddpfgdsydcw0q" path="res://player/scripts/potions-particles-system.gd" id="6_tqiix"]
 [ext_resource type="Texture2D" uid="uid://dnf4dk8ref773" path="res://assets/gdquest/fire/StylizedFirePotma/FireMask.png" id="7_g4c7l"]
@@ -266,9 +266,6 @@ node_connections = [&"output", 0, &"StaffThrowOneShot", &"DieOneShot", 0, &"Staf
 [sub_resource type="QuadMesh" id="QuadMesh_tqiix"]
 flip_faces = true
 size = Vector2(2, 2)
-
-[sub_resource type="LabelSettings" id="LabelSettings_rgyib"]
-font_size = 12
 
 [node name="MainCharacter" type="CharacterBody3D" unique_id=220301657 groups=["MainPlayer"]]
 collision_layer = 2
@@ -562,100 +559,7 @@ bus = &"SFX"
 
 [node name="PotionUI Canvas layer" type="CanvasLayer" parent="." unique_id=517424625]
 
-[node name="PotionsUI" type="Control" parent="PotionUI Canvas layer" unique_id=377943629]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("5_hdq68")
-
-[node name="MarginContainer" type="MarginContainer" parent="PotionUI Canvas layer/PotionsUI" unique_id=1500957882]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PotionUI Canvas layer/PotionsUI/MarginContainer" unique_id=952660591]
-layout_mode = 2
-
-[node name="LeftPotionPanel" type="PanelContainer" parent="PotionUI Canvas layer/PotionsUI/MarginContainer/HBoxContainer" unique_id=430373963]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-
-[node name="CurrentPotionTexture" type="TextureRect" parent="PotionUI Canvas layer/PotionsUI/MarginContainer/HBoxContainer/LeftPotionPanel" unique_id=196022268]
-layout_mode = 2
-expand_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="PotionUI Canvas layer/PotionsUI/MarginContainer/HBoxContainer/LeftPotionPanel/CurrentPotionTexture" unique_id=847756303]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_right = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="PotionUI Canvas layer/PotionsUI/MarginContainer/HBoxContainer/LeftPotionPanel/CurrentPotionTexture/MarginContainer" unique_id=517594559]
-layout_mode = 2
-
-[node name="LeftPotionIcon" type="TextureRect" parent="PotionUI Canvas layer/PotionsUI/MarginContainer/HBoxContainer/LeftPotionPanel/CurrentPotionTexture/MarginContainer/PanelContainer" unique_id=167462716]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PotionUI Canvas layer/PotionsUI/MarginContainer/HBoxContainer/LeftPotionPanel/CurrentPotionTexture/MarginContainer/PanelContainer/LeftPotionIcon" unique_id=39331892]
-layout_mode = 0
-offset_right = 48.0
-offset_bottom = 50.0
-alignment = 2
-
-[node name="LeftPotionCount" type="Label" parent="PotionUI Canvas layer/PotionsUI/MarginContainer/HBoxContainer/LeftPotionPanel/CurrentPotionTexture/MarginContainer/PanelContainer/LeftPotionIcon/VBoxContainer" unique_id=892920339]
-unique_name_in_owner = true
-layout_mode = 2
-text = "1"
-label_settings = SubResource("LabelSettings_rgyib")
-horizontal_alignment = 2
-
-[node name="Separator" type="Control" parent="PotionUI Canvas layer/PotionsUI/MarginContainer/HBoxContainer" unique_id=3021923]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="RightPotionPanel" type="PanelContainer" parent="PotionUI Canvas layer/PotionsUI/MarginContainer/HBoxContainer" unique_id=1147227534]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-
-[node name="RightPotionIcon" type="TextureRect" parent="PotionUI Canvas layer/PotionsUI/MarginContainer/HBoxContainer/RightPotionPanel" unique_id=566262361]
-unique_name_in_owner = true
-layout_mode = 2
-expand_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="PotionUI Canvas layer/PotionsUI/MarginContainer/HBoxContainer/RightPotionPanel/RightPotionIcon" unique_id=414214104]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_right = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PotionUI Canvas layer/PotionsUI/MarginContainer/HBoxContainer/RightPotionPanel/RightPotionIcon/MarginContainer" unique_id=1479676274]
-layout_mode = 2
-alignment = 2
-
-[node name="RightPotionCount" type="Label" parent="PotionUI Canvas layer/PotionsUI/MarginContainer/HBoxContainer/RightPotionPanel/RightPotionIcon/MarginContainer/VBoxContainer" unique_id=4825346]
-unique_name_in_owner = true
-layout_mode = 2
-text = "1"
-label_settings = SubResource("LabelSettings_rgyib")
-horizontal_alignment = 2
-vertical_alignment = 2
+[node name="PotionsUI" parent="PotionUI Canvas layer" instance=ExtResource("5_hdq68")]
 
 [node name="Managers" type="Node" parent="." unique_id=1502831964]
 

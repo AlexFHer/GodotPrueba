@@ -29,6 +29,7 @@ func start(source: Area3D, destination: Area3D, player: MainPlayer) -> void:
 	player.set_teleport_pose(&"Potma_Fall")
 	_animation = create_tween()
 	_animation.tween_property(player, "global_position", source.entry_point.global_position, 0.25).set_trans(Tween.TRANS_SINE)
+	_animation.tween_callback(source.play_water_entry)
 	_animation.tween_property(player, "global_position", source.inside_point.global_position, 0.4).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	_animation.tween_callback(player.hide)
 	_animation.tween_interval(source.source_hold)

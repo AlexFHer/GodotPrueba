@@ -36,6 +36,10 @@ a new decision, mechanic, constraint, naming convention, or open question appear
 - Simple, readable systems over overengineered abstractions.
 
 ## Current Potion System
+- Potion HUD slots use `player/scenes/potions-ui.tscn`: compact bottom-corner
+  aubergine translucent cards with cyan borders, cream localized potion names,
+  gold quantities, and aspect-preserving bottle icons. Both use the same spacing
+  and 24px screen margins. UI initializes from inventory when entering a level.
 - The player has left and right potion slots.
 - Left and right selected potion types are managed by `PlayerPotions`.
 - Each selected slot is represented by a generic bottle attached to the
@@ -313,6 +317,16 @@ Important files:
   The level manager checks saved totals after pickups and announces once;
   loading an already completed level does not replay the banner. The independent
   UI banner fades in/out and freezes with gameplay pause.
+- The well's water `well_Imported/Plane` uses `stylized_water.gdshader`, with
+  two animated procedural noise layers, tonal bands and pale ripple lines.
+  `water_color` controls its palette; noise scale, flow speed, highlights and
+  glow are adjustable. The opaque material is local to each scene instance.
+  Entering the water triggers 24 tinted droplets and two expanding shader rings
+  at the start of the sinking motion. The effect lasts about one second, follows
+  gameplay pause, and frees its particles after the burst.
+- The well model's `well_Imported` node is a `StaticBody3D` on the World layer,
+  owning its concave wall collider. The root `Area3D` remains a separate entry
+  detector; collision shapes under a plain `Node3D` do not block the player.
 - Well teleports use `assets/teleports/teleport.tscn`, with a directional
   `destination` reference to another instance in the same level. `EntryPoint`,
   `InsidePoint`, `ExitPoint`, `TeleportCamera`, and `CameraFocus` configure staging.
