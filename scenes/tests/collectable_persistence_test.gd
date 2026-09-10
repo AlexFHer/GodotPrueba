@@ -7,6 +7,8 @@ const MYTHRIL = preload("res://assets/collectable/mythril/mythril1/mythril1.tscn
 const BOOK = preload("res://assets/collectable/book/book.tscn")
 const CHEST = preload("res://assets/chests/normal_chest/chest.tscn")
 const MAGIC_CHEST = preload("res://assets/chests/magic_chest/magic_chest.tscn")
+const BABY = preload("res://assets/collectable/babys/baby.tscn")
+const SHARD = preload("res://assets/collectable/magic_fragment/magic_fragment.tscn")
 const MANAGER = preload("res://assets/levels/levelManager.tscn")
 var failures := 0
 
@@ -25,7 +27,7 @@ func make_level(id: String) -> Node3D:
 	manager.levelName = id
 	scope.add_child(manager)
 	manager.owner = scope
-	for entry in [[MYTHRIL, "mithril"], [BOOK, "book"], [CHEST, "chest"], [MAGIC_CHEST, "magic"]]:
+	for entry in [[MYTHRIL, "mithril"], [BOOK, "book"], [CHEST, "chest"], [MAGIC_CHEST, "magic"], [BABY, "baby"], [SHARD, "shard"]]:
 		var item: Node = entry[0].instantiate()
 		item.name = entry[1]
 		item.collectableId = entry[1]
@@ -49,6 +51,9 @@ func _run() -> void:
 	if writing:
 		check(emitter.emitMithrilPickedUp(5, a.get_node("mithril")), "First pickup must save")
 		check(not emitter.emitMithrilPickedUp(5, a.get_node("mithril")), "Duplicate must be rejected")
+		check(emitter.emitBabyPickedUp(1, a.get_node("baby")), "Baby must save")
+		check(emitter.emitShardPickedUp(1, a.get_node("shard")), "Shard must save")
+		check(not emitter.emitShardPickedUp(1, a.get_node("shard")), "Shard cannot duplicate")
 		check(emitter.emitBooksPickedUp(1, a.get_node("book")), "Book must save")
 		root.get_node("PlayerInventory").keys = 1
 		a.get_node("chest").open_chest()
@@ -59,6 +64,8 @@ func _run() -> void:
 		check(not ledger.collect("test_a", "invalid", "book", -1), "Invalid amounts rejected")
 	else:
 		check(not a.has_node("mithril"), "Saved mithril must disappear on reload")
+		check(not a.has_node("baby"), "Baby must disappear on reload")
+		check(not a.has_node("shard"), "Shard must disappear on reload")
 		check(not a.has_node("book"), "Saved book must disappear on reload")
 		check(a.get_node("chest").opened, "Chest must restore opened state")
 		check(a.get_node("magic").opened, "Magic chest must restore opened state")
@@ -71,6 +78,10 @@ func _run() -> void:
 	check(ledger.get_total("test_b", "mithril") == 1, "Level B total must stay separate")
 	check(a.get_node("Level").levelCollectables.currentMithrils == 25, "HUD snapshot restores total")
 	check(a.get_node("Level").inGameCollectablesUiControl.book_icon.visible, "HUD restores book icon")
+	check(a.get_node("Level").inGameCollectablesUiControl.baby_count_label.text == "1", "Baby HUD count restores")
+	check(a.get_node("Level").inGameCollectablesUiControl.shard_count_label.text == "1", "Shard HUD count restores")
+	check(ledger.get_total("test_b", "baby") == 0, "Baby is level-specific")
+	check(ledger.get_total("test_b", "shard") == 0, "Shard is level-specific")
 	a.free()
 	b.free()
 	print("COLLECTABLE TEST ", "write" if writing else "read", ": ", failures, " failures")

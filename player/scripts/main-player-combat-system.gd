@@ -398,6 +398,8 @@ func _cancel_active_attack() -> void:
 
 func _on_attack_interruption_requested(reason: int) -> void:
 	match reason:
+		MainPlayer.AttackInterruptionReason.TELEPORT:
+			pass
 		MainPlayer.AttackInterruptionReason.DASH:
 			_dash_recovery_pending = true
 		MainPlayer.AttackInterruptionReason.DAMAGE:

@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bgp44hgj2ny5j" path="res://assets/arc/arc.tscn" id="1_ffoev"]
 [ext_resource type="Script" uid="uid://c4t2n0gbu5cvl" path="res://assets/collectable/level-collectables.gd" id="2_ecqs2"]
 [ext_resource type="Script" uid="uid://cketnnkhw8nqs" path="res://assets/arc/arc_puzzle.gd" id="3_k0883"]
+[ext_resource type="PackedScene" uid="uid://b51tm02el4rmd" path="res://assets/teleports/teleport.tscn" id="3_si08o"]
 [ext_resource type="PackedScene" uid="uid://byu0b6177d1t6" path="res://assets/chests/magic_chest/magic_chest.tscn" id="4_1y740"]
 [ext_resource type="PackedScene" uid="uid://mykeuox7c8sn" path="res://assets/key/key.tscn" id="5_1y740"]
 [ext_resource type="PackedScene" uid="uid://ontkeeyy4mk7" path="res://assets/potions/fire_potion/fire_potion.tscn" id="5_la3k2"]
@@ -82,6 +83,13 @@ mesh = SubResource("PlaneMesh_tv8gj")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=1348176946]
 transform = Transform3D(5.45855, 0, 0, 0, 1, 0, 0, 0, 1, 109.553, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_3onbp")
+
+[node name="Teleport" parent="Floor" unique_id=183167976 node_paths=PackedStringArray("destination") instance=ExtResource("3_si08o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 13)
+destination = NodePath("../Teleport2")
+
+[node name="Teleport2" parent="Floor" unique_id=297380032 instance=ExtResource("3_si08o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 1, 13)
 
 [node name="Assets" type="Node" parent="." unique_id=868524150]
 
@@ -349,6 +357,7 @@ vertical_alignment = 2
 
 [node name="MagicFragment" parent="." unique_id=242875622 instance=ExtResource("24_75uik")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 11.965116, 1.6948152, 16.30515)
+collectableId = "5a5719d2150e45b9a0946e4ae6b97cc4"
 
 [connection signal="all_arcs_active" from="Assets/ArcsPuzzles/ArcMagicChestPuzzle/ArcPuzzle" to="Assets/ArcsPuzzles/ArcMagicChestPuzzle/MagicChest" method="deactivate_force_field"]
 [connection signal="all_fire_towers_active" from="Assets/FireTowers/Puzzle" to="Assets/FireTowers/secret_tower" method="activate_secret_tower"]

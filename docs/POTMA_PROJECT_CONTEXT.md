@@ -103,6 +103,9 @@ Current durations:
 - Toggle right potion: `toggleRightPotion`.
 
 ## Player Camera
+- `MainCharacterCamera` explicitly starts as `current = true`. This prevents
+  earlier-instantiated teleport cameras from becoming the gameplay camera;
+  wells take control only during travel and restore the prior camera afterward.
 - The third-person camera normally sits 3 metres from `CameraPivot`.
 - `SpringArm3D` is a collision probe rather than the camera's direct parent. It
   casts 0.55 metres beyond the desired camera distance so nearby obstacles are
@@ -293,6 +296,18 @@ Important files:
 - `GameSettings`
 
 ## Collectibles And World Objects
+- Well teleports use `assets/teleports/teleport.tscn`, with a directional
+  `destination` reference to another instance in the same level. `EntryPoint`,
+  `InsidePoint`, `ExitPoint`, `TeleportCamera`, and `CameraFocus` configure staging.
+  Entry centers/sinks the player, holds the origin camera for 2 seconds, cuts to
+  the destination camera, then launches a directed parabolic jump to `ExitPoint`.
+  Destination hold, jump duration/height and landing hold are exported. The travel
+  session restores the previous camera and suppresses immediate arrival reentry.
+  `MainPlayer.begin_teleport/end_teleport` own the input/physics/collision lock and
+  jump/fall pose playback; travel cancels attacks and rejects damage/checkpoint
+  warps and new dialogue. Pause freezes travel, while normal world/potion time
+  continues. Removing an endpoint aborts safely back to the entry transform.
+  Setup and playable/automated tests are documented in `docs/TELEPORTS.md`.
 - `assets/collectable/magic_fragment/magic_fragment.tscn` is a round water-like
   magic fragment: a translucent glossy blue shell with subtle ripples and 28
   luminous motes plus 12 bright five-pointed star particles orbiting within its
@@ -301,7 +316,7 @@ Important files:
   and brightens between 4 and 18 metres from the camera for distance readability
   while keeping its center transparent. Rim color, energy, and power are tunable.
   A shadowless cyan OmniLight (energy 3.5, range 3 metres) lights nearby surfaces.
-  One red amalgam-like glow sits at the exact center: five smoothly merged lobes
+    One green amalgam-like glow sits at the exact center: five smoothly merged lobes
   grow and retract independently around a connected core, while irregular spikes
   emerge and recede. Shader parameter `morph_speed` controls the deformation rate.
   It uses a single billboard mesh
@@ -310,7 +325,8 @@ Important files:
 	and bounded inside the sphere. Touching it with a `MainPlayer` triggers a
   one-shot pickup: 0.3-second squash/stretch, a flash, and 48 outward droplets.
   The fragment emits `collected` once, then `popped` before freeing itself after
-  the burst. No inventory reward or persistence is assigned yet. `pop()` also
+  the burst. Gameplay pickup now saves one `shard` reward per level; visual
+  previews and direct `pop()` calls do not award progress. `pop()` also
   allows scripted activation; `preview_pop_loop` is an optional visual preview.
   The whole fragment floats vertically by ±0.1 units on a 2.4-second cycle,
   pausing during pop. `float_height` and `float_period` are exported controls.
@@ -324,6 +340,22 @@ Important files:
   `pop_sound` and `pop_volume_db` are inspector controls.
 - The project includes mythril collectibles, coins, books, keys, chests, fire towers, arcs, elevators, doors, levers, NPC dialogue, and enemies.
 - Collectibles and progression should support the 3D collectathon fantasy.
+- The four level collectible categories are babys, mythril, books, and magic
+  shards. Babys and the existing magic fragment now use the same persistent
+  ledger as mithril/books, without invalidating earlier saves.
+- Select (`toggle-hud`) shows all four counters, including zero: shards at top
+  left, books at top center, mythril at top right (40px number), and the existing
+  baby render at bottom center. Anchored containers adapt to viewport size.
+  The key indicator remains separate at bottom right when a key is held.
+  HUD icons, numbers, spacing, and container bounds were reduced by about 15%, then a further 10%
+  at the user's request, preserving screen anchors and edge margins.
+- The top HUD slides down from above the viewport while babys slide up from
+  below it, both in 0.45 seconds. They stay for 3 seconds, then fade toward
+  their respective screen edges. Repeated Select replaces the active tween and
+  renews the duration. UI owns the animation; level manager supplies progress.
+- The shard HUD render is `assets/collectable/magic_fragment/ui/magic_shard_icon.png`;
+  it is a transparent ImageGen asset. Its exact generation prompt is recorded
+  beside it in `GENERATION.md`. The in-world fragment VFX remains unchanged.
 - Collectible progress persists per level when leaving or closing the game.
   `LevelCollectablesData` saves a versioned reward ledger immediately to
   `user://saves/collectables_v1.json`; totals are derived from recorded rewards.

@@ -156,6 +156,10 @@ func unregister_candidate(interactable: DialogueInteractable, player: Node3D = n
 
 
 func start_dialogue(interactable: DialogueInteractable = null) -> bool:
+	var player := get_tree().get_first_node_in_group(&"MainPlayer") as MainPlayer
+	if player != null and player.is_teleporting():
+		_ui.hide_prompt()
+		return false
 	if _state != DialogueState.IDLE or get_tree().paused:
 		_ui.hide_prompt()
 		return false
@@ -273,6 +277,8 @@ func _refresh_selected_candidate() -> void:
 
 		var interactable := interactable_value as DialogueInteractable
 		var player := player_value as Node3D
+		if player is MainPlayer and player.is_teleporting():
+			continue
 		if interactable == null or player == null:
 			_log_warning("Dialogue candidate %d contained incompatible nodes and was removed." % candidate_id)
 			stale_ids.append(candidate_id)

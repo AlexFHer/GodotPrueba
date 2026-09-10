@@ -17,9 +17,11 @@ func _ready() -> void:
 	levelCollectables = levelCollectables.duplicate() if levelCollectables != null else LevelCollectables.new()
 	# Connect signals to the collectables emitter
 	CollectablesEmitterService.mithrilPickedUp.connect(_on_mithril_picked_up)
-	CollectablesEmitterService.bookPickedUp.connect(_on_book_picked_up)
+	CollectablesEmitterService.bookPickedUp.connect(_on_collectable_picked_up)
+	CollectablesEmitterService.babyPickedUp.connect(_on_collectable_picked_up)
+	CollectablesEmitterService.shardPickedUp.connect(_on_collectable_picked_up)
 	_refresh_progress()
-	_hide_collectables_ui()
+	inGameCollectablesUiControl.hide_immediately()
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("toggle-hud"):
@@ -29,18 +31,16 @@ func _on_mithril_picked_up(pickedLevel: String, _amount: int) -> void:
 	if pickedLevel == levelName:
 		_refresh_progress()
 
-func _on_book_picked_up(pickedLevel: String, _amount: int) -> void:
+func _on_collectable_picked_up(pickedLevel: String, _amount: int) -> void:
 	if pickedLevel == levelName:
 		_refresh_progress()
 
 func _refresh_progress() -> void:
 	levelCollectables.currentMithrils = LevelCollectablesData.get_total(levelName, "mithril")
 	levelCollectables.currentBooks = LevelCollectablesData.get_total(levelName, "book")
+	levelCollectables.currentBabys = LevelCollectablesData.get_total(levelName, "baby")
+	levelCollectables.currentShards = LevelCollectablesData.get_total(levelName, "shard")
 	inGameCollectablesUiControl.update_current_collectables(levelCollectables)
 
 func _show_collectables_ui() -> void:
-	inGameCollectablesUiControl.visible = true
-	get_tree().create_timer(3, false).timeout.connect(_hide_collectables_ui)
-
-func _hide_collectables_ui() -> void:
-	inGameCollectablesUiControl.visible = false
+	inGameCollectablesUiControl.show_collectables()

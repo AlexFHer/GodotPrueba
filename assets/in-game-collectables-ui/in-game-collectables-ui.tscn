@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://bcugk5tgimuv4"]
+[gd_scene load_steps=8 format=3 uid="uid://bcugk5tgimuv4"]
 
-[ext_resource type="Script" uid="uid://bavsraayp58xn" path="res://assets/in-game-collectables-ui/in-game-collectables-ui.gd" id="1_vc5c6"]
-[ext_resource type="Texture2D" uid="uid://drg0t7rgohfyt" path="res://assets/collectable/mythril/Mythrill_Icon.png" id="2_a1273"]
-[ext_resource type="Texture2D" uid="uid://d08xd48xv2kjh" path="res://assets/collectable/book/Book_icon.png" id="3_vl5cs"]
-[ext_resource type="Texture2D" uid="uid://heeexc5jx5pr" path="res://player/Potma_Icon.png" id="4_yh3sy"]
-[ext_resource type="Texture2D" uid="uid://dq5xlv3upf628" path="res://assets/key/Key_Icon.png" id="5_7q2y6"]
+[ext_resource type="Script" path="res://assets/in-game-collectables-ui/in-game-collectables-ui.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/collectable/mythril/Mythrill_Icon.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/collectable/book/Book_icon.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/collectable/babys/baby_hud_icon.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/collectable/magic_fragment/ui/magic_shard_icon.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/key/Key_Icon.png" id="6"]
+
+[sub_resource type="AtlasTexture" id="BabyPortrait"]
+atlas = ExtResource("4")
+region = Rect2(440, 60, 1250, 960)
 
 [node name="In game collectables UI" type="Control"]
 layout_mode = 3
@@ -13,82 +18,179 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_vc5c6")
+mouse_filter = 2
+script = ExtResource("1")
 
-[node name="Mithril" type="VBoxContainer" parent="."]
+[node name="Content" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
+anchors_preset = 15
 anchor_right = 1.0
-offset_left = -220.0
-offset_top = 11.0
-offset_right = -11.0
-offset_bottom = 65.0
-grow_horizontal = 0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
-[node name="Mithril container" type="HBoxContainer" parent="Mithril"]
+[node name="Shards" type="HBoxContainer" parent="Content"]
+layout_mode = 1
+anchor_left = 0
+anchor_top = 0
+anchor_right = 0
+anchor_bottom = 0
+offset_left = 24.0
+offset_top = 20.0
+offset_right = 177.0
+offset_bottom = 99.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="ShardIcon" type="TextureRect" parent="Content/Shards"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(74, 74)
 layout_mode = 2
-alignment = 2
+mouse_filter = 2
+texture = ExtResource("5")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="MithrilCountLabel" type="Label" parent="Mithril/Mithril container"]
-visible = false
-layout_mode = 2
-text = "Mithril"
-
-[node name="MithrilCount" type="Label" parent="Mithril/Mithril container"]
+[node name="ShardsCount" type="Label" parent="Content/Shards"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.94, 0.76, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0.045, 0.12, 0.95)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 33
 text = "0"
+vertical_alignment = 1
 
-[node name="MythrillIcon" type="Sprite2D" parent="Mithril"]
-position = Vector2(123, 24)
-texture = ExtResource("2_a1273")
+[node name="Books" type="HBoxContainer" parent="Content"]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0
+anchor_right = 0.5
+anchor_bottom = 0
+offset_left = -76.5
+offset_top = 20.0
+offset_right = 76.5
+offset_bottom = 99.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+alignment = 1
 
-[node name="Book" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 33.0
-offset_top = 4.0
-offset_right = 83.0
-offset_bottom = 44.0
-
-[node name="BooksContainer" type="HBoxContainer" parent="Book"]
-custom_minimum_size = Vector2(43.25, 22.47)
-layout_mode = 2
-alignment = 2
-
-[node name="BooksCountLabel" type="Label" parent="Book/BooksContainer"]
-visible = false
-layout_mode = 2
-text = "Books"
-
-[node name="BooksCount" type="Label" parent="Book/BooksContainer"]
+[node name="BookIcon" type="TextureRect" parent="Content/Books"]
 unique_name_in_owner = true
-visible = false
+custom_minimum_size = Vector2(74, 74)
 layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BooksCount" type="Label" parent="Content/Books"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.94, 0.76, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0.045, 0.12, 0.95)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 33
 text = "0"
+vertical_alignment = 1
 
-[node name="BookIcon" type="Sprite2D" parent="Book"]
+[node name="Mithril" type="HBoxContainer" parent="Content"]
+layout_mode = 1
+anchor_left = 1
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 0
+offset_left = -192.0
+offset_top = 20.0
+offset_right = -24.0
+offset_bottom = 99.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="MythrillIcon" type="TextureRect" parent="Content/Mithril"]
 unique_name_in_owner = true
-position = Vector2(0, 28)
-texture = ExtResource("3_vl5cs")
+custom_minimum_size = Vector2(74, 74)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="Lifes" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 543.0
-offset_right = 583.0
-offset_bottom = 40.0
-
-[node name="PotmaIcon" type="Sprite2D" parent="Lifes"]
-visible = false
-position = Vector2(30, 34)
-texture = ExtResource("4_yh3sy")
-
-[node name="Key" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="KeyIcon" type="Sprite2D" parent="Key"]
+[node name="MithrilCount" type="Label" parent="Content/Mithril"]
 unique_name_in_owner = true
-position = Vector2(1102, 603)
-texture = ExtResource("5_7q2y6")
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.94, 0.76, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0.045, 0.12, 0.95)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 40
+text = "0"
+vertical_alignment = 1
+
+[node name="BottomContent" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Babys" type="HBoxContainer" parent="BottomContent"]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -101.0
+offset_top = -125.0
+offset_right = 101.0
+offset_bottom = -24.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="BabyIcon" type="TextureRect" parent="BottomContent/Babys"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(101, 101)
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("BabyPortrait")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BabysCount" type="Label" parent="BottomContent/Babys"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.94, 0.76, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0.045, 0.12, 0.95)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 37
+text = "0"
+vertical_alignment = 1
+
+[node name="KeyIcon" type="TextureRect" parent="Content"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -79.0
+offset_top = -79.0
+offset_right = -24.0
+offset_bottom = -24.0
+mouse_filter = 2
+texture = ExtResource("6")
+expand_mode = 1
+stretch_mode = 5

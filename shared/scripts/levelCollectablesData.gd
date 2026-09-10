@@ -30,7 +30,7 @@ func _is_valid_save(data: Variant) -> bool:
 		if not level is Dictionary:
 			return false
 		for reward: Variant in level.values():
-			if not reward is Dictionary or reward.get("kind") not in ["mithril", "book"]:
+			if not reward is Dictionary or reward.get("kind") not in ["mithril", "book", "baby", "shard"]:
 				return false
 			var amount: Variant = reward.get("amount")
 			if not (amount is float or amount is int):
@@ -55,7 +55,7 @@ func collect(levelName: String, collectableId: String, kind: String, amount: int
 	_load_progress()
 	if _load_failed or levelName.is_empty() or collectableId.is_empty() or amount <= 0:
 		return false
-	if kind not in ["mithril", "book"] or has_collectable(levelName, collectableId):
+	if kind not in ["mithril", "book", "baby", "shard"] or has_collectable(levelName, collectableId):
 		return false
 	if not _levels.has(levelName):
 		_levels[levelName] = {}
