@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ylf0jycjlsqn"
-path.s3tc="res://.godot/imported/Fire_Tower_Tower_Fire_Base_color.png-93630ce5d38a5980cb7911c8a931e341.s3tc.ctex"
+uid="uid://r6vtn3vr0spp"
+path.s3tc="res://.godot/imported/Fire_Tower_Stylized_roof_tiles_06_baseColor_2k.png-3fb86b851eee242bcc7f70e9f5d89928.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "03db5f37632f92951308c41a30420fb7"
+"md5": "25370a4f7fc58bb93dd8f1b6d9bc9827"
 }
 
 [deps]
 
-source_file="res://assets/fire_towers/model/Fire_Tower_Tower_Fire_Base_color.png"
-dest_files=["res://.godot/imported/Fire_Tower_Tower_Fire_Base_color.png-93630ce5d38a5980cb7911c8a931e341.s3tc.ctex"]
+source_file="res://assets/fire_towers/model/Fire_Tower_Stylized_roof_tiles_06_baseColor_2k.png"
+dest_files=["res://.godot/imported/Fire_Tower_Stylized_roof_tiles_06_baseColor_2k.png-3fb86b851eee242bcc7f70e9f5d89928.s3tc.ctex"]
 
 [params]
 
