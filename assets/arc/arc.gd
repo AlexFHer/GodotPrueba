@@ -16,6 +16,9 @@ func _ready() -> void:
 	deactivate()
 
 func activate() -> void:
+	if active == true:
+		return
+
 	active = true
 	arcOn.visible = true
 	arcOff.visible = false

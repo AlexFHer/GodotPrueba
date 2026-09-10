@@ -381,6 +381,10 @@ Important files:
 - Fire-based interactions exist through fireballs and fire puzzle objects.
 
 ## Enemies And Damage
+- Globrc Big waits a random 1.0-1.6 seconds after each attack finishes before
+  attacking again if the player remains in attack range. Inspector properties
+  `attack_cooldown_min` and `attack_cooldown_max` tune this pause; it follows
+  gameplay processing, freezes with pause, and is not reset by range reentry.
 - Globrc Big's ground slam emits an expanding blue-white electrical discharge,
   with jagged flickering arcs and branches instead of a solid torus. Its shader
   follows the damage radius, fades at the outer limit, and uses per-instance

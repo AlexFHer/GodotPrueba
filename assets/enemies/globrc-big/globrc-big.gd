@@ -21,12 +21,15 @@ enum State {
 
 @export var number_of_mythril: int = DEFAULT_MITHRIL
 @export var collectableId := ""
+@export_range(0.0, 10.0, 0.1) var attack_cooldown_min := 1.0
+@export_range(0.0, 10.0, 0.1) var attack_cooldown_max := 1.6
 
 var shockwave_scene: PackedScene = preload("res://assets/enemies/globrc-big/assets/shockwave/globrc_shockwave.tscn")
 @onready var shockwave_spawn_point: Node3D = %ShockwaveSpawnPoint
 @onready var dust_particles: GPUParticles3D = %DustBurstParticles
 
 var state := State.Idle
+var _attack_cooldown_remaining := 0.0
 
 var isPlayerInRange := false
 var isPlayerInAttackRange := false
@@ -40,8 +43,11 @@ func _process(delta: float) -> void:
 	if state == State.Dead:
 		return
 
+	_attack_cooldown_remaining = maxf(0.0, _attack_cooldown_remaining - delta)
 	if state == State.Ready and isPlayerInRange:
 		_look_at_player(delta)
+	if state == State.Ready and isPlayerInAttackRange and _attack_cooldown_remaining <= 0.0:
+		_set_state(State.Attack)
 
 func enable_attack_collision() -> void:
 	attack_collider.disabled = false
@@ -111,7 +117,6 @@ func _on_player_in_range_area_3d_body_exited(body:Node3D) -> void:
 
 func _on_attack_range_area_3d_body_entered(body:Node3D) -> void:
 	if body is MainPlayer:
-		_set_state(State.Attack)
 		isPlayerInAttackRange = true
 
 func _on_attack_range_area_3d_body_exited(body:Node3D) -> void:
@@ -119,8 +124,11 @@ func _on_attack_range_area_3d_body_exited(body:Node3D) -> void:
 		isPlayerInAttackRange = false
 		
 func _on_attack_animation_finished() -> void:
-	if !isPlayerInAttackRange:
-		_set_state(State.Ready)
+	if state == State.Dead:
+		return
+	var minimum := maxf(0.0, attack_cooldown_min)
+	_attack_cooldown_remaining = randf_range(minimum, maxf(minimum, attack_cooldown_max))
+	_set_state(State.Ready if isPlayerInRange else State.Idle)
 
 func _on_attack_collision_area_3d_body_entered(body:Node3D) -> void:
 	if body is MainPlayer:
