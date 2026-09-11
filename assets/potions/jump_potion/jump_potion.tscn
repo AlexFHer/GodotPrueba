@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://chfka00eigemp" path="res://assets/gdquest/potis/PotiOverworld.glb" id="3_sny8o"]
 [ext_resource type="Material" uid="uid://bmh8b3mi0y00v" path="res://assets/gdquest/potis/Glass_Poti.material" id="4_k5fhg"]
 [ext_resource type="Script" uid="uid://bwukxnfmnemyv" path="res://assets/gdquest/potis/LiquidWobble_Potma.gd" id="5_0pfie"]
+[ext_resource type="Texture2D" uid="uid://px3o1romor3y" path="res://assets/potions/jump_potion/model/saltoka_etiketa1.png" id="6_k5fhg"]
 
 [sub_resource type="Shader" id="Shader_42ot8"]
 code = "// ANCHOR: all
@@ -160,6 +161,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_68quy")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s4o2x"]
+albedo_texture = ExtResource("6_k5fhg")
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_vjdkv"]
 size = Vector3(2.02118, 1.96102, 1.74645)
 
@@ -180,13 +184,16 @@ visible = false
 [node name="PotiOverworldJump" parent="Model" unique_id=700607690 instance=ExtResource("3_sny8o")]
 transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 1.8359864, 0)
 
-[node name="BottlePotion" parent="Model/PotiOverworldJump" index="0" unique_id=1794950453]
+[node name="BottlePotion" parent="Model/PotiOverworldJump" index="0" unique_id=798149710]
 material_override = ExtResource("4_k5fhg")
 
-[node name="BottleLiquid" parent="Model/PotiOverworldJump/BottlePotion" index="0" unique_id=202898637]
+[node name="BottleLiquid" parent="Model/PotiOverworldJump/BottlePotion" index="0" unique_id=1842079514]
 material_override = SubResource("ShaderMaterial_2gn0l")
 mesh = SubResource("ArrayMesh_pqd0a")
 script = ExtResource("5_0pfie")
+
+[node name="BottleLabel" parent="Model/PotiOverworldJump" index="2" unique_id=1768407392]
+material_override = SubResource("StandardMaterial3D_s4o2x")
 
 [node name="PotionCollision" type="CollisionShape3D" parent="." unique_id=795727186]
 unique_name_in_owner = true

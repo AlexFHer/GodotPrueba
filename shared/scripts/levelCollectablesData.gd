@@ -6,6 +6,8 @@ var _loaded := false
 var _load_failed := false
 
 func _load_progress() -> void:
+	return
+	
 	if _loaded:
 		return
 	_loaded = true
