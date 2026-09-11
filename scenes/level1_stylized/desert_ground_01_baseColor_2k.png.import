@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxascs40x5oel"
-path.s3tc="res://.godot/imported/PjBUIr3.png-2cf5ad9977540a70a018d2ed47c80600.s3tc.ctex"
+uid="uid://ced0xkmv1mwkk"
+path.s3tc="res://.godot/imported/desert_ground_01_baseColor_2k.png-886a3424cc06138336d7d3d3c432df03.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Materials/Skybox/PjBUIr3.png"
-dest_files=["res://.godot/imported/PjBUIr3.png-2cf5ad9977540a70a018d2ed47c80600.s3tc.ctex"]
+source_file="res://scenes/level1_stylized/desert_ground_01_baseColor_2k.png"
+dest_files=["res://.godot/imported/desert_ground_01_baseColor_2k.png-886a3424cc06138336d7d3d3c432df03.s3tc.ctex"]
 
 [params]
 
