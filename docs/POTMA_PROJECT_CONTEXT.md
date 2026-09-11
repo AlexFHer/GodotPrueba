@@ -357,6 +357,14 @@ Important files:
 - `GameSettings`
 
 ## Collectibles And World Objects
+- Mythril pickup uses a stylized four-point shine inspired by the requested
+  Spyro Reignited direction: a central 0.37-second expanding/contracting star
+  and six smaller drifting stars over 0.85 seconds. A camera-facing shader
+  draws tapered rays, a warm white core and restrained ice-blue edges, with
+  soft alpha fading and a faint halo instead of a saturated particle cloud.
+  The redundant non-billboard overlay is
+  removed. Particles reparent to the scene on pickup and free on completion,
+  independently of the collectible's audio-driven cleanup.
 - Reaching all four authored `LevelCollectables.required*` targets shows a
   localized 100% completion banner for 4 seconds without blocking gameplay.
   Zero-target categories are optional; a level with all targets zero cannot

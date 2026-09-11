@@ -144,12 +144,12 @@ mythrillParticles = NodePath("Mythrill_particles")
 [node name="Mythill_1" parent="." unique_id=886609846 instance=ExtResource("1_u86b4")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
-[node name="Mythrill 1" parent="Mythill_1" index="0" unique_id=1464787069]
-transform = Transform3D(0.945071, 0.13428688, 0.2980063, -7.45058e-09, 0.9117106, -0.41083282, -0.326865, 0.3882662, 0.8616313, 0, 0, 0)
+[node name="Mythrill 1" parent="Mythill_1" index="0" unique_id=1442007378]
+transform = Transform3D(-0.6938308, -0.29585636, -0.6565573, 1.4901159e-08, 0.91171056, -0.4108328, 0.72013795, -0.28504848, -0.6325728, 0, 0, 0)
 mesh = SubResource("ArrayMesh_tpfdh")
 surface_material_override/0 = SubResource("ShaderMaterial_y3xvi")
 
-[node name="AnimationPlayer" parent="Mythill_1" index="1" unique_id=1016625862]
+[node name="AnimationPlayer" parent="Mythill_1" index="1" unique_id=326421014]
 autoplay = &"Mythrill 1Action"
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=38176607]
@@ -167,6 +167,8 @@ volume_db = -15.0
 bus = &"SFX"
 
 [node name="Mythrill_particles" parent="." unique_id=654290184 instance=ExtResource("6_3up1n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+amount = 17
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 

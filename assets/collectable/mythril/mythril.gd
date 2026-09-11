@@ -27,7 +27,10 @@ func _on_body_entered(body:Node3D) -> void:
 		disable_collision()
 		instantiate_number()
 		coinPickupAudio.play()
-		mythrillParticles.emitting = true
+		# Let the burst finish independently of the pickup sound and collectible.
+		mythrillParticles.reparent(get_tree().current_scene)
+		mythrillParticles.finished.connect(mythrillParticles.queue_free)
+		mythrillParticles.call("play_pickup")
 		await coinPickupAudio.finished
 		queue_free()
 
