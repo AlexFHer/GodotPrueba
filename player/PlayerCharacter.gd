@@ -58,6 +58,7 @@ var _teleport_tree_active: bool
 var _teleport_animation_player: AnimationPlayer
 
 var canMove := true;
+var _is_drinking := false
 
 # Jump
 var jumpBuffer := false;
@@ -183,7 +184,7 @@ func process_jump(gameplay_input_locked: bool) -> void:
 			get_tree().create_timer(jumpBufferTimer, false).timeout.connect(on_jump_buffer_timer_ends)
 
 func process_dash(gameplay_input_locked: bool) -> void:
-	if gameplay_input_locked:
+	if gameplay_input_locked or _is_drinking:
 		return
 	if Input.is_action_just_pressed("dash") and canMove and canDash and dashReady and not isDashing:
 		_start_dash();
@@ -268,13 +269,11 @@ func _on_potion_used(potionType: PotionTypes.PotionType) -> void:
 
 
 func _on_potion_drink_started(_uses_left_slot: bool, _uses_right_slot: bool) -> void:
-	canMove = false;
-	canJump = false;
+	_is_drinking = true
 
 
 func _on_potion_drink_finished() -> void:
-	canMove = true;
-	canJump = true
+	_is_drinking = false
 
 func _activate_jump_speed_potion(potionType: PotionTypes.PotionType) -> void:
 	activateMegaJump()
@@ -439,7 +438,7 @@ func is_teleporting() -> bool:
 
 
 func begin_teleport(controller: Node) -> bool:
-	if life <= 0 or not canMove or is_gameplay_input_locked():
+	if life <= 0 or not canMove or _is_drinking or is_gameplay_input_locked():
 		return false
 	_teleport_controller = controller
 	_cancel_dialogue_incompatible_actions()

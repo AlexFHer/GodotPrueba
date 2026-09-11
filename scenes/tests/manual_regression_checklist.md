@@ -11,8 +11,10 @@ Validate gameplay after naming migrations, potion-state unification, logger adop
 ## Player Core
 1. Move, jump, and attack with no potion active.
 2. Receive damage and verify life decreases and death flow restarts scene.
-3. Verify movement and jumping stay locked during a potion drink and return on
-   the same frame that the visible drink animation ends, with no extra pause.
+3. Walk, run, turn, and jump while drinking from either hand or both. Confirm
+   the legs and lower robe keep their locomotion animation while the upper body
+   drinks, the bottles follow the hands, and attacks/dashes stay blocked until
+   drinking ends.
 4. Walk and rotate beside walls, pillars, corners, and low ceilings. Confirm the
    camera retracts without crossing the obstacle, changes distance smoothly,
    and returns more gently to its normal three-metre distance afterward.

@@ -48,10 +48,15 @@ a new decision, mechanic, constraint, naming convention, or open question appear
   Fire is red, Jump is blue, and Speed is green.
 - A consumed belt bottle keeps its current appearance until its drinking
   animation finishes, then synchronizes with the latest slot selection.
-- Drinking blocks movement and jumping only while the drink `AnimationTree`
-  one-shot is active. `PotionsManager` start/finish signals own that lock, so
-  control returns on the same frame that the drink animation completes rather
-  than after a separate fixed-duration timer.
+- Drinking allows walking, running, turning, and jumping. `DrinkOneShot` uses
+  an upper-body bone filter while the base locomotion animation keeps playing:
+  `BodyUpper` and its descendants, both independent hand/finger branches,
+  `BackPack`, `Potion.L`, `Potion.R`, and `Staff`. The root, hips, legs,
+  feet, and lower robe remain driven by locomotion.
+- `PotionsManager` start/finish signals track drinking independently from
+  `canMove` and `canJump`. Attacks, new dashes, and well travel remain blocked
+  during drinking; finishing a drink does not override other movement locks
+  or grant another airborne jump.
 - Drink-completion particles are instantiated at the local origin of the
   `PotionsParticlesSystem` marker above the player and simulate in local
   coordinates, keeping the burst attached to the character instead of an
@@ -113,16 +118,27 @@ Current durations:
   wells take control only during travel and restore the prior camera afterward.
 - The third-person camera normally sits 3 metres from `CameraPivot`.
 - `SpringArm3D` is a collision probe rather than the camera's direct parent. It
-  casts 0.55 metres beyond the desired camera distance so nearby obstacles are
-  detected before they reach the camera.
+  uses a 0.15-metre-radius sphere (previously 0.5) and casts 0.55 metres beyond
+  the desired camera distance so nearby obstacles are detected before they
+  reach the camera.
+- Small foreground props no longer force a zoom when the player's upper body
+  remains visible. Three sightlines check its center and sides, 0.5 metres
+  above the pivot and 0.45 metres to either side. A fully blocked view still
+  retracts for walls and enclosed spaces; a small prop may briefly cover part
+  of the character while the framing remains stable.
+- Collision queries and distance updates run in the physics tick. A separate
+  sphere check at the candidate camera position and a short local sweep retain
+  physical collision protection even for tolerated props and low ceilings.
 - `playerCamera.gd` interpolates the actual camera distance independently: it
   retracts with responsiveness 18 and recovers with responsiveness 6. This
   keeps obstacle avoidance quick and makes the return to the normal distance
   visibly softer.
-- The smoothed distance is always capped by the current collision distance, so
-  an obstacle that appears suddenly cannot leave the camera behind the wall.
+- The smoothed distance is capped by the collision distance for blocked views
+  and by the camera's local clearance, so visibility tolerance cannot place
+  the camera inside a small prop.
 - `preferredDistance`, `collisionLookAhead`, `collisionApproachSpeed`, and
   `collisionRecoverySpeed` are exported tuning values on `CameraPivot`.
+- `obstructionWidth` and `obstructionHeight` tune the visible upper-body region.
 
 ## Pause Menu And Settings
 - The primary pause screen opened with `start` shares the settings screen's
@@ -509,3 +525,9 @@ Important files:
 - 2026-09-10: Refined the shared pause/settings presentation around Potma's
   aubergine, crystal-cyan, sky-lilac, and gold palette, including polished button
   states and diamond-shaped slider handles.
+- 2026-09-11: Reduced the camera collision probe radius and tolerated partial
+  upper-body occlusion by small outdoor props while retaining wall, ceiling,
+  and local camera collision protection.
+- 2026-09-11: Allowed locomotion and jumping while drinking, with an upper-body
+  animation filter shared by left, right, and combined drinks. Drinking still
+  blocks attacks, new dashes, and well travel independently of movement.
