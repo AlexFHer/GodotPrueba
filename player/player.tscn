@@ -114,6 +114,9 @@ animation = &"Potma_Death"
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_yllr7"]
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_8t03j"]
+filter_enabled = true
+filters = ["ArmaturePotma/Skeleton3D:BackPack", "ArmaturePotma/Skeleton3D:Potion.L", "ArmaturePotma/Skeleton3D:Potion.R", "ArmaturePotma/Skeleton3D:BodyUpper", "ArmaturePotma/Skeleton3D:Neck", "ArmaturePotma/Skeleton3D:Head", "ArmaturePotma/Skeleton3D:Ear.L", "ArmaturePotma/Skeleton3D:EarTip.L", "ArmaturePotma/Skeleton3D:Hat", "ArmaturePotma/Skeleton3D:HatCenter", "ArmaturePotma/Skeleton3D:HatMid", "ArmaturePotma/Skeleton3D:HatTip", "ArmaturePotma/Skeleton3D:Hook", "ArmaturePotma/Skeleton3D:Lamp", "ArmaturePotma/Skeleton3D:LampFire", "ArmaturePotma/Skeleton3D:HatWingFront", "ArmaturePotma/Skeleton3D:HatWingLeft", "ArmaturePotma/Skeleton3D:HatWingBack", "ArmaturePotma/Skeleton3D:HatWingRight", "ArmaturePotma/Skeleton3D:Ear.R", "ArmaturePotma/Skeleton3D:EarTip.R", "ArmaturePotma/Skeleton3D:Eyes", "ArmaturePotma/Skeleton3D:Hand.L", "ArmaturePotma/Skeleton3D:Pinky1.L", "ArmaturePotma/Skeleton3D:Pinky2.L", "ArmaturePotma/Skeleton3D:Heart1.L", "ArmaturePotma/Skeleton3D:Heart2.L", "ArmaturePotma/Skeleton3D:Pointer1.L", "ArmaturePotma/Skeleton3D:Pointer2.L", "ArmaturePotma/Skeleton3D:Thumb1.L", "ArmaturePotma/Skeleton3D:Thumb2.L", "ArmaturePotma/Skeleton3D:Hand.R", "ArmaturePotma/Skeleton3D:Pinky1.R", "ArmaturePotma/Skeleton3D:Pinky2.R", "ArmaturePotma/Skeleton3D:Heart1.R", "ArmaturePotma/Skeleton3D:Heart2.R", "ArmaturePotma/Skeleton3D:Pointer1.R", "ArmaturePotma/Skeleton3D:Pointer2.R", "ArmaturePotma/Skeleton3D:Thumb1.R", "ArmaturePotma/Skeleton3D:Thumb2.R", "ArmaturePotma/Skeleton3D:Staff"]
+sync = true
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yllr7"]
 animation = &"Potma_Hit"

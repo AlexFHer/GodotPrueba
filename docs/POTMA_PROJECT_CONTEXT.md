@@ -48,10 +48,15 @@ a new decision, mechanic, constraint, naming convention, or open question appear
   Fire is red, Jump is blue, and Speed is green.
 - A consumed belt bottle keeps its current appearance until its drinking
   animation finishes, then synchronizes with the latest slot selection.
-- Drinking blocks movement and jumping only while the drink `AnimationTree`
-  one-shot is active. `PotionsManager` start/finish signals own that lock, so
-  control returns on the same frame that the drink animation completes rather
-  than after a separate fixed-duration timer.
+- Drinking allows walking, running, turning, and jumping. `DrinkOneShot` uses
+  an upper-body bone filter while the base locomotion animation keeps playing:
+  `BodyUpper` and its descendants, both independent hand/finger branches,
+  `BackPack`, `Potion.L`, `Potion.R`, and `Staff`. The root, hips, legs,
+  feet, and lower robe remain driven by locomotion.
+- `PotionsManager` start/finish signals track drinking independently from
+  `canMove` and `canJump`. Attacks, new dashes, and well travel remain blocked
+  during drinking; finishing a drink does not override other movement locks
+  or grant another airborne jump.
 - Drink-completion particles are instantiated at the local origin of the
   `PotionsParticlesSystem` marker above the player and simulate in local
   coordinates, keeping the burst attached to the character instead of an
@@ -520,3 +525,6 @@ Important files:
 - 2026-09-11: Reduced the camera collision probe radius and tolerated partial
   upper-body occlusion by small outdoor props while retaining wall, ceiling,
   and local camera collision protection.
+- 2026-09-11: Allowed locomotion and jumping while drinking, with an upper-body
+  animation filter shared by left, right, and combined drinks. Drinking still
+  blocks attacks, new dashes, and well travel independently of movement.
