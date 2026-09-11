@@ -22,6 +22,8 @@
 [ext_resource type="Texture2D" uid="uid://c1uj7yr1ukpjt" path="res://scenes/level1_stylized/grass_tile.png" id="18_m8jf2"]
 [ext_resource type="Texture2D" uid="uid://it1qiy7veci7" path="res://scenes/level1_stylized/metal_01_color_2k.png" id="18_o1h0o"]
 [ext_resource type="PackedScene" uid="uid://cf47i2djfslyw" path="res://player/player.tscn" id="19_1rakf"]
+[ext_resource type="PackedScene" uid="uid://r6th50x0d2ox" path="res://scenes/level1_stylized/deathzone/lvl1_deathzone.tscn" id="23_o1h0o"]
+[ext_resource type="PackedScene" uid="uid://bbf8p4krgp531" path="res://assets/levels/levelManager.tscn" id="24_vcywg"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_diun6"]
 panorama = ExtResource("1_vlaig")
@@ -7015,3 +7017,10 @@ metadata/collision = "trimesh"
 [node name="CollisionShape3D_Crystal_New_033" type="CollisionShape3D" parent="LvL1_Stylized_Imported/StaticBody3D_Crystal_New_033" unique_id=860127173]
 transform = Transform3D(0.868303, -0.2636753, -0.4201489, 0.24283709, 0.9645344, -0.103457846, 0.43252733, -0.012194969, 0.9015384, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_u01t3")
+
+[node name="Lvl1Deathzone" parent="." unique_id=1613209038 instance=ExtResource("23_o1h0o")]
+visible = false
+collision_mask = 2
+
+[node name="LevelManager" parent="." unique_id=1194333332 instance=ExtResource("24_vcywg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.155075, 12.526886, -21.965324)

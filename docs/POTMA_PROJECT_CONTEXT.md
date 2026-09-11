@@ -319,11 +319,11 @@ Important files:
 - Do not rewrite full files unnecessarily.
 - Preserve existing architecture and variable names unless there is a clear reason to change them.
 - Ground locomotion uses `Locomotion/WalkBlend`, a 1D blend space driven at
-  runtime with `0 = Potma_Idle`, `1 = Potma_Walk`, and
-  `2 = Potma_RunPotion`. Analog stick magnitude scales movement speed and the
-  blend position: normal movement covers 0-1, while active speed sprinting
-  covers 0-2. Keyboard movement uses full input strength, and damage dashes
-  target the run point directly.
+  runtime with `0 = Potma_Idle`, `0.5 = Potma_WalkSlow`,
+  `1 = Potma_Walk`, and `2 = Potma_RunPotion`. Analog stick magnitude scales
+  movement speed and the blend position: normal movement covers 0-1, while
+  active speed sprinting covers 0-2. Keyboard movement uses full input
+  strength, and damage dashes target the run point directly.
 
 ## Current Main Autoloads
 - `SavesManager`
@@ -541,3 +541,6 @@ Important files:
 - 2026-09-11: Allowed locomotion and jumping while drinking, with an upper-body
   animation filter shared by left, right, and combined drinks. Drinking still
   blocks attacks, new dashes, and well travel independently of movement.
+- 2026-09-11: Fixed the player locomotion blend space naming and points so
+  analog movement blends idle, slow walk, walk, and speed-potion run through
+  `Locomotion/WalkBlend` instead of switching to a separate run state.

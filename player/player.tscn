@@ -152,12 +152,20 @@ animation = &"Potma_WalkSlow"
 animation = &"Potma_Walk"
 
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_5ejfk"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_2uvqg")
-blend_point_0/pos = -1.0
-blend_point_0/name = &"Potma_WalkSlow"
-blend_point_1/node = SubResource("AnimationNodeAnimation_1s1yo")
-blend_point_1/pos = 1.0
-blend_point_1/name = &"Potma_Walk"
+min_space = 0.0
+max_space = 2.0
+blend_point_0/node = SubResource("AnimationNodeAnimation_8t03j")
+blend_point_0/pos = 0.0
+blend_point_0/name = &"Potma_Idle"
+blend_point_1/node = SubResource("AnimationNodeAnimation_2uvqg")
+blend_point_1/pos = 0.5
+blend_point_1/name = &"Potma_WalkSlow"
+blend_point_2/node = SubResource("AnimationNodeAnimation_1s1yo")
+blend_point_2/pos = 1.0
+blend_point_2/name = &"Potma_Walk"
+blend_point_3/node = SubResource("AnimationNodeAnimation_kb6p2")
+blend_point_3/pos = 2.0
+blend_point_3/name = &"Potma_RunPotion"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ebec5"]
 advance_mode = 2
@@ -247,9 +255,9 @@ states/Jump/position = Vector2(502, -161)
 states/Run/node = SubResource("AnimationNodeAnimation_kb6p2")
 states/Run/position = Vector2(661, 166)
 states/Start/position = Vector2(30, 51)
-"states/Walk blend/node" = SubResource("AnimationNodeBlendSpace1D_5ejfk")
-"states/Walk blend/position" = Vector2(334, 166)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ebec5"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_c35mf"), "Fall", "Idle", SubResource("AnimationNodeStateMachineTransition_2ieo8"), "Run", "Fall", SubResource("AnimationNodeStateMachineTransition_tqiix"), "Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_yllr7"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_65viv"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_bjvpn"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_s7qer"), "Jump", "End", SubResource("AnimationNodeStateMachineTransition_g4c7l"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_knn7v"), "Walk blend", "Idle", SubResource("AnimationNodeStateMachineTransition_wodsf"), "Idle", "Walk blend", SubResource("AnimationNodeStateMachineTransition_kb6p2"), "Walk blend", "Fall", SubResource("AnimationNodeStateMachineTransition_hg6s5"), "Walk blend", "Jump", SubResource("AnimationNodeStateMachineTransition_x7c3f"), "Walk blend", "Run", SubResource("AnimationNodeStateMachineTransition_32hag"), "Run", "Walk blend", SubResource("AnimationNodeStateMachineTransition_e7oew"), "Fall", "Walk blend", SubResource("AnimationNodeStateMachineTransition_8t03j")]
+states/WalkBlend/node = SubResource("AnimationNodeBlendSpace1D_5ejfk")
+states/WalkBlend/position = Vector2(334, 166)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ebec5"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_c35mf"), "Fall", "Idle", SubResource("AnimationNodeStateMachineTransition_2ieo8"), "Run", "Fall", SubResource("AnimationNodeStateMachineTransition_tqiix"), "Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_yllr7"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_65viv"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_bjvpn"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_s7qer"), "Jump", "End", SubResource("AnimationNodeStateMachineTransition_g4c7l"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_knn7v"), "WalkBlend", "Idle", SubResource("AnimationNodeStateMachineTransition_wodsf"), "Idle", "WalkBlend", SubResource("AnimationNodeStateMachineTransition_kb6p2"), "WalkBlend", "Fall", SubResource("AnimationNodeStateMachineTransition_hg6s5"), "WalkBlend", "Jump", SubResource("AnimationNodeStateMachineTransition_x7c3f"), "Fall", "WalkBlend", SubResource("AnimationNodeStateMachineTransition_8t03j")]
 graph_offset = Vector2(90, -256.70712)
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_hg6s5"]
@@ -425,7 +433,7 @@ parameters/DrinkOneShot/request = 0
 parameters/HitOneShot/active = false
 parameters/HitOneShot/internal_active = false
 parameters/HitOneShot/request = 0
-"parameters/Locomotion/Walk blend/blend_position" = 0.0
+parameters/Locomotion/WalkBlend/blend_position = 0.0
 parameters/StaffHitOneShot/active = false
 parameters/StaffHitOneShot/internal_active = false
 parameters/StaffHitOneShot/request = 0

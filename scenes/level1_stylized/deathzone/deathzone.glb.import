@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cu5w6lchbxg2e"
-path="res://.godot/imported/deathzone.glb-5d5a0869b337c0f705bb93afbd3a2562.scn"
+path="res://.godot/imported/deathzone.glb-84f93481e5bcbb14c03c8ad2554ce90d.scn"
 
 [deps]
 
-source_file="res://scenes/level1_stylized/deathzone.glb"
-dest_files=["res://.godot/imported/deathzone.glb-5d5a0869b337c0f705bb93afbd3a2562.scn"]
+source_file="res://scenes/level1_stylized/deathzone/deathzone.glb"
+dest_files=["res://.godot/imported/deathzone.glb-84f93481e5bcbb14c03c8ad2554ce90d.scn"]
 
 [params]
 
