@@ -115,6 +115,9 @@ Current durations:
 - Drink left potion: `drinkPotionLeft`.
 - Drink right potion: `drinkPotionRight`.
 - Spit active potion: `circle`.
+- Toggle first-person inspection camera: `first_person` (controller
+  Triangle/Y). It is a look-only mode: camera rotation stays available while
+  player movement and gameplay actions are locked.
 - Toggle left potion: `toggleLeftPotion`.
 - Toggle right potion: `toggleRightPotion`.
 
@@ -144,7 +147,16 @@ Current durations:
   the camera inside a small prop.
 - `preferredDistance`, `collisionLookAhead`, `collisionApproachSpeed`, and
   `collisionRecoverySpeed` are exported tuning values on `CameraPivot`.
+- `minPitchDegrees` and `maxPitchDegrees` tune vertical look limits on
+  `CameraPivot`; defaults allow looking almost straight upward and downward without
+  rolling the camera over.
 - `obstructionWidth` and `obstructionHeight` tune the visible upper-body region.
+- Pressing `first_person` toggles a first-person inspection view from the
+  player's camera pivot. While active, the player rig is hidden locally to avoid
+  clipping into the character model, third-person collision zoom is bypassed,
+  and `MainPlayer.is_gameplay_input_locked()` returns true so only camera
+  rotation remains controllable. Pressing `first_person` again restores the
+  normal third-person camera and rig visibility.
 
 ## Pause Menu And Settings
 - The primary pause screen opened with `start` shares the settings screen's
@@ -544,3 +556,8 @@ Important files:
 - 2026-09-11: Fixed the player locomotion blend space naming and points so
   analog movement blends idle, slow walk, walk, and speed-potion run through
   `Locomotion/WalkBlend` instead of switching to a separate run state.
+- 2026-09-11: Added the `first_person` Triangle/Y toggle for a first-person
+  inspection camera. The mode hides the local player rig, keeps camera look
+  input active, and locks movement/gameplay actions until toggled off.
+- 2026-09-11: Expanded vertical camera pitch limits and exposed them on
+  `CameraPivot` so first-person inspection can look up into interiors.

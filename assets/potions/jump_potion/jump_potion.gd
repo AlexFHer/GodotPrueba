@@ -23,3 +23,4 @@ func _remove_collision() -> void:
 
 func _remove_model() -> void:
 	potionModel.queue_free()
+
