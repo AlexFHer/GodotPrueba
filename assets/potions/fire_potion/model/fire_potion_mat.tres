@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b1nug7c6lt2vb"]
+
+[ext_resource type="Texture2D" uid="uid://bsaby2vobj732" path="res://assets/potions/fire_potion/model/fire_potion_label.jpeg" id="1_6cwcg"]
+
+[resource]
+albedo_texture = ExtResource("1_6cwcg")
