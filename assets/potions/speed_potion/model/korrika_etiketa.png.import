@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxascs40x5oel"
-path.s3tc="res://.godot/imported/PjBUIr3.png-2cf5ad9977540a70a018d2ed47c80600.s3tc.ctex"
+uid="uid://br1hxagf76s7m"
+path.s3tc="res://.godot/imported/korrika_etiketa.png-448922e2fe0fee8975ff313b6aca4418.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Materials/Skybox/PjBUIr3.png"
-dest_files=["res://.godot/imported/PjBUIr3.png-2cf5ad9977540a70a018d2ed47c80600.s3tc.ctex"]
+source_file="res://assets/potions/speed_potion/model/korrika_etiketa.png"
+dest_files=["res://.godot/imported/korrika_etiketa.png-448922e2fe0fee8975ff313b6aca4418.s3tc.ctex"]
 
 [params]
 
