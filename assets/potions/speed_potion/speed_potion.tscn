@@ -7,6 +7,7 @@
 [ext_resource type="Material" uid="uid://bmh8b3mi0y00v" path="res://assets/gdquest/potis/Glass_Poti.material" id="4_vv2yq"]
 [ext_resource type="Shader" uid="uid://b4fb1onaapql5" path="res://assets/gdquest/potis/stylized_liquid_Potma.gdshader" id="5_68g7o"]
 [ext_resource type="Script" uid="uid://bwukxnfmnemyv" path="res://assets/gdquest/potis/LiquidWobble_Potma.gd" id="6_xm7mr"]
+[ext_resource type="Texture2D" uid="uid://br1hxagf76s7m" path="res://assets/potions/speed_potion/model/korrika_etiketa.png" id="7_vv2yq"]
 
 [sub_resource type="Gradient" id="Gradient_0fad3"]
 colors = PackedColorArray(0.030833304, 0.37, 0, 1, 0, 0.77, 0.46199992, 1)
@@ -66,6 +67,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_8plts")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rhqv1"]
+albedo_texture = ExtResource("7_vv2yq")
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rfo5y"]
 radius = 0.490874
 height = 0.981748
@@ -86,13 +90,16 @@ visible = false
 [node name="PotiOverworldRun" parent="Model" unique_id=700607690 instance=ExtResource("3_6nvei")]
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0.80228066, 0)
 
-[node name="BottlePotion" parent="Model/PotiOverworldRun" index="0" unique_id=1794950453]
+[node name="BottlePotion" parent="Model/PotiOverworldRun" index="0" unique_id=798149710]
 material_override = ExtResource("4_vv2yq")
 
-[node name="BottleLiquid" parent="Model/PotiOverworldRun/BottlePotion" index="0" unique_id=202898637]
+[node name="BottleLiquid" parent="Model/PotiOverworldRun/BottlePotion" index="0" unique_id=1842079514]
 material_override = SubResource("ShaderMaterial_b6s7r")
 mesh = SubResource("ArrayMesh_l6hfc")
 script = ExtResource("6_xm7mr")
+
+[node name="BottleLabel" parent="Model/PotiOverworldRun" index="2" unique_id=1768407392]
+material_override = SubResource("StandardMaterial3D_rhqv1")
 
 [node name="PotionCollision" type="CollisionShape3D" parent="." unique_id=832515174]
 unique_name_in_owner = true
