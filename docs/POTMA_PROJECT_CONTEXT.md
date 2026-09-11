@@ -115,6 +115,9 @@ Current durations:
 - Drink left potion: `drinkPotionLeft`.
 - Drink right potion: `drinkPotionRight`.
 - Spit active potion: `circle`.
+- Toggle first-person inspection camera: `first_person` (controller
+  Triangle/Y). It is a look-only mode: camera rotation stays available while
+  player movement and gameplay actions are locked.
 - Toggle left potion: `toggleLeftPotion`.
 - Toggle right potion: `toggleRightPotion`.
 
@@ -144,7 +147,16 @@ Current durations:
   the camera inside a small prop.
 - `preferredDistance`, `collisionLookAhead`, `collisionApproachSpeed`, and
   `collisionRecoverySpeed` are exported tuning values on `CameraPivot`.
+- `minPitchDegrees` and `maxPitchDegrees` tune vertical look limits on
+  `CameraPivot`; defaults allow looking almost straight upward and downward without
+  rolling the camera over.
 - `obstructionWidth` and `obstructionHeight` tune the visible upper-body region.
+- Pressing `first_person` toggles a first-person inspection view from the
+  player's camera pivot. While active, the player rig is hidden locally to avoid
+  clipping into the character model, third-person collision zoom is bypassed,
+  and `MainPlayer.is_gameplay_input_locked()` returns true so only camera
+  rotation remains controllable. Pressing `first_person` again restores the
+  normal third-person camera and rig visibility.
 
 ## Pause Menu And Settings
 - The primary pause screen opened with `start` shares the settings screen's
@@ -295,12 +307,18 @@ Potion effect colors:
 - `Fire`: red.
 - `Jump`: blue.
 - `Speed`: green.
-- `JumpAndFire`: purple.
-- `JumpAndSpeed`: cyan.
-- `SpeedAndFire`: orange.
+- `JumpAndFire`: blue base with moving red lava blobs on the outfit.
+- `JumpAndSpeed`: blue base with moving green lava blobs on the outfit.
+- `SpeedAndFire`: green base with moving red lava blobs on the outfit.
+- Combined outfit effects use rounded merging UV-space blobs, restricted by the
+  existing clothing mask and duration drain. Animation uses elapsed potion time
+  so it freezes during pause; single potions remain solid colors. Base/blob
+  ordering is fixed per combination regardless of the ingredient slots.
 
 The shared potion color palette is provided by `PotionsConfig` and is used by
-both active body feedback and the belt bottle liquids.
+both active body feedback and the belt bottle liquids. Combined outfit feedback
+uses the two ingredient colors; the shared purple/cyan/orange combination palette
+remains available for other visuals.
 
 Important files:
 - `player/scripts/player-model-manager.gd`
@@ -544,3 +562,8 @@ Important files:
 - 2026-09-11: Fixed the player locomotion blend space naming and points so
   analog movement blends idle, slow walk, walk, and speed-potion run through
   `Locomotion/WalkBlend` instead of switching to a separate run state.
+- 2026-09-11: Added the `first_person` Triangle/Y toggle for a first-person
+  inspection camera. The mode hides the local player rig, keeps camera look
+  input active, and locks movement/gameplay actions until toggled off.
+- 2026-09-11: Expanded vertical camera pitch limits and exposed them on
+  `CameraPivot` so first-person inspection can look up into interiors.

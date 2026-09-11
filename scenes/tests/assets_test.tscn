@@ -377,6 +377,15 @@ destination = NodePath("../Teleport")
 [node name="Plane" parent="Teleport2/well_Imported" parent_id_path=PackedInt32Array(149933109, 424706114) index="2" unique_id=1652307758]
 material_override = SubResource("ShaderMaterial_yfmgk")
 
+[node name="Fire-potion" parent="." unique_id=1103179316 instance=ExtResource("5_la3k2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0245912, 1.392396, 21.46893)
+
+[node name="Jump-potion" parent="." unique_id=926078349 instance=ExtResource("6_ifow6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7869273, 0.8577516, 21.383196)
+
+[node name="Speed-potion" parent="." unique_id=347981343 instance=ExtResource("7_ifow6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7433167, 0.5601463, 21.214924)
+
 [connection signal="all_arcs_active" from="Assets/ArcsPuzzles/ArcMagicChestPuzzle/ArcPuzzle" to="Assets/ArcsPuzzles/ArcMagicChestPuzzle/MagicChest" method="deactivate_force_field"]
 [connection signal="all_fire_towers_active" from="Assets/FireTowers/Puzzle" to="Assets/FireTowers/secret_tower" method="activate_secret_tower"]
 [connection signal="active_changed" from="Castle_Lever" to="Assets/Castle door/CastleDoor" method="open_door"]

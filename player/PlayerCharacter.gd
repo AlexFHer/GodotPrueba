@@ -8,6 +8,7 @@ enum AttackInterruptionReason {
 
 @onready var _rig: Node3D = $Rig;
 @onready var _camera: Camera3D = %MainCharacterCamera;
+@onready var _camera_pivot: Node = $CameraPivot;
 
 @onready var animation_player: AnimationPlayer = $Rig/Armature/Potma/AnimationPlayer
 @onready var animation_tree: AnimationTree = $Rig/PlayerAnimationTree
@@ -489,11 +490,21 @@ func get_to_checkpoint() -> void:
 func is_gameplay_input_locked() -> bool:
 	if is_teleporting():
 		return true
+	if _is_first_person_camera_active():
+		return true
 	if not is_instance_valid(_dialogue_controller):
 		_dialogue_controller = get_tree().get_first_node_in_group(&"dialogue_controller")
 	if _dialogue_controller == null or not _dialogue_controller.has_method(&"is_consuming_gameplay_input"):
 		return false
 	return bool(_dialogue_controller.call(&"is_consuming_gameplay_input"))
+
+
+func _is_first_person_camera_active() -> bool:
+	return (
+		_camera_pivot != null
+		and _camera_pivot.has_method(&"is_first_person_active")
+		and bool(_camera_pivot.call(&"is_first_person_active"))
+	)
 
 
 func is_teleporting() -> bool:
