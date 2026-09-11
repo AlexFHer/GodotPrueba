@@ -359,6 +359,12 @@ Important files:
 - `GameSettings`
 
 ## Collectibles And World Objects
+- `scenes/level1_stylized/breakable_wall/breakable_wall.tscn` accepts three
+  `CanGetHit` impacts through the existing combat interface. Nonlethal hits
+  shake only its mesh; the third hides it and disables collision. Faceted rock
+  fragments and soft scalloped dust emit from sampled mesh triangles (the
+  imported wall retains map-space vertex offsets), then clean up after two
+  seconds. Destruction is session-only and does not add save persistence.
 - The collectibles HUD shows three baby portraits instead of a numeric baby
   count. Slots fill left to right from the level's currentBabys, including saved
   progress, using baby_hud_icon_not_taken.png and baby_hud_icon.png with matching

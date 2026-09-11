@@ -1,0 +1,68 @@
+[gd_scene format=4 uid="uid://bdt3prgy3iqxp"]
+
+[ext_resource type="Texture2D" uid="uid://cws37u1lau21l" path="res://scenes/level1_stylized/cliff_rocks_05__baseColor_4k_Red_Crack.png" id="1_ga17u"]
+[ext_resource type="Script" path="res://scenes/level1_stylized/breakable_wall/breakable_wall.gd" id="2_wall"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_if66n"]
+resource_name = "Wall_Cracked"
+cull_mode = 2
+albedo_texture = ExtResource("1_ga17u")
+roughness = 0.5
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ks5ob"]
+_surfaces = [{
+"aabb": AABB(-79.56869, -0.3546351, 44.542053, 25.879097, 14.234764, 24.681946),
+"format": 34896613377,
+"index_count": 48,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAAAAIABAACAAUABgAAAAQABgAHAAAABwADAAAABwAIAAMACQAKAAsACQAMAAoADQAJAAsADQALAA4ADwAJAA0ADwAQAAkAEAAMAAkAEAARAAwA"),
+"name": "Wall_Cracked",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 18,
+"vertex_data": PackedByteArray("1rsvhNVQAAC0bHLXcA4AAEZ5iYBECgAAgLIB8fhZAAACwe4QwUsAAEyBsRsAAAAA//9KBqeWAAAq+fiF+5oAANjw///YnAAA2Tcbf0PAAAATZNIB/vgAANw3AAAxvAAAxnJufn78AABUAJ9+loAAAKkAIAGLigAAAAAd/KB2AAA5Rhr6vLUAAHiBCfv//wAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_yssbn"]
+resource_name = "LvL1_Stylized_Retopo_Base1_003"
+_surfaces = [{
+"aabb": AABB(-79.56869, -0.3546351, 44.542053, 25.879097, 14.234764, 24.681946),
+"attribute_data": PackedByteArray("/////12j9MYAAP///////9DlJZkAAP///////6LqbsYAAP////////igA5QAAP///////8Ol5PkAAP///////3Pvt/MAAP///////+hc//8AAP///////+hcd8cAAP///////+hc8I4AAP///////9hSe2AAAP///////5akI5kAAP///////89SuZ8AAP///////yylDWAAAP///////4QA6WAAAP///////wkBUKYAAP///////wAAgxsAAP///////+FSPSEAAP///////8Ol9yYAAP//"),
+"format": 34896613439,
+"index_count": 48,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAAAAIABAACAAUABgAAAAQABgAHAAAABwADAAAABwAIAAMACQAKAAsACQAMAAoADQAJAAsADQALAA4ADwAJAA0ADwAQAAkAEAAMAAkAEAARAAwA"),
+"material": SubResource("StandardMaterial3D_if66n"),
+"name": "Wall_Cracked",
+"primitive": 3,
+"uv_scale": Vector4(2.397851, 2.9311023, 0, 2),
+"vertex_count": 18,
+"vertex_data": PackedByteArray("1rsvhNVQ/Oe0bHLXcA6E4UZ5iYBECjHtgLIB8fhZzd0Cwe4QwUtp3kyBsRsAAMnj//9KBqeWf9sq+fiF+5rg2tjw///YnL7e2Tcbf0PA2qATZNIB/vi9nNw3AAAxvA+fxnJufn78RptUAJ9+loCHoKkAIAGLioigAAAd/KB27KA5Rhr6vLUioniBCfv//0GhU46mBh+aywnOhssD0pfyCAqG8gJVe+QOkYRNAvyONgW2k7cGGn6I/X9yNPHKaVzqWJEx6cKKwuwWcJLnrJao48aYxOPBmu/i")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_ks5ob")
+metadata/extras = {
+"uvflow": {
+"last_uv_layer_count": 1.0,
+"last_uv_layer_index": 0.0,
+"last_uv_layer_name": "UVMap"
+}
+}
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_vyigi"]
+data = PackedVector3Array(-60.579998, 6.9954996, 52.3355, -68.5797, 11.625299, 45.934, -67.3089, 6.7925997, 45.5318, -60.579998, 6.9954996, 52.3355, -61.5238, 13.046499, 53.2164, -68.5797, 11.625299, 45.934, -60.057198, 0.58669996, 51.845898, -60.579998, 6.9954996, 52.3355, -67.3089, 6.7925997, 45.5318, -60.057198, 0.58669996, 51.845898, -67.3089, 6.7925997, 45.5318, -66.497795, 1.1852, 44.5421, -53.689598, -0.0049, 59.0673, -60.579998, 6.9954996, 52.3355, -60.057198, 0.58669996, 51.845898, -53.689598, -0.0049, 59.0673, -54.3803, 7.0948, 59.484497, -60.579998, 6.9954996, 52.3355, -54.3803, 7.0948, 59.484497, -61.5238, 13.046499, 53.2164, -60.579998, 6.9954996, 52.3355, -54.3803, 7.0948, 59.484497, -55.221397, 13.880099, 59.6642, -61.5238, 13.046499, 53.2164, -73.923, 6.7131, 63.079, -69.451996, -0.2534, 68.5487, -73.9218, -0.35459998, 62.6866, -73.923, 6.7131, 63.079, -67.965996, 6.6755, 68.8862, -69.451996, -0.2534, 68.5487, -79.5355, 6.6861997, 56.939697, -73.923, 6.7131, 63.079, -73.9218, -0.35459998, 62.6866, -79.5355, 6.6861997, 56.939697, -73.9218, -0.35459998, 62.6866, -79.502, -0.29209998, 57.8997, -79.568695, 13.6642, 55.979298, -73.923, 6.7131, 63.079, -79.5355, 6.6861997, 56.939697, -79.568695, 13.6642, 55.979298, -72.469795, 13.5524, 62.064, -73.923, 6.7131, 63.079, -72.469795, 13.5524, 62.064, -67.965996, 6.6755, 68.8862, -73.923, 6.7131, 63.079, -72.469795, 13.5524, 62.064, -66.4805, 13.6043, 69.224, -67.965996, 6.6755, 68.8862)
+
+[node name="StaticBody3D_Breakable_Wall" type="StaticBody3D" unique_id=936955515 groups=["CanGetHit"]]
+script = ExtResource("2_wall")
+
+[node name="Breakable_Wall" type="MeshInstance3D" parent="." unique_id=1212596076]
+mesh = SubResource("ArrayMesh_yssbn")
+skeleton = NodePath("")
+metadata/extras = {
+"collision": "trimesh"
+}
+metadata/uvflow = "{ \"last_uv_layer_count\": 1.0, \"last_uv_layer_index\": 0.0, \"last_uv_layer_name\": \"UVMap\" }"
+metadata/collision = "trimesh"
+
+[node name="CollisionShape3D_Breakable_Wall" type="CollisionShape3D" parent="." unique_id=2105615044]
+shape = SubResource("ConcavePolygonShape3D_vyigi")
