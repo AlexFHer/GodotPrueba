@@ -496,6 +496,21 @@ Important files:
   is left at `Vector3.ZERO`, the player initializes it from their actual level
   spawn position on `_ready()`, so death zones return to the authored spawn by
   default.
+- Globrc Big and Globrc Small avoid instant attacks: they must face the player
+  within a small angle and complete a short attack windup before firing their
+  melee/ground-slam attack. Exported windup, facing-angle, and turn-speed values
+  tune the feel per enemy.
+- Globrc Small initializes combat timers and disables its weapon hitbox even
+  when no patrol points are assigned. Patrol-less small globrcs idle until they
+  detect the player, then face the target directly while chasing/attacking to
+  avoid spiraling around the player.
+- Globrc Big death is no longer dependent on an animation callback: death locks
+  combat, disables collision, plays the die state, hides the rig after a short
+  delay, emits the shared death particle burst, and frees when the burst ends.
+  Globrc Small uses the same shared death burst after its death delay.
+- `assets/enemies/particles/death_particles.tscn` is the shared enemy death
+  smoke burst, tuned as a warmer, fuller one-shot plume with more particles,
+  upward spread, damping, and fade-out.
 - Globrc Big waits a random 1.0-1.6 seconds after each attack finishes before
   attacking again if the player remains in attack range. Inspector properties
   `attack_cooldown_min` and `attack_cooldown_max` tune this pause; it follows
@@ -611,3 +626,6 @@ Important files:
 - 2026-09-12: Checkpoint respawn now treats `MainPlayer.checkpoint` as
   world-space and initializes it from the player's authored spawn when left at
   `Vector3.ZERO`.
+- 2026-09-12: Smoothed Globrc Big/Small attack entry with facing checks and
+  short windups, fixed patrol-less Globrc Small initialization/turning, and made
+  enemy death bursts drive cleanup reliably with an improved shared smoke plume.

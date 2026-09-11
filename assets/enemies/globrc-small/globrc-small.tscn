@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d0y71oajl8iqn" path="res://assets/enemies/globrc-small/globrc-small.gd" id="1_3rf8u"]
 [ext_resource type="PackedScene" uid="uid://cpnbng5cyexv7" path="res://assets/enemies/globrc-small/rig/Globrc_Thin.glb" id="2_c4b4g"]
+[ext_resource type="PackedScene" uid="uid://d20rvm6enu1n3" path="res://assets/enemies/particles/death_particles.tscn" id="3_death"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3rf8u"]
 animation = &"GT_Attack"
@@ -143,6 +144,9 @@ shape = SubResource("CapsuleShape3D_3rf8u")
 [node name="canAttackTimer" type="Timer" parent="." unique_id=1183463915]
 wait_time = 2.0
 one_shot = true
+
+[node name="DeathParticles" parent="." instance=ExtResource("3_death")]
+unique_name_in_owner = true
 
 [connection signal="body_entered" from="Rig/PlayerSearchArea" to="." method="_on_player_search_area_body_entered"]
 [connection signal="body_exited" from="Rig/PlayerSearchArea" to="." method="_on_player_search_area_body_exited"]

@@ -26,6 +26,6 @@ func rotate_rig_to_velocity(rig: Node3D, delta: float, rotation_sensitivity: flo
 	if rig == null:
 		return
 
-	if velocity.length() > 0:
+	if velocity.length_squared() > 0.001:
 		var target_angle := Vector3.BACK.signed_angle_to(velocity, Vector3.UP)
-		rig.global_rotation.y = lerp_angle(rig.rotation.y, target_angle, rotation_sensitivity * delta)
+		rig.global_rotation.y = lerp_angle(rig.global_rotation.y, target_angle, rotation_sensitivity * delta)
