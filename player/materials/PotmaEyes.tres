@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://wr3iuoubwxii"]
+
+[ext_resource type="Texture2D" uid="uid://dkclt260pkyfg" path="res://player/rig/Potma2_Happy.png" id="1_nosyg"]
+
+[resource]
+resource_name = "PotmaEyes"
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("1_nosyg")

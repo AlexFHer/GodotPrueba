@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://wcf4vuis307a"]
+
+[ext_resource type="Texture2D" uid="uid://bp6miptiw1eik" path="res://player/rig/Potma2_PotmaMat_Base_color.png" id="1_qrriu"]
+
+[resource]
+resource_name = "PotmaMat"
+cull_mode = 2
+albedo_texture = ExtResource("1_qrriu")

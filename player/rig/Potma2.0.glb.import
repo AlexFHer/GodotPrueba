@@ -22657,6 +22657,18 @@ _subresources={
 "slice_99/start_frame": 0,
 "slices/amount": 0
 }
+},
+"materials": {
+"PotmaEyes": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://player/materials/PotmaEyes.tres",
+"use_external/path": "uid://wr3iuoubwxii"
+},
+"PotmaMat": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://player/materials/PotmaMat.tres",
+"use_external/path": "uid://wcf4vuis307a"
+}
 }
 }
 gltf/naming_version=2

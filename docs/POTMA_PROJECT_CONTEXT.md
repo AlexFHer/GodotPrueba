@@ -277,6 +277,10 @@ Important files:
 - Combined abilities that include fire should not automatically behave like plain `Fire`.
 - Damage dash and damaging second jump use the player's `AbilityDamageArea`.
 - Ability contact damage should only be active during the intended ability window.
+- `JumpAndFire` second jump and the dash ability start
+  `player/particles/fire_ability_aura.tscn`, a stylized local fire aura with
+  noisy cartoon flames, wisps, sparks, and warm light that wraps the protagonist
+  while the ability damage window is active.
 
 ## Potion Visual Feedback
 - Active potions should be visually readable on the protagonist.

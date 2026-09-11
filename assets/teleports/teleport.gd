@@ -7,7 +7,7 @@ const TRAVEL_SCRIPT = preload("res://assets/teleports/teleport_travel.gd")
 @export_range(0.0, 6.0) var source_hold: float = 2.0
 @export_range(0.0, 3.0) var destination_hold: float = 0.35
 @export_range(0.2, 3.0) var jump_duration: float = 1.0
-@export_range(0.2, 5.0) var jump_height: float = 2.0
+@export_range(0.2, 5.0) var jump_height: float = 3.0
 @export_range(0.0, 3.0) var landing_hold: float = 0.3
 
 @onready var camera: Camera3D = $TeleportCamera

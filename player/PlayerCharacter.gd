@@ -17,6 +17,7 @@ enum AttackInterruptionReason {
 
 @export var checkpoint: Vector3 = Vector3.ZERO
 
+const FIRE_ABILITY_AURA_SCENE := preload("res://player/particles/fire_ability_aura.tscn")
 const JUMP_FORCE := 13.0;
 const MEGA_JUMP_MULTIPLIER := 2.5;
 const DOUBLE_JUMP_FORCE := 14.0;
@@ -74,6 +75,7 @@ var dashReady := true;
 var dashDirection := Vector3.FORWARD;
 var damagedByAbility: Array[Node] = [];
 var _potion_effect_generation := 0
+var _fire_ability_aura: FireAbilityAura
 
 func _init() -> void:
 	PlayerPotions.potionUsed.connect(_on_potion_used);
@@ -81,6 +83,8 @@ func _init() -> void:
 
 func _ready() -> void:
 	_set_ability_damage_enabled(false)
+	_fire_ability_aura = FIRE_ABILITY_AURA_SCENE.instantiate() as FireAbilityAura
+	add_child(_fire_ability_aura)
 
 func jump() -> void:
 	potmaSounds.jumpSoundAudioStream.play();
@@ -120,6 +124,7 @@ func deactivateDash() -> void:
 	isDashing = false;
 	dashReady = true;
 	_set_ability_damage_enabled(false);
+	_stop_fire_ability_aura_if_unused();
 
 func enableJump() -> void:
 	canJump = true;
@@ -359,10 +364,12 @@ func _start_dash() -> void:
 	print("Dash started")
 	animation_tree.set("parameters/Dash/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	_set_ability_damage_enabled(true);
+	_start_fire_ability_aura();
 
 	await get_tree().create_timer(DASH_DURATION_SECONDS, false).timeout
 	isDashing = false;
 	_set_ability_damage_enabled(false);
+	_stop_fire_ability_aura_if_unused();
 
 	await get_tree().create_timer(DASH_COOLDOWN_SECONDS, false).timeout
 	dashReady = true;
@@ -383,11 +390,13 @@ func _start_second_jump_damage() -> void:
 		return
 	isSecondJumpDamageActive = true;
 	_set_ability_damage_enabled(true);
+	_start_fire_ability_aura();
 
 func _stop_second_jump_damage() -> void:
 	isSecondJumpDamageActive = false;
 	if not isDashing:
 		_set_ability_damage_enabled(false);
+	_stop_fire_ability_aura_if_unused();
 
 func _set_ability_damage_enabled(enabled: bool) -> void:
 	if enabled:
@@ -397,6 +406,20 @@ func _set_ability_damage_enabled(enabled: bool) -> void:
 	_ability_damage_area.monitorable = enabled
 	if enabled:
 		call_deferred("_damage_current_ability_overlaps")
+
+func _start_fire_ability_aura() -> void:
+	if _fire_ability_aura != null:
+		_fire_ability_aura.start()
+
+func _stop_fire_ability_aura_if_unused() -> void:
+	if isDashing or isSecondJumpDamageActive:
+		return
+	if _fire_ability_aura != null:
+		_fire_ability_aura.stop()
+
+func _stop_fire_ability_aura_immediate() -> void:
+	if _fire_ability_aura != null:
+		_fire_ability_aura.stop_immediate()
 
 func _damage_current_ability_overlaps() -> void:
 	if not isDashing and not isSecondJumpDamageActive:
@@ -530,3 +553,4 @@ func _cancel_dialogue_incompatible_actions() -> void:
 	_locomotion_blend_position = LOCOMOTION_IDLE_BLEND
 	animation_tree.set(LOCOMOTION_BLEND_POSITION, LOCOMOTION_IDLE_BLEND)
 	_set_ability_damage_enabled(false)
+	_stop_fire_ability_aura_immediate()

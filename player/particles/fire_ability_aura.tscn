@@ -1,0 +1,183 @@
+[gd_scene load_steps=22 format=3 uid="uid://bfrxdyfdasq1o"]
+
+[ext_resource type="Script" path="res://player/particles/fire_ability_aura.gd" id="1_fire_aura_script"]
+[ext_resource type="Shader" uid="uid://dbj14jieea1if" path="res://assets/gdquest/fire/stylized_fire_Potma.gdshader" id="2_fire_shader"]
+[ext_resource type="Texture2D" uid="uid://8wcxdw1ubotp" path="res://assets/gdquest/fire/StylizedFirePotma/HoleNoise.png" id="3_hole_noise"]
+[ext_resource type="Texture2D" uid="uid://dnf4dk8ref773" path="res://assets/gdquest/fire/StylizedFirePotma/FireMask.png" id="4_fire_mask"]
+[ext_resource type="Texture2D" uid="uid://bjje4av7t5r67" path="res://assets/particles/kenney_particles/spark_05.png" id="5_spark"]
+[ext_resource type="Texture2D" uid="uid://4i4c1ngb572o" path="res://assets/particles/kenney_particles/twirl_01.png" id="6_twirl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_stylized_flame"]
+render_priority = 1
+shader = ExtResource("2_fire_shader")
+shader_parameter/noise_texture = ExtResource("3_hole_noise")
+shader_parameter/texture_mask = ExtResource("4_fire_mask")
+shader_parameter/emission_intensity = 1.8
+shader_parameter/time_scale = 3.4
+shader_parameter/texture_scale = Vector2(2.4, 1.2)
+shader_parameter/edge_softness = 0.16
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_spark"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.86, 0.24, 0.88)
+albedo_texture = ExtResource("5_spark")
+billboard_mode = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wisp"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.28, 0.02, 0.36)
+albedo_texture = ExtResource("6_twirl")
+billboard_mode = 3
+
+[sub_resource type="Gradient" id="Gradient_flame"]
+offsets = PackedFloat32Array(0, 0.22, 0.58, 1)
+colors = PackedColorArray(1, 0.92, 0.26, 0.0, 1, 0.72, 0.1, 1, 1, 0.22, 0.02, 0.72, 0.22, 0.0, 0.0, 0.0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_flame"]
+gradient = SubResource("Gradient_flame")
+
+[sub_resource type="Curve" id="Curve_flame_scale"]
+_data = [Vector2(0, 0.05), 0.0, 2.5, 0, 0, Vector2(0.32, 1), 0.0, 0.0, 0, 0, Vector2(0.72, 0.62), 0.0, 0.0, 0, 0, Vector2(1, 0.0), -2.4, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_flame_scale"]
+curve = SubResource("Curve_flame_scale")
+
+[sub_resource type="Curve" id="Curve_spark_scale"]
+_data = [Vector2(0, 0.0), 0.0, 0.0, 0, 0, Vector2(0.18, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_spark_scale"]
+curve = SubResource("Curve_spark_scale")
+
+[sub_resource type="Curve" id="Curve_wisp_scale"]
+_data = [Vector2(0, 0.0), 0.0, 1.8, 0, 0, Vector2(0.42, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0), -1.2, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_wisp_scale"]
+curve = SubResource("Curve_wisp_scale")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_body_flames"]
+lifetime_randomness = 0.22
+emission_shape = 3
+emission_box_extents = Vector3(0.7, 0.95, 0.7)
+direction = Vector3(0, 1, 0)
+spread = 34.0
+initial_velocity_min = 0.55
+initial_velocity_max = 1.35
+gravity = Vector3(0, 1.25, 0)
+angular_velocity_min = -95.0
+angular_velocity_max = 95.0
+linear_accel_min = 0.2
+linear_accel_max = 0.85
+radial_accel_min = -0.95
+radial_accel_max = 0.18
+tangent_accel_min = -1.6
+tangent_accel_max = 1.6
+damping_min = 0.05
+damping_max = 0.28
+scale_min = 0.52
+scale_max = 1.05
+scale_curve = SubResource("CurveTexture_flame_scale")
+color_ramp = SubResource("GradientTexture1D_flame")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_orbit_sparks"]
+lifetime_randomness = 0.42
+emission_shape = 3
+emission_box_extents = Vector3(0.86, 0.8, 0.86)
+direction = Vector3(0, 1, 0)
+spread = 80.0
+initial_velocity_min = 0.65
+initial_velocity_max = 2.75
+gravity = Vector3(0, 0.65, 0)
+angular_velocity_min = -280.0
+angular_velocity_max = 280.0
+tangent_accel_min = -9.0
+tangent_accel_max = 9.0
+damping_min = 0.2
+damping_max = 0.7
+scale_min = 0.1
+scale_max = 0.28
+scale_curve = SubResource("CurveTexture_spark_scale")
+color_ramp = SubResource("GradientTexture1D_flame")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fire_wisps"]
+lifetime_randomness = 0.36
+emission_shape = 3
+emission_box_extents = Vector3(0.78, 0.86, 0.78)
+direction = Vector3(0, 1, 0)
+spread = 18.0
+initial_velocity_min = 0.25
+initial_velocity_max = 0.75
+gravity = Vector3(0, 0.35, 0)
+angular_velocity_min = -135.0
+angular_velocity_max = 135.0
+tangent_accel_min = -4.8
+tangent_accel_max = 4.8
+damping_min = 0.02
+damping_max = 0.18
+scale_min = 0.7
+scale_max = 1.35
+scale_curve = SubResource("CurveTexture_wisp_scale")
+color_ramp = SubResource("GradientTexture1D_flame")
+
+[sub_resource type="QuadMesh" id="QuadMesh_flame"]
+size = Vector2(0.56, 0.76)
+
+[sub_resource type="QuadMesh" id="QuadMesh_spark"]
+size = Vector2(0.22, 0.22)
+
+[sub_resource type="QuadMesh" id="QuadMesh_wisp"]
+size = Vector2(0.62, 0.62)
+
+[node name="FireAbilityAura" type="Node3D"]
+script = ExtResource("1_fire_aura_script")
+
+[node name="BodyStylizedFlames" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78, 0)
+material_override = SubResource("ShaderMaterial_stylized_flame")
+cast_shadow = 0
+emitting = false
+amount = 42
+lifetime = 0.52
+randomness = 0.78
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_body_flames")
+draw_pass_1 = SubResource("QuadMesh_flame")
+
+[node name="FireWisps" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.86, 0)
+material_override = SubResource("StandardMaterial3D_wisp")
+cast_shadow = 0
+emitting = false
+amount = 16
+lifetime = 0.7
+randomness = 0.82
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_fire_wisps")
+draw_pass_1 = SubResource("QuadMesh_wisp")
+
+[node name="OrbitSparks" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.88, 0)
+material_override = SubResource("StandardMaterial3D_spark")
+cast_shadow = 0
+emitting = false
+amount = 24
+lifetime = 0.42
+randomness = 0.85
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_orbit_sparks")
+draw_pass_1 = SubResource("QuadMesh_spark")
+
+[node name="WarmFireLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02, 0)
+visible = false
+light_color = Color(1, 0.52, 0.16, 1)
+light_energy = 0.58
+omni_range = 2.05
