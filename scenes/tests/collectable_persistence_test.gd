@@ -78,7 +78,9 @@ func _run() -> void:
 	check(ledger.get_total("test_b", "mithril") == 1, "Level B total must stay separate")
 	check(a.get_node("Level").levelCollectables.currentMithrils == 25, "HUD snapshot restores total")
 	check(a.get_node("Level").inGameCollectablesUiControl.book_icon.visible, "HUD restores book icon")
-	check(a.get_node("Level").inGameCollectablesUiControl.baby_count_label.text == "1", "Baby HUD count restores")
+	var baby_ui = a.get_node("Level").inGameCollectablesUiControl
+	for index in range(3):
+		check(baby_ui.baby_icons[index].texture == (baby_ui.baby_taken_texture if index == 0 else baby_ui.baby_not_taken_texture), "Baby HUD slots restore")
 	check(a.get_node("Level").inGameCollectablesUiControl.shard_count_label.text == "1", "Shard HUD count restores")
 	check(ledger.get_total("test_b", "baby") == 0, "Baby is level-specific")
 	check(ledger.get_total("test_b", "shard") == 0, "Shard is level-specific")

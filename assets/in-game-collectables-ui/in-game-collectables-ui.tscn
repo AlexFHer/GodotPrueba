@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bcugk5tgimuv4"]
+[gd_scene load_steps=10 format=3 uid="uid://bcugk5tgimuv4"]
 
 [ext_resource type="Script" path="res://assets/in-game-collectables-ui/in-game-collectables-ui.gd" id="1"]
 [ext_resource type="Texture2D" path="res://assets/collectable/mythril/Mythrill_Icon.png" id="2"]
@@ -6,9 +6,14 @@
 [ext_resource type="Texture2D" path="res://assets/collectable/babys/baby_hud_icon.png" id="4"]
 [ext_resource type="Texture2D" path="res://assets/collectable/magic_fragment/ui/magic_shard_icon.png" id="5"]
 [ext_resource type="Texture2D" path="res://assets/key/Key_Icon.png" id="6"]
+[ext_resource type="Texture2D" path="res://assets/collectable/babys/baby_hud_icon_not_taken.png" id="7"]
 
 [sub_resource type="AtlasTexture" id="BabyPortrait"]
 atlas = ExtResource("4")
+region = Rect2(440, 60, 1250, 960)
+
+[sub_resource type="AtlasTexture" id="BabyNotTakenPortrait"]
+atlas = ExtResource("7")
 region = Rect2(440, 60, 1250, 960)
 
 [node name="In game collectables UI" type="Control"]
@@ -20,6 +25,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1")
+baby_taken_texture = SubResource("BabyPortrait")
+baby_not_taken_texture = SubResource("BabyNotTakenPortrait")
 
 [node name="Content" type="Control" parent="."]
 layout_mode = 1
@@ -150,9 +157,9 @@ anchor_left = 0.5
 anchor_top = 1
 anchor_right = 0.5
 anchor_bottom = 1
-offset_left = -101.0
+offset_left = -157.5
 offset_top = -125.0
-offset_right = 101.0
+offset_right = 157.5
 offset_bottom = -24.0
 grow_horizontal = 2
 mouse_filter = 2
@@ -164,20 +171,27 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(101, 101)
 layout_mode = 2
 mouse_filter = 2
-texture = SubResource("BabyPortrait")
+texture = SubResource("BabyNotTakenPortrait")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="BabysCount" type="Label" parent="BottomContent/Babys"]
+[node name="BabyIcon2" type="TextureRect" parent="BottomContent/Babys"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(101, 101)
 layout_mode = 2
 mouse_filter = 2
-theme_override_colors/font_color = Color(1, 0.94, 0.76, 1)
-theme_override_colors/font_outline_color = Color(0.08, 0.045, 0.12, 0.95)
-theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 37
-text = "0"
-vertical_alignment = 1
+texture = SubResource("BabyNotTakenPortrait")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BabyIcon3" type="TextureRect" parent="BottomContent/Babys"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(101, 101)
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("BabyNotTakenPortrait")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="KeyIcon" type="TextureRect" parent="Content"]
 unique_name_in_owner = true

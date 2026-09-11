@@ -25,14 +25,19 @@ func _ready() -> void:
 	check(is_zero_approx(ui.bottom_content.position.y), "Babys arrive at the bottom anchor")
 	check(ui.mithril_count_label.text == "1250", "Mithril counter")
 	check(ui.book_count_label.text == "1", "Book counter")
-	check(ui.baby_count_label.text == "3", "Baby counter")
+	for count in range(4):
+		data.currentBabys = count
+		ui.update_current_collectables(data)
+		for index in range(3):
+			var expected = ui.baby_taken_texture if index < count else ui.baby_not_taken_texture
+			check(ui.baby_icons[index].texture == expected, "Baby slot reflects collected count")
 	check(ui.shard_count_label.text == "7", "Shard counter")
 	for resolution in [Vector2i(1152, 648), Vector2i(1920, 1080), Vector2i(800, 600)]:
 		get_window().size = resolution
 		await get_tree().process_frame
 		await get_tree().process_frame
 		var viewport_rect := Rect2(Vector2.ZERO, get_viewport().get_visible_rect().size)
-		for item in [ui.mithril_count_label, ui.book_count_label, ui.baby_count_label, ui.shard_count_label]:
+		for item in [ui.mithril_count_label, ui.book_count_label, ui.shard_count_label] + ui.baby_icons:
 			check(viewport_rect.encloses(item.get_global_rect()), "Counter remains inside viewport")
 	ui.display_duration = 1.0
 	ui.show_collectables()

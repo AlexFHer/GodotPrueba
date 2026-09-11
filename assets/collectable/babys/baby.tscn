@@ -151,6 +151,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002746582, 0.24658203, -0.0
 shape = SubResource("BoxShape3D_xadyu")
 
 [node name="baby3_Imported" type="Node3D" parent="." unique_id=263460749]
+transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, 0, 0, 0)
 metadata/run = true
 
 [node name="Baby_Armature" type="Node3D" parent="baby3_Imported" unique_id=1946186458]

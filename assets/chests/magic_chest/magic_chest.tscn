@@ -42,9 +42,6 @@ script = ExtResource("1_gdjlj")
 [node name="Magic_Chest" parent="MagicChestModel" unique_id=1801691154 instance=ExtResource("2_5yrk7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.965674, 0)
 
-[node name="ForceField" parent="MagicChestModel/Magic_Chest" index="1"]
-"blend_shapes/Key 1" = 0.46165758
-
 [node name="MagicChestAnimationTree" type="AnimationTree" parent="MagicChestModel" unique_id=1121786845]
 root_node = NodePath("../Magic_Chest")
 tree_root = SubResource("AnimationNodeStateMachine_j8qs2")
@@ -60,6 +57,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35052, 0)
 shape = SubResource("CylinderShape3D_gdjlj")
 
 [node name="PickupArea" type="Area3D" parent="." unique_id=1970693580]
+collision_mask = 2
 
 [node name="PickupCollisionShape" type="CollisionShape3D" parent="PickupArea" unique_id=785926110]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.268082, 2.24966, -0.0384216)

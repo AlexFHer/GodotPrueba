@@ -24,7 +24,7 @@ func open_chest():
 	if opened:
 		return
 
-	if not CollectablesEmitterService.emitMithrilPickedUp(10, self):
+	if not CollectablesEmitterService.emitMithrilPickedUp(5, self):
 		return
 	opened = true
 	openChestAudio.play()
