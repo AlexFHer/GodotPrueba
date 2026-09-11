@@ -21,6 +21,7 @@ enum AttackInterruptionReason {
 const FIRE_ABILITY_AURA_SCENE := preload("res://player/particles/fire_ability_aura.tscn")
 const JUMP_FORCE := 13.0;
 const MEGA_JUMP_MULTIPLIER := 2.5;
+const JUMP_SPEED_HEIGHT_MULTIPLIER := 0.45;
 const DOUBLE_JUMP_FORCE := 14.0;
 const DASH_SPEED := 35.0;
 const DASH_DURATION_SECONDS := 0.22;
@@ -67,6 +68,7 @@ var jumpBuffer := false;
 var jumpBufferTimer := 0.2;
 var canJump := true;
 var canMegaJump := false;
+var _mega_jump_height_multiplier := 1.0;
 var canDoubleJump := false;
 var hasDoubleJumpAvailable := false;
 var isSecondJumpDamageActive := false;
@@ -94,14 +96,17 @@ func jump() -> void:
 
 func megaJump() -> void:
 	potmaSounds.megaJumpSoundAudioStream.play();
-	velocity.y += JUMP_FORCE * MEGA_JUMP_MULTIPLIER;
+	# Jump height scales with the square of launch velocity at constant gravity.
+	velocity.y += JUMP_FORCE * MEGA_JUMP_MULTIPLIER * sqrt(_mega_jump_height_multiplier);
 	disableJump();
 
-func activateMegaJump() -> void:
+func activateMegaJump(height_multiplier: float = 1.0) -> void:
 	canMegaJump = true;
+	_mega_jump_height_multiplier = height_multiplier;
 
 func deactivateMegaJump() -> void:
 	canMegaJump = false;
+	_mega_jump_height_multiplier = 1.0;
 
 func activateDoubleJump() -> void:
 	canDoubleJump = true;
@@ -299,7 +304,7 @@ func _on_potion_drink_finished() -> void:
 	_is_drinking = false
 
 func _activate_jump_speed_potion(potionType: PotionTypes.PotionType, effect_generation: int) -> void:
-	activateMegaJump()
+	activateMegaJump(JUMP_SPEED_HEIGHT_MULTIPLIER)
 	_activate_improved_speed();
 	var lifeTime = PotionsConfig.get_potion_properties(potionType).lifeTime
 	await get_tree().create_timer(lifeTime, false).timeout

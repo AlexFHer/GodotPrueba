@@ -95,7 +95,9 @@ Important files:
 - `Speed`: makes the player run faster.
 - `SpeedAndFire`: grants a damage dash.
 - `JumpAndFire`: grants a double jump; the second jump damages enemies on contact.
-- `JumpAndSpeed`: currently uses the simplest useful implementation: high jump plus faster movement.
+- `JumpAndSpeed`: retains Speed's running speed and jumps approximately 0.45
+  times as high as plain Jump. Launch velocity uses sqrt(0.45) times the normal
+  potion jump impulse; the height multiplier resets on expiration or spitting.
 
 Current durations:
 - `Jump`: 30 seconds.
@@ -357,6 +359,10 @@ Important files:
 - `GameSettings`
 
 ## Collectibles And World Objects
+- The collectibles HUD shows three baby portraits instead of a numeric baby
+  count. Slots fill left to right from the level's currentBabys, including saved
+  progress, using baby_hud_icon_not_taken.png and baby_hud_icon.png with matching
+  atlas crops. The existing bottom-center HUD entrance and hide behavior stays.
 - Mythril pickup uses a stylized four-point shine inspired by the requested
   Spyro Reignited direction: a central 0.37-second expanding/contracting star
   and six smaller drifting stars over 0.85 seconds. A camera-facing shader

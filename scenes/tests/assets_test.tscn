@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://dxt8axkp8hlwt" path="res://assets/collectable/mythril/mythril1/mythril1.tscn" id="11_b8nyo"]
 [ext_resource type="PackedScene" uid="uid://b854210s7kevt" path="res://assets/collectable/mythril/mythril5/mythril5.tscn" id="12_e1my4"]
 [ext_resource type="PackedScene" uid="uid://bpc2mh50b30o6" path="res://assets/collectable/mythril/mythril10/mythril10.tscn" id="13_prhcd"]
+[ext_resource type="PackedScene" uid="uid://duv2f0tvcut54" path="res://assets/collectable/babys/baby.tscn" id="14_susaa"]
 [ext_resource type="PackedScene" uid="uid://cu673ns5f7wxu" path="res://assets/fire_towers/Tower_Fire_Puzzle.tscn" id="14_u30na"]
 [ext_resource type="PackedScene" uid="uid://b0yy54800oirl" path="res://assets/statue_tower/secret_tower.tscn" id="15_3gt13"]
 [ext_resource type="Script" uid="uid://cul11equ6lnw5" path="res://scripts/puzzles/fire-tower-all-active-puzzle.gd" id="18_b8nyo"]
@@ -62,7 +63,7 @@ data = PackedVector3Array(25, 0, 25, -25, 0, 25, 25, 0, -25, -25, 0, 25, -25, 0,
 [sub_resource type="LabelSettings" id="LabelSettings_68yrm"]
 font_size = 12
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yfmgk"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_susaa"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("31_yfmgk")
@@ -212,6 +213,12 @@ collectableId = "9d9236d2884d4c459502d93bb3b42efb"
 [node name="Mythril12" parent="Assets/Key and chest" unique_id=458377635 instance=ExtResource("13_prhcd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1336, 0.0936669, -2.14838)
 collectableId = "944f0f6acfab4184989d7f32576c6b20"
+
+[node name="Baby" parent="Assets/Key and chest" unique_id=885636731 instance=ExtResource("14_susaa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.29587483, 0.9783311, 16.369127)
+
+[node name="Baby2" parent="Assets/Key and chest" unique_id=1968203945 instance=ExtResource("14_susaa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3610353, 1.0708065, 16.369127)
 
 [node name="ArcsPuzzles" type="Node" parent="Assets" unique_id=1790516074]
 
@@ -375,7 +382,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 46.1
 destination = NodePath("../Teleport")
 
 [node name="Plane" parent="Teleport2/well_Imported" parent_id_path=PackedInt32Array(149933109, 424706114) index="2" unique_id=1652307758]
-material_override = SubResource("ShaderMaterial_yfmgk")
+material_override = SubResource("ShaderMaterial_susaa")
 
 [node name="Fire-potion" parent="." unique_id=1103179316 instance=ExtResource("5_la3k2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0245912, 1.392396, 21.46893)
