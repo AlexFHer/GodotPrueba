@@ -281,6 +281,9 @@ Important files:
 - `player/materials/shaders/potion_duration_body.gdshader`
 
 ## Existing Architecture Notes
+- Blender pipeline post import validates file access and JSON before attaching
+  `SceneInit`; unreadable or invalid sources keep the imported scene unchanged
+  and report the source path. Node extras are cleared between imports.
 - Autoloads are declared in `project.godot`.
 - Prefer signals over tight coupling.
 - Prefer composition over inheritance.

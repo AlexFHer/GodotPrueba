@@ -8,6 +8,7 @@ extends EditorScenePostImport
 # we map the extras to a dictionary (both mesh and object customs get mapped)
 var node_extras_dict = {}
 func _post_import(scene):
+	node_extras_dict.clear()
 	print("Blender-Godot Pipeline: Starting the post import process.")
 	
 	var source := get_source_file()
@@ -24,13 +25,22 @@ func _post_import(scene):
 
 	# do a direct read of the GLTF file to parse some extra stuff
 	var file = FileAccess.open(source, FileAccess.READ)
+	if file == null:
+		push_warning("Blender-Godot Pipeline: Cannot read '%s' (error %s). Skipping post import." % [source, FileAccess.get_open_error()])
+		return scene
 	var content = file.get_as_text()
+	file.close()
 	
 	var json = JSON.new()
 	var error = json.parse(content)
-	if error == OK:
-		parse_GLTF(json.data)
-		iterate_scene(scene)
+	if error != OK:
+		push_warning("Blender-Godot Pipeline: Invalid glTF JSON in '%s', line %s: %s. Skipping post import." % [source, json.get_error_line(), json.get_error_message()])
+		return scene
+	if not json.data is Dictionary:
+		push_warning("Blender-Godot Pipeline: Expected a glTF JSON object in '%s'. Skipping post import." % source)
+		return scene
+	parse_GLTF(json.data)
+	iterate_scene(scene)
 	
 	scene.set_script(load("res://addons/blender_godot_pipeline/SceneInit.gd"))
 	scene.set_meta("run", true)
