@@ -113,16 +113,27 @@ Current durations:
   wells take control only during travel and restore the prior camera afterward.
 - The third-person camera normally sits 3 metres from `CameraPivot`.
 - `SpringArm3D` is a collision probe rather than the camera's direct parent. It
-  casts 0.55 metres beyond the desired camera distance so nearby obstacles are
-  detected before they reach the camera.
+  uses a 0.15-metre-radius sphere (previously 0.5) and casts 0.55 metres beyond
+  the desired camera distance so nearby obstacles are detected before they
+  reach the camera.
+- Small foreground props no longer force a zoom when the player's upper body
+  remains visible. Three sightlines check its center and sides, 0.5 metres
+  above the pivot and 0.45 metres to either side. A fully blocked view still
+  retracts for walls and enclosed spaces; a small prop may briefly cover part
+  of the character while the framing remains stable.
+- Collision queries and distance updates run in the physics tick. A separate
+  sphere check at the candidate camera position and a short local sweep retain
+  physical collision protection even for tolerated props and low ceilings.
 - `playerCamera.gd` interpolates the actual camera distance independently: it
   retracts with responsiveness 18 and recovers with responsiveness 6. This
   keeps obstacle avoidance quick and makes the return to the normal distance
   visibly softer.
-- The smoothed distance is always capped by the current collision distance, so
-  an obstacle that appears suddenly cannot leave the camera behind the wall.
+- The smoothed distance is capped by the collision distance for blocked views
+  and by the camera's local clearance, so visibility tolerance cannot place
+  the camera inside a small prop.
 - `preferredDistance`, `collisionLookAhead`, `collisionApproachSpeed`, and
   `collisionRecoverySpeed` are exported tuning values on `CameraPivot`.
+- `obstructionWidth` and `obstructionHeight` tune the visible upper-body region.
 
 ## Pause Menu And Settings
 - The primary pause screen opened with `start` shares the settings screen's
@@ -506,3 +517,6 @@ Important files:
 - 2026-09-10: Refined the shared pause/settings presentation around Potma's
   aubergine, crystal-cyan, sky-lilac, and gold palette, including polished button
   states and diamond-shaped slider handles.
+- 2026-09-11: Reduced the camera collision probe radius and tolerated partial
+  upper-body occlusion by small outdoor props while retaining wall, ceiling,
+  and local camera collision protection.

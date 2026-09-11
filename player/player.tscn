@@ -262,6 +262,7 @@ nodes/drink/position = Vector2(-240, 300)
 node_connections = [&"output", 0, &"StaffThrowOneShot", &"DieOneShot", 0, &"StaffHitOneShot", &"DieOneShot", 1, &"Die", &"DrinkOneShot", 0, &"Locomotion", &"DrinkOneShot", 1, &"drink", &"HitOneShot", 0, &"DrinkOneShot", &"HitOneShot", 1, &"GetHit", &"StaffHitOneShot", 0, &"HitOneShot", &"StaffHitOneShot", 1, &"Attack", &"StaffThrowOneShot", 0, &"DieOneShot", &"StaffThrowOneShot", 1, &"Animation"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wff3b"]
+radius = 0.15
 
 [sub_resource type="QuadMesh" id="QuadMesh_tqiix"]
 flip_faces = true
