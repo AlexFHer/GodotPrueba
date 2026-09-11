@@ -62,7 +62,7 @@ data = PackedVector3Array(25, 0, 25, -25, 0, 25, 25, 0, -25, -25, 0, 25, -25, 0,
 [sub_resource type="LabelSettings" id="LabelSettings_68yrm"]
 font_size = 12
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_susaa"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yfmgk"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("31_yfmgk")
@@ -300,7 +300,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.606642, -9.536743e-07, 2.8
 collectableId = "41c0c349257744fa8cc0df6ffd7a3933"
 
 [node name="MainCharacter" parent="." unique_id=1180872510 instance=ExtResource("11_3onbp")]
-transform = Transform3D(1, -0.000168775, -6.33838e-05, 0.000168802, 1, 0.000491578, 6.33117e-05, -0.000491587, 1, -5.922912, 0.202615, 20.662449)
+transform = Transform3D(1, -0.000168775, -6.33838e-05, 0.000168802, 1, 0.000491578, 6.33117e-05, -0.000491587, 1, -5.922912, 0.10371575, 20.662449)
 
 [node name="ComboHitCounterTargets" parent="." unique_id=2071015906 instance=ExtResource("28_combo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.923, 0, 7.8)
@@ -375,7 +375,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 46.1
 destination = NodePath("../Teleport")
 
 [node name="Plane" parent="Teleport2/well_Imported" parent_id_path=PackedInt32Array(149933109, 424706114) index="2" unique_id=1652307758]
-material_override = SubResource("ShaderMaterial_susaa")
+material_override = SubResource("ShaderMaterial_yfmgk")
 
 [connection signal="all_arcs_active" from="Assets/ArcsPuzzles/ArcMagicChestPuzzle/ArcPuzzle" to="Assets/ArcsPuzzles/ArcMagicChestPuzzle/MagicChest" method="deactivate_force_field"]
 [connection signal="all_fire_towers_active" from="Assets/FireTowers/Puzzle" to="Assets/FireTowers/secret_tower" method="activate_secret_tower"]

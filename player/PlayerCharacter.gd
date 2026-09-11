@@ -308,6 +308,7 @@ func doubleJump() -> void:
 	hasDoubleJumpAvailable = false;
 	potmaSounds.megaJumpSoundAudioStream.play();
 	velocity.y = DOUBLE_JUMP_FORCE;
+	animation_tree.set("parameters/FireJump/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE);
 	disableJump();
 	_start_second_jump_damage();
 

@@ -321,10 +321,10 @@ skeleton = NodePath("")
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)
 visible = false
 
-[node name="BottlePotion" parent="Model/PotiOverworldFire/PotiOverworldFire" index="0" unique_id=1984769806]
+[node name="BottlePotion" parent="Model/PotiOverworldFire/PotiOverworldFire" index="0" unique_id=404372269]
 material_override = ExtResource("3_uhoqw")
 
-[node name="BottleLiquid" parent="Model/PotiOverworldFire/PotiOverworldFire/BottlePotion" index="0" unique_id=100765900]
+[node name="BottleLiquid" parent="Model/PotiOverworldFire/PotiOverworldFire/BottlePotion" index="0" unique_id=1581558890]
 material_override = SubResource("ShaderMaterial_xstrx")
 mesh = SubResource("ArrayMesh_gbtbq")
 script = ExtResource("4_k43lo")
