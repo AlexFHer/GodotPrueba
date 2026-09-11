@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bp8ulxplapvk2"]
+[gd_scene format=3 uid="uid://bp8ulxplapvk2"]
 
 [ext_resource type="Script" uid="uid://cq66xgwwncc07" path="res://assets/collectable/book/book.gd" id="1_i2f2c"]
 [ext_resource type="PackedScene" uid="uid://jnj08bhj7p82" path="res://assets/collectable/book/mesh/Book.glb" id="1_mfkvd"]
@@ -10,27 +10,28 @@ size = Vector3(0.729065, 0.774841, 0.781342)
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i2f2c"]
 animation = &"ibroAction"
 
-[node name="Book" type="Area3D" node_paths=PackedStringArray("bookPickupAudio")]
+[node name="Book" type="Area3D" unique_id=1462756552 node_paths=PackedStringArray("bookPickupAudio")]
+collision_mask = 2
 script = ExtResource("1_i2f2c")
 bookPickupAudio = NodePath("AudioStreamPlayer3D")
 
-[node name="Model" type="Node3D" parent="."]
+[node name="Model" type="Node3D" parent="." unique_id=658279235]
 
-[node name="Book" parent="Model" instance=ExtResource("1_mfkvd")]
+[node name="Book" parent="Model" unique_id=1515774937 instance=ExtResource("1_mfkvd")]
 
 [node name="ibro" parent="Model/Book" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.638021, -0.770019, 0, 0.770019, 0.638021, -0.00922549, 0.656607, 0)
+transform = Transform3D(1, 0, 0, 0, 0.638021, -0.770019, 0, 0.770019, 0.638021, -0.009225488, 0.6894588, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1813991986]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0401917, 0.45816, -0.0418549)
 shape = SubResource("BoxShape3D_i2f2c")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=15420587]
 root_node = NodePath("../Model/Book")
 tree_root = SubResource("AnimationNodeAnimation_i2f2c")
 anim_player = NodePath("../Model/Book/AnimationPlayer")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=975466754]
 stream = ExtResource("3_7ypio")
 bus = &"SFX"
 

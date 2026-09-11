@@ -36,6 +36,10 @@ a new decision, mechanic, constraint, naming convention, or open question appear
 - Simple, readable systems over overengineered abstractions.
 
 ## Current Potion System
+- Potion HUD slots use `player/scenes/potions-ui.tscn`: two 64px bottom-corner
+  squares with aubergine translucent backgrounds, cyan borders and only the
+  selected bottle icons (no names or quantities). Icons preserve their aspect
+  ratio; screen margins are 24px. UI initializes from inventory on level entry.
 - The player has left and right potion slots.
 - Left and right selected potion types are managed by `PlayerPotions`.
 - Each selected slot is represented by a generic bottle attached to the
@@ -306,6 +310,23 @@ Important files:
 - `GameSettings`
 
 ## Collectibles And World Objects
+- Reaching all four authored `LevelCollectables.required*` targets shows a
+  localized 100% completion banner for 4 seconds without blocking gameplay.
+  Zero-target categories are optional; a level with all targets zero cannot
+  complete. Keep these targets aligned with each level's collectible content.
+  The level manager checks saved totals after pickups and announces once;
+  loading an already completed level does not replay the banner. The independent
+  UI banner fades in/out and freezes with gameplay pause.
+- The well's water `well_Imported/Plane` uses `stylized_water.gdshader`, with
+  two animated procedural noise layers, tonal bands and pale ripple lines.
+  `water_color` controls its palette; noise scale, flow speed, highlights and
+  glow are adjustable. The opaque material is local to each scene instance.
+  Entering the water triggers 24 tinted droplets and two expanding shader rings
+  at the start of the sinking motion. The effect lasts about one second, follows
+  gameplay pause, and frees its particles after the burst.
+- The well model's `well_Imported` node is a `StaticBody3D` on the World layer,
+  owning its concave wall collider. The root `Area3D` remains a separate entry
+  detector; collision shapes under a plain `Node3D` do not block the player.
 - Well teleports use `assets/teleports/teleport.tscn`, with a directional
   `destination` reference to another instance in the same level. `EntryPoint`,
   `InsidePoint`, `ExitPoint`, `TeleportCamera`, and `CameraFocus` configure staging.
@@ -326,7 +347,7 @@ Important files:
   and brightens between 4 and 18 metres from the camera for distance readability
   while keeping its center transparent. Rim color, energy, and power are tunable.
   A shadowless cyan OmniLight (energy 3.5, range 3 metres) lights nearby surfaces.
-    One green amalgam-like glow sits at the exact center: five smoothly merged lobes
+	One green amalgam-like glow sits at the exact center: five smoothly merged lobes
   grow and retract independently around a connected core, while irregular spikes
   emerge and recede. Shader parameter `morph_speed` controls the deformation rate.
   It uses a single billboard mesh
@@ -391,6 +412,10 @@ Important files:
 - Fire-based interactions exist through fireballs and fire puzzle objects.
 
 ## Enemies And Damage
+- Globrc Big waits a random 1.0-1.6 seconds after each attack finishes before
+  attacking again if the player remains in attack range. Inspector properties
+  `attack_cooldown_min` and `attack_cooldown_max` tune this pause; it follows
+  gameplay processing, freezes with pause, and is not reset by range reentry.
 - Globrc Big's ground slam emits an expanding blue-white electrical discharge,
   with jagged flickering arcs and branches instead of a solid torus. Its shader
   follows the damage radius, fades at the outer limit, and uses per-instance

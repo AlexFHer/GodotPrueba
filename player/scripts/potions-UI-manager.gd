@@ -1,7 +1,5 @@
 extends Control
 
-@onready var leftPotionCountLabel: Label = %LeftPotionCount
-@onready var rightPotionCountLabel: Label = %RightPotionCount
 @onready var leftPotionIconTexture: TextureRect = %LeftPotionIcon
 @onready var rightPotionIconTexture: TextureRect = %RightPotionIcon
 
@@ -12,18 +10,13 @@ var speedPotionIcon: Texture = preload("res://assets/potions/speed_potion/Speed_
 var selectedLeftPotionType := PotionTypes.PotionType.None;
 var selectedRightPotionType := PotionTypes.PotionType.None;
 
-func _enter_tree() -> void:
+func _ready() -> void:
 	PlayerPotions.potionsChanged.connect(_on_potions_change);
 	PlayerPotions.selectedLeftPotionChanged.connect(_on_selected_left_potion_changed);
 	PlayerPotions.selectedRightPotionChanged.connect(_on_selected_right_potion_changed);
+	_on_selected_left_potion_changed(PlayerPotions.selectedLeftPotionType)
+	_on_selected_right_potion_changed(PlayerPotions.selectedRightPotionType)
 				
-
-func getNumberOfPotionsByType(potionType: PotionTypes.PotionType) -> String:
-	var potionSize = PlayerPotions.potionsDictionary.get(potionType);
-	if potionSize == 0 or potionSize == null:
-		return ""
-	else:
-		return str(potionSize)
 
 func _getPotionIcon(potionType: PotionTypes.PotionType) -> Texture:
 	match(potionType):
@@ -42,24 +35,14 @@ func evaluateLeftIcon(potionType: PotionTypes.PotionType) -> void:
 func evaluateRightIcon(potionType: PotionTypes.PotionType) -> void:
 	rightPotionIconTexture.texture = _getPotionIcon(potionType)
 
-func evaluateLeftNumber(potionType: PotionTypes.PotionType) -> void:
-	leftPotionCountLabel.text = getNumberOfPotionsByType(potionType)
-
-func evaluateRightNumber(potionType: PotionTypes.PotionType) -> void:
-	rightPotionCountLabel.text = getNumberOfPotionsByType(potionType)
-
 func _on_potions_change(_potions: Dictionary):
-	evaluateLeftNumber(selectedLeftPotionType)
-	evaluateRightNumber(selectedRightPotionType)
 	evaluateLeftIcon(selectedLeftPotionType)
 	evaluateRightIcon(selectedRightPotionType)
 
 func _on_selected_left_potion_changed(potionType: PotionTypes.PotionType) -> void:
 	selectedLeftPotionType = potionType;
-	evaluateLeftNumber(potionType);
 	evaluateLeftIcon(potionType);
 
 func _on_selected_right_potion_changed(potionType: PotionTypes.PotionType) -> void:
 	selectedRightPotionType = potionType;
-	evaluateRightNumber(potionType);
 	evaluateRightIcon(potionType);

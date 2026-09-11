@@ -1,10 +1,12 @@
 extends Node3D
 
 @onready var inGameCollectablesUiControl: inGameCollectablesUI = %InGameCollectablesUI
+@onready var completion_message: Control = %LevelCompletionMessage
 
 @export var levelCollectables: LevelCollectables;
 @export var levelName := ''
 var collectable_scope: Node
+var _completion_announced := false
 
 func _enter_tree() -> void:
 	collectable_scope = owner if owner != null else self
@@ -20,7 +22,8 @@ func _ready() -> void:
 	CollectablesEmitterService.bookPickedUp.connect(_on_collectable_picked_up)
 	CollectablesEmitterService.babyPickedUp.connect(_on_collectable_picked_up)
 	CollectablesEmitterService.shardPickedUp.connect(_on_collectable_picked_up)
-	_refresh_progress()
+	_refresh_progress(false)
+	_completion_announced = levelCollectables.is_complete()
 	inGameCollectablesUiControl.hide_immediately()
 
 func _process(_delta: float) -> void:
@@ -35,12 +38,15 @@ func _on_collectable_picked_up(pickedLevel: String, _amount: int) -> void:
 	if pickedLevel == levelName:
 		_refresh_progress()
 
-func _refresh_progress() -> void:
+func _refresh_progress(announce_completion: bool = true) -> void:
 	levelCollectables.currentMithrils = LevelCollectablesData.get_total(levelName, "mithril")
 	levelCollectables.currentBooks = LevelCollectablesData.get_total(levelName, "book")
 	levelCollectables.currentBabys = LevelCollectablesData.get_total(levelName, "baby")
 	levelCollectables.currentShards = LevelCollectablesData.get_total(levelName, "shard")
 	inGameCollectablesUiControl.update_current_collectables(levelCollectables)
+	if announce_completion and not _completion_announced and levelCollectables.is_complete():
+		_completion_announced = true
+		completion_message.show_completion()
 
 func _show_collectables_ui() -> void:
 	inGameCollectablesUiControl.show_collectables()

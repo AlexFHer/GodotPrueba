@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cii1jxpiud2wy"]
+[gd_scene format=3 uid="uid://cii1jxpiud2wy"]
 
 [ext_resource type="Script" uid="uid://d0y71oajl8iqn" path="res://assets/enemies/globrc-small/globrc-small.gd" id="1_3rf8u"]
 [ext_resource type="PackedScene" uid="uid://cpnbng5cyexv7" path="res://assets/enemies/globrc-small/rig/Globrc_Thin.glb" id="2_c4b4g"]
@@ -56,7 +56,7 @@ nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_jto2g")
 nodes/StateMachine/position = Vector2(-700, 20)
 nodes/mele_attack/node = SubResource("AnimationNodeOneShot_c4b4g")
 nodes/mele_attack/position = Vector2(-240, 100)
-node_connections = [&"mele_attack", 0, &"StateMachine", &"mele_attack", 1, &"Attack Anim", &"output", 0, &"mele_attack"]
+node_connections = [&"output", 0, &"mele_attack", &"mele_attack", 0, &"StateMachine", &"mele_attack", 1, &"Attack Anim"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3rf8u"]
 size = Vector3(3.83188, 0.271973, 6.82706)
@@ -71,35 +71,35 @@ size = Vector3(0.924194, 0.358643, 0.669678)
 radius = 0.27519
 height = 0.960382
 
-[node name="Globrc Small" type="CharacterBody3D" groups=["CanGetHit", "CanPatrol", "Enemy"]]
+[node name="Globrc Small" type="CharacterBody3D" unique_id=206206087 groups=["CanGetHit", "CanPatrol", "Enemy"]]
 script = ExtResource("1_3rf8u")
 
-[node name="Rig" type="Node3D" parent="."]
+[node name="Rig" type="Node3D" parent="." unique_id=282572364]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.115247, 0)
 
-[node name="Globrc_Thin" parent="Rig" instance=ExtResource("2_c4b4g")]
+[node name="Globrc_Thin" parent="Rig" unique_id=1277918233 instance=ExtResource("2_c4b4g")]
 
 [node name="Skeleton3D" parent="Rig/Globrc_Thin/GT_Armature" index="0"]
-bones/0/position = Vector3(0, -0.0320101, 0)
-bones/0/rotation = Quaternion(-2.98023e-08, 1.19209e-07, -2.52435e-29, 1)
-bones/1/rotation = Quaternion(-3.55271e-15, 1.77636e-14, -4.03897e-28, 1)
-bones/2/rotation = Quaternion(-3.55271e-15, 0, -4.03897e-28, 1)
-bones/3/rotation = Quaternion(3.57546e-08, 8.62342e-09, -0.144677, 0.989479)
-bones/4/rotation = Quaternion(0.740221, -0.123063, -0.148305, 0.644154)
-bones/5/scale = Vector3(1, 1, 1)
-bones/6/position = Vector3(0.000320036, 0.0653921, 0.107199)
-bones/6/rotation = Quaternion(0.81653, 4.11063e-07, 7.79127e-07, 0.577303)
-bones/7/rotation = Quaternion(1.98879e-07, -2.88589e-07, 0.653058, 0.757308)
-bones/8/rotation = Quaternion(0.195278, 0.683348, 0.011305, 0.703402)
-bones/9/position = Vector3(-0.0473607, 0.0269787, -0.170675)
-bones/9/rotation = Quaternion(-0.0467328, 0.744814, 0.659496, -0.0901839)
-bones/10/rotation = Quaternion(-4.21717e-07, -9.04094e-08, 0.924894, -0.380225)
-bones/12/rotation = Quaternion(0.996392, -0.025596, -0.00207687, -0.0808946)
-bones/13/rotation = Quaternion(0.536616, -0.483698, 0.539789, -0.432096)
-bones/14/rotation = Quaternion(0.996392, 0.025596, 0.00207721, -0.0808946)
+bones/0/position = Vector3(0, -0.03201007, 0)
+bones/0/rotation = Quaternion(-2.9802326e-08, 1.1920928e-07, -2.5243543e-29, 1)
+bones/1/rotation = Quaternion(-3.5527103e-15, 1.7763568e-14, -4.0389676e-28, 1)
+bones/2/rotation = Quaternion(-0.0055232607, 0.029169103, -0.0048384224, 0.9995476)
+bones/3/rotation = Quaternion(-0.0071605686, 0.014373866, -0.007656549, 0.99984175)
+bones/4/rotation = Quaternion(0.74022084, -0.12306308, -0.14830507, 0.6441539)
+bones/5/scale = Vector3(0.99999994, 0.9999999, 1.0000001)
+bones/6/position = Vector3(0.0003200365, 0.06539211, 0.10719893)
+bones/6/rotation = Quaternion(0.9175032, 5.711097e-07, 7.02801e-07, 0.3977285)
+bones/7/rotation = Quaternion(2.0661585e-07, -1.6789899e-07, 0.9248939, 0.3802252)
+bones/8/rotation = Quaternion(0.067225665, -0.005602812, 0.28818384, 0.955196)
+bones/9/position = Vector3(-0.04736066, 0.026978668, -0.17067526)
+bones/9/rotation = Quaternion(-0.04673279, 0.74481434, 0.65949565, -0.09018393)
+bones/10/rotation = Quaternion(-4.2171652e-07, -9.040935e-08, 0.924894, -0.38022533)
+bones/12/rotation = Quaternion(0.9963918, -0.025596013, -0.002076871, -0.080894604)
+bones/13/rotation = Quaternion(0.53661615, -0.48369804, 0.5397893, -0.4320959)
+bones/14/rotation = Quaternion(0.99639183, 0.025596041, 0.0020772144, -0.08089457)
 
-[node name="AnimationTree" type="AnimationTree" parent="Rig"]
+[node name="AnimationTree" type="AnimationTree" parent="Rig" unique_id=1614560771]
 root_node = NodePath("../Globrc_Thin")
 tree_root = SubResource("AnimationNodeBlendTree_1dxc2")
 advance_expression_base_node = NodePath("../..")
@@ -108,36 +108,39 @@ parameters/mele_attack/active = false
 parameters/mele_attack/internal_active = false
 parameters/mele_attack/request = 0
 
-[node name="PlayerSearchArea" type="Area3D" parent="Rig"]
+[node name="PlayerSearchArea" type="Area3D" parent="Rig" unique_id=1917302877]
+collision_mask = 2
 
-[node name="PlayerSearchCollider" type="CollisionShape3D" parent="Rig/PlayerSearchArea"]
+[node name="PlayerSearchCollider" type="CollisionShape3D" parent="Rig/PlayerSearchArea" unique_id=2057206750]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0805511, 0.364014, 3.46834)
 shape = SubResource("BoxShape3D_3rf8u")
 
-[node name="PlayerOutOfBoundsTimer" type="Timer" parent="Rig/PlayerSearchArea"]
+[node name="PlayerOutOfBoundsTimer" type="Timer" parent="Rig/PlayerSearchArea" unique_id=1383877982]
 wait_time = 5.0
 one_shot = true
 
-[node name="HitableArea" type="Area3D" parent="Rig"]
+[node name="HitableArea" type="Area3D" parent="Rig" unique_id=1433651974]
+collision_mask = 2
 
-[node name="HitableAreaCollider" type="CollisionShape3D" parent="Rig/HitableArea"]
+[node name="HitableAreaCollider" type="CollisionShape3D" parent="Rig/HitableArea" unique_id=1056866518]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.104027, 0.454102, 0.522422)
 shape = SubResource("BoxShape3D_c4b4g")
 
-[node name="WeaponHitArea" type="Area3D" parent="Rig"]
+[node name="WeaponHitArea" type="Area3D" parent="Rig" unique_id=79831809]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.525857, 0.349461, 0.212775)
+collision_mask = 2
 
-[node name="WeaponHitCollision" type="CollisionShape3D" parent="Rig/WeaponHitArea"]
+[node name="WeaponHitCollision" type="CollisionShape3D" parent="Rig/WeaponHitArea" unique_id=2132607692]
 transform = Transform3D(0.99998, 0, 0, 0, 0.99998, 0, 0, 0, 1, 0.622082, 0.0387264, 0.604217)
 shape = SubResource("BoxShape3D_80nkx")
 debug_color = Color(0.988153, 0, 0.305179, 0.42)
 debug_fill = false
 
-[node name="Globrc collider" type="CollisionShape3D" parent="."]
+[node name="Globrc collider" type="CollisionShape3D" parent="." unique_id=870388197]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.483273, 0)
 shape = SubResource("CapsuleShape3D_3rf8u")
 
-[node name="canAttackTimer" type="Timer" parent="."]
+[node name="canAttackTimer" type="Timer" parent="." unique_id=1183463915]
 wait_time = 2.0
 one_shot = true
 

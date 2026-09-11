@@ -43,6 +43,9 @@ func block_arrival(player: MainPlayer) -> void:
 	if not _blocked_players.has(id):
 		_blocked_players.append(id)
 
+func play_water_entry() -> void:
+	$well_Imported/Plane.play_entry_splash()
+
 func _on_body_exited(body: Node3D) -> void:
 	if body is MainPlayer and not body.is_teleporting():
 		_blocked_players.erase(body.get_instance_id())
