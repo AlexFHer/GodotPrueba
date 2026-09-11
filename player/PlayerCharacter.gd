@@ -356,6 +356,8 @@ func _start_dash() -> void:
 	isDashing = true;
 	attack_interruption_requested.emit(AttackInterruptionReason.DASH)
 	dashReady = false;
+	print("Dash started")
+	animation_tree.set("parameters/Dash/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	_set_ability_damage_enabled(true);
 
 	await get_tree().create_timer(DASH_DURATION_SECONDS, false).timeout
