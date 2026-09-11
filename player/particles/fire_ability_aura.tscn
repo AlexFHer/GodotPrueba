@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bfrxdyfdasq1o"]
+[gd_scene format=3 uid="uid://bfrxdyfdasq1o"]
 
 [ext_resource type="Script" path="res://player/particles/fire_ability_aura.gd" id="1_fire_aura_script"]
 [ext_resource type="Shader" uid="uid://dbj14jieea1if" path="res://assets/gdquest/fire/stylized_fire_Potma.gdshader" id="2_fire_shader"]
