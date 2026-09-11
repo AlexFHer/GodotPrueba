@@ -4,6 +4,7 @@ signal potion_drink_started(uses_left_slot: bool, uses_right_slot: bool)
 signal potion_drink_finished
 
 @onready var _animation_tree: AnimationTree = %PlayerAnimationTree
+@onready var _animation_player := _animation_tree.get_node(_animation_tree.anim_player) as AnimationPlayer
 @onready var _drink_animation_node := (
 	(_animation_tree.tree_root as AnimationNodeBlendTree).get_node(&"drink")
 	as AnimationNodeAnimation
@@ -17,6 +18,9 @@ const MERGE_DECISION_WINDOW_SECONDS := 0.25
 const DRINK_LEFT_ANIMATION := &"Potma_DrinkLeft"
 const DRINK_RIGHT_ANIMATION := &"Potma_DrinkRight"
 const DRINK_BOTH_ANIMATION := &"Potma_DrinkBoth"
+const SPIT_INPUT_ACTION := &"circle"
+const SPIT_ANIMATION := &"Potma_Spit"
+const SPIT_FALLBACK_ANIMATION := &"Potma_DrinkRight"
 const DRINK_ANIMATION_START_GRACE_FRAMES := 3
 
 var _pending_left_drink := false
@@ -24,6 +28,7 @@ var _pending_right_drink := false
 var _is_waiting_merge_decision := false
 var _decision_window_id := 0
 var _active_drink_animation: StringName = &""
+var _active_animation_is_spit := false
 var _drink_one_shot_was_active := false
 var _drink_animation_start_grace_frames := 0
 
@@ -42,6 +47,9 @@ func _process(_delta: float) -> void:
 
 	if Input.is_action_just_pressed("toggleRightPotion"):
 		PlayerPotions.toggleRightPotion()
+
+	if Input.is_action_just_pressed(SPIT_INPUT_ACTION) and spitCurrentPotion():
+		return
 
 	var l2_just := Input.is_action_just_pressed("drinkPotionLeft")
 	var r2_just := Input.is_action_just_pressed("drinkPotionRight")
@@ -164,16 +172,47 @@ func tryMergePotions() -> bool:
 	play_drink_animation(DRINK_BOTH_ANIMATION)
 	return true
 
+func spitCurrentPotion() -> bool:
+	if _is_gameplay_input_locked():
+		return false
+	if not _active_drink_animation.is_empty():
+		return false
+
+	var potion_type: PotionTypes.PotionType = _active_potion_service.current_active_potion
+	if potion_type == PotionTypes.PotionType.None:
+		return false
+
+	_cancel_pending_drink_intents()
+	potion_drink_started.emit(false, false)
+	PlayerPotions.spitPotion(potion_type)
+	if _player != null:
+		_player.spitPotion()
+	play_spit_animation()
+	return true
+
 func _on_drink_animation_finished() -> void:
 	potmaSounds.drinkSoundAudioStream.play()
 	_potion_particles_system._play_particles(_active_potion_service.current_active_potion)
 
 func play_drink_animation(animation_name: StringName) -> void:
+	_active_animation_is_spit = false
+	_play_potion_animation(animation_name)
+
+func play_spit_animation() -> void:
+	_active_animation_is_spit = true
+	_play_potion_animation(_get_spit_animation())
+
+func _play_potion_animation(animation_name: StringName) -> void:
 	_active_drink_animation = animation_name
 	_drink_one_shot_was_active = false
 	_drink_animation_start_grace_frames = DRINK_ANIMATION_START_GRACE_FRAMES
 	_drink_animation_node.animation = animation_name
 	_animation_tree.set("parameters/DrinkOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+
+func _get_spit_animation() -> StringName:
+	if _animation_player != null and _animation_player.has_animation(SPIT_ANIMATION):
+		return SPIT_ANIMATION
+	return SPIT_FALLBACK_ANIMATION
 
 func _on_animation_tree_animation_finished(animation_name: StringName) -> void:
 	if animation_name != _active_drink_animation:
@@ -209,10 +248,12 @@ func _finish_active_drink_animation(play_feedback: bool) -> void:
 		)
 
 	_active_drink_animation = &""
+	var was_spit := _active_animation_is_spit
+	_active_animation_is_spit = false
 	_drink_one_shot_was_active = false
 	_drink_animation_start_grace_frames = 0
 	potion_drink_finished.emit()
-	if play_feedback:
+	if play_feedback and not was_spit:
 		_on_drink_animation_finished()
 
 func _cancel_pending_drink_intents() -> void:

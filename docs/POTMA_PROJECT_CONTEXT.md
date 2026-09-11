@@ -74,6 +74,11 @@ a new decision, mechanic, constraint, naming convention, or open question appear
   (0.48-0.76 seconds of the source), with pitched sparkle and a short echo.
   The 0.95-second result excludes the later falling-cap sounds and drinking.
   It reuses the existing drink-completion sound cue on the `SFX` bus.
+- Spit potion input uses the existing `circle` action (controller Circle/B).
+  It cancels the currently active potion effect immediately, plays the
+  `Potma_Spit` upper-body one-shot when that animation exists, and falls back
+  to `Potma_DrinkRight` until the dedicated clip is imported. Spitting does not
+  return the consumed potion to inventory.
 
 Important files:
 - `player/scripts/potions-manager.gd`
@@ -109,6 +114,7 @@ Current durations:
   bottom controller face button: PlayStation Cross / Xbox A).
 - Drink left potion: `drinkPotionLeft`.
 - Drink right potion: `drinkPotionRight`.
+- Spit active potion: `circle`.
 - Toggle left potion: `toggleLeftPotion`.
 - Toggle right potion: `toggleRightPotion`.
 

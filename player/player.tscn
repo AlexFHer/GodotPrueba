@@ -98,7 +98,7 @@ shader_parameter/rim_emission_intensity = 0.2
 shader_parameter/rim_exponent = 3.0
 shader_parameter/emission_intensity = 0.2990000142025
 shader_parameter/liquid_surface_gradient_size = 0.1750000083125
-shader_parameter/wobble = Vector2(-3.4743706e-28, -4.876668e-28)
+shader_parameter/wobble = Vector2(0, 0)
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_1s1yo"]
 
@@ -574,6 +574,10 @@ bus = &"SFX"
 [node name="PotmaStaffHitAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds" unique_id=56039993]
 stream = ExtResource("15_32hag")
 volume_db = -13.506
+bus = &"SFX"
+
+[node name="PotmaSpitAudioStream" type="AudioStreamPlayer3D" parent="PotmaSounds"]
+stream = ExtResource("15_bjvpn")
 bus = &"SFX"
 
 [node name="PotionUI Canvas layer" type="CanvasLayer" parent="." unique_id=517424625]

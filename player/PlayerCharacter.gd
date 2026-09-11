@@ -73,9 +73,11 @@ var isDashing := false;
 var dashReady := true;
 var dashDirection := Vector3.FORWARD;
 var damagedByAbility: Array[Node] = [];
+var _potion_effect_generation := 0
 
 func _init() -> void:
 	PlayerPotions.potionUsed.connect(_on_potion_used);
+	PlayerPotions.potionSpat.connect(_on_potion_spat);
 
 func _ready() -> void:
 	_set_ability_damage_enabled(false)
@@ -108,6 +110,10 @@ func deactivateDoubleJump() -> void:
 func activateDash() -> void:
 	canDash = true;
 	dashReady = true;
+
+func spitPotion() -> void:
+	potmaSounds.spitPotionSoundAudioStream.play();
+
 
 func deactivateDash() -> void:
 	canDash = false;
@@ -235,16 +241,20 @@ func _update_locomotion_animation(delta: float) -> void:
 	animation_tree.set(LOCOMOTION_BLEND_POSITION, _locomotion_blend_position)
 
 
-func jumpPotionUsed(potionType: PotionTypes.PotionType) -> void:
+func jumpPotionUsed(potionType: PotionTypes.PotionType, effect_generation: int) -> void:
 	activateMegaJump()
 	var lifeTime = PotionsConfig.get_potion_properties(potionType).lifeTime
 	await get_tree().create_timer(lifeTime, false).timeout
+	if effect_generation != _potion_effect_generation:
+		return
 	deactivateMegaJump()
 
-func speedPotionUsed(potionType: PotionTypes.PotionType) -> void:
+func speedPotionUsed(potionType: PotionTypes.PotionType, effect_generation: int) -> void:
 	_activate_improved_speed();
 	var lifeTime = PotionsConfig.get_potion_properties(potionType).lifeTime
 	await get_tree().create_timer(lifeTime, false).timeout
+	if effect_generation != _potion_effect_generation:
+		return
 	_deactivate_improved_speed();
 
 func _activate_improved_speed() -> void:
@@ -256,16 +266,23 @@ func _deactivate_improved_speed() -> void:
 	isSprinting = false;
 
 func _on_potion_used(potionType: PotionTypes.PotionType) -> void:
+	_potion_effect_generation += 1
+	var effect_generation := _potion_effect_generation
 	if potionType == PotionTypes.PotionType.Jump:
-		jumpPotionUsed(potionType);
+		jumpPotionUsed(potionType, effect_generation);
 	if potionType == PotionTypes.PotionType.Speed:
-		speedPotionUsed(potionType);
+		speedPotionUsed(potionType, effect_generation);
 	if potionType == PotionTypes.PotionType.JumpAndSpeed:
-		_activate_jump_speed_potion(potionType);
+		_activate_jump_speed_potion(potionType, effect_generation);
 	if potionType == PotionTypes.PotionType.JumpAndFire:
-		_activate_jump_fire_potion(potionType);
+		_activate_jump_fire_potion(potionType, effect_generation);
 	if potionType == PotionTypes.PotionType.SpeedAndFire:
-		_activate_speed_fire_potion(potionType);
+		_activate_speed_fire_potion(potionType, effect_generation);
+
+
+func _on_potion_spat(potionType: PotionTypes.PotionType) -> void:
+	_potion_effect_generation += 1
+	_deactivate_potion_ability(potionType)
 
 
 func _on_potion_drink_started(_uses_left_slot: bool, _uses_right_slot: bool) -> void:
@@ -275,25 +292,45 @@ func _on_potion_drink_started(_uses_left_slot: bool, _uses_right_slot: bool) -> 
 func _on_potion_drink_finished() -> void:
 	_is_drinking = false
 
-func _activate_jump_speed_potion(potionType: PotionTypes.PotionType) -> void:
+func _activate_jump_speed_potion(potionType: PotionTypes.PotionType, effect_generation: int) -> void:
 	activateMegaJump()
 	_activate_improved_speed();
 	var lifeTime = PotionsConfig.get_potion_properties(potionType).lifeTime
 	await get_tree().create_timer(lifeTime, false).timeout
+	if effect_generation != _potion_effect_generation:
+		return
 	deactivateMegaJump();
 	_deactivate_improved_speed();
 
-func _activate_jump_fire_potion(potionType: PotionTypes.PotionType) -> void:
+func _activate_jump_fire_potion(potionType: PotionTypes.PotionType, effect_generation: int) -> void:
 	activateDoubleJump();
 	var lifeTime = PotionsConfig.get_potion_properties(potionType).lifeTime
 	await get_tree().create_timer(lifeTime, false).timeout
+	if effect_generation != _potion_effect_generation:
+		return
 	deactivateDoubleJump();
 
-func _activate_speed_fire_potion(potionType: PotionTypes.PotionType) -> void:
+func _activate_speed_fire_potion(potionType: PotionTypes.PotionType, effect_generation: int) -> void:
 	activateDash();
 	var lifeTime = PotionsConfig.get_potion_properties(potionType).lifeTime
 	await get_tree().create_timer(lifeTime, false).timeout
+	if effect_generation != _potion_effect_generation:
+		return
 	deactivateDash();
+
+func _deactivate_potion_ability(potionType: PotionTypes.PotionType) -> void:
+	match potionType:
+		PotionTypes.PotionType.Jump:
+			deactivateMegaJump()
+		PotionTypes.PotionType.Speed:
+			_deactivate_improved_speed()
+		PotionTypes.PotionType.JumpAndSpeed:
+			deactivateMegaJump()	
+			_deactivate_improved_speed()
+		PotionTypes.PotionType.JumpAndFire:
+			deactivateDoubleJump()
+		PotionTypes.PotionType.SpeedAndFire:
+			deactivateDash()
 
 func on_jump_buffer_timer_ends() -> void:
 	jumpBuffer = false;

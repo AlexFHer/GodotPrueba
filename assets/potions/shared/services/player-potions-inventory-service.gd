@@ -15,7 +15,10 @@ signal selectedLeftPotionChanged(potionType: PotionTypes.PotionType);
 signal selectedRightPotionChanged(potionType: PotionTypes.PotionType); 
 signal selectedPotionChanged(potionType: PotionTypes.PotionType);
 signal potionUsed(potionType: PotionTypes.PotionType);
+signal potionSpat(potionType: PotionTypes.PotionType);
 signal potionEffectFinished(potionType: PotionTypes.PotionType);
+
+var _potionEffectGeneration := 0
 
 func isThereAnyPotionOfType(potionType: PotionTypes.PotionType) -> bool:
 	return potionsDictionary.get(potionType, 0) > 0;
@@ -93,17 +96,25 @@ func useMergedPotion(potionType: PotionTypes.PotionType, ingredientTypes: Array)
 	if not _arePotionTypesAvailable(ingredientTypes):
 		return false
 
-	potionUsed.emit(potionType);
-	emitWhenPotionFinish(potionType);
+	_emitPotionUsed(potionType)
 	for ingredientType in ingredientTypes:
 		removeOnePotionByType(ingredientType);
+	return true
+
+func spitPotion(potionType: PotionTypes.PotionType) -> bool:
+	if potionType == PotionTypes.PotionType.None:
+		return false
+
+	_potionEffectGeneration += 1
+	potionSpat.emit(potionType)
+	potionEffectFinished.emit(potionType)
+	canDrinkPotion = true
 	return true
 
 func _usePotionByType(potionType: PotionTypes.PotionType) -> void:
 	if not isThereAnyPotionOfType(potionType):
 		return
-	potionUsed.emit(potionType);
-	emitWhenPotionFinish(potionType);
+	_emitPotionUsed(potionType)
 	removeOnePotionByType(potionType);
 
 func _checkPotionsAvailability() -> void:
@@ -183,9 +194,16 @@ func _syncLegacySelectedPotionType() -> void:
 	selectedPotionType = selectedRightPotionType;
 	selectedPotionChanged.emit(selectedPotionType);
 	
-func emitWhenPotionFinish(potionType: PotionTypes.PotionType) -> void:
+func _emitPotionUsed(potionType: PotionTypes.PotionType) -> void:
+	_potionEffectGeneration += 1
+	potionUsed.emit(potionType);
+	emitWhenPotionFinish(potionType, _potionEffectGeneration);
+
+func emitWhenPotionFinish(potionType: PotionTypes.PotionType, effectGeneration: int) -> void:
 	canDrinkPotion = false;
 	var lifeTime = PotionsConfig.get_potion_properties(potionType).lifeTime;
 	await get_tree().create_timer(lifeTime, false).timeout
+	if effectGeneration != _potionEffectGeneration:
+		return
 	potionEffectFinished.emit(potionType);
 	canDrinkPotion = true;
