@@ -64,6 +64,7 @@ sky = SubResource("Sky_k7dri")
 
 [sub_resource type="Resource" id="Resource_s4o2x"]
 script = ExtResource("6_g1ipe")
+requiredMithrils = 309
 requiredBooks = 1
 requiredBabys = 3
 requiredShards = 5
