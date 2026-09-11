@@ -29,6 +29,7 @@ func _process(delta: float) -> void:
 		return
 
 	effectTimeLeft = max(effectTimeLeft - delta, 0.0)
+	potionEffectMaterial.set_shader_parameter("effect_time", effectDuration - effectTimeLeft)
 	if fullEffectFramePending:
 		fullEffectFramePending = false
 		potionEffectMaterial.set_shader_parameter("potion_progress", 1.0)
@@ -53,10 +54,29 @@ func _on_potion_used(potionType: PotionTypes.PotionType) -> void:
 	effectDuration = potionProperties.lifeTime
 	effectTimeLeft = effectDuration
 	fullEffectFramePending = true
-	potionEffectMaterial.set_shader_parameter("potion_color", PotionsConfig.get_potion_color(potionType))
+	_set_potion_effect_colors(potionType)
+	potionEffectMaterial.set_shader_parameter("effect_time", 0.0)
 	potionEffectMaterial.set_shader_parameter("potion_strength", 1.0)
 	potionEffectMaterial.set_shader_parameter("potion_progress", 1.0)
 	bodyMeshNode.set_surface_override_material(0, potionEffectMaterial)
+
+
+func _set_potion_effect_colors(potionType: PotionTypes.PotionType) -> void:
+	var base_type := potionType
+	var secondary_type := PotionTypes.PotionType.None
+	match potionType:
+		PotionTypes.PotionType.JumpAndFire:
+			base_type = PotionTypes.PotionType.Jump
+			secondary_type = PotionTypes.PotionType.Fire
+		PotionTypes.PotionType.JumpAndSpeed:
+			base_type = PotionTypes.PotionType.Jump
+			secondary_type = PotionTypes.PotionType.Speed
+		PotionTypes.PotionType.SpeedAndFire:
+			base_type = PotionTypes.PotionType.Speed
+			secondary_type = PotionTypes.PotionType.Fire
+	potionEffectMaterial.set_shader_parameter("potion_color", PotionsConfig.get_potion_color(base_type))
+	potionEffectMaterial.set_shader_parameter("secondary_color", PotionsConfig.get_potion_color(secondary_type))
+	potionEffectMaterial.set_shader_parameter("combined_potion", secondary_type != PotionTypes.PotionType.None)
 
 
 func _on_player_selected_potion_changed(potionType: PotionTypes.PotionType):

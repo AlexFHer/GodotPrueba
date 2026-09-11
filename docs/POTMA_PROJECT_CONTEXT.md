@@ -307,12 +307,18 @@ Potion effect colors:
 - `Fire`: red.
 - `Jump`: blue.
 - `Speed`: green.
-- `JumpAndFire`: purple.
-- `JumpAndSpeed`: cyan.
-- `SpeedAndFire`: orange.
+- `JumpAndFire`: blue base with moving red lava blobs on the outfit.
+- `JumpAndSpeed`: blue base with moving green lava blobs on the outfit.
+- `SpeedAndFire`: green base with moving red lava blobs on the outfit.
+- Combined outfit effects use rounded merging UV-space blobs, restricted by the
+  existing clothing mask and duration drain. Animation uses elapsed potion time
+  so it freezes during pause; single potions remain solid colors. Base/blob
+  ordering is fixed per combination regardless of the ingredient slots.
 
 The shared potion color palette is provided by `PotionsConfig` and is used by
-both active body feedback and the belt bottle liquids.
+both active body feedback and the belt bottle liquids. Combined outfit feedback
+uses the two ingredient colors; the shared purple/cyan/orange combination palette
+remains available for other visuals.
 
 Important files:
 - `player/scripts/player-model-manager.gd`
