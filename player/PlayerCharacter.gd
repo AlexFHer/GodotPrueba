@@ -85,9 +85,14 @@ func _init() -> void:
 	PlayerPotions.potionSpat.connect(_on_potion_spat);
 
 func _ready() -> void:
+	_initialize_checkpoint()
 	_set_ability_damage_enabled(false)
 	_fire_ability_aura = FIRE_ABILITY_AURA_SCENE.instantiate() as FireAbilityAura
 	add_child(_fire_ability_aura)
+
+func _initialize_checkpoint() -> void:
+	if checkpoint.is_zero_approx():
+		checkpoint = global_position
 
 func jump() -> void:
 	potmaSounds.jumpSoundAudioStream.play();
@@ -489,7 +494,10 @@ func is_moving() -> bool:
 func get_to_checkpoint() -> void:
 	if is_teleporting():
 		return
-	position = checkpoint
+	_cancel_dialogue_incompatible_actions()
+	velocity = Vector3.ZERO
+	global_position = checkpoint
+	reset_physics_interpolation()
 
 
 func is_gameplay_input_locked() -> bool:

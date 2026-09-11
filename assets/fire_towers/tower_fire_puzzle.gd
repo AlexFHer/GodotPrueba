@@ -1,6 +1,6 @@
 class_name FireTower extends Node3D
 
-signal fire_state(newActive: bool)
+signal fire_state()
 
 @export var towerFireAudio: AudioStreamPlayer3D;
 

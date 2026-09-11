@@ -8,7 +8,8 @@ class_name inGameCollectablesUI extends Control
 @onready var bottom_content: Control = $BottomContent
 @onready var mithril_count_label: Label = %MithrilCount
 @onready var book_icon: TextureRect = %BookIcon
-@onready var key_icon: TextureRect = %KeyIcon
+@onready var key_count_label: Label = %KeyCount
+@onready var key_indicator: Control = %KeyIndicator
 @onready var book_count_label: Label = %BooksCount
 @onready var baby_icons: Array[TextureRect] = [%BabyIcon, %BabyIcon2, %BabyIcon3]
 @onready var shard_count_label: Label = %ShardsCount
@@ -27,7 +28,8 @@ func update_current_collectables(levelCollectables: LevelCollectables) -> void:
 	shard_count_label.text = str(levelCollectables.currentShards)
 
 func _update_key_icon(numberOfKeys: int) -> void:
-	key_icon.visible = numberOfKeys > 0
+	key_count_label.text = str(numberOfKeys)
+	key_indicator.visible = numberOfKeys > 0
 
 func show_collectables() -> void:
 	if _animation != null:

@@ -90,6 +90,26 @@ func useLeftPotion() -> void:
 func useRightPotion() -> void:
 	_usePotionByType(selectedRightPotionType);
 
+func consumeLeftPotion() -> bool:
+	return _consumePotionByType(selectedLeftPotionType)
+
+func consumeRightPotion() -> bool:
+	return _consumePotionByType(selectedRightPotionType)
+
+func consumeMergedPotion(ingredientTypes: Array) -> bool:
+	if not _arePotionTypesAvailable(ingredientTypes):
+		return false
+
+	for ingredientType in ingredientTypes:
+		removeOnePotionByType(ingredientType);
+	canDrinkPotion = false
+	return true
+
+func activatePotionEffect(potionType: PotionTypes.PotionType) -> void:
+	if potionType == PotionTypes.PotionType.None:
+		return
+	_emitPotionUsed(potionType)
+
 func useMergedPotion(potionType: PotionTypes.PotionType, ingredientTypes: Array) -> bool:
 	if potionType == PotionTypes.PotionType.None:
 		return false
@@ -116,6 +136,13 @@ func _usePotionByType(potionType: PotionTypes.PotionType) -> void:
 		return
 	_emitPotionUsed(potionType)
 	removeOnePotionByType(potionType);
+
+func _consumePotionByType(potionType: PotionTypes.PotionType) -> bool:
+	if not isThereAnyPotionOfType(potionType):
+		return false
+	removeOnePotionByType(potionType);
+	canDrinkPotion = false
+	return true
 
 func _checkPotionsAvailability() -> void:
 	if not areThereAnyPotions():

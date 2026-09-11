@@ -16,7 +16,7 @@ func activate_secret_tower() -> void:
 
 func _process(delta: float) -> void:
 	if activated:
-		position.y = lerp(position.y, activated_position_y, move_speed * delta)
+		position.y = lerp(position.y, activated_position_y, 1.0 - exp(-move_speed * delta))
 		if abs(position.y - activated_position_y) < 0.1:
 			position.y = activated_position_y
 			activated = false

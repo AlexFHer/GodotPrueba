@@ -25,6 +25,10 @@ func _ready() -> void:
 	check(is_zero_approx(ui.bottom_content.position.y), "Babys arrive at the bottom anchor")
 	check(ui.mithril_count_label.text == "1250", "Mithril counter")
 	check(ui.book_count_label.text == "1", "Book counter")
+	PlayerInventory.keys = 2
+	PlayerInventory.numberOfKeysChanged.emit(PlayerInventory.keys)
+	check(ui.key_indicator.visible, "Key indicator appears when the player has keys")
+	check(ui.key_count_label.text == "2", "Key counter")
 	for count in range(4):
 		data.currentBabys = count
 		ui.update_current_collectables(data)
@@ -37,7 +41,7 @@ func _ready() -> void:
 		await get_tree().process_frame
 		await get_tree().process_frame
 		var viewport_rect := Rect2(Vector2.ZERO, get_viewport().get_visible_rect().size)
-		for item in [ui.mithril_count_label, ui.book_count_label, ui.shard_count_label] + ui.baby_icons:
+		for item in [ui.mithril_count_label, ui.book_count_label, ui.shard_count_label, ui.key_indicator] + ui.baby_icons:
 			check(viewport_rect.encloses(item.get_global_rect()), "Counter remains inside viewport")
 	ui.display_duration = 1.0
 	ui.show_collectables()

@@ -61,10 +61,14 @@ a new decision, mechanic, constraint, naming convention, or open question appear
   `PotionsParticlesSystem` marker above the player and simulate in local
   coordinates, keeping the burst attached to the character instead of an
   unrelated world position.
-- Drinking one potion consumes one selected potion and emits `potionUsed`.
+- Drinking one potion consumes one selected potion when the drink starts, then
+  emits `potionUsed` and activates the effect only when the drink animation
+  finishes.
 - Drinking both potions at nearly the same time combines the selected potion types.
 - Combined potions are not added to inventory.
-- Combined potions are consumed immediately: both ingredient potions are removed and the combined ability is activated directly.
+- Combined potions are consumed immediately: both ingredient potions are removed
+  when the drink starts, then the combined ability activates only when the drink
+  animation finishes.
 - Active potion state is tracked by `ActivePotionEffectService`.
 - Only one potion effect should be active at a time.
 - Drink animation mapping: left uses `Potma_DrinkLeft`, right uses
@@ -359,12 +363,21 @@ Important files:
 - `GameSettings`
 
 ## Collectibles And World Objects
+- FireTower.fire_state is a zero-argument notification matching the all-lit
+  puzzle callback. All five torches in LVL1_Stylized must activate before the
+  connected SecretTower rises to its configured activated_position_y.
+  LVL1_Stylized uses local Y 13.365025 (platform top around world Y 21.35),
+  with movement responsiveness 0.8. Its duplicate static tower mesh/collision
+  are disabled. Tower interpolation uses exponential smoothing to avoid
+  overshoot on long frames.
 - `scenes/level1_stylized/breakable_wall/breakable_wall.tscn` accepts three
   `CanGetHit` impacts through the existing combat interface. Nonlethal hits
   shake only its mesh; the third hides it and disables collision. Faceted rock
   fragments and soft scalloped dust emit from sampled mesh triangles (the
   imported wall retains map-space vertex offsets), then clean up after two
   seconds. Destruction is session-only and does not add save persistence.
+  In LVL1_Stylized, the hidden original wall has its collision disabled; only
+  the breakable scene instance blocks passage, so destruction opens the hole.
 - The collectibles HUD shows three baby portraits instead of a numeric baby
   count. Slots fill left to right from the level's currentBabys, including saved
   progress, using baby_hud_icon_not_taken.png and baby_hud_icon.png with matching
@@ -479,6 +492,10 @@ Important files:
 - Fire-based interactions exist through fireballs and fire puzzle objects.
 
 ## Enemies And Damage
+- Player checkpoint respawn uses a world-space `MainPlayer.checkpoint`. When it
+  is left at `Vector3.ZERO`, the player initializes it from their actual level
+  spawn position on `_ready()`, so death zones return to the authored spawn by
+  default.
 - Globrc Big waits a random 1.0-1.6 seconds after each attack finishes before
   attacking again if the player remains in attack range. Inspector properties
   `attack_cooldown_min` and `attack_cooldown_max` tune this pause; it follows
@@ -587,3 +604,10 @@ Important files:
   input active, and locks movement/gameplay actions until toggled off.
 - 2026-09-11: Expanded vertical camera pitch limits and exposed them on
   `CameraPivot` so first-person inspection can look up into interiors.
+- 2026-09-12: Delayed potion effect activation until the drink animation
+  finishes. Inventory consumption still happens when drinking starts, but
+  `potionUsed`, ability timers, body visuals, and completion particles now begin
+  at drink completion.
+- 2026-09-12: Checkpoint respawn now treats `MainPlayer.checkpoint` as
+  world-space and initializes it from the player's authored spawn when left at
+  `Vector3.ZERO`.

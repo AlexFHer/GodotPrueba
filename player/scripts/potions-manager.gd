@@ -31,6 +31,7 @@ var _active_drink_animation: StringName = &""
 var _active_animation_is_spit := false
 var _drink_one_shot_was_active := false
 var _drink_animation_start_grace_frames := 0
+var _pending_potion_effect: PotionTypes.PotionType = PotionTypes.PotionType.None
 
 func _ready() -> void:
 	_animation_tree.animation_finished.connect(_on_animation_tree_animation_finished)
@@ -62,6 +63,8 @@ func _process(_delta: float) -> void:
 
 func _register_drink_intent(isLeft: bool) -> void:
 	if _is_gameplay_input_locked():
+		return
+	if _has_active_or_pending_potion_effect():
 		return
 	if isLeft:
 		_pending_left_drink = true
@@ -126,10 +129,13 @@ func drinkLeftPotion() -> void:
 		return
 	if not PlayerPotions.isThereAnyPotionOfType(potion_type):
 		return
-	if _active_potion_service.has_active_potion():
+	if _has_active_or_pending_potion_effect():
 		return
 	potion_drink_started.emit(true, false)
-	PlayerPotions.useLeftPotion()
+	if not PlayerPotions.consumeLeftPotion():
+		potion_drink_finished.emit()
+		return
+	_pending_potion_effect = potion_type
 	play_drink_animation(DRINK_LEFT_ANIMATION)
 
 func drinkRightPotion() -> void:
@@ -140,16 +146,19 @@ func drinkRightPotion() -> void:
 		return
 	if not PlayerPotions.isThereAnyPotionOfType(potion_type):
 		return
-	if _active_potion_service.has_active_potion():
+	if _has_active_or_pending_potion_effect():
 		return
 	potion_drink_started.emit(false, true)
-	PlayerPotions.useRightPotion()
+	if not PlayerPotions.consumeRightPotion():
+		potion_drink_finished.emit()
+		return
+	_pending_potion_effect = potion_type
 	play_drink_animation(DRINK_RIGHT_ANIMATION)
 
 func tryMergePotions() -> bool:
 	if _is_gameplay_input_locked():
 		return false
-	if _active_potion_service.has_active_potion():
+	if _has_active_or_pending_potion_effect():
 		return false
 
 	var leftType = PlayerPotions.selectedLeftPotionType
@@ -165,10 +174,11 @@ func tryMergePotions() -> bool:
 		return false
 
 	potion_drink_started.emit(true, true)
-	if not PlayerPotions.useMergedPotion(mergedType, [leftType, rightType]):
+	if not PlayerPotions.consumeMergedPotion([leftType, rightType]):
 		potion_drink_finished.emit()
 		return false
 
+	_pending_potion_effect = mergedType
 	play_drink_animation(DRINK_BOTH_ANIMATION)
 	return true
 
@@ -190,9 +200,9 @@ func spitCurrentPotion() -> bool:
 	play_spit_animation()
 	return true
 
-func _on_drink_animation_finished() -> void:
+func _on_drink_animation_finished(potion_type: PotionTypes.PotionType) -> void:
 	potmaSounds.drinkSoundAudioStream.play()
-	_potion_particles_system._play_particles(_active_potion_service.current_active_potion)
+	_potion_particles_system._play_particles(potion_type)
 
 func play_drink_animation(animation_name: StringName) -> void:
 	_active_animation_is_spit = false
@@ -250,11 +260,19 @@ func _finish_active_drink_animation(play_feedback: bool) -> void:
 	_active_drink_animation = &""
 	var was_spit := _active_animation_is_spit
 	_active_animation_is_spit = false
+	var potion_effect_to_activate := _pending_potion_effect
+	_pending_potion_effect = PotionTypes.PotionType.None
 	_drink_one_shot_was_active = false
 	_drink_animation_start_grace_frames = 0
 	potion_drink_finished.emit()
-	if play_feedback and not was_spit:
-		_on_drink_animation_finished()
+	if potion_effect_to_activate != PotionTypes.PotionType.None:
+		PlayerPotions.activatePotionEffect(potion_effect_to_activate)
+	if (
+			play_feedback
+			and not was_spit
+			and potion_effect_to_activate != PotionTypes.PotionType.None
+	):
+		_on_drink_animation_finished(potion_effect_to_activate)
 
 func _cancel_pending_drink_intents() -> void:
 	if not _pending_left_drink and not _pending_right_drink and not _is_waiting_merge_decision:
@@ -268,3 +286,10 @@ func _cancel_pending_drink_intents() -> void:
 
 func _is_gameplay_input_locked() -> bool:
 	return _player != null and _player.is_gameplay_input_locked()
+
+func _has_active_or_pending_potion_effect() -> bool:
+	return (
+		not _active_drink_animation.is_empty()
+		or _pending_potion_effect != PotionTypes.PotionType.None
+		or _active_potion_service.has_active_potion()
+	)

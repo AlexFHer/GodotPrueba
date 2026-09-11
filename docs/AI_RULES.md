@@ -36,6 +36,8 @@
 ---
 
 ## Editing Rules
+
+- Delete temporary tests created for a task after running them, including their generated `.uid` files. Do not leave new test artifacts in the project.
 - Do not rewrite entire files unnecessarily
 - Modify only the requested parts
 - Preserve existing architecture
