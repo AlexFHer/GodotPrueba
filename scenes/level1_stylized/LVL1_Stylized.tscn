@@ -65,7 +65,7 @@ sky = SubResource("Sky_k7dri")
 
 [sub_resource type="Resource" id="Resource_s4o2x"]
 script = ExtResource("6_g1ipe")
-requiredMithrils = 309
+requiredMithrils = 310
 requiredBooks = 1
 requiredBabys = 3
 requiredShards = 5
@@ -6359,6 +6359,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.68699, 5.49601, 13.1542)
 
 [node name="Mythril9" parent="Mythrill_1" unique_id=884242430 instance=ExtResource("31_b3wff")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.265507, 1.8930128, 35.369827)
+
+[node name="Mythril4" parent="Mythrill_1" unique_id=1790898543 instance=ExtResource("31_b3wff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -218.29875, 42.0457, -18.006824)
 
 [node name="Mythril10" parent="Mythrill_1" unique_id=93142677 instance=ExtResource("31_b3wff")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.242126, 1.175257, 58.717934)
