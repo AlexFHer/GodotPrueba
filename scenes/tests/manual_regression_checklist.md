@@ -62,11 +62,12 @@ column exercises the `Body3D` damage path and the orange column exercises the
 12. Start and continue combos while jumping or falling. Confirm airborne Square
     presses remain valid, leaving the floor does not reset the current chain, and
     the same continuation timing applies before and after landing.
-13. With the damage-dash potion active, start a combo and then dash. Confirm dash
-    cancels the staff chain and only ability contact damage remains active; after
-    dash recovery the next normal attack starts at 1. In a separate run, take
-    damage during the dash and confirm attacking stays blocked until both the dash
-    and hit reaction finish, then restarts at attack 1.
+13. With the damage-dash potion active, press Square. Confirm Square starts the
+    fire dash instead of the normal staff chain and only ability contact damage
+    becomes active. Confirm the dash action does not start this potion dash. In a
+    separate run, take damage during the dash and confirm attacking stays blocked
+    until both the dash and hit reaction finish, then restarts cleanly after the
+    potion ends.
 14. With plain Fire active, complete attacks 1, 2, and 3. Confirm the three normal
     attack animations play in order, the staff hitbox still deals one hit per
     stage, and each stage shows an emissive orange-red staff trail and launches

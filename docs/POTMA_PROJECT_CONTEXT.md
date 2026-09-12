@@ -36,10 +36,12 @@ a new decision, mechanic, constraint, naming convention, or open question appear
 - Simple, readable systems over overengineered abstractions.
 
 ## Current Potion System
-- Potion HUD slots use `player/scenes/potions-ui.tscn`: two 64px bottom-corner
-  squares with aubergine translucent backgrounds, cyan borders and only the
-  selected bottle icons (no names or quantities). Icons preserve their aspect
-  ratio; screen margins are 24px. UI initializes from inventory on level entry.
+- Potion HUD slots use `player/scenes/potions-ui.tscn`: pressing Select
+  (`toggle-hud`) shows only the two selected 64px bottom-corner bottle slots,
+  left and right, each with its selected potion's current quantity. There is
+  no center inventory row. Icons preserve their
+  aspect ratio; screen margins are 24px. UI initializes from inventory on level
+  entry and hides again after the same short display window as collectibles.
 - The player has left and right potion slots.
 - Left and right selected potion types are managed by `PlayerPotions`.
 - Each selected slot is represented by a generic bottle attached to the
@@ -97,7 +99,7 @@ Important files:
 - `Fire`: lets the player launch a fireball with the attack action.
 - `Jump`: gives the player a higher jump.
 - `Speed`: makes the player run faster.
-- `SpeedAndFire`: grants a damage dash.
+- `SpeedAndFire`: replaces the attack action with a damage dash while active.
 - `JumpAndFire`: grants a double jump; the second jump damages enemies on contact.
 - `JumpAndSpeed`: retains Speed's running speed and jumps approximately 0.45
   times as high as plain Jump. Launch velocity uses sqrt(0.45) times the normal
@@ -115,7 +117,7 @@ Current durations:
 - Movement actions: `move-forward`, `move-backwards`, `move-left`, `move-right`.
 - Jump action: `jump`.
 - Attack action: `attack`.
-- Dash action: `dash`.
+- Dash action: `dash` (reserved; `SpeedAndFire` uses `attack` instead).
 - Contextual interaction/dialogue action: `interact` (`E` on keyboard and the
   bottom controller face button: PlayStation Cross / Xbox A).
 - Drink left potion: `drinkPotionLeft`.
@@ -285,14 +287,17 @@ Important files:
   attached to the animated staff bone. The existing 2-second Fire cooldown
   gates the start of a new chain but never blocks stages two or three of a chain
   already in progress.
-- Fire-containing combined abilities continue to use the normal three-hit combo
-  without the plain `Fire` projectile or fire-arc behavior.
+- `SpeedAndFire` replaces the normal attack combo with the damage dash while
+  active. Other fire-containing combined abilities continue to use the normal
+  three-hit combo without the plain `Fire` projectile or fire-arc behavior.
 
 ## Ability Combat Rules
 - Normal staff hit damages `CanGetHit` targets.
 - Fire potion adds one fireball, one independent forward-moving fire arc, and a
   fire-colored staff trail to every stage of the normal three-hit combo.
 - Combined abilities that include fire should not automatically behave like plain `Fire`.
+- `SpeedAndFire` damage dash is triggered by `attack`, replacing normal staff
+  attacks while the potion is active.
 - Damage dash and damaging second jump use the player's `AbilityDamageArea`.
 - Ability contact damage should only be active during the intended ability window.
 - `JumpAndFire` second jump and the dash ability start
@@ -450,13 +455,18 @@ Important files:
   as a sibling until playback finishes so removing the fragment keeps its tail.
   `pop_sound` and `pop_volume_db` are inspector controls.
 - The project includes mythril collectibles, coins, books, keys, chests, fire towers, arcs, elevators, doors, levers, NPC dialogue, and enemies.
+- Elevators use `assets/elevator/elevator.gd` with `ElevatorPoint` nodes as
+  authored stops and wait-time markers. The elevator itself detects arrival by
+  distance, snaps to the stop, waits, then reverses at the ends; do not rely on
+  `Area3D.body_entered` for moving-platform stop detection.
 - Collectibles and progression should support the 3D collectathon fantasy.
 - The four level collectible categories are babys, mythril, books, and magic
   shards. Babys and the existing magic fragment now use the same persistent
   ledger as mithril/books, without invalidating earlier saves.
-- Select (`toggle-hud`) shows all four counters, including zero: shards at top
-  left, books at top center, mythril at top right (40px number), and the existing
-  baby render at bottom center. Anchored containers adapt to viewport size.
+- Select (`toggle-hud`) shows all four collectable counters, including zero:
+  shards at top left, books at top center, mythril at top right (40px number),
+  and the existing baby render at bottom center. It also shows the potion HUD
+  with quantities on the left and right selected slots. Anchored containers adapt to viewport size.
   The key indicator remains separate at bottom right when a key is held.
   HUD icons, numbers, spacing, and container bounds were reduced by about 15%, then a further 10%
   at the user's request, preserving screen anchors and edge margins.
@@ -629,3 +639,13 @@ Important files:
 - 2026-09-12: Smoothed Globrc Big/Small attack entry with facing checks and
   short windups, fixed patrol-less Globrc Small initialization/turning, and made
   enemy death bursts drive cleanup reliably with an improved shared smoke plume.
+- 2026-09-12: Made elevators reverse reliably after reaching their upper stop by
+  detecting stop arrival in `elevator.gd`, snapping to each `ElevatorPoint`, and
+  reversing travel direction at route ends instead of depending on `Area3D`
+  overlap signals.
+- 2026-09-12: Moved the `SpeedAndFire` damage dash onto the `attack` action
+  (Square) while active, replacing the normal staff combo instead of using the
+  dash action.
+- 2026-09-12: Potion HUD now appears with Select alongside collectibles and
+  shows only the left and right selected slots with quantity badges in the
+  bottom corners. The center inventory row was removed after clarification.

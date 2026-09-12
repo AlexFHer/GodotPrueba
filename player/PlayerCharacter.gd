@@ -208,8 +208,16 @@ func process_jump(gameplay_input_locked: bool) -> void:
 func process_dash(gameplay_input_locked: bool) -> void:
 	if gameplay_input_locked or _is_drinking:
 		return
-	if Input.is_action_just_pressed("dash") and canMove and canDash and dashReady and not isDashing:
-		_start_dash();
+
+
+func try_start_fire_dash_attack() -> bool:
+	if is_gameplay_input_locked() or _is_drinking:
+		return false
+	if not canMove or not canDash or not dashReady or isDashing:
+		return false
+
+	_start_dash()
+	return true
 
 func process_movement(delta: float, gameplay_input_locked: bool) -> void:
 	if isDashing and not gameplay_input_locked:

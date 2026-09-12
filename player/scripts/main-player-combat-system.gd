@@ -93,6 +93,11 @@ func attack() -> void:
 	if _is_gameplay_input_locked() or _is_attack_recovery_blocked():
 		return
 
+	if _is_speed_fire_potion_active():
+		if _player != null:
+			_player.try_start_fire_dash_attack()
+		return
+
 	if _has_combo_in_progress():
 		_handle_normal_attack_input()
 		return
@@ -283,6 +288,10 @@ func _on_staff_hit_animation_end() -> void:
 
 func _is_fire_potion_active() -> bool:
 	return _active_potion_service.current_active_potion == PotionTypes.PotionType.Fire
+
+
+func _is_speed_fire_potion_active() -> bool:
+	return _active_potion_service.current_active_potion == PotionTypes.PotionType.SpeedAndFire
 
 
 func _disable_fire_attack() -> void:
