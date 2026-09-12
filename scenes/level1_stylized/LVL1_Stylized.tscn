@@ -7855,9 +7855,6 @@ data = PackedVector3Array(3.1007, 0.122999996, -0.011399999, -0.0218, -1.7127, 1
 [node name="LevelSound" parent="." unique_id=1232900703 instance=ExtResource("51_r6y5n")]
 stream = ExtResource("52_2xd02")
 
-[node name="MainCharacter" parent="." unique_id=220301657 instance=ExtResource("19_1rakf")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -93.11023, 3.1749656, 15.688156)
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1259665237]
 environment = SubResource("Environment_2h3lg")
 
@@ -10348,6 +10345,9 @@ metadata/_custom_type_script = "uid://khpwy7mwgoqc"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.3742914, 0)
 script = ExtResource("54_6pkuh")
 metadata/_custom_type_script = "uid://khpwy7mwgoqc"
+
+[node name="MainCharacter2" parent="." unique_id=220301657 instance=ExtResource("19_1rakf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -91.83421, 3.9273167, 15.819737)
 
 [connection signal="all_fire_towers_active" from="FireTowers" to="Arcs/secret_tower" method="activate_secret_tower"]
 [connection signal="all_arcs_active" from="Arcs" to="Arcs/MagicChest" method="deactivate_force_field"]
