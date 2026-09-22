@@ -3594,6 +3594,7 @@ metadata/extras = {
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2fkus"]
 resource_name = "Mythrill"
+render_priority = 1
 transparency = 4
 cull_mode = 2
 albedo_texture = ExtResource("17_mkmkg")
