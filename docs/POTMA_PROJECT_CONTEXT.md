@@ -542,6 +542,48 @@ Important files:
 - Keep visual additions compatible with the retro/PSX-inspired style unless a specific feature calls for a different look.
 - Prefer clear gameplay readability over decorative effects.
 
+## 3D Occlusion Culling
+- Occlusion culling is enabled in `project.godot`. `LVL1_Stylized.tscn` owns
+  `LevelOccluder`, backed by `scenes/level1_stylized/level_occluder.tres`.
+- Visual layer 2, `Static Occluders`, is reserved for permanent opaque
+  architecture. Selected meshes keep layer 1 as well (`layers = 3`), so camera
+  visibility stays unchanged. This is independent of physics layers.
+- The bake mask includes only visual layer 2 (`bake_mask = 2`). Its nine source
+  meshes under `LvL1_Stylized_Imported` are `LVL1_Stylized`, `Well_Room`,
+  `UnderLevel`, `Tower_West`, `Tunnel`, `Island_Room`, `Tower_East`, `Castle`,
+  and `Island_Room_001`. The initial resource was generated offline in Godot
+  4.7.2 from their opaque mesh surfaces in level coordinates, merging identical
+  vertices: 9,009 vertices and 14,155 triangles. No runtime baking is performed.
+- Simplification is deliberately disabled (`bake_simplification_distance = 0`)
+  to preserve doorways and openings. After moving or changing source geometry,
+  select `LevelOccluder`, run **Bake Occluders**, and save the scene/resource.
+  Evaluate CPU cost before increasing geometry coverage or simplification.
+- Keep characters, pickups, elevators, doors, the rising secret tower, the
+  breakable wall, hidden import copies, and the translucent `Fake_Wall` out of
+  this layer. They are not static occluders; visible geometry can still be
+  occluded automatically. Door/destruction-controlled occluders are not added.
+- Compare the same camera path with root viewport `use_occlusion_culling` on
+  and off before claiming an FPS improvement. Use the editor's Occlusion
+  Culling Buffer view to inspect coverage. Other levels currently have no
+  authored occluders.
+- Initial validation used a script-free visual snapshot in Forward+ on Godot
+  4.7.2, with four off/on camera pairs. Visible render-object counts dropped
+  434 to 261, 61 to 19, 66 to 14, and 467 to 102; screenshot review found no
+  missing visible geometry in these views. This is not a gameplay FPS benchmark.
+- Follow-up validation on 2026-09-30 ran the actual level with active gameplay,
+  Forward+, Intel Iris Xe, 960x540, VSync disabled, and isolated APPDATA. Four
+  fixed cameras each used off/on/on/off blocks (100 sampled frames per block).
+  Draw calls fell 185 to 93 at spawn, 296 to 194 outdoors, 325 to 94 in the
+  castle, and 23 to 14 in the tunnel. Six screenshot pairs, including both
+  sides of the actually destroyed wall, showed no missing visible geometry.
+- Frame timings were highly variable and do not establish an overall FPS
+  improvement. Measured viewport render CPU cost increased roughly 0.3-0.8 ms;
+  the low-complexity tunnel was slower with occlusion. Treat this setup as
+  visually validated in sampled views, not a confirmed net performance win.
+  Broader camera traversal and a controlled performance run remain advisable
+  before expanding occluder coverage. No rendering setting was changed during
+  that follow-up other than temporary in-memory toggles in the test process.
+
 ## Documentation And Rules
 - `docs/AI_RULES.md` contains short AI/code rules.
 - This file contains deeper project memory and should be updated more often.
