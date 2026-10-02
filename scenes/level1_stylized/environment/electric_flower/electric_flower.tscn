@@ -1,0 +1,153 @@
+[gd_scene format=3 uid="uid://cqnm44het1hu0"]
+
+[ext_resource type="Script" uid="uid://c2ul60scex6by" path="res://scenes/level1_stylized/environment/electric_flower/electric_flower.gd" id="1_bxpnu"]
+[ext_resource type="PackedScene" uid="uid://bygsgx5mccf8m" path="res://scenes/level1_stylized/environment/electric_flower/electric_flower.glb" id="1_m10h2"]
+[ext_resource type="Shader" uid="uid://2lwp468jishb" path="res://scenes/level1_stylized/environment/electric_flower/shaders/lightning_ribbon.gdshader" id="5_ribbon"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4mxjb"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("5_ribbon")
+shader_parameter/line_color = Color(0.99215686, 0, 0.87058824, 1)
+shader_parameter/amplitude = 0.294000013965
+shader_parameter/erraticity = 1.0
+shader_parameter/jitter_speed = 22.0
+shader_parameter/thickness = 0.11000000452648
+shader_parameter/emission_energy = 2.890000137275
+shader_parameter/progress = 0.0
+shader_parameter/effect_time = 0.0
+shader_parameter/seed = 1.0
+shader_parameter/reverse_direction = false
+shader_parameter/surface_offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cs5dm"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("5_ribbon")
+shader_parameter/line_color = Color(0.99215686, 0, 0.87058824, 1)
+shader_parameter/amplitude = 0.294000013965
+shader_parameter/erraticity = 0.85
+shader_parameter/jitter_speed = 22.0
+shader_parameter/thickness = 0.11000000452648
+shader_parameter/emission_energy = 2.890000137275
+shader_parameter/progress = 0.0
+shader_parameter/effect_time = 0.0
+shader_parameter/seed = 1.0
+shader_parameter/reverse_direction = false
+shader_parameter/surface_offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n0de8"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("5_ribbon")
+shader_parameter/line_color = Color(0.99215686, 0, 0.87058824, 1)
+shader_parameter/amplitude = 0.27
+shader_parameter/erraticity = 0.85
+shader_parameter/jitter_speed = 22.0
+shader_parameter/thickness = 0.045
+shader_parameter/emission_energy = 3.0
+shader_parameter/progress = 0.0
+shader_parameter/effect_time = 0.0
+shader_parameter/seed = 3.0
+shader_parameter/reverse_direction = false
+shader_parameter/surface_offset = 0.008
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mnltk"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("5_ribbon")
+shader_parameter/line_color = Color(0.99215686, 0, 0.87058824, 1)
+shader_parameter/amplitude = 0.27
+shader_parameter/erraticity = 0.85
+shader_parameter/jitter_speed = 22.0
+shader_parameter/thickness = 0.045
+shader_parameter/emission_energy = 3.0
+shader_parameter/progress = 0.0
+shader_parameter/effect_time = 0.0
+shader_parameter/seed = 4.0
+shader_parameter/reverse_direction = false
+shader_parameter/surface_offset = 0.008
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o88lj"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("5_ribbon")
+shader_parameter/line_color = Color(0.25, 0.65, 1, 1)
+shader_parameter/amplitude = 0.27
+shader_parameter/erraticity = 0.85
+shader_parameter/jitter_speed = 22.0
+shader_parameter/thickness = 0.045
+shader_parameter/emission_energy = 3.0
+shader_parameter/progress = 0.0
+shader_parameter/effect_time = 0.0
+shader_parameter/seed = 5.0
+shader_parameter/reverse_direction = false
+shader_parameter/surface_offset = 0.008
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wjrdx"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("5_ribbon")
+shader_parameter/line_color = Color(0.25, 0.65, 1, 1)
+shader_parameter/amplitude = 0.27
+shader_parameter/erraticity = 0.85
+shader_parameter/jitter_speed = 22.0
+shader_parameter/thickness = 0.045
+shader_parameter/emission_energy = 3.0
+shader_parameter/progress = 0.0
+shader_parameter/effect_time = 0.0
+shader_parameter/seed = 6.0
+shader_parameter/reverse_direction = true
+shader_parameter/surface_offset = 0.008
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eudqf"]
+size = Vector3(0.46118164, 0.800354, 0.4416504)
+
+[node name="ElectricFlower" type="Area3D" unique_id=704066611 node_paths=PackedStringArray("animation_player", "lightning_meshes")]
+collision_mask = 2
+script = ExtResource("1_bxpnu")
+animation_player = NodePath("ElectricFlower/AnimationPlayer")
+lightning_meshes = [NodePath("ElectricFlower/Lightning_placeholder_01"), NodePath("ElectricFlower/Lightning_placeholder_01_001"), NodePath("ElectricFlower/Lightning_placeholder_01_002"), NodePath("ElectricFlower/Lightning_placeholder_01_003"), NodePath("ElectricFlower/Lightning_placeholder_01_004"), NodePath("ElectricFlower/Lightning_placeholder_01_005")]
+
+[node name="ElectricFlower" parent="." unique_id=846398945 instance=ExtResource("1_m10h2")]
+
+[node name="Lightning_placeholder_01" parent="ElectricFlower" index="1" unique_id=1092479036]
+material_override = SubResource("ShaderMaterial_4mxjb")
+cast_shadow = 0
+
+[node name="Lightning_placeholder_01_001" parent="ElectricFlower" index="2" unique_id=979909020]
+material_override = SubResource("ShaderMaterial_cs5dm")
+cast_shadow = 0
+
+[node name="Lightning_placeholder_01_002" parent="ElectricFlower" index="3" unique_id=2057801303]
+material_override = SubResource("ShaderMaterial_n0de8")
+cast_shadow = 0
+
+[node name="Lightning_placeholder_01_003" parent="ElectricFlower" index="4" unique_id=48371354]
+material_override = SubResource("ShaderMaterial_mnltk")
+cast_shadow = 0
+
+[node name="Lightning_placeholder_01_004" parent="ElectricFlower" index="5" unique_id=326651525]
+material_override = SubResource("ShaderMaterial_o88lj")
+cast_shadow = 0
+
+[node name="Lightning_placeholder_01_005" parent="ElectricFlower" index="6" unique_id=924577405]
+material_override = SubResource("ShaderMaterial_wjrdx")
+cast_shadow = 0
+
+[node name="Petals" parent="ElectricFlower" index="7" unique_id=1399101317]
+blend_shapes/Close_petal_01 = 1.0
+blend_shapes/Close_petal_02 = 1.0
+blend_shapes/Close_petal_03 = 1.0
+blend_shapes/Close_petal_04 = 1.0
+blend_shapes/Close_petal_05 = 1.0
+blend_shapes/Close_petal_06 = 1.0
+blend_shapes/Close_petal_07 = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=664417773]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.40853882, 0)
+shape = SubResource("BoxShape3D_eudqf")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+
+[editable path="ElectricFlower"]

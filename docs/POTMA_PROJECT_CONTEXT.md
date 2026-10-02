@@ -368,6 +368,24 @@ Important files:
 - `GameSettings`
 
 ## Collectibles And World Objects
+- Electric flowers charge for 0.9 seconds before playing `Abrir`. Six authored
+  Blender ribbons (`Lightning_placeholder_01` through `_005`) use the spatial
+  `lightning_ribbon.gdshader`; UV.x controls travel, UV.y controls width. Jagged
+  blue-white discharges travel along the ribbons with staggered starts and
+  disappear before the petals move. `_005` reverses UV travel because its
+  authored U=1 endpoint is lower. The exported `lightning_meshes` array and
+  `charge_duration` configure this sequence. Materials are per instance,
+  gameplay pause freezes charging, and repeated entry cannot restart it.
+  One node-bound parallel Tween animates progress/time and then starts opening;
+  there is no per-frame flower callback or manual material duplication. Ribbon
+  materials must retain `resource_local_to_scene = true` for instance isolation.
+  Ribbon meshes are hidden outside charging. The earlier Sprite3D/SubViewport
+  effect remains a reusable scene but is no longer attached to the flower.
+  `surface_offset` offsets ribbons along their normals by 0.008 metres; adjust
+  it per material if a re-export changes their clearance from the petals.
+  Shader `erraticity` (default 0.85) blends soft bends into denser sharp zigzags
+  with fine irregularities; `jitter_speed` controls shape changes per second.
+  Displacement remains bounded by `amplitude` across the ribbon width.
 - FireTower.fire_state is a zero-argument notification matching the all-lit
   puzzle callback. All five torches in LVL1_Stylized must activate before the
   connected SecretTower rises to its configured activated_position_y.

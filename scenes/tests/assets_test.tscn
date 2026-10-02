@@ -33,6 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://b8ruujys6hpsv" path="res://assets/enemies/mimic/mimic.tscn" id="27_68yrm"]
 [ext_resource type="PackedScene" path="res://scenes/tests/combo_hit_counter_targets.tscn" id="28_combo"]
 [ext_resource type="Shader" uid="uid://yeer1bujxc7y" path="res://assets/teleports/stylized_water.gdshader" id="31_yfmgk"]
+[ext_resource type="PackedScene" uid="uid://cqnm44het1hu0" path="res://scenes/level1_stylized/environment/electric_flower/electric_flower.tscn" id="34_1uvly"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3onbp"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -396,6 +397,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7869273, 0.8577516, 21.3831
 
 [node name="Speed-potion" parent="." unique_id=347981343 instance=ExtResource("7_ifow6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7433167, 0.5601463, 21.214924)
+
+[node name="ElectricFlower2" parent="." unique_id=704066611 instance=ExtResource("34_1uvly")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.485732, 0.0023823823, 22.69262)
+
+[node name="ElectricFlower3" parent="." unique_id=704850604 instance=ExtResource("34_1uvly")]
+transform = Transform3D(0.55661, 0, 1.3929054, 0, 1.5, 0, -1.3929054, 0, 0.55661, -8.06036, 0.0023823823, 22.69262)
+
+[node name="ElectricFlower4" parent="." unique_id=170712393 instance=ExtResource("34_1uvly")]
+transform = Transform3D(-0.37263054, 0, -1.96498, 0, 2, 0, 1.96498, 0, -0.37263054, -8.298796, 0.0023823823, 23.036617)
 
 [connection signal="all_arcs_active" from="Assets/ArcsPuzzles/ArcMagicChestPuzzle/ArcPuzzle" to="Assets/ArcsPuzzles/ArcMagicChestPuzzle/MagicChest" method="deactivate_force_field"]
 [connection signal="all_fire_towers_active" from="Assets/FireTowers/Puzzle" to="Assets/FireTowers/secret_tower" method="activate_secret_tower"]

@@ -54,7 +54,7 @@
 [ext_resource type="PackedScene" uid="uid://brjbkcir1dmm2" path="res://media/level-sound.tscn" id="51_r6y5n"]
 [ext_resource type="AudioStream" uid="uid://euih35j1weh0" path="res://media/Music/01-Blooming-Spring.ogg" id="52_2xd02"]
 [ext_resource type="Script" uid="uid://khpwy7mwgoqc" path="res://assets/elevator/elevator-point/elevator-point.gd" id="54_6pkuh"]
-[ext_resource type="Occluder3D" path="res://scenes/level1_stylized/level_occluder.tres" id="55_occlusion"]
+[ext_resource type="ArrayOccluder3D" path="res://scenes/level1_stylized/level_occluder.tres" id="55_occlusion"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_diun6"]
 panorama = ExtResource("1_vlaig")
@@ -74,17 +74,6 @@ requiredBooks = 1
 requiredBabys = 3
 requiredShards = 5
 metadata/_custom_type_script = "uid://c4t2n0gbu5cvl"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6pkuh"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("23_brugm")
-shader_parameter/water_color = Color(0.08, 0.65, 0.72, 1)
-shader_parameter/noise_scale = 3.5
-shader_parameter/flow_speed = 0.18
-shader_parameter/highlight_strength = 0.55
-shader_parameter/glow_strength = 0.12
-shader_parameter/impact_progress = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2nh10"]
 resource_local_to_scene = true
@@ -109,6 +98,17 @@ shader_parameter/glow_strength = 0.12
 shader_parameter/impact_progress = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uecl6"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("23_brugm")
+shader_parameter/water_color = Color(0.08, 0.65, 0.72, 1)
+shader_parameter/noise_scale = 3.5
+shader_parameter/flow_speed = 0.18
+shader_parameter/highlight_strength = 0.55
+shader_parameter/glow_strength = 0.12
+shader_parameter/impact_progress = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hbgsw"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("23_brugm")
@@ -7854,10 +7854,10 @@ data = PackedVector3Array(3.1007, 0.122999996, -0.011399999, -0.0218, -1.7127, 1
 
 [node name="Lvl1Stylized" type="Node3D" unique_id=1165062203]
 
-[node name="LevelOccluder" type="OccluderInstance3D" parent="."]
+[node name="LevelOccluder" type="OccluderInstance3D" parent="." unique_id=1601101372]
+occluder = ExtResource("55_occlusion")
 bake_mask = 2
 bake_simplification_distance = 0.0
-occluder = ExtResource("55_occlusion")
 
 [node name="LevelSound" parent="." unique_id=1232900703 instance=ExtResource("51_r6y5n")]
 stream = ExtResource("52_2xd02")
@@ -8065,7 +8065,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -3.8567264)
 transform = Transform3D(0.78493655, -0.15997875, 0.598566, -0.0057251304, 0.9641757, 0.26520294, -0.61954963, -0.21159436, 0.75590086, 2.5830069, 3.0988853, 0.6123824)
 
 [node name="Plane" parent="Teleports/Teleport_underground/well_Imported" parent_id_path=PackedInt32Array(183167976, 424706114) index="2" unique_id=1652307758]
-material_override = SubResource("ShaderMaterial_6pkuh")
+material_override = SubResource("ShaderMaterial_2nh10")
 
 [node name="Teleport_underground2" parent="Teleports" unique_id=1883819474 node_paths=PackedStringArray("destination") instance=ExtResource("9_b5tb6")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 57.968597, -41.68706, 39.57779)
@@ -8076,7 +8076,7 @@ transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49
 destination = NodePath("../Teleport_Tower_East")
 
 [node name="Plane" parent="Teleports/Teleport_Tower_West/well_Imported" parent_id_path=PackedInt32Array(1874942392, 424706114) index="2" unique_id=1652307758]
-material_override = SubResource("ShaderMaterial_2nh10")
+material_override = SubResource("ShaderMaterial_naf5f")
 
 [node name="Teleport_Tower_East" parent="Teleports" unique_id=1537721532 node_paths=PackedStringArray("destination") instance=ExtResource("9_b5tb6")]
 transform = Transform3D(-0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, -0.70710677, -254.80792, 50.697372, -85.83995)
@@ -8090,7 +8090,7 @@ destination = NodePath("../Teleport_start")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8266766, 0.21788096, 0.29436493)
 
 [node name="Plane" parent="Teleports/Teleport_secret/well_Imported" parent_id_path=PackedInt32Array(17413592, 424706114) index="2" unique_id=1652307758]
-material_override = SubResource("ShaderMaterial_naf5f")
+material_override = SubResource("ShaderMaterial_uecl6")
 
 [node name="Teleport_start" parent="Teleports" unique_id=1505178033 node_paths=PackedStringArray("destination") instance=ExtResource("9_b5tb6")]
 transform = Transform3D(0.0128082195, -0.22582342, -0.97408396, -0.0162977, 0.9739874, -0.22601528, 0.99978507, 0.018770183, 0.008794636, -113.816666, -0.94714373, 11.9079895)
@@ -8106,7 +8106,7 @@ transform = Transform3D(1.2711374, 0.21635853, 0.044020094, -0.27026924, 0.98044
 transform = Transform3D(-0.090033144, 0, -0.13863887, 0, 0.16530792, 0, 0.13863887, 0, -0.090033144, 0, 1.1369275, 0)
 
 [node name="Plane" parent="Teleports/Teleport_start/well_Imported" index="2" unique_id=1652307758]
-material_override = SubResource("ShaderMaterial_uecl6")
+material_override = SubResource("ShaderMaterial_hbgsw")
 
 [node name="Mythrill_1" type="Node3D" parent="." unique_id=1233445144]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.9073486e-06)
@@ -8695,8 +8695,8 @@ shape = SubResource("ConcavePolygonShape3D_6pkuh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150.73827, 13.785334, 186.3199)
 
 [node name="Tower_West" type="MeshInstance3D" parent="LvL1_Stylized_Imported/StaticBody3D_Tower_West" unique_id=72994735]
-layers = 3
 transform = Transform3D(0.50340134, 0.039755512, 0.8631376, -0.020028805, 0.99920946, -0.034341626, -0.8638206, 5.5879354e-09, 0.5037995, 0, 0, 0)
+layers = 3
 mesh = SubResource("ArrayMesh_0w40h")
 skeleton = NodePath("")
 metadata/extras = {
@@ -8713,8 +8713,8 @@ shape = SubResource("ConcavePolygonShape3D_2nh10")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102.584595, -37.414658, 31.896011)
 
 [node name="Tunnel" type="MeshInstance3D" parent="LvL1_Stylized_Imported/StaticBody3D_Tunnel" unique_id=1144174154]
-layers = 3
 transform = Transform3D(-0.07531233, 0, 0.99716, 0, 1, 0, -0.99716, 0, -0.07531233, 0, 0, 0)
+layers = 3
 mesh = SubResource("ArrayMesh_i538a")
 skeleton = NodePath("")
 metadata/extras = {
@@ -8739,8 +8739,8 @@ shape = SubResource("ConcavePolygonShape3D_naf5f")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -216.60406, 44.80098, -19.41864)
 
 [node name="Island_Room" type="MeshInstance3D" parent="LvL1_Stylized_Imported/StaticBody3D_Island_Room" unique_id=1817950417]
-layers = 3
 transform = Transform3D(-0.9153395, -0.0076845493, -0.40260938, -0.033857178, 0.9977463, 0.057931054, 0.40125683, 0.06665781, -0.91353685, 0, 0, 0)
+layers = 3
 mesh = SubResource("ArrayMesh_beb6c")
 skeleton = NodePath("")
 metadata/extras = {
@@ -8796,8 +8796,8 @@ shape = SubResource("ConcavePolygonShape3D_pfnof")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -249.32953, 62.062546, -84.0294)
 
 [node name="Tower_East" type="MeshInstance3D" parent="LvL1_Stylized_Imported/StaticBody3D_Tower_East" unique_id=49234183]
-layers = 3
 transform = Transform3D(0.4463885, 0.0380302, 0.8940307, -0.0143381525, 0.99927217, -0.035347935, -0.8947243, 0.002960164, 0.44660893, 0, 0, 0)
+layers = 3
 mesh = SubResource("ArrayMesh_7ycxk")
 skeleton = NodePath("")
 metadata/extras = {
@@ -8908,8 +8908,8 @@ shape = SubResource("ConcavePolygonShape3D_6yv6n")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -108.23622, 1.5963267, 13.02916)
 
 [node name="Island_Room_001" type="MeshInstance3D" parent="LvL1_Stylized_Imported/StaticBody3D_Island_Room_001" unique_id=739086992]
-layers = 3
 transform = Transform3D(-0.9330249, 0.04110392, 0.35745636, 0.016826034, 0.997351, -0.070766464, -0.35941824, -0.0600123, -0.93124485, 0, 0, 0)
+layers = 3
 mesh = SubResource("ArrayMesh_qvu3k")
 skeleton = NodePath("")
 metadata/extras = {

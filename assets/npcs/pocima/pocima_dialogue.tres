@@ -2,11 +2,13 @@
 
 [ext_resource type="Script" uid="uid://dmx6jddwnsrlj" path="res://dialogues/resources/dialogue_data.gd" id="1_data"]
 [ext_resource type="Script" uid="uid://deaeui7q0v2na" path="res://dialogues/resources/dialogue_line.gd" id="2_line"]
+[ext_resource type="AudioStream" uid="uid://wd85a2qtedst" path="res://assets/npcs/pocima/youstoopidnoaimnat.mp3" id="2_x7gr7"]
 
 [sub_resource type="Resource" id="Resource_line_1"]
 script = ExtResource("2_line")
 speaker = "npc_pocima_name"
 text = "npc_pocima_intro_1"
+voice_stream = ExtResource("2_x7gr7")
 
 [sub_resource type="Resource" id="Resource_line_2"]
 script = ExtResource("2_line")
